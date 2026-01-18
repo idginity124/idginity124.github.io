@@ -1,0 +1,63 @@
+/* GENEL AYARLAR */
+body {
+    background-color: #121212; /* Koyu arkaplan */
+    color: #e0e0e0; /* Açık gri yazı */
+    font-family: 'Roboto Mono', monospace; /* Kodcu fontu */
+    margin: 0;
+    line-height: 1.6;
+}
+
+a { color: #00ff88; text-decoration: none; } /* Neon yeşil linkler */
+a:hover { text-decoration: underline; }
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 50px 0;
+    border-bottom: 1px solid #333;
+}
+
+header h1 { margin-bottom: 10px; font-size: 2.5rem; }
+.social-links a { margin: 0 10px; font-weight: bold; border: 1px solid #00ff88; padding: 5px 10px; border-radius: 5px; }
+.social-links a:hover { background-color: #00ff88; color: #121212; }
+
+/* SECTIONS */
+section { padding: 40px 0; border-bottom: 1px solid #2a2a2a; }
+h2 { color: #00ff88; border-left: 4px solid #00ff88; padding-left: 10px; }
+
+/* PROJE KARTLARI (GRID) */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    transition: transform 0.2s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: #00ff88;
+}
+
+.tag {
+    background-color: #333;
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+/* FOOTER */
+footer { text-align: center; padding: 20px; font-size: 0.8rem; color: #666; }
