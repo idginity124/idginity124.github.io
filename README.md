@@ -1,29 +1,35 @@
-# Portfolio + VidExtract Web Demo
+# Portfolio (GitHub Pages)
 
-This project contains a **static portfolio website** and an optional **FastAPI backend** used by the VidExtract web demo.
+Bu repo **tamamen statik** bir portföy sitesidir ve **GitHub Pages** üzerinde sorunsuz çalışacak şekilde düzenlenmiştir.
 
-## Structure
+## Sayfalar
 
-- `index.html` — home
-- `projects.html` — projects
-- `vidextract.html` — VidExtract web demo (needs API)
-- `contact.html` — contact
-- `assets/` — CSS, JS, images
-- `server/` — FastAPI + yt-dlp API
+- `index.html` — Ana sayfa
+- `projects.html` — Proje listesi
+- `projects/*.html` — Her proje için ayrı detay sayfası
+- `contact.html` — İletişim
+- `vidextract.html` — Eski linkler için yönlendirme (redirect) → `projects/vidextract.html`
 
-## Run the site (static)
-
-You can open `index.html` directly, but for best results use a local web server:
+## Local test (önerilen)
 
 ```bash
-# from project root
-python -m http.server 5173
+python -m http.server 5500
 ```
 
-Then open: http://localhost:5173
+Sonra tarayıcıda:
+- `http://localhost:5500`
 
-## Run VidExtract API
+## GitHub Pages deploy
 
-See `server/README.md`.
+Senin durumunda `idginity124.github.io` bir **user pages** olduğu için:
+- Bu dosyaları `idginity124.github.io` reposunun kök dizinine koy
+- `main` (veya `master`) branch’e pushla
+- Pages ayarlarında yayın kaynağı `root` olacak şekilde açık olmalı
 
-> ⚠️ Only download content you have the rights to, and follow platform ToS.
+## Yeni proje ekleme
+
+1. `projects/_template.html` dosyasını kopyala (örn: `projects/yeni-proje.html`)
+2. İçerikleri (başlık, özet, etiketler, linkler) düzenle
+3. `projects.html` içine yeni kartı ekle (Detaylar linki yeni sayfayı göstermeli)
+
+> İpucu: Detay sayfaları için görsel ekleyeceksen `assets/img/` altına koyup sayfada `../assets/img/...` olarak çağırabilirsin.

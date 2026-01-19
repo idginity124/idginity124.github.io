@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VidExtract Web | Ekrem Bulgan</title>
-  <meta name="description" content="VidExtract — modern video/audio downloader. Web demo powered by a local API (yt-dlp)." />
-  <meta name="api-base" content="/api" />
+  <title>VidExtract | Ekrem Bulgan</title>
+  <meta name="description" content="VidExtract proje sayfasına yönlendirme." />
+  <meta http-equiv="refresh" content="0; url=projects/vidextract.html" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,7 +24,6 @@
         <div class="nav-links" aria-label="Primary">
           <a class="nav-link" href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
           <a class="nav-link" href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
-          <a class="nav-link" href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
           <a class="nav-link" href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
         </div>
       </div>
@@ -48,136 +46,16 @@
   <main id="main">
     <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
       <div class="container">
-        <div class="section-head reveal">
-          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-            <img src="assets/img/vidextract_logo.png" alt="VidExtract" width="56" height="56" style="border-radius:16px; border:1px solid var(--border); background: var(--surface);" />
-            <div>
-              <h1 class="section-title" style="margin:0" data-tr="VidExtract Web" data-en="VidExtract Web">VidExtract Web</h1>
-              <p class="section-desc" style="margin-top:6px" data-tr="Bu sayfa, masaüstü VidExtract uygulamasının web arayüzüne dönüştürülmüş canlı demosudur." data-en="This page is a live web demo inspired by the VidExtract desktop application.">
-                Bu sayfa, masaüstü VidExtract uygulamasının web arayüzüne dönüştürülmüş canlı demosudur.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="two-col">
-          <!-- Web Downloader Panel -->
-          <div class="panel reveal">
-            <h2 class="panel-title" data-tr="YouTube Downloader (Web)" data-en="YouTube Downloader (Web)">YouTube Downloader (Web)</h2>
-            <p class="muted" data-tr="Not: Bu demo bir API ile çalışır. Statik hosting tek başına indirme yapamaz." data-en="Note: This demo needs an API. Static hosting alone cannot download.">
-              Not: Bu demo bir API ile çalışır. Statik hosting tek başına indirme yapamaz.
-            </p>
-
-            <div id="api-status" class="alert warn" style="margin-top: 14px;" data-tr="API kontrol ediliyor..." data-en="Checking API...">API kontrol ediliyor...</div>
-
-            <form id="vx-form" class="form" style="margin-top: 14px;">
-              <div class="form-row">
-                <label for="vx-url" data-tr="Video URL" data-en="Video URL">Video URL</label>
-                <input id="vx-url" name="url" type="url" placeholder="https://www.youtube.com/watch?v=..." required />
-              </div>
-
-              <div class="two-col" style="gap: 12px; margin-top: 10px;">
-                <div class="form-row">
-                  <label for="vx-mode" data-tr="Tür" data-en="Mode">Tür</label>
-                  <select id="vx-mode" name="mode">
-                    <option value="video" data-tr="Video" data-en="Video">Video</option>
-                    <option value="audio" data-tr="Ses" data-en="Audio">Ses</option>
-                  </select>
-                </div>
-
-                <div class="form-row">
-                  <label for="vx-format" data-tr="Format" data-en="Format">Format</label>
-                  <select id="vx-format" name="format">
-                    <option value="best" data-tr="En iyi (otomatik)" data-en="Best (auto)">En iyi (otomatik)</option>
-                    <option value="mp4" data-tr="MP4 (uyumlu)" data-en="MP4 (compatible)">MP4 (uyumlu)</option>
-                    <option value="m4a" data-tr="M4A (ses)" data-en="M4A (audio)">M4A (ses)</option>
-                    <option value="mp3" data-tr="MP3 (ffmpeg gerekli)" data-en="MP3 (ffmpeg required)">MP3 (ffmpeg gerekli)</option>
-                  </select>
-                </div>
-              </div>
-
-              <label class="check" style="margin-top: 10px;">
-                <input id="vx-rights" type="checkbox" />
-                <span data-tr="Bu içerik için indirme hakkım var (kendi içeriğim / izinli / telifsiz)." data-en="I have the rights to download this content (my own / permitted / royalty-free).">
-                  Bu içerik için indirme hakkım var (kendi içeriğim / izinli / telifsiz).
-                </span>
-              </label>
-
-              <div class="card-actions" style="margin-top: 12px;">
-                <button id="vx-preview-btn" class="btn btn-ghost" type="button">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                  <span data-tr="Önizle" data-en="Preview">Önizle</span>
-                </button>
-                <button class="btn btn-primary" type="submit">
-                  <i class="fa-solid fa-download"></i>
-                  <span data-tr="İndir" data-en="Download">İndir</span>
-                </button>
-              </div>
-            </form>
-
-            <div id="vx-preview" class="preview" hidden>
-              <img id="vx-thumb" alt="thumbnail" />
-              <div class="preview-body">
-                <div id="vx-title" class="preview-title"></div>
-                <div id="vx-meta" class="preview-meta"></div>
-              </div>
-            </div>
-
-            <pre id="vx-log" class="codeblock" aria-live="polite"></pre>
-
-            <div class="panel" style="margin-top: 14px; padding: 16px;">
-              <h3 class="panel-title" style="margin:0 0 6px" data-tr="Kurulum (yerel)" data-en="Setup (local)">Kurulum (yerel)</h3>
-              <p class="muted" style="margin:0" data-tr="Bu sayfanın çalışması için server klasöründeki API'yi çalıştırın. Port: 8000" data-en="To make this page work, run the API in the server folder. Port: 8000">
-                Bu sayfanın çalışması için server klasöründeki API'yi çalıştırın. Port: 8000
-              </p>
-              <div class="tags" style="margin-top:10px;">
-                <span class="tag">server/app.py</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">yt-dlp</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product / Desktop Panel -->
-          <div class="panel reveal">
-            <h2 class="panel-title" data-tr="Masaüstü Uygulama" data-en="Desktop App">Masaüstü Uygulama</h2>
-            <p class="muted" data-tr="Gerçek kullanım için en stabil seçenek: VidExtract masaüstü uygulaması." data-en="For real usage, the most stable option is the VidExtract desktop application.">
-              Gerçek kullanım için en stabil seçenek: VidExtract masaüstü uygulaması.
-            </p>
-
-            <div class="image-grid" style="margin-top: 14px;">
-              <figure class="img-card">
-                <img src="assets/img/main_menu.png" alt="VidExtract main" loading="lazy" />
-                <figcaption class="muted" data-tr="Ana ekran" data-en="Home screen">Ana ekran</figcaption>
-              </figure>
-              <figure class="img-card">
-                <img src="assets/img/download_screen.png" alt="VidExtract download" loading="lazy" />
-                <figcaption class="muted" data-tr="İndirme ekranı" data-en="Download screen">İndirme ekranı</figcaption>
-              </figure>
-              <figure class="img-card">
-                <img src="assets/img/settings_general.png" alt="Settings" loading="lazy" />
-                <figcaption class="muted" data-tr="Ayarlar" data-en="Settings">Ayarlar</figcaption>
-              </figure>
-              <figure class="img-card">
-                <img src="assets/img/settings_advanced.png" alt="Advanced" loading="lazy" />
-                <figcaption class="muted" data-tr="Gelişmiş" data-en="Advanced">Gelişmiş</figcaption>
-              </figure>
-            </div>
-
-            <div class="card-actions" style="margin-top: 14px;">
-              <a class="btn btn-ghost" href="https://github.com/idginity124/VidExtract" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i>
-                <span data-tr="Kaynak kod" data-en="Source code">Kaynak kod</span>
-              </a>
-              <a class="btn btn-primary" href="https://github.com/idginity124/VidExtract/releases" target="_blank" rel="noopener">
-                <i class="fa-solid fa-bolt"></i>
-                <span data-tr="Releases" data-en="Releases">Releases</span>
-              </a>
-            </div>
-
-            <div class="alert warn" style="margin-top: 14px;" data-tr="Uyarı: Yalnızca indirme hakkına sahip olduğunuz içerikleri indirin. Platformların kullanım şartlarına uyun." data-en="Warning: Only download content you have the rights to. Follow platform terms of service.">
-              Uyarı: Yalnızca indirme hakkına sahip olduğunuz içerikleri indirin. Platformların kullanım şartlarına uyun.
-            </div>
+        <div class="panel reveal">
+          <h1 class="panel-title" data-tr="Yönlendiriliyorsun…" data-en="Redirecting…">Yönlendiriliyorsun…</h1>
+          <p class="muted" data-tr="VidExtract proje sayfasına aktarılıyorsun." data-en="Taking you to the VidExtract project page.">
+            VidExtract proje sayfasına aktarılıyorsun.
+          </p>
+          <div class="card-actions" style="margin-top: 12px;">
+            <a class="btn btn-primary" href="projects/vidextract.html">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span data-tr="Devam" data-en="Continue">Devam</span>
+            </a>
           </div>
         </div>
       </div>
@@ -195,6 +73,12 @@
     <i class="fa-solid fa-arrow-up"></i>
   </button>
 
+  <script>
+    // JS redirect fallback
+    if (!location.href.includes('projects/vidextract.html')) {
+      location.replace('projects/vidextract.html');
+    }
+  </script>
   <script src="assets/app.js"></script>
 </body>
 </html>

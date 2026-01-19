@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CipherVault | Proje Detayları</title>
+  <meta name="description" content="CipherVault — project details, features, and technical notes." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
+  <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <a class="logo" href="../index.html" aria-label="Home">EB<span class="dot">.</span></a>
+        <div class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <a class="nav-link" href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <a class="nav-link" href="../contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="lang-btn" class="pill" type="button" aria-label="Toggle language">EN</button>
+        <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <button id="menu-btn" class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
+      <div class="container">
+        <div class="crumbs reveal" aria-label="Breadcrumb">
+          <a href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <span class="crumb-sep">/</span>
+          <a href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">CipherVault</span>
+        </div>
+
+        <div class="project-head reveal">
+          <div class="project-title-row">
+            <div class="project-mark" aria-hidden="true">C</div>
+            <div>
+              <span class="badge" data-tr="Ar-Ge" data-en="R&D">Ar-Ge</span>
+              <h1 class="section-title" style="margin:10px 0 6px">CipherVault</h1>
+              <p class="section-desc" style="margin:0" data-tr="Buluttan bağımsız, yerel şifreleme yaklaşımıyla güvenli şifre yöneticisi konsepti." data-en="Cloud-independent password manager concept with local encryption.">Buluttan bağımsız, yerel şifreleme yaklaşımıyla güvenli şifre yöneticisi konsepti.</p>
+            </div>
+          </div>
+          <div class="project-actions"><a class="btn btn-small btn-primary" href="../contact.html" >
+              <i class="fa-regular fa-paper-plane"></i>
+              <span data-tr="İletişim" data-en="Contact">İletişim</span>
+            </a></div>
+        </div>
+
+        <div class="facts reveal"><div class="fact">
+              <div class="fact-k" data-tr="Alan" data-en="Domain">Alan</div>
+              <div class="fact-v" data-tr="Güvenlik" data-en="Security">Güvenlik</div>
+            </div>
+<div class="fact">
+              <div class="fact-k" data-tr="Durum" data-en="Status">Durum</div>
+              <div class="fact-v" data-tr="Ar-Ge" data-en="R&D">Ar-Ge</div>
+            </div>
+<div class="fact">
+              <div class="fact-k" data-tr="Yaklaşım" data-en="Approach">Yaklaşım</div>
+              <div class="fact-v" data-tr="Offline-first" data-en="Offline-first">Offline-first</div>
+            </div>
+<div class="fact">
+              <div class="fact-k" data-tr="Amaç" data-en="Goal">Amaç</div>
+              <div class="fact-v" data-tr="Şifre yönetimi" data-en="Password management">Şifre yönetimi</div>
+            </div></div>
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Özet" data-en="Overview">Özet</h2>
+          <div class="prose">
+            <p data-tr="CipherVault, güvenli şifre yönetimini basit bir UX ile birleştirmeyi hedefleyen bir Ar-Ge konseptidir. Öncelik; yerel şifreleme, saldırı yüzeyini küçültme ve yedekleme/geri yükleme akışlarının net olmasıdır." data-en="CipherVault is an R&D concept aiming to combine secure password management with a simple UX. Priorities: local encryption, reduced attack surface, and clear backup/restore flows.">CipherVault, güvenli şifre yönetimini basit bir UX ile birleştirmeyi hedefleyen bir Ar-Ge konseptidir. Öncelik; yerel şifreleme, saldırı yüzeyini küçültme ve yedekleme/geri yükleme akışlarının net olmasıdır.</p>
+          </div>
+          <div class="tags" style="margin-top: 12px;"><span class="tag">Security</span>
+<span class="tag">Encryption</span>
+<span class="tag">Offline-first</span></div>
+        </div>
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Öne Çıkan Özellikler" data-en="Key Features">Öne Çıkan Özellikler</h2>
+          <div class="grid feature-grid"><article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-lock"></i></div>
+              <h3 data-tr="Yerel şifreleme" data-en="Local encryption">Yerel şifreleme</h3>
+              <p class="muted" data-tr="Veri dosyasını cihaz üzerinde şifreli tutma." data-en="Keep vault data encrypted on-device.">Veri dosyasını cihaz üzerinde şifreli tutma.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-key"></i></div>
+              <h3 data-tr="Ana parola modeli" data-en="Master password">Ana parola modeli</h3>
+              <p class="muted" data-tr="Tek bir ana parolayla kasayı açma." data-en="Unlock the vault with a master password.">Tek bir ana parolayla kasayı açma.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <h3 data-tr="Saldırı yüzeyi" data-en="Attack surface">Saldırı yüzeyi</h3>
+              <p class="muted" data-tr="Minimum bağımlılık ve açık entegrasyon noktaları." data-en="Minimal dependencies and clear integration points.">Minimum bağımlılık ve açık entegrasyon noktaları.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-file-export"></i></div>
+              <h3 data-tr="Yedekleme" data-en="Backups">Yedekleme</h3>
+              <p class="muted" data-tr="Şifreli yedekleme/geri yükleme akışı." data-en="Encrypted backup/restore workflow.">Şifreli yedekleme/geri yükleme akışı.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-eye-slash"></i></div>
+              <h3 data-tr="Gizlilik" data-en="Privacy">Gizlilik</h3>
+              <p class="muted" data-tr="Bulut zorunluluğu olmadan kullanım." data-en="Usable without mandatory cloud.">Bulut zorunluluğu olmadan kullanım.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-list-check"></i></div>
+              <h3 data-tr="Denetim" data-en="Auditing">Denetim</h3>
+              <p class="muted" data-tr="Zayıf/tekrar eden şifre tespiti (plan)." data-en="Detect weak/reused passwords (planned).">Zayıf/tekrar eden şifre tespiti (plan).</p>
+            </article></div>
+        </div>
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Teknik Notlar & Mimari" data-en="Technical Notes & Architecture">Teknik Notlar & Mimari</h2>
+          <p class="muted" data-tr="Bu kısım, projenin nasıl çalıştığını yüksek seviyede özetler." data-en="This section summarizes how the project works at a high level.">
+            Bu kısım, projenin nasıl çalıştığını yüksek seviyede özetler.
+          </p>
+          <pre class="codeblock">Vault UI
+  ├─ Entries (sites/apps)
+  ├─ Search + categories
+  └─ Backup/restore
+
+Core Security (concept)
+  ├─ Key derivation (KDF)
+  ├─ Encryption at rest
+  ├─ Secure clipboard (optional)
+  └─ Minimal metadata leakage
+</pre>
+        </div>
+
+        
+        
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Yol Haritası" data-en="Roadmap">Yol Haritası</h2>
+          <ul class="bullets"><li data-tr="Tehdit modeli ve güvenlik gereksinimleri dokümanı" data-en="Threat model + security requirements doc">Tehdit modeli ve güvenlik gereksinimleri dokümanı</li>
+<li data-tr="Şifreli kasa formatı (versioning)" data-en="Encrypted vault format (versioning)">Şifreli kasa formatı (versioning)</li>
+<li data-tr="Bağımsız güvenlik incelemesi için checklist" data-en="Checklist for independent security review">Bağımsız güvenlik incelemesi için checklist</li></ul>
+        </div>
+        
+        
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <div class="card-actions">
+            <a class="btn btn-ghost" href="../projects.html">
+              <i class="fa-solid fa-arrow-left"></i>
+              <span data-tr="Projeler sayfasına dön" data-en="Back to projects">Projeler sayfasına dön</span>
+            </a>
+            <a class="btn btn-primary" href="../contact.html">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span data-tr="Bu proje hakkında konuşalım" data-en="Let's talk about this project">Bu proje hakkında konuşalım</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="muted">&copy; <span id="current-year">2026</span> Ekrem Bulgan</div>
+      <div class="muted"><span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1014,3 +1014,132 @@ textarea {
   color: var(--text-dim);
   font-size: 0.92rem;
 }
+
+/* -------------------------------------------------------------------------- */
+/* PROJECT PAGES                                                               */
+/* -------------------------------------------------------------------------- */
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  margin-bottom: 14px;
+}
+
+.crumbs a {
+  color: var(--text-dim);
+  border-bottom: 1px dashed transparent;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.crumbs a:hover {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.crumb-sep {
+  opacity: 0.6;
+}
+
+.project-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.project-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.project-mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  color: var(--text);
+}
+
+.project-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.fact {
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+}
+
+.fact-k {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+.fact-v {
+  margin-top: 4px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 18px 0;
+}
+
+.prose p {
+  margin: 0 0 12px;
+  color: var(--text-dim);
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.feature-grid .card {
+  grid-column: span 4;
+}
+
+@media (max-width: 980px) {
+  .facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .feature-grid .card {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 640px) {
+  .facts {
+    grid-template-columns: 1fr;
+  }
+  .feature-grid .card {
+    grid-column: span 12;
+  }
+}

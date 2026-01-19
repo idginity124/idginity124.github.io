@@ -24,7 +24,6 @@
         <div class="nav-links" aria-label="Primary">
           <a class="nav-link" href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
           <a class="nav-link" href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
-          <a class="nav-link" href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
           <a class="nav-link" href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
         </div>
       </div>
@@ -49,19 +48,19 @@
       <div class="container">
         <div class="section-head reveal">
           <h1 class="section-title" style="margin:0" data-tr="Projeler" data-en="Projects">Projeler</h1>
-          <p class="section-desc" data-tr="Tamamlanan ürünler ve aktif Ar-Ge çalışmaları. Her karttan GitHub'a veya demoya gidebilirsin." data-en="Completed products and active R&D. Each card links to GitHub or a demo.">
-            Tamamlanan ürünler ve aktif Ar-Ge çalışmaları. Her karttan GitHub'a veya demoya gidebilirsin.
+          <p class="section-desc" data-tr="Her proje için ayrı bir detay sayfası var. Kartlardan detaylara veya GitHub'a gidebilirsin." data-en="Each project has a dedicated details page. Use the cards to view details or open GitHub.">
+            Her proje için ayrı bir detay sayfası var. Kartlardan detaylara veya GitHub'a gidebilirsin.
           </p>
         </div>
 
         <div class="panel reveal" style="margin-bottom:18px;">
           <div class="callouts">
             <div class="callout">
-              <div class="callout-ic"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <div class="callout-ic"><i class="fa-solid fa-layer-group"></i></div>
               <div>
-                <div class="callout-t" data-tr="Not" data-en="Note">Not</div>
-                <div class="callout-d" data-tr="Bazı projelerde canlı web demo için küçük bir backend gerekir (ör: VidExtract)." data-en="Some projects need a small backend for a live web demo (e.g., VidExtract).">
-                  Bazı projelerde canlı web demo için küçük bir backend gerekir (ör: VidExtract).
+                <div class="callout-t" data-tr="Yeni proje ekleme" data-en="Adding new projects">Yeni proje ekleme</div>
+                <div class="callout-d" data-tr="Yeni proje sayfası açmak için: projects/_template.html dosyasını kopyala, içeriği düzenle ve kart ekle." data-en="To add a new project: duplicate projects/_template.html, edit the content, and add a card here.">
+                  Yeni proje sayfası açmak için: projects/_template.html dosyasını kopyala, içeriği düzenle ve kart ekle.
                 </div>
               </div>
             </div>
@@ -73,79 +72,62 @@
           <article class="card reveal">
             <div class="card-icon"><i class="fa-solid fa-language"></i></div>
             <h3>LingoPark</h3>
-            <p class="muted" data-tr="Modern dil öğrenme platformu. Kullanıcı dostu arayüz ve etkileşimli alıştırmalar." data-en="Modern language learning platform with a friendly UI and interactive exercises.">
-              Modern dil öğrenme platformu. Kullanıcı dostu arayüz ve etkileşimli alıştırmalar.
-            </p>
-            <div class="tags" aria-label="Tags">
-              <span class="tag">Web</span>
-              <span class="tag">Product</span>
-            </div>
-            <div class="card-actions">
-              <a class="btn btn-small btn-primary" href="https://github.com/idginity124/LingoPark" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-              </a>
-            </div>
+            <p class="muted" data-tr="Modern dil öğrenme platformu. Kullanıcı dostu arayüz ve etkileşimli alıştırmalar." data-en="Modern language learning platform with a friendly UI and interactive exercises.">Modern dil öğrenme platformu. Kullanıcı dostu arayüz ve etkileşimli alıştırmalar.</p>
+            <div class="tags" aria-label="Tags"><span class="tag">Web</span><span class="tag">Product</span><span class="tag">UX</span></div>
+            <div class="card-actions"><a class="btn btn-small btn-ghost" href="projects/lingopark.html">
+            <i class="fa-solid fa-file-lines"></i>
+            <span data-tr="Detaylar" data-en="Details">Detaylar</span>
+          </a><a class="btn btn-small btn-primary" href="https://github.com/idginity124/LingoPark" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a></div>
           </article>
 
           <article class="card reveal">
             <div class="card-icon"><i class="fa-solid fa-video"></i></div>
             <h3>VidExtract</h3>
-            <p class="muted" data-tr="Gelişmiş video/ses indirme aracı. Masaüstü uygulaması + web demo (API ile)." data-en="Advanced video/audio downloader. Desktop app + web demo (with an API).">
-              Gelişmiş video/ses indirme aracı. Masaüstü uygulaması + web demo (API ile).
-            </p>
-            <div class="tags" aria-label="Tags">
-              <span class="tag">Python</span>
-              <span class="tag">Desktop</span>
-              <span class="tag">API</span>
-            </div>
-            <div class="card-actions">
-              <a class="btn btn-small btn-ghost" href="vidextract.html">
-                <i class="fa-solid fa-globe"></i>
-                <span data-tr="Web demo" data-en="Web demo">Web demo</span>
-              </a>
-              <a class="btn btn-small btn-primary" href="https://github.com/idginity124/VidExtract" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-              </a>
-            </div>
+            <p class="muted" data-tr="Modern video/ses indirme aracı (masaüstü). Çoklu platform desteği ve akıllı akış." data-en="Modern desktop video/audio downloader with multi-platform support and smart flows.">Modern video/ses indirme aracı (masaüstü). Çoklu platform desteği ve akıllı akış.</p>
+            <div class="tags" aria-label="Tags"><span class="tag">Python</span><span class="tag">Desktop</span><span class="tag">FFmpeg</span></div>
+            <div class="card-actions"><a class="btn btn-small btn-ghost" href="projects/vidextract.html">
+            <i class="fa-solid fa-file-lines"></i>
+            <span data-tr="Detaylar" data-en="Details">Detaylar</span>
+          </a><a class="btn btn-small btn-ghost" href="https://github.com/idginity124/VidExtract/releases" target="_blank" rel="noopener">
+            <i class="fa-solid fa-bolt"></i>
+            <span data-tr="Releases" data-en="Releases">Releases</span>
+          </a><a class="btn btn-small btn-primary" href="https://github.com/idginity124/VidExtract" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a></div>
           </article>
 
           <article class="card reveal">
             <div class="card-icon"><i class="fa-solid fa-photo-film"></i></div>
             <h3>MediaManagerPro</h3>
-            <p class="muted" data-tr="Büyük medya arşivleri için akıllı düzenleme ve yönetim sistemi." data-en="Smart organization and management system for large media archives.">
-              Büyük medya arşivleri için akıllı düzenleme ve yönetim sistemi.
-            </p>
-            <div class="tags" aria-label="Tags">
-              <span class="tag">Media</span>
-              <span class="tag">Automation</span>
-            </div>
-            <div class="card-actions">
-              <a class="btn btn-small btn-primary" href="https://github.com/idginity124/MediaManagerPro" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-              </a>
-            </div>
+            <p class="muted" data-tr="Büyük medya arşivleri için akıllı düzenleme ve yönetim sistemi." data-en="Smart organization and management system for large media archives.">Büyük medya arşivleri için akıllı düzenleme ve yönetim sistemi.</p>
+            <div class="tags" aria-label="Tags"><span class="tag">Media</span><span class="tag">Automation</span><span class="tag">Workflow</span></div>
+            <div class="card-actions"><a class="btn btn-small btn-ghost" href="projects/mediamanagerpro.html">
+            <i class="fa-solid fa-file-lines"></i>
+            <span data-tr="Detaylar" data-en="Details">Detaylar</span>
+          </a><a class="btn btn-small btn-primary" href="https://github.com/idginity124/MediaManagerPro" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a></div>
           </article>
 
           <article class="card reveal">
             <div class="card-icon"><i class="fa-solid fa-circle-question"></i></div>
             <h3>Quiz App</h3>
-            <p class="muted" data-tr="Dinamik soru havuzu oluşturabilen test ve değerlendirme uygulaması." data-en="Assessment app that can create dynamic question pools.">
-              Dinamik soru havuzu oluşturabilen test ve değerlendirme uygulaması.
-            </p>
-            <div class="tags" aria-label="Tags">
-              <span class="tag">App</span>
-              <span class="tag">UX</span>
-            </div>
-            <div class="card-actions">
-              <a class="btn btn-small btn-primary" href="https://github.com/idginity124/quiz-app" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-              </a>
-            </div>
+            <p class="muted" data-tr="Dinamik soru havuzu oluşturabilen test ve değerlendirme uygulaması." data-en="Assessment app that can create dynamic question pools.">Dinamik soru havuzu oluşturabilen test ve değerlendirme uygulaması.</p>
+            <div class="tags" aria-label="Tags"><span class="tag">App</span><span class="tag">UX</span><span class="tag">Education</span></div>
+            <div class="card-actions"><a class="btn btn-small btn-ghost" href="projects/quiz-app.html">
+            <i class="fa-solid fa-file-lines"></i>
+            <span data-tr="Detaylar" data-en="Details">Detaylar</span>
+          </a><a class="btn btn-small btn-primary" href="https://github.com/idginity124/quiz-app" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a></div>
           </article>
+
         </div>
 
         <h2 class="panel-title reveal" style="margin: 0 0 12px;" data-tr="Ar-Ge" data-en="R&D">Ar-Ge</h2>
@@ -153,34 +135,51 @@
           <article class="card wip-card reveal" role="article">
             <div class="status" data-tr="Yapay Zeka" data-en="AI Model">Yapay Zeka</div>
             <h3>AvianSense AI</h3>
-            <p class="muted" data-tr="Havalimanları için uçuş güvenliğini artıran, kuş sürülerini gerçek zamanlı tespit eden bilgisayarlı görü sistemi." data-en="Computer vision system detecting bird flocks in real-time to enhance aviation safety at airports.">
-              Havalimanları için uçuş güvenliğini artıran, kuş sürülerini gerçek zamanlı tespit eden bilgisayarlı görü sistemi.
-            </p>
+            <p class="muted" data-tr="Havalimanları için uçuş güvenliğini artıran; kuş sürülerini gerçek zamanlı tespit eden bilgisayarlı görü sistemi." data-en="Computer vision system detecting bird flocks in real-time to enhance aviation safety at airports.">Havalimanları için uçuş güvenliğini artıran; kuş sürülerini gerçek zamanlı tespit eden bilgisayarlı görü sistemi.</p>
+            <div class="card-actions" style="margin-top: 8px;">
+              <a class="btn btn-small btn-ghost" href="projects/aviansense-ai.html">
+                <i class="fa-solid fa-file-lines"></i>
+                <span data-tr="Detaylar" data-en="Details">Detaylar</span>
+              </a>
+            </div>
           </article>
 
           <article class="card wip-card reveal" role="article">
             <div class="status" data-tr="Otomasyon" data-en="Automation">Otomasyon</div>
             <h3>DeskMind AI</h3>
-            <p class="muted" data-tr="Kullanıcı alışkanlıklarını öğrenerek masaüstü dosyalarını otomatik kategorize eden akıllı asistan." data-en="Smart assistant that learns user habits to automatically categorize desktop files.">
-              Kullanıcı alışkanlıklarını öğrenerek masaüstü dosyalarını otomatik kategorize eden akıllı asistan.
-            </p>
+            <p class="muted" data-tr="Kullanıcı alışkanlıklarını öğrenerek masaüstü dosyalarını otomatik kategorize eden akıllı asistan." data-en="Smart assistant that learns user habits to automatically categorize desktop files.">Kullanıcı alışkanlıklarını öğrenerek masaüstü dosyalarını otomatik kategorize eden akıllı asistan.</p>
+            <div class="card-actions" style="margin-top: 8px;">
+              <a class="btn btn-small btn-ghost" href="projects/deskmind-ai.html">
+                <i class="fa-solid fa-file-lines"></i>
+                <span data-tr="Detaylar" data-en="Details">Detaylar</span>
+              </a>
+            </div>
           </article>
 
           <article class="card wip-card reveal" role="article">
             <div class="status" data-tr="Güvenlik" data-en="Security">Güvenlik</div>
             <h3>CipherVault</h3>
-            <p class="muted" data-tr="Yerel şifreleme algoritmaları kullanan, buluttan bağımsız güvenli şifre yöneticisi." data-en="Cloud-independent secure password manager using local encryption algorithms.">
-              Yerel şifreleme algoritmaları kullanan, buluttan bağımsız güvenli şifre yöneticisi.
-            </p>
+            <p class="muted" data-tr="Yerel şifreleme kullanan, buluttan bağımsız güvenli şifre yöneticisi konsepti." data-en="Cloud-independent secure password manager concept using local encryption.">Yerel şifreleme kullanan, buluttan bağımsız güvenli şifre yöneticisi konsepti.</p>
+            <div class="card-actions" style="margin-top: 8px;">
+              <a class="btn btn-small btn-ghost" href="projects/ciphervault.html">
+                <i class="fa-solid fa-file-lines"></i>
+                <span data-tr="Detaylar" data-en="Details">Detaylar</span>
+              </a>
+            </div>
           </article>
 
           <article class="card wip-card reveal" role="article">
             <div class="status" data-tr="Sistem" data-en="System">Sistem</div>
             <h3>SysGaze</h3>
-            <p class="muted" data-tr="Detaylı sistem kaynakları ve anlık performansı izleyen profesyonel monitör." data-en="Professional monitor for detailed system resources and real-time performance.">
-              Detaylı sistem kaynakları ve anlık performansı izleyen profesyonel monitör.
-            </p>
+            <p class="muted" data-tr="Detaylı sistem kaynakları ve anlık performansı izleyen profesyonel monitör konsepti." data-en="Professional monitor concept for detailed system resources and real-time performance.">Detaylı sistem kaynakları ve anlık performansı izleyen profesyonel monitör konsepti.</p>
+            <div class="card-actions" style="margin-top: 8px;">
+              <a class="btn btn-small btn-ghost" href="projects/sysgaze.html">
+                <i class="fa-solid fa-file-lines"></i>
+                <span data-tr="Detaylar" data-en="Details">Detaylar</span>
+              </a>
+            </div>
           </article>
+
         </div>
       </div>
     </section>

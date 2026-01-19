@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LingoPark | Proje Detayları</title>
+  <meta name="description" content="LingoPark — project details, features, and technical notes." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
+  <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <a class="logo" href="../index.html" aria-label="Home">EB<span class="dot">.</span></a>
+        <div class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <a class="nav-link" href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <a class="nav-link" href="../contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="lang-btn" class="pill" type="button" aria-label="Toggle language">EN</button>
+        <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <button id="menu-btn" class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
+      <div class="container">
+        <div class="crumbs reveal" aria-label="Breadcrumb">
+          <a href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <span class="crumb-sep">/</span>
+          <a href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">LingoPark</span>
+        </div>
+
+        <div class="project-head reveal">
+          <div class="project-title-row">
+            <div class="project-mark" aria-hidden="true">L</div>
+            <div>
+              <span class="badge" data-tr="Tamamlandı" data-en="Completed">Tamamlandı</span>
+              <h1 class="section-title" style="margin:10px 0 6px">LingoPark</h1>
+              <p class="section-desc" style="margin:0" data-tr="Modern dil öğrenme platformu — etkileşimli alıştırmalar ve temiz kullanıcı akışları." data-en="Modern language learning platform with interactive exercises and clean user flows.">Modern dil öğrenme platformu — etkileşimli alıştırmalar ve temiz kullanıcı akışları.</p>
+            </div>
+          </div>
+          <div class="project-actions"><a class="btn btn-small btn-primary" href="https://github.com/idginity124/LingoPark" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+              <span data-tr="GitHub" data-en="GitHub">GitHub</span>
+            </a>
+<a class="btn btn-small btn-ghost" href="../contact.html" >
+              <i class="fa-regular fa-paper-plane"></i>
+              <span data-tr="İletişim" data-en="Contact">İletişim</span>
+            </a></div>
+        </div>
+
+        <div class="facts reveal"><div class="fact">
+              <div class="fact-k" data-tr="Tür" data-en="Type">Tür</div>
+              <div class="fact-v" data-tr="Web uygulaması" data-en="Web app">Web uygulaması</div>
+            </div>
+<div class="fact">
+              <div class="fact-k" data-tr="Durum" data-en="Status">Durum</div>
+              <div class="fact-v" data-tr="Tamamlandı" data-en="Completed">Tamamlandı</div>
+            </div>
+<div class="fact">
+              <div class="fact-k" data-tr="Odak" data-en="Focus">Odak</div>
+              <div class="fact-v" data-tr="Eğitim • UX" data-en="Education • UX">Eğitim • UX</div>
+            </div>
+<div class="fact">
+              <div class="fact-k" data-tr="Çıktı" data-en="Deliverable">Çıktı</div>
+              <div class="fact-v" data-tr="Ürün konsepti" data-en="Product concept">Ürün konsepti</div>
+            </div></div>
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Özet" data-en="Overview">Özet</h2>
+          <div class="prose">
+            <p data-tr="LingoPark, dil öğrenmeyi daha sürdürülebilir hale getirmek için tasarlanmış bir web platformu konseptidir. Odak noktası: sade arayüz, hızlı içerik erişimi ve ilerleme takibiyle kullanıcıyı motive eden bir deneyim." data-en="LingoPark is a web platform concept designed to make language learning more sustainable. The focus is a clean UI, fast access to content, and progress tracking that keeps users motivated.">LingoPark, dil öğrenmeyi daha sürdürülebilir hale getirmek için tasarlanmış bir web platformu konseptidir. Odak noktası: sade arayüz, hızlı içerik erişimi ve ilerleme takibiyle kullanıcıyı motive eden bir deneyim.</p>
+          </div>
+          <div class="tags" style="margin-top: 12px;"><span class="tag">Web</span>
+<span class="tag">Product</span>
+<span class="tag">UX</span></div>
+        </div>
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Öne Çıkan Özellikler" data-en="Key Features">Öne Çıkan Özellikler</h2>
+          <div class="grid feature-grid"><article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+              <h3 data-tr="Ders akışı" data-en="Lesson flow">Ders akışı</h3>
+              <p class="muted" data-tr="Kısa ve odaklı içerik bloklarıyla akıcı öğrenme." data-en="Smooth learning with short, focused content blocks.">Kısa ve odaklı içerik bloklarıyla akıcı öğrenme.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <h3 data-tr="Alıştırmalar" data-en="Exercises">Alıştırmalar</h3>
+              <p class="muted" data-tr="Etkileşimli pratiklerle pekiştirme ve tekrar." data-en="Reinforcement through interactive practice and repetition.">Etkileşimli pratiklerle pekiştirme ve tekrar.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <h3 data-tr="İlerleme" data-en="Progress">İlerleme</h3>
+              <p class="muted" data-tr="Hedef, seviye ve gelişimi görünür kılan takip ekranları." data-en="Tracking screens that visualize goals, level, and improvement.">Hedef, seviye ve gelişimi görünür kılan takip ekranları.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-language"></i></div>
+              <h3 data-tr="Çoklu dil yaklaşımı" data-en="Multi-language approach">Çoklu dil yaklaşımı</h3>
+              <p class="muted" data-tr="Arayüz ve içerik kurgusu çoklu dil genişlemesine uygun." data-en="UI and content structure ready for multi-language expansion.">Arayüz ve içerik kurgusu çoklu dil genişlemesine uygun.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-shield"></i></div>
+              <h3 data-tr="Güvenli tasarım" data-en="Security-minded">Güvenli tasarım</h3>
+              <p class="muted" data-tr="Basit ama doğru giriş/oturum yaklaşımı (konsept)." data-en="Simple but correct auth/session approach (concept).">Basit ama doğru giriş/oturum yaklaşımı (konsept).</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-sparkles"></i></div>
+              <h3 data-tr="Modern UI" data-en="Modern UI">Modern UI</h3>
+              <p class="muted" data-tr="Tutarlı tasarım sistemi, kartlar ve bileşenler." data-en="Consistent design system, cards, and components.">Tutarlı tasarım sistemi, kartlar ve bileşenler.</p>
+            </article></div>
+        </div>
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Teknik Notlar & Mimari" data-en="Technical Notes & Architecture">Teknik Notlar & Mimari</h2>
+          <p class="muted" data-tr="Bu kısım, projenin nasıl çalıştığını yüksek seviyede özetler." data-en="This section summarizes how the project works at a high level.">
+            Bu kısım, projenin nasıl çalıştığını yüksek seviyede özetler.
+          </p>
+          <pre class="codeblock">Browser UI
+  ├─ Lesson/Exercise pages
+  ├─ Progress dashboard
+  └─ (Future) Auth & user profiles
+
+Data Layer (concept)
+  ├─ Content: lessons, vocabulary, quizzes
+  └─ Progress: streaks, levels, completion
+</pre>
+        </div>
+
+        
+        
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Yol Haritası" data-en="Roadmap">Yol Haritası</h2>
+          <ul class="bullets"><li data-tr="Ders içerik editörü (admin panel)" data-en="Lesson editor (admin panel)">Ders içerik editörü (admin panel)</li>
+<li data-tr="Spaced repetition / kelime kartları" data-en="Spaced repetition / flashcards">Spaced repetition / kelime kartları</li>
+<li data-tr="Leaderboard & streak sistemi" data-en="Leaderboard & streak system">Leaderboard & streak sistemi</li></ul>
+        </div>
+        
+        
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <div class="card-actions">
+            <a class="btn btn-ghost" href="../projects.html">
+              <i class="fa-solid fa-arrow-left"></i>
+              <span data-tr="Projeler sayfasına dön" data-en="Back to projects">Projeler sayfasına dön</span>
+            </a>
+            <a class="btn btn-primary" href="../contact.html">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span data-tr="Bu proje hakkında konuşalım" data-en="Let's talk about this project">Bu proje hakkında konuşalım</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="muted">&copy; <span id="current-year">2026</span> Ekrem Bulgan</div>
+      <div class="muted"><span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

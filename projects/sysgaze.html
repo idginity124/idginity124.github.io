@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SysGaze | Proje Detayları</title>
+  <meta name="description" content="SysGaze — project details, features, and technical notes." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
+  <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <a class="logo" href="../index.html" aria-label="Home">EB<span class="dot">.</span></a>
+        <div class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <a class="nav-link" href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <a class="nav-link" href="../contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="lang-btn" class="pill" type="button" aria-label="Toggle language">EN</button>
+        <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <button id="menu-btn" class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
+      <div class="container">
+        <div class="crumbs reveal" aria-label="Breadcrumb">
+          <a href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <span class="crumb-sep">/</span>
+          <a href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">SysGaze</span>
+        </div>
+
+        <div class="project-head reveal">
+          <div class="project-title-row">
+            <div class="project-mark" aria-hidden="true">S</div>
+            <div>
+              <span class="badge" data-tr="Ar-Ge" data-en="R&D">Ar-Ge</span>
+              <h1 class="section-title" style="margin:10px 0 6px">SysGaze</h1>
+              <p class="section-desc" style="margin:0" data-tr="Detaylı sistem kaynakları ve anlık performansı izleyen profesyonel monitör." data-en="Professional monitor for detailed system resources and real-time performance.">Detaylı sistem kaynakları ve anlık performansı izleyen profesyonel monitör.</p>
+            </div>
+          </div>
+          <div class="project-actions"><a class="btn btn-small btn-primary" href="../contact.html" >
+              <i class="fa-regular fa-paper-plane"></i>
+              <span data-tr="İletişim" data-en="Contact">İletişim</span>
+            </a></div>
+        </div>
+
+        <div class="facts reveal"><div class="fact">
+              <div class="fact-k" data-tr="Alan" data-en="Domain">Alan</div>
+              <div class="fact-v" data-tr="Sistem" data-en="System">Sistem</div>
+            </div>
+<div class="fact">
+              <div class="fact-k" data-tr="Durum" data-en="Status">Durum</div>
+              <div class="fact-v" data-tr="Ar-Ge" data-en="R&D">Ar-Ge</div>
+            </div>
+<div class="fact">
+              <div class="fact-k" data-tr="Odak" data-en="Focus">Odak</div>
+              <div class="fact-v" data-tr="Performans" data-en="Performance">Performans</div>
+            </div>
+<div class="fact">
+              <div class="fact-k" data-tr="Çıktı" data-en="Output">Çıktı</div>
+              <div class="fact-v" data-tr="Dashboard + log" data-en="Dashboard + logs">Dashboard + log</div>
+            </div></div>
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Özet" data-en="Overview">Özet</h2>
+          <div class="prose">
+            <p data-tr="SysGaze, sistem performansını anlaşılır metriklerle izleyip sorunları daha erken yakalamayı hedefleyen bir izleme aracı konseptidir. Odak; düşük kaynak kullanımı, doğru ölçüm ve export edilebilir log çıktılarıdır." data-en="SysGaze is a monitoring tool concept focused on surfacing system performance via clear metrics and early issue detection. Key goals: low overhead, accurate measurements, and exportable logs.">SysGaze, sistem performansını anlaşılır metriklerle izleyip sorunları daha erken yakalamayı hedefleyen bir izleme aracı konseptidir. Odak; düşük kaynak kullanımı, doğru ölçüm ve export edilebilir log çıktılarıdır.</p>
+          </div>
+          <div class="tags" style="margin-top: 12px;"><span class="tag">System</span>
+<span class="tag">Monitoring</span>
+<span class="tag">Performance</span></div>
+        </div>
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Öne Çıkan Özellikler" data-en="Key Features">Öne Çıkan Özellikler</h2>
+          <div class="grid feature-grid"><article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-microchip"></i></div>
+              <h3 data-tr="CPU/RAM" data-en="CPU/RAM">CPU/RAM</h3>
+              <p class="muted" data-tr="Anlık kullanım, sıcaklık ve trendler (plan)." data-en="Realtime usage, temperature, trends (planned).">Anlık kullanım, sıcaklık ve trendler (plan).</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-hard-drive"></i></div>
+              <h3 data-tr="Disk/IO" data-en="Disk/IO">Disk/IO</h3>
+              <p class="muted" data-tr="Disk kullanım ve IO metrikleri." data-en="Disk usage and IO metrics.">Disk kullanım ve IO metrikleri.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
+              <h3 data-tr="Ağ" data-en="Network">Ağ</h3>
+              <p class="muted" data-tr="Upload/download, bağlantı takibi." data-en="Upload/download and connection tracking.">Upload/download, bağlantı takibi.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-chart-area"></i></div>
+              <h3 data-tr="Grafikler" data-en="Charts">Grafikler</h3>
+              <p class="muted" data-tr="Zaman serisi performans grafikleri." data-en="Time-series performance charts.">Zaman serisi performans grafikleri.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-file-lines"></i></div>
+              <h3 data-tr="Log export" data-en="Log export">Log export</h3>
+              <p class="muted" data-tr="CSV/JSON gibi formatlara dışa aktarma." data-en="Export to formats like CSV/JSON.">CSV/JSON gibi formatlara dışa aktarma.</p>
+            </article>
+<article class="card reveal">
+              <div class="card-icon"><i class="fa-solid fa-bell"></i></div>
+              <h3 data-tr="Uyarılar" data-en="Alerts">Uyarılar</h3>
+              <p class="muted" data-tr="Eşik aşımı uyarıları (plan)." data-en="Threshold alerts (planned).">Eşik aşımı uyarıları (plan).</p>
+            </article></div>
+        </div>
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Teknik Notlar & Mimari" data-en="Technical Notes & Architecture">Teknik Notlar & Mimari</h2>
+          <p class="muted" data-tr="Bu kısım, projenin nasıl çalıştığını yüksek seviyede özetler." data-en="This section summarizes how the project works at a high level.">
+            Bu kısım, projenin nasıl çalıştığını yüksek seviyede özetler.
+          </p>
+          <pre class="codeblock">Collectors
+  ├─ CPU/RAM sensors
+  ├─ Disk/IO sensors
+  ├─ Network sensors
+  └─ (Optional) GPU sensors
+
+Processing
+  ├─ Sampling + smoothing
+  ├─ Threshold rules
+  └─ Logging/export
+
+UI
+  └─ Real-time dashboard
+</pre>
+        </div>
+
+        
+        
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Yol Haritası" data-en="Roadmap">Yol Haritası</h2>
+          <ul class="bullets"><li data-tr="Minimum dashboard (CPU/RAM/Ağ)" data-en="MVP dashboard (CPU/RAM/Network)">Minimum dashboard (CPU/RAM/Ağ)</li>
+<li data-tr="Export + baseline comparison" data-en="Export + baseline comparison">Export + baseline comparison</li>
+<li data-tr="Uyarı sistemi (threshold)" data-en="Alerting system (threshold)">Uyarı sistemi (threshold)</li></ul>
+        </div>
+        
+        
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <div class="card-actions">
+            <a class="btn btn-ghost" href="../projects.html">
+              <i class="fa-solid fa-arrow-left"></i>
+              <span data-tr="Projeler sayfasına dön" data-en="Back to projects">Projeler sayfasına dön</span>
+            </a>
+            <a class="btn btn-primary" href="../contact.html">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span data-tr="Bu proje hakkında konuşalım" data-en="Let's talk about this project">Bu proje hakkında konuşalım</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="muted">&copy; <span id="current-year">2026</span> Ekrem Bulgan</div>
+      <div class="muted"><span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

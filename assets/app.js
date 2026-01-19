@@ -138,12 +138,25 @@ function initTheme() {
 // ---------------------------------------------------------------------------
 
 function setActiveNav() {
-  const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const pathname = (location.pathname || "").toLowerCase();
+  const file = (pathname.split("/").pop() || "index.html").toLowerCase();
+  const current = file || "index.html";
+
+  // If we're inside /projects/, highlight the Projects nav item.
+  const inProjects = pathname.includes("/projects/");
+
   const links = $$(".nav-links a");
 
   links.forEach((a) => {
     const href = (a.getAttribute("href") || "").toLowerCase();
-    const isMatch = href === path || (path === "" && href.includes("index"));
+    const hrefFile = (href.split("/").pop() || "").toLowerCase();
+
+    let isMatch = hrefFile === current || (current === "index.html" && (hrefFile === "" || hrefFile === "/"));
+
+    if (!isMatch && inProjects && hrefFile === "projects.html") {
+      isMatch = true;
+    }
+
     a.classList.toggle("active", isMatch);
   });
 }
@@ -308,182 +321,6 @@ function initCVDownload() {
 }
 
 // ---------------------------------------------------------------------------
-// VidExtract Web (YouTube Downloader)
-// ---------------------------------------------------------------------------
-
-function getApiBase() {
-  const meta = document.querySelector('meta[name="api-base"]');
-  const fromMeta = meta && meta.getAttribute("content") ? meta.getAttribute("content").trim() : "";
-
-  if (fromMeta) return fromMeta;
-  if (localStorage.getItem(STORAGE.apiBase)) return localStorage.getItem(STORAGE.apiBase);
-
-  // If the site is opened as a file, default to localhost API.
-  if (location.protocol === "file:") return "http://localhost:8000/api";
-
-  // Same-origin default (reverse proxy recommended)
-  return "/api";
-}
-
-async function pingApi(apiBase) {
-  try {
-    const res = await fetch(`${apiBase}/health`, { method: "GET" });
-    if (!res.ok) return { ok: false };
-    const data = await res.json().catch(() => ({}));
-    return { ok: true, data };
-  } catch {
-    return { ok: false };
-  }
-}
-
-function formatDuration(seconds) {
-  if (!Number.isFinite(seconds)) return "";
-  const s = Math.max(0, Math.floor(seconds));
-  const h = Math.floor(s / 3600);
-  const m = Math.floor((s % 3600) / 60);
-  const sec = s % 60;
-  const pad = (n) => String(n).padStart(2, "0");
-  return h > 0 ? `${h}:${pad(m)}:${pad(sec)}` : `${m}:${pad(sec)}`;
-}
-
-function initVidExtractWeb() {
-  const form = $("#vx-form");
-  if (!form) return;
-
-  const apiBase = getApiBase();
-  const statusEl = $("#api-status");
-  const urlEl = $("#vx-url");
-  const modeEl = $("#vx-mode");
-  const fmtEl = $("#vx-format");
-  const rightsEl = $("#vx-rights");
-  const previewBtn = $("#vx-preview-btn");
-  const logEl = $("#vx-log");
-  const previewWrap = $("#vx-preview");
-  const thumbEl = $("#vx-thumb");
-  const titleEl = $("#vx-title");
-  const metaEl = $("#vx-meta");
-
-  let apiOk = false;
-
-  const setStatus = (type, text) => {
-    if (!statusEl) return;
-    statusEl.classList.remove("good", "warn", "bad");
-    statusEl.classList.add(type);
-    statusEl.textContent = text;
-  };
-
-  const writeLog = (text) => {
-    if (!logEl) return;
-    logEl.textContent = text;
-  };
-
-  const updatePreview = (info) => {
-    if (!previewWrap) return;
-    previewWrap.hidden = false;
-
-    if (thumbEl) thumbEl.src = info.thumbnail || "";
-    safeText(titleEl, info.title || "");
-
-    const parts = [];
-    if (info.uploader) parts.push(info.uploader);
-    if (info.duration != null) parts.push(formatDuration(info.duration));
-    if (info.view_count != null) parts.push(`${info.view_count.toLocaleString()} views`);
-    safeText(metaEl, parts.join(" • "));
-  };
-
-  // 1) Ping API
-  (async () => {
-    setStatus("warn", currentLang === "tr" ? "Backend kontrol ediliyor…" : "Checking backend…");
-
-    const ping = await pingApi(apiBase);
-    apiOk = ping.ok;
-
-    if (apiOk) {
-      const v = (ping.data && ping.data.version) ? ` (v${ping.data.version})` : "";
-      setStatus("good", (currentLang === "tr" ? "Backend bağlı" : "Backend connected") + v);
-    } else {
-      setStatus(
-        "bad",
-        currentLang === "tr"
-          ? "Backend bulunamadı. Demo için server'ı çalıştırın (aşağıdaki yönergeler)."
-          : "Backend not found. Start the server for the live demo (see instructions below)."
-      );
-    }
-  })();
-
-  // 2) Preview
-  const doPreview = async () => {
-    const url = (urlEl ? urlEl.value : "").trim();
-    if (!url) {
-      showToast(currentLang === "tr" ? "Lütfen bir URL girin." : "Please enter a URL.");
-      return;
-    }
-
-    if (!apiOk) {
-      showToast(currentLang === "tr" ? "Backend yok: Önizleme yapılamıyor." : "No backend: preview unavailable.");
-      return;
-    }
-
-    writeLog(currentLang === "tr" ? "> Bilgi alınıyor…" : "> Fetching info…");
-
-    try {
-      const res = await fetch(`${apiBase}/info?url=${encodeURIComponent(url)}`);
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        const msg = data && data.detail ? data.detail : (currentLang === "tr" ? "Önizleme hatası." : "Preview error.");
-        writeLog(`> ERROR: ${msg}`);
-        showToast(msg);
-        return;
-      }
-
-      updatePreview(data);
-      writeLog(currentLang === "tr" ? "> Hazır." : "> Ready.");
-    } catch (e) {
-      writeLog(`> ERROR: ${String(e)}`);
-      showToast(currentLang === "tr" ? "Ağ hatası." : "Network error.");
-    }
-  };
-
-  if (previewBtn) previewBtn.addEventListener("click", doPreview);
-
-  // 3) Download
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const url = (urlEl ? urlEl.value : "").trim();
-    const mode = (modeEl ? modeEl.value : "video").trim();
-    const fmt = (fmtEl ? fmtEl.value : "best").trim();
-    const rightsOk = rightsEl ? !!rightsEl.checked : true;
-
-    if (!url) {
-      showToast(currentLang === "tr" ? "Lütfen bir URL girin." : "Please enter a URL.");
-      return;
-    }
-
-    if (!rightsOk) {
-      showToast(currentLang === "tr" ? "Devam etmek için onay kutusunu işaretleyin." : "Please tick the confirmation box to continue.");
-      return;
-    }
-
-    if (!apiOk) {
-      showToast(currentLang === "tr" ? "Backend yok: İndirme yapılamıyor." : "No backend: download unavailable.");
-      return;
-    }
-
-    // Optional: Fetch preview first (fast validation)
-    await doPreview();
-
-    const dlUrl = `${apiBase}/download?url=${encodeURIComponent(url)}&mode=${encodeURIComponent(mode)}&format=${encodeURIComponent(fmt)}`;
-
-    writeLog(currentLang === "tr" ? "> İndirme başlatıldı (tarayıcı indiriyor)…" : "> Download started (browser will download)…");
-    showToast(currentLang === "tr" ? "İndirme başlatıldı." : "Download started.");
-
-    // Navigate to the download endpoint so the browser handles the file
-    window.location.href = dlUrl;
-  });
-}
-
-// ---------------------------------------------------------------------------
 // INIT
 // ---------------------------------------------------------------------------
 
@@ -513,7 +350,6 @@ function init() {
   // Page-specific
   initContact();
   initCVDownload();
-  initVidExtractWeb();
 
   console.log("Portfolio initialized.");
 }
