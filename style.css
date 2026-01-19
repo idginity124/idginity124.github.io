@@ -1,63 +1,154 @@
-/* GENEL AYARLAR */
-body {
-    background-color: #121212; /* Koyu arkaplan */
-    color: #e0e0e0; /* Açık gri yazı */
-    font-family: 'Roboto Mono', monospace; /* Kodcu fontu */
+/* RESET & FONTS */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap');
+
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0d1117; /* GitHub Dark Mode rengi */
+    color: #c9d1d9;
+    font-family: 'JetBrains Mono', monospace;
     line-height: 1.6;
 }
 
-a { color: #00ff88; text-decoration: none; } /* Neon yeşil linkler */
-a:hover { text-decoration: underline; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
 
+/* LAYOUT */
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
 }
 
 /* HEADER */
 header {
-    text-align: center;
-    padding: 50px 0;
-    border-bottom: 1px solid #333;
+    padding: 80px 0 50px;
+    border-bottom: 1px solid #30363d;
 }
 
-header h1 { margin-bottom: 10px; font-size: 2.5rem; }
-.social-links a { margin: 0 10px; font-weight: bold; border: 1px solid #00ff88; padding: 5px 10px; border-radius: 5px; }
-.social-links a:hover { background-color: #00ff88; color: #121212; }
+h1 {
+    font-size: 2.5rem;
+    color: #58a6ff; /* GitHub Mavisi */
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #8b949e;
+    margin-bottom: 20px;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+    color: #58a6ff;
+}
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.social-links a {
+    margin-right: 20px;
+    font-size: 1rem;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: #161b22;
+}
+
+.social-links a:hover {
+    border-color: #8b949e;
+    background: #21262d;
+}
 
 /* SECTIONS */
-section { padding: 40px 0; border-bottom: 1px solid #2a2a2a; }
-h2 { color: #00ff88; border-left: 4px solid #00ff88; padding-left: 10px; }
+section { padding: 60px 0; border-bottom: 1px solid #21262d; }
 
-/* PROJE KARTLARI (GRID) */
+.section-title {
+    font-size: 1.5rem;
+    color: #ff7b72; /* Kod kırmızısı */
+    margin-bottom: 30px;
+}
+
+/* PROJECT GRID */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
 }
 
 .project-card {
-    background-color: #1e1e1e;
-    padding: 20px;
+    background: #161b22;
+    border: 1px solid #30363d;
     border-radius: 8px;
-    border: 1px solid #333;
-    transition: transform 0.2s;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, border-color 0.2s;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
-    border-color: #00ff88;
+    border-color: #58a6ff;
 }
 
-.tag {
-    background-color: #333;
-    font-size: 0.8rem;
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-right: 5px;
+/* Güvenlik kartına özel hafif yeşil ton */
+.security-card:hover {
+    border-color: #3fb950; 
 }
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header h3 { color: #f0f6fc; font-size: 1.2rem; }
+.card-header .icons { color: #8b949e; font-size: 1.2rem; }
+
+.project-card p {
+    font-size: 0.9rem;
+    color: #8b949e;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.tags { margin-bottom: 20px; }
+
+.tags span {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: #58a6ff;
+    background: rgba(88, 166, 255, 0.1);
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.btn-code {
+    display: block;
+    text-align: center;
+    background: #238636; /* GitHub Yeşil Butonu */
+    color: white;
+    padding: 8px 0;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.btn-code:hover { background: #2ea043; }
 
 /* FOOTER */
-footer { text-align: center; padding: 20px; font-size: 0.8rem; color: #666; }
+footer {
+    padding: 40px 0;
+    text-align: center;
+    color: #484f58;
+    font-size: 0.85rem;
+}
+.blink { animation: blink 1s infinite; color: #ff7b72; }
