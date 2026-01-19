@@ -1,13 +1,6 @@
 /*
   Ekrem Bulgan Portfolio - Main Script
-  Combined & Refactored
-  Features:
-  - Language toggle (TR/EN)
-  - Theme toggle (Dark/Light)
-  - Mobile Navigation
-  - Scroll Progress & Reveal Animations
-  - Project Modal
-  - Contact Helpers & VidExtract Demo
+  Final Clean Version
 */
 
 // 🔧 Konfigürasyon
@@ -25,14 +18,12 @@ const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 let currentLang = "tr";
 
 /* -------------------------------------------------------------------------- */
-/* UI COMPONENTS                                */
+/* UI COMPONENTS (Toast & Clipboard)                                */
 /* -------------------------------------------------------------------------- */
 
-// Toast Mesaj Gösterimi
 function showToast(message) {
   let toast = $("#toast");
   
-  // Eğer HTML'de toast yoksa dinamik oluştur (Yedek)
   if (!toast) {
     toast = document.createElement("div");
     toast.id = "toast";
@@ -43,20 +34,15 @@ function showToast(message) {
   toast.textContent = message;
   toast.classList.add("is-visible");
   
-  // Varsa eski timer'ı temizle
   if (showToast._t) window.clearTimeout(showToast._t);
-  
-  // 2.4 saniye sonra gizle
   showToast._t = window.setTimeout(() => toast.classList.remove("is-visible"), 2400);
 }
 
-// Kopyalama İşlemi (Clipboard)
 async function copyToClipboard(text) {
   try {
     await navigator.clipboard.writeText(text);
     return true;
   } catch {
-    // Fallback: Eski tarayıcılar için
     try {
       const ta = document.createElement("textarea");
       ta.value = text;
@@ -82,27 +68,20 @@ function setLanguage(lang) {
   document.documentElement.lang = currentLang;
   localStorage.setItem(STORAGE.lang, currentLang);
 
-  // Nav butonunu güncelle
   const langBtn = $("#lang-btn");
   if (langBtn) langBtn.textContent = currentLang === "tr" ? "EN" : "TR";
 
-  // 1. Düz metinleri güncelle (data-tr / data-en)
+  // Metinleri güncelle
   $$('[data-tr][data-en]').forEach((el) => {
     const value = currentLang === "tr" ? el.getAttribute("data-tr") : el.getAttribute("data-en");
     if (value) el.textContent = value;
   });
 
-  // 2. Placeholderları güncelle (inputlar için)
+  // Input Placeholderları güncelle
   $$('[data-tr-placeholder][data-en-placeholder]').forEach((el) => {
     const value = currentLang === "tr" ? el.getAttribute("data-tr-placeholder") : el.getAttribute("data-en-placeholder");
     if (value) el.setAttribute("placeholder", value);
   });
-
-  // 3. Eğer modal açıksa onun dilini de anlık değiştir
-  const modal = $("#project-modal");
-  if (modal?.classList.contains("is-open") && modal._activeProject) {
-    fillModalFromProject(modal._activeProject);
-  }
 }
 
 function toggleLanguage() {
@@ -124,29 +103,16 @@ function setTheme(theme) {
   }
 }
 
-// app.js'e ekle - setTheme fonksiyonundan sonra
-function initTheme() {
-  const themeBtn = document.createElement("button");
-  themeBtn.id = "theme-btn";
-  themeBtn.className = "icon-btn";
-  themeBtn.type = "button";
-  themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-  themeBtn.setAttribute("aria-label", "Toggle theme");
-  themeBtn.addEventListener("click", toggleTheme);
-  
-  // Nav kontrolüne ekle
-  const navControls = document.querySelector(".nav-controls");
-  if (navControls) {
-    navControls.insertBefore(themeBtn, navControls.firstChild);
-  }
-}
-
-// init() fonksiyonuna ekle
-initTheme();
-
 function toggleTheme() {
   const current = document.documentElement.dataset.theme || "dark";
   setTheme(current === "dark" ? "light" : "dark");
+}
+
+function initTheme() {
+  const themeBtn = $("#theme-btn");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", toggleTheme);
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -169,22 +135,18 @@ function initNav() {
     btn.setAttribute("aria-expanded", "true");
   };
 
-  // Toggle button
   btn.addEventListener("click", () => {
     const isOpen = panel.style.display === "block";
     isOpen ? closeNav() : openNav();
   });
 
-  // Dışarı tıklayınca kapat
   document.addEventListener("click", (e) => {
     if (!panel.contains(e.target) && e.target !== btn) closeNav();
   });
 
-  // Linke tıklayınca kapat
   $$("a", panel).forEach((a) => a.addEventListener("click", closeNav));
 }
 
-// Aktif sayfayı menüde işaretle
 function setActiveNav() {
   const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
   const links = $$(".nav-links a, .mobile-panel a");
@@ -192,284 +154,36 @@ function setActiveNav() {
   links.forEach((a) => {
     const href = (a.getAttribute("href") || "").toLowerCase();
     if (!href) return;
-    // Tam eşleşme veya ana sayfa kontrolü
     const isMatch = href === path || (path === "" && href.includes("index"));
     a.classList.toggle("active", isMatch);
   });
 }
 
 /* -------------------------------------------------------------------------- */
-/* SCROLL & ANIMATIONS                             */
-/* -------------------------------------------------------------------------- */
-
-function initScrollProgress() {
-  const bar = $("#progress-bar"); // style.css'te .top-progress__bar olmalı
-  if (!bar) return;
-
-  const update = () => {
-    const doc = document.documentElement;
-    const scrollTop = doc.scrollTop || document.body.scrollTop;
-    const height = doc.scrollHeight - doc.clientHeight;
-    const pct = height > 0 ? (scrollTop / height) * 100 : 0;
-    bar.style.width = `${pct}%`;
-  };
-  
-  window.addEventListener("scroll", update, { passive: true });
-  update();
-}
-
-function initToTop() {
-  const btn = $("#to-top"); // HTML'de ekli olmalı
-  if (!btn) return;
-
-  const update = () => {
-    const y = window.scrollY || document.documentElement.scrollTop;
-    btn.classList.toggle("is-visible", y > 700);
-  };
-
-  btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-  window.addEventListener("scroll", update, { passive: true });
-  update();
-}
-
-function initReveal() {
-  const items = $$(".reveal");
-  if (!items.length) return;
-
-  const obs = new IntersectionObserver(
-    (entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          e.target.classList.add("is-visible");
-          obs.unobserve(e.target);
-        }
-      }
-    },
-    { threshold: 0.12 }
-  );
-
-  items.forEach((el) => obs.observe(el));
-}
-
-/* -------------------------------------------------------------------------- */
-/* PROJECT MODAL                                */
-/* -------------------------------------------------------------------------- */
-
-function fillModalFromProject(projectEl) {
-  const modal = $("#project-modal");
-  if (!modal) return;
-
-  const title = projectEl.getAttribute("data-title") || "Project";
-  const link = projectEl.getAttribute("data-link") || "#";
-  // Dile göre açıklama seç
-  const desc = currentLang === "tr"
-      ? projectEl.getAttribute("data-tr-desc") || ""
-      : projectEl.getAttribute("data-en-desc") || "";
-
-  const tagsRaw = projectEl.getAttribute("data-tags") || "";
-  const tags = tagsRaw.split(",").map((t) => t.trim()).filter(Boolean);
-
-  $("#modal-title").textContent = title;
-  $("#modal-desc").textContent = desc;
-  
-  const githubLink = projectEl.getAttribute("data-github");
-  if (githubLink) {
-    const githubBtn = document.createElement("a");
-    githubBtn.href = githubLink;
-    githubBtn.target = "_blank";
-    githubBtn.className = "btn btn-ghost";
-    githubBtn.innerHTML = '<i class="fab fa-github"></i> GitHub';
-    $("#modal-actions").appendChild(githubBtn);
-  }
-  
-  // Teknoloji ikonları ekle
-  const techs = projectEl.getAttribute("data-tech") || "";
-  if (techs) {
-    const techDiv = document.createElement("div");
-    techDiv.className = "tech-stack";
-    techs.split(",").forEach(tech => {
-      const span = document.createElement("span");
-      span.textContent = tech.trim();
-      techDiv.appendChild(span);
-    });
-    $("#modal-desc").after(techDiv);
-  }
-
-  const tagsWrap = $("#modal-tags");
-  if (tagsWrap) {
-    tagsWrap.innerHTML = "";
-    tags.forEach((t) => {
-      const span = document.createElement("span");
-      span.className = "tag";
-      span.textContent = t;
-      tagsWrap.appendChild(span);
-    });
-  }
-
-  const modalLink = $("#modal-link");
-  if (modalLink) modalLink.href = link;
-
-  modal._activeProject = projectEl;
-}
-
-// app.js'e ekle
-function initCVDownload() {
-  const btn = document.getElementById("download-cv");
-  if (!btn) return;
-  
-  btn.addEventListener("click", async () => {
-    try {
-      // Örnek bir PDF linki - gerçek CV'nizin URL'sini koyun
-      const cvUrl = "assets/cv/Ekrem_Bulgan_CV.pdf";
-      
-      // Yeni sekmede aç
-      window.open(cvUrl, '_blank');
-      
-      showToast(currentLang === "tr" 
-        ? "CV indiriliyor..." 
-        : "Downloading CV...");
-    } catch (error) {
-      showToast(currentLang === "tr" 
-        ? "CV bulunamadı" 
-        : "CV not found");
-    }
-  });
-}
-
-// app.js'e ekle (basit analitik)
-function initAnalytics() {
-  // Sayfa görüntüleme
-  const pageViews = localStorage.getItem('page_views') || 0;
-  localStorage.setItem('page_views', parseInt(pageViews) + 1);
-  
-  // Son ziyaret
-  const lastVisit = localStorage.getItem('last_visit');
-  localStorage.setItem('last_visit', new Date().toISOString());
-  
-  // Basit event tracking
-  document.addEventListener('click', (e) => {
-    const target = e.target;
-    
-    if (target.tagName === 'A' || target.closest('a')) {
-      const link = target.href || target.closest('a').href;
-      const events = JSON.parse(localStorage.getItem('click_events') || '[]');
-      events.push({
-        url: link,
-        timestamp: new Date().toISOString(),
-        page: window.location.pathname
-      });
-      localStorage.setItem('click_events', JSON.stringify(events.slice(-100))); // Son 100 event
-    }
-  });
-}
-
-
-// app.js'e ekle
-function initLazyLoad() {
-  const images = document.querySelectorAll('img[data-src]');
-  
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src;
-          img.removeAttribute('data-src');
-          observer.unobserve(img);
-        }
-      });
-    });
-    
-    images.forEach(img => observer.observe(img));
-  } else {
-    // Fallback
-    images.forEach(img => {
-      img.src = img.dataset.src;
-    });
-  }
-}
-
-function openModal(projectEl) {
-  const modal = $("#project-modal");
-  if (!modal) return;
-  fillModalFromProject(projectEl);
-  modal.classList.add("is-open");
-  document.body.style.overflow = "hidden"; // Scroll'u kilitle
-}
-
-function closeModal() {
-  const modal = $("#project-modal");
-  if (!modal) return;
-  modal.classList.remove("is-open");
-  document.body.style.overflow = "";
-  modal._activeProject = null;
-}
-
-function initModal() {
-  const modal = $("#project-modal");
-  if (!modal) return;
-
-  // Tıklama olayları
-  document.addEventListener("click", (e) => {
-    const target = e.target;
-    if (!(target instanceof Element)) return;
-
-    // 1. Modalı açan buton mu?
-    const openBtn = target.closest("[data-open-modal]");
-    if (openBtn) {
-      e.preventDefault();
-      const card = openBtn.closest(".project-card");
-      if (card) openModal(card);
-      return;
-    }
-
-    // 2. Kartın kendisine tıklandı mı? (Linklere tıklanmadıysa)
-    const card = target.closest(".project-card");
-    if (card && !target.closest("a") && !target.closest("button")) {
-      openModal(card);
-    }
-
-    // 3. Kapatma butonu veya Overlay mi?
-    if (target.closest("[data-close-modal]") || target.classList.contains("modal__overlay")) {
-      closeModal();
-    }
-  });
-
-  // ESC tuşu ile kapatma
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-  });
-}
-
-/* -------------------------------------------------------------------------- */
-/* CONTACT & FORMS                                */
+/* CONTACT & CV DOWNLOAD                            */
 /* -------------------------------------------------------------------------- */
 
 function initContact() {
-  // Mailto linklerini otomatik ayarla
+  // 1. Mailto Linkleri
   $$("a[data-email]").forEach((a) => {
     a.setAttribute("href", `mailto:${CONTACT_EMAIL}`);
     a.textContent = CONTACT_EMAIL;
   });
 
-  // Kopyalama butonu
-  const copyBtn = $("#copy-email"); // contact.html'deki ID
+  // 2. Kopyalama Butonu
+  const copyBtn = $("#copy-email");
   if (copyBtn) {
     copyBtn.addEventListener("click", async () => {
       const ok = await copyToClipboard(CONTACT_EMAIL);
       if (ok) {
         showToast(currentLang === "tr" ? "E-posta kopyalandı." : "Email copied.");
-        // Buton metnini geçici değiştir
-        const originalText = copyBtn.textContent;
-        copyBtn.textContent = currentLang === "tr" ? "Kopyalandı ✓" : "Copied ✓";
-        setTimeout(() => copyBtn.textContent = originalText, 1500);
       } else {
         showToast(currentLang === "tr" ? "Hata oluştu." : "Error.");
       }
     });
   }
 
-  // İletişim Formu (Mailto Draft Oluşturucu)
+  // 3. İletişim Formu
   const form = $("#contact-form");
   const note = $("#contact-note");
 
@@ -502,9 +216,56 @@ function initContact() {
   }
 }
 
+function initCVDownload() {
+  const btn = document.getElementById("download-cv");
+  if (!btn) return;
+  
+  btn.addEventListener("click", () => {
+    // PDF yolunun doğru olduğundan emin ol: assets/cv/Ekrem_Bulgan_CV.pdf
+    const cvUrl = "assets/cv/Ekrem_Bulgan_CV.pdf";
+    window.open(cvUrl, '_blank');
+    
+    showToast(currentLang === "tr" ? "CV indiriliyor..." : "Downloading CV...");
+  });
+}
+
 /* -------------------------------------------------------------------------- */
-/* DEMO FEATURES                                */
+/* OTHER FEATURES (Scroll, Reveal, Demo, Footer)                    */
 /* -------------------------------------------------------------------------- */
+
+function initScrollProgress() {
+  const bar = $("#progress-bar"); 
+  if (!bar) return; 
+
+  const update = () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const height = doc.scrollHeight - doc.clientHeight;
+    const pct = height > 0 ? (scrollTop / height) * 100 : 0;
+    bar.style.width = `${pct}%`;
+  };
+  
+  window.addEventListener("scroll", update, { passive: true });
+}
+
+function initReveal() {
+  const items = $$(".reveal");
+  if (!items.length) return;
+
+  const obs = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          obs.unobserve(e.target);
+        }
+      }
+    },
+    { threshold: 0.12 }
+  );
+
+  items.forEach((el) => obs.observe(el));
+}
 
 function wireVidextractDemo() {
   const form = $("#extract-form");
@@ -525,15 +286,17 @@ function wireVidextractDemo() {
 }
 
 function initFooterYear() {
-  const y = $("#year"); // HTML'de <span id="year"></span> olmalı
-  if (y) y.textContent = String(new Date().getFullYear());
+  // contact.html içinde footer yıl ID'si belirtilmemiş olabilir, bu yüzden güvenli seçim yapıyoruz
+  const y = $("#current-year") || $("#year") || $("footer p span"); 
+  if (y && !isNaN(y.textContent)) { // Sadece sayı ise veya boşsa güncelle
+      y.textContent = String(new Date().getFullYear());
+  }
 }
 
 /* -------------------------------------------------------------------------- */
 /* INITIALIZATION                               */
 /* -------------------------------------------------------------------------- */
 
-// app.js - güncellenmiş init fonksiyonu
 function init() {
   // 1. Dil Ayarları
   const storedLang = localStorage.getItem(STORAGE.lang);
@@ -545,25 +308,16 @@ function init() {
   const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
   setTheme(storedTheme || (prefersLight ? "light" : "dark"));
 
-  // 3. Event Listenerlar
-  $("#lang-btn")?.addEventListener("click", toggleLanguage);
-  $("#theme-btn")?.addEventListener("click", toggleTheme);
-
-  // 4. Modülleri Başlat
-  initTheme();
-  initNav();
-  setActiveNav();
-  initScrollProgress();
-  initToTop();
-  initReveal();
-  initModal();
-  initContact();
-  initCVDownload();
-  wireVidextractDemo();
-  initAnalytics();
-  initLazyLoad();
-  initServiceWorker();
-  initFooterYear();
+  // 3. Modülleri Başlat
+  initTheme();         // Tema butonunu bağla
+  initNav();           // Menüyü bağla
+  setActiveNav();      // Aktif sayfayı işaretle
+  initScrollProgress();// Scroll çubuğu (varsa)
+  initReveal();        // Animasyonlar
+  initContact();       // İletişim formu ve kopyalama
+  initCVDownload();    // CV İndirme
+  wireVidextractDemo();// VidExtract demosu
+  initFooterYear();    // Footer yılı
   
   console.log("Ekrem Bulgan Portfolio initialized.");
 }
