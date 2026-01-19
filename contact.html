@@ -4,101 +4,159 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>İletişim | Ekrem Bulgan</title>
+  <meta name="description" content="Contact Ekrem Bulgan for projects, collaboration or consulting." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
   <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <div class="nav-left">
-        <a class="logo" href="index.html">EB<span class="dot">.</span></a>
+  <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
+  <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <a class="logo" href="index.html" aria-label="Home">EB<span class="dot">.</span></a>
         <div class="nav-links" aria-label="Primary">
-          <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
-          <a href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
-          <a href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
-          <a href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+          <a class="nav-link" href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <a class="nav-link" href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <a class="nav-link" href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
+          <a class="nav-link" href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
         </div>
       </div>
 
       <div class="nav-controls">
-        <button id="lang-btn" type="button" onclick="toggleLanguage()">EN</button>
-        <a href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <button id="menu-btn" class="menu-btn" type="button" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+        <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="lang-btn" class="pill" type="button" aria-label="Toggle language">EN</button>
+        <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <button id="menu-btn" class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
     </div>
   </nav>
 
-  <div id="mobile-panel" class="mobile-panel" aria-label="Mobile menu">
-    <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
-    <a href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
-    <a href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
-    <a href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
-  </div>
-
-  <main>
-    <section class="section">
+  <main id="main">
+    <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
       <div class="container">
-        <h1 data-tr="İletişim" data-en="Contact">İletişim</h1>
-        <p class="muted" data-tr="Projeler, iş birliği veya danışmanlık için yazabilirsin." data-en="Reach out for projects, collaboration, or consulting.">
-          Projeler, iş birliği veya danışmanlık için yazabilirsin.
-        </p>
-        
-        <div class="grid" style="margin-top:20px;">
-  <div class="card">
-    <div class="card-icon"><i class="fa-regular fa-envelope"></i></div>
-    <h3 data-tr="E-posta" data-en="Email">E-posta</h3>
-    <p class="muted"><a data-email href="#">ekrembulgan2@gmail.com</a></p>
-    <button id="copy-email" class="primary-btn" type="button" style="margin-top:12px;">
-      <span data-tr="E-postayı Kopyala" data-en="Copy Email">E-postayı Kopyala</span>
-    </button>
-  </div>
-
-  <div class="card">
-    <div class="card-icon"><i class="fa-solid fa-file-pdf"></i></div>
-    <h3 data-tr="CV İndir" data-en="Download CV">CV İndir</h3>
-    <p class="muted" data-tr="PDF formatında CV'mi indirebilirsiniz" data-en="Download my CV in PDF format">
-      PDF formatında CV'mi indirebilirsiniz
-    </p>
-    <button id="download-cv" class="primary-btn" type="button">
-      <i class="fa-solid fa-download"></i>
-      <span data-tr="CV İndir" data-en="Download CV">CV İndir</span>
-    </button>
-  </div>
-
-  <div class="card">
-    <div class="card-icon"><i class="fa-brands fa-github"></i></div>
-    <h3>GitHub</h3>
-    <p class="muted">idginity124</p>
-    <a class="btn-link" href="https://github.com/idginity124" target="_blank" rel="noopener">GitHub <i class="fas fa-arrow-right"></i></a>
-  </div>
-</div>
-
-        <div class="card" style="margin-top:18px;">
-          <h3 data-tr="Hızlı mesaj" data-en="Quick message">Hızlı mesaj</h3>
-          <p class="muted" data-tr="Bu form e-posta taslağı oluşturur (statik sitede backend yok)." data-en="This form generates an email draft (no backend on static hosting).">
-            Bu form e-posta taslağı oluşturur (statik sitede backend yok).
+        <div class="section-head reveal">
+          <h1 class="section-title" style="margin:0" data-tr="İletişim" data-en="Contact">İletişim</h1>
+          <p class="section-desc" data-tr="Projeler, iş birliği veya danışmanlık için yazabilirsin." data-en="Reach out for projects, collaboration, or consulting.">
+            Projeler, iş birliği veya danışmanlık için yazabilirsin.
           </p>
+        </div>
 
-          <form id="contact-form" style="margin-top:14px;">
-            <input class="input" name="name" type="text" placeholder="Ad" data-tr-placeholder="Ad" data-en-placeholder="Name" required />
-            <input class="input" name="subject" type="text" placeholder="Konu" data-tr-placeholder="Konu" data-en-placeholder="Subject" required style="margin-top:10px;" />
-            <textarea class="input textarea" name="message" placeholder="Mesaj" data-tr-placeholder="Mesaj" data-en-placeholder="Message" required style="margin-top:10px;"></textarea>
-            <button class="primary-btn" type="submit" style="margin-top:12px;">
-              <span data-tr="E-posta oluştur" data-en="Create email">E-posta oluştur</span>
-              <i class="fa-solid fa-paper-plane"></i>
-            </button>
-          </form>
+        <div class="two-col">
+          <div class="panel reveal">
+            <h2 class="panel-title" data-tr="Hızlı bağlantılar" data-en="Quick links">Hızlı bağlantılar</h2>
 
-          <p id="contact-note" class="muted" style="margin-top:10px;"></p>
+            <div class="contact-links">
+              <div class="contact-link" role="group" aria-label="Email">
+                <i class="fa-regular fa-envelope"></i>
+                <div style="display:flex; flex-direction:column; gap:2px;">
+                  <strong data-tr="E-posta" data-en="Email">E-posta</strong>
+                  <span class="muted"><a data-email href="#">ekrembulgan2@gmail.com</a></span>
+                </div>
+              </div>
+
+              <button id="copy-email" class="btn btn-ghost" type="button">
+                <i class="fa-regular fa-copy"></i>
+                <span data-tr="E-postayı kopyala" data-en="Copy email">E-postayı kopyala</span>
+              </button>
+
+              <div class="contact-link" role="group" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+                <div style="display:flex; flex-direction:column; gap:2px;">
+                  <strong>GitHub</strong>
+                  <span class="muted">idginity124</span>
+                </div>
+                <div style="margin-left:auto;">
+                  <a class="btn btn-small btn-primary" href="https://github.com/idginity124" target="_blank" rel="noopener">
+                    <span data-tr="Aç" data-en="Open">Aç</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-link" role="group" aria-label="CV">
+                <i class="fa-solid fa-file-lines"></i>
+                <div style="display:flex; flex-direction:column; gap:2px;">
+                  <strong data-tr="CV" data-en="Resume">CV</strong>
+                  <span class="muted" data-tr="PDF (placeholder)" data-en="PDF (placeholder)">PDF (placeholder)</span>
+                </div>
+                <div style="margin-left:auto;">
+                  <button id="download-cv" class="btn btn-small btn-primary" type="button">
+                    <i class="fa-solid fa-download"></i>
+                    <span data-tr="İndir" data-en="Download">İndir</span>
+                  </button>
+                </div>
+              </div>
+
+              <p class="fineprint" data-tr="Not: CV dosyası örnek. Kendi CV'nizle değiştirin: assets/cv/Ekrem_Bulgan_CV.pdf" data-en="Note: The CV file is a placeholder. Replace it at: assets/cv/Ekrem_Bulgan_CV.pdf">
+                Not: CV dosyası örnek. Kendi CV'nizle değiştirin: assets/cv/Ekrem_Bulgan_CV.pdf
+              </p>
+            </div>
+          </div>
+
+          <div class="panel reveal">
+            <h2 class="panel-title" data-tr="Hızlı mesaj" data-en="Quick message">Hızlı mesaj</h2>
+            <p class="muted" data-tr="Bu form statik sitede e-posta taslağı oluşturur (backend yok)." data-en="This form creates an email draft (no backend on static hosting).">
+              Bu form statik sitede e-posta taslağı oluşturur (backend yok).
+            </p>
+
+            <form id="contact-form" class="form" style="margin-top: 14px;">
+              <div class="form-row">
+                <label for="name" data-tr="Ad" data-en="Name">Ad</label>
+                <input id="name" name="name" type="text" required placeholder="Ad" data-tr-placeholder="Ad" data-en-placeholder="Name" />
+              </div>
+
+              <div class="form-row">
+                <label for="subject" data-tr="Konu" data-en="Subject">Konu</label>
+                <input id="subject" name="subject" type="text" required placeholder="Konu" data-tr-placeholder="Konu" data-en-placeholder="Subject" />
+              </div>
+
+              <div class="form-row">
+                <label for="message" data-tr="Mesaj" data-en="Message">Mesaj</label>
+                <textarea id="message" name="message" rows="6" required placeholder="Mesaj" data-tr-placeholder="Mesaj" data-en-placeholder="Message"></textarea>
+              </div>
+
+              <div class="card-actions" style="margin-top: 4px;">
+                <button class="btn btn-primary" type="submit">
+                  <i class="fa-regular fa-paper-plane"></i>
+                  <span data-tr="E-posta oluştur" data-en="Create email">E-posta oluştur</span>
+                </button>
+                <a class="btn btn-ghost" href="mailto:ekrembulgan2@gmail.com">
+                  <i class="fa-regular fa-envelope"></i>
+                  <span data-tr="Mail aç" data-en="Open email">Mail aç</span>
+                </a>
+              </div>
+            </form>
+
+            <p id="contact-note" class="muted" style="margin-top:10px;"></p>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2026 Ekrem Bulgan. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></p>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="muted">&copy; <span id="current-year">2026</span> Ekrem Bulgan</div>
+      <div class="muted"><span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></div>
+    </div>
   </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
 
   <script src="assets/app.js"></script>
 </body>

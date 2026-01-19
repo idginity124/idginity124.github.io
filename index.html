@@ -4,21 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ekrem Bulgan | AI Engineer</title>
+  <meta name="description" content="Ekrem Bulgan — AI, Computer Vision & Autonomous Systems. Selected projects, demos, and contact." />
+  <meta property="og:title" content="Ekrem Bulgan | AI Engineer" />
+  <meta property="og:description" content="AI, Computer Vision & Autonomous Systems. Selected projects and demos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/vidextract_logo.png" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
   <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-  <!-- Üst Navbar -->
-  <nav class="navbar">
-    <div class="nav-inner container">
-      <div class="nav-left">
-        <a class="logo" href="index.html">EB<span class="dot">.</span></a>
-        <div class="nav-links">
-          <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
-          <a href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
-          <a href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
-          <a href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+  <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
+  <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <a class="logo" href="index.html" aria-label="Home">EB<span class="dot">.</span></a>
+        <div class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <a class="nav-link" href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <a class="nav-link" href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
+          <a class="nav-link" href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
         </div>
       </div>
 
@@ -26,92 +37,243 @@
         <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle theme">
           <i class="fa-solid fa-moon"></i>
         </button>
-        <button id="lang-btn" class="icon-btn" type="button" aria-label="Toggle language">EN</button>
-        <a href="https://github.com/idginity124" class="icon-btn" target="_blank" rel="noopener" aria-label="GitHub">
+        <button id="lang-btn" class="pill" type="button" aria-label="Toggle language">EN</button>
+        <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
           <i class="fab fa-github"></i>
         </a>
-        <button id="menu-btn" class="icon-btn menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+        <button id="menu-btn" class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- Mobil Menü Panel -->
-  <div id="mobile-menu" class="mobile-menu" aria-label="Mobile menu" hidden>
-    <div class="mobile-menu-content">
-      <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
-      <a href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
-      <a href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
-      <a href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+  <noscript>
+    <div class="noscript" data-tr="Bu site bazı özellikler için JavaScript kullanır. Lütfen JavaScript'i etkinleştirin." data-en="This site uses JavaScript for some features. Please enable JavaScript.">
+      Bu site bazı özellikler için JavaScript kullanır. Lütfen JavaScript'i etkinleştirin.
     </div>
-  </div>
+  </noscript>
 
-  <main>
+  <main id="main">
     <header class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <span class="badge" data-tr="Mühendis & Geliştirici" data-en="Engineer & Developer">Mühendis & Geliştirici</span>
-          <h1 data-tr="Veriyi Zekaya Dönüştürüyorum" data-en="Turning Data into Intelligence">Veriyi Zekaya Dönüştürüyorum</h1>
-          <p
-            data-tr="Merhaba, ben Ekrem. Adli Bilişim Mühendisliği mezunuyum. Şu anda Yapay Zeka, Bilgisayarlı Görü ve Otonom Sistemler üzerine ileri düzey çözümler geliştiriyorum."
-            data-en="Hi, I'm Ekrem. Digital Forensics Engineering graduate. Currently building advanced solutions in Artificial Intelligence, Computer Vision, and Autonomous Systems."
-          >
-            Merhaba, ben Ekrem. Adli Bilişim Mühendisliği mezunuyum. Şu anda Yapay Zeka, Bilgisayarlı Görü ve Otonom Sistemler üzerine ileri düzey çözümler geliştiriyorum.
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="badge" data-tr="Mühendis • Geliştirici" data-en="Engineer • Developer">Mühendis • Geliştirici</span>
+
+          <h1 class="hero-title" data-tr="Veriyi, ürünleşen zekâya dönüştürüyorum" data-en="Turning data into shippable intelligence">
+            Veriyi, ürünleşen zekâya dönüştürüyorum
+          </h1>
+
+          <p class="hero-subtitle" data-tr="Merhaba, ben Ekrem. Adli Bilişim Mühendisliği mezunuyum. Yapay Zeka, Bilgisayarlı Görü ve otonom sistemler için uçtan uca çözümler geliştiriyorum." data-en="Hi, I'm Ekrem. Digital Forensics Engineering graduate. I build end-to-end solutions in AI, Computer Vision, and autonomous systems.">
+            Merhaba, ben Ekrem. Adli Bilişim Mühendisliği mezunuyum. Yapay Zeka, Bilgisayarlı Görü ve otonom sistemler için uçtan uca çözümler geliştiriyorum.
           </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="projects.html">
+              <i class="fa-solid fa-grid-2"></i>
+              <span data-tr="Projeleri Gör" data-en="View Projects">Projeleri Gör</span>
+            </a>
+            <a class="btn btn-ghost" href="vidextract.html">
+              <i class="fa-solid fa-download"></i>
+              <span data-tr="VidExtract Web Demo" data-en="VidExtract Web Demo">VidExtract Web Demo</span>
+            </a>
+            <a class="btn btn-ghost" href="contact.html">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span data-tr="İletişime Geç" data-en="Get in touch">İletişime Geç</span>
+            </a>
+          </div>
 
           <div class="tech-stack" aria-label="Tech stack">
             <span><i class="fab fa-python"></i> Python</span>
-            <span><i class="fas fa-brain"></i> TensorFlow</span>
-            <span><i class="fas fa-robot"></i> AI/ML</span>
+            <span><i class="fa-solid fa-brain"></i> AI/ML</span>
+            <span><i class="fa-solid fa-eye"></i> Computer Vision</span>
             <span><i class="fab fa-flutter"></i> Flutter</span>
           </div>
-
-          <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
-            <a class="btn-link" href="projects.html" data-tr="Projeleri Gör" data-en="View Projects">Projeleri Gör <i class="fas fa-arrow-right"></i></a>
-            <a class="btn-link" href="vidextract.html" data-tr="VidExtract Sayfası" data-en="VidExtract Page">VidExtract Sayfası <i class="fas fa-arrow-right"></i></a>
-          </div>
         </div>
+
+        <aside class="profile-card reveal" aria-label="Profile">
+          <div class="avatar" aria-hidden="true">EB</div>
+
+          <div class="profile-meta">
+            <div class="profile-name">Ekrem Bulgan</div>
+            <div class="profile-role" data-tr="AI Engineer • CV & Otonom Sistemler" data-en="AI Engineer • CV & Autonomous Systems">AI Engineer • CV & Otonom Sistemler</div>
+          </div>
+
+          <div class="profile-highlights">
+            <div class="mini">
+              <div class="mini-k" data-tr="Odak" data-en="Focus">Odak</div>
+              <div class="mini-v" data-tr="Bilgisayarlı Görü, Otomasyon" data-en="Computer Vision, Automation">Bilgisayarlı Görü, Otomasyon</div>
+            </div>
+            <div class="mini">
+              <div class="mini-k" data-tr="Yaklaşım" data-en="Approach">Yaklaşım</div>
+              <div class="mini-v" data-tr="Prototip → Ürün" data-en="Prototype → Product">Prototip → Ürün</div>
+            </div>
+            <div class="mini">
+              <div class="mini-k" data-tr="Çıktı" data-en="Output">Çıktı</div>
+              <div class="mini-v" data-tr="Demo, Dokümantasyon, Dağıtım" data-en="Demos, Docs, Deployment">Demo, Dokümantasyon, Dağıtım</div>
+            </div>
+          </div>
+
+          <div class="profile-actions">
+            <a class="btn btn-small btn-primary" href="contact.html">
+              <i class="fa-regular fa-envelope"></i>
+              <span data-tr="İletişim" data-en="Contact">İletişim</span>
+            </a>
+            <a class="btn btn-small btn-ghost" href="assets/cv/Ekrem_Bulgan_CV.pdf" target="_blank" rel="noopener">
+              <i class="fa-solid fa-file-arrow-down"></i>
+              <span data-tr="CV" data-en="Resume">CV</span>
+            </a>
+          </div>
+
+          <p class="profile-note" data-tr="Not: CV dosyası örnek (placeholder). Kendi CV'nizle değiştirin." data-en="Note: The CV file is a placeholder. Replace it with your real resume.">
+            Not: CV dosyası örnek (placeholder). Kendi CV'nizle değiştirin.
+          </p>
+        </aside>
       </div>
     </header>
 
     <section class="section">
       <div class="container">
-        <h2 class="section-title" data-tr="Öne Çıkanlar" data-en="Highlights">Öne Çıkanlar</h2>
+        <div class="section-head reveal">
+          <h2 class="section-title" data-tr="Öne Çıkanlar" data-en="Highlights">Öne Çıkanlar</h2>
+          <p class="section-desc" data-tr="Hızlı prototipleme, güvenli yaklaşım ve sürdürülebilir ürün çıktısı." data-en="Fast prototyping, security-minded decisions, and maintainable product output.">
+            Hızlı prototipleme, güvenli yaklaşım ve sürdürülebilir ürün çıktısı.
+          </p>
+        </div>
+
         <div class="grid">
-          <div class="card">
+          <article class="card reveal">
             <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
             <h3 data-tr="Hızlı Prototipleme" data-en="Fast Prototyping">Hızlı Prototipleme</h3>
-            <p class="muted" data-tr="Fikirden çalışan demoya kısa sürede geçiş." data-en="Going from idea to working demo quickly.">
+            <p class="muted" data-tr="Fikirden çalışan demoya kısa sürede geçiş." data-en="Going from idea to a working demo quickly.">
               Fikirden çalışan demoya kısa sürede geçiş.
             </p>
-          </div>
-          <div class="card">
+          </article>
+
+          <article class="card reveal">
             <div class="card-icon"><i class="fa-solid fa-shield"></i></div>
             <h3 data-tr="Güvenlik Odaklı" data-en="Security-minded">Güvenlik Odaklı</h3>
             <p class="muted" data-tr="Adli bilişim geçmişiyle pratik güvenlik yaklaşımı." data-en="Practical security approach backed by digital forensics.">
               Adli bilişim geçmişiyle pratik güvenlik yaklaşımı.
             </p>
-          </div>
-          <div class="card">
+          </article>
+
+          <article class="card reveal">
             <div class="card-icon"><i class="fa-solid fa-diagram-project"></i></div>
             <h3 data-tr="Ürünleştirme" data-en="Productization">Ürünleştirme</h3>
             <p class="muted" data-tr="Projeleri dağıtılabilir, sürdürülebilir hale getirme." data-en="Turning projects into shippable, maintainable products.">
               Projeleri dağıtılabilir, sürdürülebilir hale getirme.
             </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h3 data-tr="Arayüz + Model" data-en="UI + Model">Arayüz + Model</h3>
+            <p class="muted" data-tr="Sadece model değil: arayüz, akış, logging ve dağıtım." data-en="Not just models: UI, flows, logging, and deployment.">
+              Sadece model değil: arayüz, akış, logging ve dağıtım.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="two-col">
+          <div class="panel reveal">
+            <h3 class="panel-title" data-tr="Nasıl çalışırım?" data-en="How I work">Nasıl çalışırım?</h3>
+            <ul class="bullets">
+              <li data-tr="Problem tanımı → ölçülebilir hedef" data-en="Problem definition → measurable goal">Problem tanımı → ölçülebilir hedef</li>
+              <li data-tr="Hızlı PoC → gerçek veriyle test" data-en="Fast PoC → test on real data">Hızlı PoC → gerçek veriyle test</li>
+              <li data-tr="Metrikler, loglar, izlenebilirlik" data-en="Metrics, logs, traceability">Metrikler, loglar, izlenebilirlik</li>
+              <li data-tr="Dağıtım (CLI/API/UI) ve dokümantasyon" data-en="Deployment (CLI/API/UI) and documentation">Dağıtım (CLI/API/UI) ve dokümantasyon</li>
+            </ul>
+          </div>
+
+          <div class="panel reveal">
+            <h3 class="panel-title" data-tr="Önerilen rota" data-en="Recommended path">Önerilen rota</h3>
+            <div class="callouts">
+              <div class="callout">
+                <div class="callout-ic"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <div>
+                  <div class="callout-t" data-tr="Keşif" data-en="Discovery">Keşif</div>
+                  <div class="callout-d" data-tr="Kapsam, veri, riskler." data-en="Scope, data, risks.">Kapsam, veri, riskler.</div>
+                </div>
+              </div>
+              <div class="callout">
+                <div class="callout-ic"><i class="fa-solid fa-flask"></i></div>
+                <div>
+                  <div class="callout-t" data-tr="Prototip" data-en="Prototype">Prototip</div>
+                  <div class="callout-d" data-tr="Hızlı model + arayüz iskeleti." data-en="Quick model + UI skeleton.">Hızlı model + arayüz iskeleti.</div>
+                </div>
+              </div>
+              <div class="callout">
+                <div class="callout-ic"><i class="fa-solid fa-rocket"></i></div>
+                <div>
+                  <div class="callout-t" data-tr="Ürün" data-en="Product">Ürün</div>
+                  <div class="callout-d" data-tr="Stabilite, paketleme, dağıtım." data-en="Stability, packaging, deployment.">Stabilite, paketleme, dağıtım.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel reveal" style="margin-top:18px;">
+          <h3 class="panel-title" data-tr="Seçili işler" data-en="Selected work">Seçili işler</h3>
+          <p class="muted" data-tr="Projeler sayfasında tüm listeyi bulabilirsin. Buradan hızlıca iki örneğe göz at." data-en="You can find the full list on the projects page. Here are two quick picks.">
+            Projeler sayfasında tüm listeyi bulabilirsin. Buradan hızlıca iki örneğe göz at.
+          </p>
+
+          <div class="grid" style="margin-top:14px;">
+            <article class="card reveal" style="grid-column: span 6;">
+              <div class="card-icon"><i class="fa-solid fa-language"></i></div>
+              <h3>LingoPark</h3>
+              <p class="muted" data-tr="Modern dil öğrenme platformu." data-en="Modern language learning platform.">Modern dil öğrenme platformu.</p>
+              <div class="card-actions">
+                <a class="btn btn-small btn-ghost" href="projects.html">
+                  <span data-tr="Detay" data-en="Details">Detay</span>
+                </a>
+                <a class="btn btn-small btn-primary" href="https://github.com/idginity124/LingoPark" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i>
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="card reveal" style="grid-column: span 6;">
+              <div class="card-icon"><i class="fa-solid fa-video"></i></div>
+              <h3>VidExtract</h3>
+              <p class="muted" data-tr="Masaüstü uygulaması + web demo (API ile)." data-en="Desktop app + web demo (with an API).">Masaüstü uygulaması + web demo (API ile).</p>
+              <div class="card-actions">
+                <a class="btn btn-small btn-ghost" href="vidextract.html">
+                  <span data-tr="Web demo" data-en="Web demo">Web demo</span>
+                </a>
+                <a class="btn btn-small btn-primary" href="https://github.com/idginity124/VidExtract" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i>
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </article>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>&copy; <span id="current-year">2026</span> Ekrem Bulgan. 
-        <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span>
-      </p>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Ekrem Bulgan</strong>
+        <div class="muted" style="font-size:0.95rem;">AI • Computer Vision • Autonomous Systems</div>
+      </div>
+      <div class="muted">&copy; <span id="current-year">2026</span> <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></div>
     </div>
   </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
 
   <script src="assets/app.js"></script>
 </body>
