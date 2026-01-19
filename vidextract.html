@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VidExtract | Ekrem Bulgan</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a class="logo" href="index.html">EB<span class="dot">.</span></a>
+        <div class="nav-links" aria-label="Primary">
+          <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <a href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <a href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
+          <a href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button id="lang-btn" type="button" onclick="toggleLanguage()">EN</button>
+        <a href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <button id="menu-btn" class="menu-btn" type="button" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobile-panel" class="mobile-panel" aria-label="Mobile menu">
+    <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+    <a href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+    <a href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
+    <a href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+  </div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <span class="badge" data-tr="Ürün Sayfası" data-en="Product Page">Ürün Sayfası</span>
+        <h1 data-tr="VidExtract" data-en="VidExtract">VidExtract</h1>
+        <p class="muted" data-tr="Python tabanlı video/ses ayrıştırma ve indirme aracı. Bu sayfa; özellikler, demo arayüz ve web'e taşıma seçeneklerini gösterir." data-en="Python-based video/audio extraction & download tool. This page shows features, a demo UI, and options for bringing it to the web.">
+          Python tabanlı video/ses ayrıştırma ve indirme aracı. Bu sayfa; özellikler, demo arayüz ve web'e taşıma seçeneklerini gösterir.
+        </p>
+
+        <div class="grid" style="margin-top:24px;">
+          <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3 data-tr="Hızlı" data-en="Fast">Hızlı</h3>
+            <p class="muted" data-tr="CLI veya GUI ile hızlı akış." data-en="Quick workflows via CLI or GUI.">CLI veya GUI ile hızlı akış.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-sliders"></i></div>
+            <h3 data-tr="Kontrol" data-en="Control">Kontrol</h3>
+            <p class="muted" data-tr="Format, kalite, ses/video ayrımı." data-en="Format, quality, audio/video separation.">Format, kalite, ses/video ayrımı.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-shield"></i></div>
+            <h3 data-tr="Güvenli" data-en="Secure">Güvenli</h3>
+            <p class="muted" data-tr="Kendi makinenizde/servisinizde çalıştırma." data-en="Run on your machine or your own service.">Kendi makinenizde/servisinizde çalıştırma.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title" data-tr="Web Demo (Statik)" data-en="Web Demo (Static)">Web Demo (Statik)</h2>
+        <div class="card">
+          <p class="muted" data-tr="Bu form sadece arayüz demodur. Statik hosting (GitHub Pages vb.) Python çalıştıramaz. Gerçek indirme/ayrıştırma için backend gerekir." data-en="This form is UI-only. Static hosting (GitHub Pages, etc.) cannot run Python. Real extraction requires a backend.">
+            Bu form sadece arayüz demodur. Statik hosting (GitHub Pages vb.) Python çalıştıramaz. Gerçek indirme/ayrıştırma için backend gerekir.
+          </p>
+
+          <form id="extract-form" class="form" style="margin-top:14px;">
+            <label class="label" for="url" data-tr="Video linki" data-en="Video URL">Video linki</label>
+            <input class="input" id="url" name="url" type="url" placeholder="https://..." required />
+            <button class="primary-btn" type="submit">
+              <i class="fa-solid fa-play"></i>
+              <span data-tr="Çalıştır" data-en="Run">Çalıştır</span>
+            </button>
+          </form>
+
+          <pre id="extract-output" style="margin-top:14px;white-space:pre-wrap;color:var(--text);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:12px;border-radius:14px;"> </pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title" data-tr="Peki bunu webde gerçekten çalıştırabilir miyim?" data-en="Can I actually run this on the web?">Peki bunu webde gerçekten çalıştırabilir miyim?</h2>
+        <div class="grid">
+          <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-server"></i></div>
+            <h3 data-tr="1) Backend + Web UI (Önerilen)" data-en="1) Backend + Web UI (Recommended)">1) Backend + Web UI (Önerilen)</h3>
+            <p class="muted" data-tr="VidExtract'i bir API'ye koyarsın (FastAPI/Flask). Web arayüzü bu API'ye link gönderir, sunucu indirir ve dosyayı kullanıcıya verir." data-en="Put VidExtract behind an API (FastAPI/Flask). The web UI sends a URL, the server downloads and returns the file.">
+              VidExtract'i bir API'ye koyarsın (FastAPI/Flask). Web arayüzü bu API'ye link gönderir, sunucu indirir ve dosyayı kullanıcıya verir.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-desktop"></i></div>
+            <h3 data-tr="2) Masaüstü (Electron/Tauri)" data-en="2) Desktop (Electron/Tauri)">2) Masaüstü (Electron/Tauri)</h3>
+            <p class="muted" data-tr="Web gibi görünen arayüz + arkada Python çalıştırma. En stabil seçeneklerden." data-en="Web-like UI + run Python locally. One of the most stable options.">
+              Web gibi görünen arayüz + arkada Python çalıştırma. En stabil seçeneklerden.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fa-brands fa-python"></i></div>
+            <h3 data-tr="3) Tarayıcı içi Python (Sınırlı)" data-en="3) In-browser Python (Limited)">3) Tarayıcı içi Python (Sınırlı)</h3>
+            <p class="muted" data-tr="Pyodide gibi çözümlerle bazı Python kodları tarayıcıda çalışır; fakat video indirme/ffmpeg gibi şeyler genelde kısıtlıdır." data-en="With Pyodide some Python runs in-browser, but video downloading/ffmpeg workflows are usually constrained.">
+              Pyodide gibi çözümlerle bazı Python kodları tarayıcıda çalışır; fakat video indirme/ffmpeg gibi şeyler genelde kısıtlıdır.
+            </p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px;">
+          <h3 data-tr="Özet" data-en="Summary">Özet</h3>
+          <p class="muted" data-tr="Evet, çoklu sayfa site yapıp VidExtract için ayrı bir sayfa hazırlayabilirsin. Ama gerçek çalıştırma için en mantıklısı: web arayüz + backend API." data-en="Yes, you can build a multi-page site and give VidExtract its own page. But to actually run it, the best approach is: web UI + backend API.">
+            Evet, çoklu sayfa site yapıp VidExtract için ayrı bir sayfa hazırlayabilirsin. Ama gerçek çalıştırma için en mantıklısı: web arayüz + backend API.
+          </p>
+          <a class="btn-link" href="projects.html"><span data-tr="Diğer projelere dön" data-en="Back to projects">Diğer projelere dön</span> <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Ekrem Bulgan. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

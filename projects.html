@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projeler | Ekrem Bulgan</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a class="logo" href="index.html">EB<span class="dot">.</span></a>
+        <div class="nav-links" aria-label="Primary">
+          <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <a href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <a href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
+          <a href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button id="lang-btn" type="button" onclick="toggleLanguage()">EN</button>
+        <a href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <button id="menu-btn" class="menu-btn" type="button" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobile-panel" class="mobile-panel" aria-label="Mobile menu">
+    <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+    <a href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+    <a href="vidextract.html" data-tr="VidExtract" data-en="VidExtract">VidExtract</a>
+    <a href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+  </div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title" data-tr="Projeler" data-en="Projects">Projeler</h2>
+        <p class="muted" style="max-width:760px;margin-bottom:26px" data-tr="Tamamlanan projeler ve aktif Ar-Ge çalışmaları. Her karttan GitHub'a gidebilirsin." data-en="Completed projects and active R&D. Each card links to GitHub.">
+          Tamamlanan projeler ve aktif Ar-Ge çalışmaları. Her karttan GitHub'a gidebilirsin.
+        </p>
+
+        <h3 style="margin-bottom:16px" data-tr="Tamamlanan" data-en="Completed">Tamamlanan</h3>
+        <div class="grid" style="margin-bottom:46px">
+          <article class="card">
+            <div class="card-icon"><i class="fas fa-language"></i></div>
+            <h3>LingoPark</h3>
+            <p class="muted" data-tr="Modern dil öğrenme platformu. Kullanıcı dostu arayüz ve etkileşimli alıştırmalar." data-en="Modern language learning platform with a friendly UI and interactive exercises.">
+              Modern dil öğrenme platformu.
+            </p>
+            <a href="https://github.com/idginity124/LingoPark" target="_blank" rel="noopener" class="btn-link">GitHub <i class="fas fa-arrow-right"></i></a>
+          </article>
+
+          <article class="card">
+            <div class="card-icon"><i class="fas fa-video"></i></div>
+            <h3>VidExtract</h3>
+            <p class="muted" data-tr="Python tabanlı gelişmiş video ve ses ayrıştırma/indirme aracı." data-en="Python-based advanced video and audio extraction/download tool.">
+              Python tabanlı gelişmiş video ve ses ayrıştırma/indirme aracı.
+            </p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <a href="vidextract.html" class="btn-link" data-tr="Ürün sayfası" data-en="Product page">Ürün sayfası <i class="fas fa-arrow-right"></i></a>
+              <a href="https://github.com/idginity124/VidExtract" target="_blank" rel="noopener" class="btn-link">GitHub <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon"><i class="fas fa-images"></i></div>
+            <h3>MediaManagerPro</h3>
+            <p class="muted" data-tr="Büyük medya arşivleri için akıllı düzenleme ve yönetim sistemi." data-en="Smart organization and management system for large media archives.">
+              Büyük medya arşivleri için akıllı düzenleme ve yönetim sistemi.
+            </p>
+            <a href="https://github.com/idginity124/MediaManagerPro" target="_blank" rel="noopener" class="btn-link">GitHub <i class="fas fa-arrow-right"></i></a>
+          </article>
+
+          <article class="card">
+            <div class="card-icon"><i class="fas fa-question-circle"></i></div>
+            <h3>Quiz App</h3>
+            <p class="muted" data-tr="Dinamik soru havuzu oluşturabilen test ve değerlendirme uygulaması." data-en="Assessment app that can create dynamic question pools.">
+              Dinamik soru havuzu oluşturabilen test ve değerlendirme uygulaması.
+            </p>
+            <a href="https://github.com/idginity124/quiz-app" target="_blank" rel="noopener" class="btn-link">GitHub <i class="fas fa-arrow-right"></i></a>
+          </article>
+        </div>
+
+        <h3 style="margin-bottom:16px" data-tr="Ar-Ge" data-en="R&D">Ar-Ge</h3>
+        <div class="grid">
+          <article class="card wip-card">
+            <div class="status" data-tr="Yapay Zeka" data-en="AI Model">Yapay Zeka</div>
+            <h3>AvianSense AI</h3>
+            <p class="muted" data-tr="Havalimanları için uçuş güvenliğini artıran, kuş sürülerini gerçek zamanlı tespit eden bilgisayarlı görü sistemi." data-en="Computer vision system detecting bird flocks in real-time to enhance aviation safety at airports."></p>
+          </article>
+
+          <article class="card wip-card">
+            <div class="status" data-tr="Otomasyon" data-en="Automation">Otomasyon</div>
+            <h3>DeskMind AI</h3>
+            <p class="muted" data-tr="Kullanıcı alışkanlıklarını öğrenerek masaüstü dosyalarını otomatik kategorize eden akıllı asistan." data-en="Smart assistant that learns user habits to automatically categorize desktop files."></p>
+          </article>
+
+          <article class="card wip-card">
+            <div class="status" data-tr="Güvenlik" data-en="Security">Güvenlik</div>
+            <h3>CipherVault</h3>
+            <p class="muted" data-tr="Yerel şifreleme algoritmaları kullanan, buluttan bağımsız güvenli şifre yöneticisi." data-en="Cloud-independent secure password manager using local encryption algorithms."></p>
+          </article>
+
+          <article class="card wip-card">
+            <div class="status" data-tr="Sistem" data-en="System">Sistem</div>
+            <h3>SysGaze</h3>
+            <p class="muted" data-tr="Profesyoneller için detaylı sistem kaynaklarını ve anlık performansı izleyen monitör." data-en="Detailed system resource and real-time performance monitor for professionals."></p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Ekrem Bulgan. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
