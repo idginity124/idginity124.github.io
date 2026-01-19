@@ -124,6 +124,26 @@ function setTheme(theme) {
   }
 }
 
+// app.js'e ekle - setTheme fonksiyonundan sonra
+function initTheme() {
+  const themeBtn = document.createElement("button");
+  themeBtn.id = "theme-btn";
+  themeBtn.className = "icon-btn";
+  themeBtn.type = "button";
+  themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+  themeBtn.setAttribute("aria-label", "Toggle theme");
+  themeBtn.addEventListener("click", toggleTheme);
+  
+  // Nav kontrolüne ekle
+  const navControls = document.querySelector(".nav-controls");
+  if (navControls) {
+    navControls.insertBefore(themeBtn, navControls.firstChild);
+  }
+}
+
+// init() fonksiyonuna ekle
+initTheme();
+
 function toggleTheme() {
   const current = document.documentElement.dataset.theme || "dark";
   setTheme(current === "dark" ? "light" : "dark");
@@ -252,6 +272,29 @@ function fillModalFromProject(projectEl) {
   $("#modal-title").textContent = title;
   $("#modal-desc").textContent = desc;
   
+  const githubLink = projectEl.getAttribute("data-github");
+  if (githubLink) {
+    const githubBtn = document.createElement("a");
+    githubBtn.href = githubLink;
+    githubBtn.target = "_blank";
+    githubBtn.className = "btn btn-ghost";
+    githubBtn.innerHTML = '<i class="fab fa-github"></i> GitHub';
+    $("#modal-actions").appendChild(githubBtn);
+  }
+  
+  // Teknoloji ikonları ekle
+  const techs = projectEl.getAttribute("data-tech") || "";
+  if (techs) {
+    const techDiv = document.createElement("div");
+    techDiv.className = "tech-stack";
+    techs.split(",").forEach(tech => {
+      const span = document.createElement("span");
+      span.textContent = tech.trim();
+      techDiv.appendChild(span);
+    });
+    $("#modal-desc").after(techDiv);
+  }
+
   const tagsWrap = $("#modal-tags");
   if (tagsWrap) {
     tagsWrap.innerHTML = "";
@@ -267,6 +310,83 @@ function fillModalFromProject(projectEl) {
   if (modalLink) modalLink.href = link;
 
   modal._activeProject = projectEl;
+}
+
+// app.js'e ekle
+function initCVDownload() {
+  const btn = document.getElementById("download-cv");
+  if (!btn) return;
+  
+  btn.addEventListener("click", async () => {
+    try {
+      // Örnek bir PDF linki - gerçek CV'nizin URL'sini koyun
+      const cvUrl = "assets/cv/Ekrem_Bulgan_CV.pdf";
+      
+      // Yeni sekmede aç
+      window.open(cvUrl, '_blank');
+      
+      showToast(currentLang === "tr" 
+        ? "CV indiriliyor..." 
+        : "Downloading CV...");
+    } catch (error) {
+      showToast(currentLang === "tr" 
+        ? "CV bulunamadı" 
+        : "CV not found");
+    }
+  });
+}
+
+// app.js'e ekle (basit analitik)
+function initAnalytics() {
+  // Sayfa görüntüleme
+  const pageViews = localStorage.getItem('page_views') || 0;
+  localStorage.setItem('page_views', parseInt(pageViews) + 1);
+  
+  // Son ziyaret
+  const lastVisit = localStorage.getItem('last_visit');
+  localStorage.setItem('last_visit', new Date().toISOString());
+  
+  // Basit event tracking
+  document.addEventListener('click', (e) => {
+    const target = e.target;
+    
+    if (target.tagName === 'A' || target.closest('a')) {
+      const link = target.href || target.closest('a').href;
+      const events = JSON.parse(localStorage.getItem('click_events') || '[]');
+      events.push({
+        url: link,
+        timestamp: new Date().toISOString(),
+        page: window.location.pathname
+      });
+      localStorage.setItem('click_events', JSON.stringify(events.slice(-100))); // Son 100 event
+    }
+  });
+}
+
+
+// app.js'e ekle
+function initLazyLoad() {
+  const images = document.querySelectorAll('img[data-src]');
+  
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+          observer.unobserve(img);
+        }
+      });
+    });
+    
+    images.forEach(img => observer.observe(img));
+  } else {
+    // Fallback
+    images.forEach(img => {
+      img.src = img.dataset.src;
+    });
+  }
 }
 
 function openModal(projectEl) {
@@ -413,6 +533,7 @@ function initFooterYear() {
 /* INITIALIZATION                               */
 /* -------------------------------------------------------------------------- */
 
+// app.js - güncellenmiş init fonksiyonu
 function init() {
   // 1. Dil Ayarları
   const storedLang = localStorage.getItem(STORAGE.lang);
@@ -429,6 +550,7 @@ function init() {
   $("#theme-btn")?.addEventListener("click", toggleTheme);
 
   // 4. Modülleri Başlat
+  initTheme();
   initNav();
   setActiveNav();
   initScrollProgress();
@@ -436,7 +558,11 @@ function init() {
   initReveal();
   initModal();
   initContact();
+  initCVDownload();
   wireVidextractDemo();
+  initAnalytics();
+  initLazyLoad();
+  initServiceWorker();
   initFooterYear();
   
   console.log("Ekrem Bulgan Portfolio initialized.");
