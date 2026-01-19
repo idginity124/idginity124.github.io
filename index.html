@@ -3,129 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ekrem Bulgan | Computer Engineer</title>
+    <title>Ekrem Bulgan | AI Engineer</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
+    <nav>
+        <div class="logo">EB<span class="dot">.</span></div>
+        <div class="nav-controls">
+            <button id="lang-btn" onclick="toggleLanguage()">EN</button>
+            <a href="https://github.com/idginity124" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </nav>
+
+    <header class="hero">
         <div class="container">
-            <div class="profile-header">
-                <h1>Ekrem Bulgan<span class="cursor">_</span></h1>
-                <p class="subtitle">Computer Engineering Student | Cyber Security & App Dev</p>
-                <div class="social-links">
-                    <a href="https://github.com/idginity124" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="mailto:iletisim@ekrembulgan.com"><i class="fas fa-envelope"></i> Email</a>
+            <div class="hero-content">
+                <span class="badge" data-tr="Mühendis & Geliştirici" data-en="Engineer & Developer">Mühendis & Geliştirici</span>
+                <h1 data-tr="Veriyi Zekaya Dönüştürüyorum" data-en="Turning Data into Intelligence">Veriyi Zekaya Dönüştürüyorum</h1>
+                <p data-tr="Merhaba, ben Ekrem. Adli Bilişim Mühendisliği mezunuyum. Şu anda Yapay Zeka, Bilgisayarlı Görü ve Otonom Sistemler üzerine ileri düzey çözümler geliştiriyorum." 
+                   data-en="Hi, I'm Ekrem. Digital Forensics Engineering graduate. Currently building advanced solutions in Artificial Intelligence, Computer Vision, and Autonomous Systems.">
+                   Merhaba, ben Ekrem. Adli Bilişim Mühendisliği mezunuyum. Şu anda Yapay Zeka, Bilgisayarlı Görü ve Otonom Sistemler üzerine ileri düzey çözümler geliştiriyorum.
+                </p>
+                <div class="tech-stack">
+                    <span><i class="fab fa-python"></i> Python</span>
+                    <span><i class="fas fa-brain"></i> TensorFlow</span>
+                    <span><i class="fas fa-robot"></i> AI/ML</span>
+                    <span><i class="fab fa-flutter"></i> Flutter</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <section id="about" class="container">
-        <h2 class="section-title">./Hakkımda</h2>
-        <p>
-            Merhaba. Ben, güvenli ve performanslı yazılımlar geliştirmeye odaklanmış bir Bilgisayar Mühendisliği öğrencisiyim. 
-            <strong>Python</strong> ve <strong>Flutter</strong> ile platformlar arası uygulamalar geliştirirken, 
-            <strong>Siber Güvenlik</strong> (özellikle Digital Forensics) alanında teknik araştırmalar yapıyorum.
-            Aynı zamanda <strong>Godot</strong> ile oyun geliştirme süreçlerini deneyimliyorum.
-        </p>
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-tr="Tamamlanan Projeler" data-en="Completed Projects">Tamamlanan Projeler</h2>
+            <div class="grid">
+                
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-language"></i></div>
+                    <h3>LingoPark</h3>
+                    <p data-tr="Modern dil öğrenme platformu. Kullanıcı dostu arayüz ve etkileşimli alıştırmalar." 
+                       data-en="Modern language learning platform with user-friendly interface and interactive exercises.">
+                       Modern dil öğrenme platformu.
+                    </p>
+                    <a href="https://github.com/idginity124/LingoPark" target="_blank" class="btn-link">GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-video"></i></div>
+                    <h3>VidExtract</h3>
+                    <p data-tr="Python tabanlı gelişmiş video ve ses ayrıştırma/indirme aracı." 
+                       data-en="Python-based advanced video and audio extraction/download tool.">
+                       Video ve ses işleme aracı.
+                    </p>
+                    <a href="https://github.com/idginity124/VidExtract" target="_blank" class="btn-link">GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-images"></i></div>
+                    <h3>MediaManagerPro</h3>
+                    <p data-tr="Büyük medya arşivleri için akıllı düzenleme ve yönetim sistemi." 
+                       data-en="Smart organization and management system for large media archives.">
+                       Medya yönetim sistemi.
+                    </p>
+                    <a href="https://github.com/idginity124/MediaManagerPro" target="_blank" class="btn-link">GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-question-circle"></i></div>
+                    <h3>Quiz App</h3>
+                    <p data-tr="Dinamik soru havuzu oluşturabilen test ve değerlendirme uygulaması." 
+                       data-en="Test and assessment application capable of creating dynamic question pools.">
+                       Test uygulaması.
+                    </p>
+                    <a href="https://github.com/idginity124/quiz-app" target="_blank" class="btn-link">GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+            </div>
+        </div>
     </section>
 
-    <section id="projects" class="container">
-        <h2 class="section-title">./Projeler</h2>
-        <div class="project-grid">
+    <section class="section wip-section">
+        <div class="container">
+            <h2 class="section-title" data-tr="Geliştirme Aşamasında (Ar-Ge)" data-en="Work in Progress (R&D)">Geliştirme Aşamasında (Ar-Ge)</h2>
+            <div class="grid">
 
-            <div class="project-card">
-                <div class="card-header">
-                    <h3>VidExtract</h3>
-                    <div class="icons">
-                        <i class="fab fa-python"></i>
-                        <i class="fas fa-desktop"></i>
-                    </div>
+                <div class="card wip-card">
+                    <div class="status" data-tr="Yapay Zeka" data-en="AI Model">Yapay Zeka</div>
+                    <h3>AvianSense AI</h3>
+                    <p data-tr="Havalimanları için uçuş güvenliğini artıran, kuş sürülerini gerçek zamanlı tespit eden bilgisayarlı görü sistemi." 
+                       data-en="Computer vision system detecting bird flocks in real-time to enhance aviation safety at airports.">
+                    </p>
                 </div>
-                <p>Python ve PySide6 ile geliştirilmiş, modern arayüze sahip video/ses indirme ve işleme aracı.</p>
-                <div class="tags">
-                    <span>Python</span>
-                    <span>PySide6</span>
-                    <span>FFmpeg</span>
+
+                <div class="card wip-card">
+                    <div class="status" data-tr="Otomasyon" data-en="Automation">Otomasyon</div>
+                    <h3>DeskMind AI</h3>
+                    <p data-tr="Kullanıcı alışkanlıklarını öğrenerek masaüstü dosyalarını otomatik kategorize eden akıllı asistan." 
+                       data-en="Smart assistant that learns user habits to automatically categorize desktop files.">
+                    </p>
                 </div>
-                <a href="https://github.com/idginity124" class="btn-code">Kodu İncele</a>
+
+                <div class="card wip-card">
+                    <div class="status" data-tr="Güvenlik" data-en="Security">Güvenlik</div>
+                    <h3>CipherVault</h3>
+                    <p data-tr="Yerel şifreleme algoritmaları kullanan, buluttan bağımsız güvenli şifre yöneticisi." 
+                       data-en="Cloud-independent secure password manager using local encryption algorithms.">
+                    </p>
+                </div>
+
+                <div class="card wip-card">
+                    <div class="status" data-tr="Sistem" data-en="System">Sistem</div>
+                    <h3>SysGaze</h3>
+                    <p data-tr="Profesyoneller için detaylı sistem kaynaklarını ve anlık performansı izleyen monitör." 
+                       data-en="Detailed system resource and real-time performance monitor for professionals.">
+                    </p>
+                </div>
+
+                <div class="card wip-card">
+                    <div class="status" data-tr="Ağ" data-en="Network">Ağ</div>
+                    <h3>GhostWire</h3>
+                    <p data-tr="İnternet bağlantısı gerektirmeyen, yerel ağ (LAN) üzerinden çalışan şifreli sohbet aracı." 
+                       data-en="Encrypted chat tool working over local area network (LAN) without internet requirement.">
+                    </p>
+                </div>
+
+                <div class="card wip-card">
+                    <div class="status" data-tr="Oyun Dev" data-en="Game Dev">Oyun Dev</div>
+                    <h3>Neon Horizon & Pixel Quest</h3>
+                    <p data-tr="Godot motoru ile geliştirilen 3D atmosferik ve 2D platform oyun projeleri." 
+                       data-en="3D atmospheric and 2D platformer game projects developed with Godot engine.">
+                    </p>
+                </div>
+
             </div>
-
-            <div class="project-card security-card"> <div class="card-header">
-                    <h3>The Blinking Light</h3>
-                    <div class="icons">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                </div>
-                <p>Air-gapped (izole) bilgisayarlardan HDD ışığı manipülasyonu ile veri sızdırma senaryosu üzerine adli bilişim analizi.</p>
-                <div class="tags">
-                    <span>Digital Forensics</span>
-                    <span>Cyber Security</span>
-                    <span>Research</span>
-                </div>
-                <a href="https://github.com/idginity124" class="btn-code">Detaylar</a>
-            </div>
-
-            <div class="project-card">
-                <div class="card-header">
-                    <h3>Cross-Platform Messaging</h3>
-                    <div class="icons">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                </div>
-                <p>Flutter ve Firebase altyapısı kullanılarak geliştirilen gerçek zamanlı mobil mesajlaşma uygulaması.</p>
-                <div class="tags">
-                    <span>Flutter</span>
-                    <span>Dart</span>
-                    <span>Firebase</span>
-                </div>
-                <a href="https://github.com/idginity124" class="btn-code">Kodu İncele</a>
-            </div>
-
-            <div class="project-card">
-                <div class="card-header">
-                    <h3>3D Action Game</h3>
-                    <div class="icons">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                </div>
-                <p>Godot oyun motoru kullanılarak geliştirilen, fizik tabanlı mekaniklere sahip 3D aksiyon oyunu.</p>
-                <div class="tags">
-                    <span>Godot 4</span>
-                    <span>GDScript</span>
-                    <span>3D Design</span>
-                </div>
-                <a href="https://github.com/idginity124" class="btn-code">Kodu İncele</a>
-            </div>
-
-             <div class="project-card">
-                <div class="card-header">
-                    <h3>WinEvent Log Analyzer</h3>
-                    <div class="icons">
-                        <i class="fab fa-windows"></i>
-                    </div>
-                </div>
-                <p>Windows olay günlüklerini analiz ederek şüpheli aktiviteleri raporlayan Python tabanlı araç.</p>
-                <div class="tags">
-                    <span>Python</span>
-                    <span>System Admin</span>
-                    <span>Security</span>
-                </div>
-                <a href="https://github.com/idginity124" class="btn-code">Kodu İncele</a>
-            </div>
-
         </div>
     </section>
 
     <footer>
-        <div class="container">
-            <p>root@ekrembulgan:~$ <span class="blink">logout</span></p>
-            <p class="copyright">&copy; 2026 Ekrem Bulgan</p>
-        </div>
+        <p>&copy; 2026 Ekrem Bulgan. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>

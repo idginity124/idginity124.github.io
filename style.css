@@ -1,154 +1,205 @@
-/* RESET & FONTS */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap');
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root {
+    --bg: #0a0a0c;
+    --surface: #13131f;
+    --primary: #6c5ce7;
+    --accent: #00cec9;
+    --text: #dfe6e9;
+    --text-dim: #b2bec3;
+    --card-hover: #1e1e30;
 }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: #0d1117; /* GitHub Dark Mode rengi */
-    color: #c9d1d9;
-    font-family: 'JetBrains Mono', monospace;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-a { text-decoration: none; color: inherit; transition: 0.3s; }
-ul { list-style: none; }
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
 
-/* LAYOUT */
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* HEADER */
-header {
-    padding: 80px 0 50px;
-    border-bottom: 1px solid #30363d;
-}
-
-h1 {
-    font-size: 2.5rem;
-    color: #58a6ff; /* GitHub Mavisi */
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-size: 1.1rem;
-    color: #8b949e;
-    margin-bottom: 20px;
-}
-
-.cursor {
-    animation: blink 1s infinite;
-    color: #58a6ff;
-}
-
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-.social-links a {
-    margin-right: 20px;
-    font-size: 1rem;
-    color: #c9d1d9;
-    border: 1px solid #30363d;
-    padding: 8px 16px;
-    border-radius: 6px;
-    background: #161b22;
-}
-
-.social-links a:hover {
-    border-color: #8b949e;
-    background: #21262d;
-}
-
-/* SECTIONS */
-section { padding: 60px 0; border-bottom: 1px solid #21262d; }
-
-.section-title {
-    font-size: 1.5rem;
-    color: #ff7b72; /* Kod kırmızısı */
-    margin-bottom: 30px;
-}
-
-/* PROJECT GRID */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.project-card {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.2s, border-color 0.2s;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    border-color: #58a6ff;
-}
-
-/* Güvenlik kartına özel hafif yeşil ton */
-.security-card:hover {
-    border-color: #3fb950; 
-}
-
-.card-header {
+/* Navigation */
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    padding: 20px 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 12, 0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.card-header h3 { color: #f0f6fc; font-size: 1.2rem; }
-.card-header .icons { color: #8b949e; font-size: 1.2rem; }
+.logo { font-weight: 700; font-size: 1.5rem; letter-spacing: -1px; }
+.dot { color: var(--accent); }
 
-.project-card p {
+.nav-controls button, .nav-controls a {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text);
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    margin-left: 10px;
+    transition: 0.3s;
     font-size: 0.9rem;
-    color: #8b949e;
-    margin-bottom: 20px;
-    flex-grow: 1;
 }
 
-.tags { margin-bottom: 20px; }
+.nav-controls button:hover, .nav-controls a:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
 
-.tags span {
+/* Hero Section */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    background: radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 206, 201, 0.1) 0%, transparent 40%);
+}
+
+.hero-content { max-width: 800px; }
+
+.badge {
     display: inline-block;
-    font-size: 0.75rem;
-    color: #58a6ff;
-    background: rgba(88, 166, 255, 0.1);
-    padding: 3px 8px;
-    border-radius: 12px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-}
-
-.btn-code {
-    display: block;
-    text-align: center;
-    background: #238636; /* GitHub Yeşil Butonu */
-    color: white;
-    padding: 8px 0;
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-.btn-code:hover { background: #2ea043; }
-
-/* FOOTER */
-footer {
-    padding: 40px 0;
-    text-align: center;
-    color: #484f58;
+    background: rgba(108, 92, 231, 0.2);
+    color: var(--accent);
+    padding: 5px 12px;
+    border-radius: 15px;
     font-size: 0.85rem;
+    margin-bottom: 20px;
+    border: 1px solid rgba(108, 92, 231, 0.3);
 }
-.blink { animation: blink 1s infinite; color: #ff7b72; }
+
+h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #fff, #b2bec3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+.tech-stack span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Sections */
+.section { padding: 80px 5%; }
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 100%;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Cards */
+.card {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 30px;
+    border-radius: 16px;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(108, 92, 231, 0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.card-icon {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.card h3 { margin-bottom: 10px; font-size: 1.25rem; }
+.card p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
+
+.btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.btn-link:hover { gap: 15px; }
+
+/* WIP Specific */
+.wip-card { border-style: dashed; }
+.wip-card .status {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 206, 201, 0.1);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-dim);
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .hero { padding-top: 100px; display: block; }
+}
