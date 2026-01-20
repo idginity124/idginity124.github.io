@@ -17,6 +17,7 @@
 <body>
 <a class="skip-link" data-en="Skip to content" data-tr="İçeriğe geç" href="#main">İçeriğe geç</a>
 <div aria-hidden="true" class="top-progress"><span class="top-progress__bar" id="progress-bar"></span></div>
+  <div class="fx-layer" aria-hidden="true"><canvas id="fx-canvas"></canvas></div>
 <nav class="nav">
 <div class="container nav-inner">
 <div style="display:flex; align-items:center; gap:14px;">
@@ -35,6 +36,8 @@
 <i class="fa-solid fa-moon"></i>
 </button>
 <button aria-label="Toggle language" class="pill" id="lang-btn" type="button">EN</button>
+        <button id="fx-btn" class="icon-btn" type="button" data-tr-aria="Efektleri aç/kapat" data-en-aria="Toggle effects" aria-label="Toggle effects" title="FX"><i class="fa-solid fa-code"></i></button>
+        <button id="anime-btn" class="icon-btn" type="button" data-tr-aria="Anime modunu aç/kapat" data-en-aria="Toggle anime mode" aria-label="Toggle anime mode" title="Anime"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
 <a aria-label="GitHub" class="icon-btn" href="https://github.com/idginity124" rel="noopener" target="_blank">
 <i class="fab fa-github"></i>
 </a>
@@ -220,6 +223,7 @@ Core Security (concept)
 <button aria-label="Back to top" class="to-top" id="to-top" type="button">
 <i class="fa-solid fa-arrow-up"></i>
 </button>
-<script src="../assets/app.js"></script>
+<script src="../assets/fx.js" defer></script>
+  <script src="../assets/app.js" defer></script>
 </body>
 </html>

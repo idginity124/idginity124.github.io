@@ -13,6 +13,8 @@ const CONTACT_EMAIL = "ekrembulgan2@gmail.com";
 const STORAGE = {
   lang: "eb_lang",
   theme: "eb_theme",
+  fx: "eb_fx",
+  anime: "eb_anime",
 };
 
 // ---------------------------------------------------------------------------
@@ -99,7 +101,7 @@ async function fetchJSON(relPath) {
   const url = BASE + relPath;
   if (__jsonCache.has(url)) return __jsonCache.get(url);
 
-  const p = fetch(url, { cache: "no-store" })
+  const p = fetch(url, { cache: "force-cache" })
     .then((r) => {
       if (!r.ok) throw new Error(`Failed to fetch ${url} (${r.status})`);
       return r.json();
@@ -179,6 +181,11 @@ function setTheme(theme) {
   const icon = $("#theme-btn i");
   if (icon) {
     icon.className = t === "dark" ? "fa-solid fa-moon" : "fa-solid fa-sun";
+  }
+
+  // Refresh FX palette when theme changes
+  if (window.EBFX && typeof window.EBFX.set === 'function') {
+    window.EBFX.set({ enabled: document.body.classList.contains('fx-on'), anime: document.body.classList.contains('anime-on') });
   }
 }
 
@@ -939,6 +946,162 @@ function initCopyLink() {
   });
 }
 
+
+// ---------------------------------------------------------------------------
+// FX + ANIME (visual identity toggles)
+// ---------------------------------------------------------------------------
+
+let __fxState = { fx: false, anime: false };
+
+function applyFxState() {
+  document.body.classList.toggle('fx-on', __fxState.fx);
+  document.body.classList.toggle('anime-on', __fxState.anime);
+
+  localStorage.setItem(STORAGE.fx, __fxState.fx ? '1' : '0');
+  localStorage.setItem(STORAGE.anime, __fxState.anime ? '1' : '0');
+
+  const fxBtn = $('#fx-btn');
+  if (fxBtn) fxBtn.classList.toggle('active', __fxState.fx);
+
+  const animeBtn = $('#anime-btn');
+  if (animeBtn) animeBtn.classList.toggle('active', __fxState.anime);
+
+  if (window.EBFX && typeof window.EBFX.set === 'function') {
+    window.EBFX.set({ enabled: __fxState.fx, anime: __fxState.anime });
+  }
+}
+
+function setFx(on) {
+  __fxState.fx = !!on;
+  if (!__fxState.fx) __fxState.anime = false;
+  applyFxState();
+}
+
+function setAnime(on) {
+  __fxState.anime = !!on;
+  if (__fxState.anime) __fxState.fx = true;
+  applyFxState();
+}
+
+function initEffects() {
+  const storedFx = localStorage.getItem(STORAGE.fx);
+  const storedAnime = localStorage.getItem(STORAGE.anime);
+
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+
+  // Defaults: FX on for desktop unless user prefers reduced motion / Save-Data.
+  const isMobile = window.matchMedia && window.matchMedia('(max-width: 820px)').matches;
+  const defaultFx = !(prefersReduced || saveData || isMobile);
+
+  __fxState.fx = storedFx != null ? storedFx === '1' : defaultFx;
+  __fxState.anime = storedAnime != null ? storedAnime === '1' : false;
+  if (__fxState.anime) __fxState.fx = true;
+
+  const fxBtn = $('#fx-btn');
+  if (fxBtn) fxBtn.addEventListener('click', () => setFx(!__fxState.fx));
+
+  const animeBtn = $('#anime-btn');
+  if (animeBtn) animeBtn.addEventListener('click', () => setAnime(!__fxState.anime));
+
+  // Auto-disable if user turns on reduced motion after load
+  const m = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (m && m.addEventListener) {
+    m.addEventListener('change', () => {
+      if (m.matches) setFx(false);
+    });
+  }
+
+  applyFxState();
+}
+
+// ---------------------------------------------------------------------------
+// HERO TYPEWRITER (subtle, optional)
+// ---------------------------------------------------------------------------
+
+let __typeTimer = null;
+
+function stopTypewriter() {
+  if (__typeTimer) {
+    window.clearTimeout(__typeTimer);
+    __typeTimer = null;
+  }
+}
+
+function initTypewriter() {
+  const el = $('#typewriter');
+  if (!el) return;
+
+  // Re-run typewriter on language change (rerenderDynamic)
+  if (!el.dataset.twBound) {
+    el.dataset.twBound = '1';
+    __dynamicRerenders.push(() => initTypewriter());
+  }
+
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const linesTr = (el.getAttribute('data-lines-tr') || '').split('|').map(s => s.trim()).filter(Boolean);
+  const linesEn = (el.getAttribute('data-lines-en') || '').split('|').map(s => s.trim()).filter(Boolean);
+
+  const getLines = () => (currentLang === 'tr'
+    ? (linesTr.length ? linesTr : linesEn)
+    : (linesEn.length ? linesEn : linesTr));
+
+  const lines = getLines();
+
+  stopTypewriter();
+
+  // Reduced motion: show first line only
+  if (prefersReduced) {
+    el.textContent = lines[0] || '';
+    return;
+  }
+
+  if (!lines.length) return;
+
+  let lineIdx = 0;
+  let charIdx = 0;
+  let deleting = false;
+
+  const typeSpeed = 34;
+  const deleteSpeed = 22;
+  const pauseAtEnd = 900;
+
+  function tick() {
+    const current = lines[lineIdx] || '';
+
+    if (!deleting) {
+      charIdx++;
+      el.textContent = current.slice(0, charIdx);
+
+      if (charIdx >= current.length) {
+        deleting = true;
+        __typeTimer = window.setTimeout(tick, pauseAtEnd);
+        return;
+      }
+
+      __typeTimer = window.setTimeout(tick, typeSpeed);
+      return;
+    }
+
+    // deleting
+    charIdx--;
+    el.textContent = current.slice(0, Math.max(0, charIdx));
+
+    if (charIdx <= 0) {
+      deleting = false;
+      lineIdx = (lineIdx + 1) % lines.length;
+      __typeTimer = window.setTimeout(tick, 260);
+      return;
+    }
+
+    __typeTimer = window.setTimeout(tick, deleteSpeed);
+  }
+
+  tick();
+}
+
+
 // ---------------------------------------------------------------------------
 // INIT
 // ---------------------------------------------------------------------------
@@ -955,6 +1118,10 @@ async function init() {
   const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
   setTheme(storedTheme || (prefersLight ? "light" : "dark"));
   initTheme();
+
+  // FX / Anime
+  initEffects();
+  initTypewriter();
 
   // Nav
   initNav();

@@ -1,10 +1,10 @@
 {
-  "name": "Ekrem Bulgan — Portfolio",
+  "name": "Ekrem Bulgan \u2014 Portfolio",
   "short_name": "EB",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#07080c",
-  "theme_color": "#7c3aed",
+  "background_color": "#060611",
+  "theme_color": "#8b5cf6",
   "icons": [
     {
       "src": "assets/favicon.svg",
