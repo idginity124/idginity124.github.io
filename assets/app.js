@@ -26,6 +26,19 @@ const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
 let currentLang = "tr";
 
+// RAF throttle helper (prevents scroll handlers from running too frequently)
+function rafThrottle(fn) {
+  let ticking = false;
+  return (...args) => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      try { fn(...args); } catch { /* ignore */ }
+    });
+  };
+}
+
 function showToast(message) {
   let toast = $("#toast");
   if (!toast) {
@@ -274,8 +287,10 @@ function initScrollProgress() {
     bar.style.width = `${pct}%`;
   };
 
+  const onScroll = rafThrottle(update);
   update();
-  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
 }
 
 function initReveal() {
@@ -310,8 +325,47 @@ function initBackToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
+  const onScroll = rafThrottle(update);
   update();
-  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+}
+
+// Smooth-scroll performance guard
+// - Adds body.is-scrolling during scroll, letting CSS disable expensive effects
+// - Pauses canvas FX while scrolling (major jank reduction)
+function initScrollPerfGuard() {
+  let t = 0;
+  let active = false;
+
+  const pauseFx = () => {
+    if (!window.EBFX) return;
+    if (!document.body.classList.contains('fx-on') && !document.body.classList.contains('anime-on')) return;
+    try { window.EBFX.stop(false); } catch { /* ignore */ }
+  };
+
+  const resumeFx = () => {
+    if (!window.EBFX) return;
+    if (!document.body.classList.contains('fx-on') && !document.body.classList.contains('anime-on')) return;
+    try { window.EBFX.start(); } catch { /* ignore */ }
+  };
+
+  const onScroll = () => {
+    if (!active) {
+      active = true;
+      document.body.classList.add('is-scrolling');
+      pauseFx();
+    }
+
+    if (t) window.clearTimeout(t);
+    t = window.setTimeout(() => {
+      active = false;
+      document.body.classList.remove('is-scrolling');
+      resumeFx();
+    }, 140);
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
 function initFooterYear() {
@@ -1129,6 +1183,7 @@ async function init() {
 
   // UX
   initScrollProgress();
+  initScrollPerfGuard();
   initReveal();
   initBackToTop();
   initFooterYear();
