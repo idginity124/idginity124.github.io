@@ -4,8 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projeler | Ekrem Bulgan</title>
-  <meta name="description" content="Ekrem Bulgan projects — completed applications and active R&D." />
+  <meta name="description" content="Projects, case studies and R&D notes." />
+  <meta property="og:title" content="Projects | Ekrem Bulgan" />
+  <meta property="og:description" content="Projects, case studies and R&D notes." />
+  <meta property="og:type" content="website" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.webmanifest" />
 
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,6 +28,9 @@
         <div class="nav-links" aria-label="Primary">
           <a class="nav-link" href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
           <a class="nav-link" href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <a class="nav-link" href="about.html" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+          <a class="nav-link" href="blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+          <a class="nav-link" href="now.html" data-tr="Şimdi" data-en="Now">Şimdi</a>
           <a class="nav-link" href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
         </div>
       </div>
@@ -43,152 +50,135 @@
     </div>
   </nav>
 
+  <noscript>
+    <div class="noscript" data-tr="Bu site bazı özellikler için JavaScript kullanır. Lütfen JavaScript'i etkinleştirin." data-en="This site uses JavaScript for some features. Please enable JavaScript.">
+      Bu site bazı özellikler için JavaScript kullanır. Lütfen JavaScript'i etkinleştirin.
+    </div>
+  </noscript>
+
   <main id="main">
     <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
       <div class="container">
         <div class="section-head reveal">
           <h1 class="section-title" style="margin:0" data-tr="Projeler" data-en="Projects">Projeler</h1>
-          <p class="section-desc" data-tr="Her proje için ayrı bir detay sayfası var. Kartlardan detaylara veya GitHub'a gidebilirsin." data-en="Each project has a dedicated details page. Use the cards to view details or open GitHub.">
-            Her proje için ayrı bir detay sayfası var. Kartlardan detaylara veya GitHub'a gidebilirsin.
+          <p class="section-desc" data-tr="Her proje için ayrı sayfa + kısa teknik notlar. Filtrelemek için etiketlere tıklayabilirsin." data-en="Each project has its own page + short technical notes. Click tags to filter.">
+            Her proje için ayrı sayfa + kısa teknik notlar. Filtrelemek için etiketlere tıklayabilirsin.
           </p>
         </div>
 
-        <div class="panel reveal" style="margin-bottom:18px;">
-          <div class="callouts">
-            <div class="callout">
-              <div class="callout-ic"><i class="fa-solid fa-layer-group"></i></div>
-              <div>
-                <div class="callout-t" data-tr="Yeni proje ekleme" data-en="Adding new projects">Yeni proje ekleme</div>
-                <div class="callout-d" data-tr="Yeni proje sayfası açmak için: projects/_template.html dosyasını kopyala, içeriği düzenle ve kart ekle." data-en="To add a new project: duplicate projects/_template.html, edit the content, and add a card here.">
-                  Yeni proje sayfası açmak için: projects/_template.html dosyasını kopyala, içeriği düzenle ve kart ekle.
-                </div>
-              </div>
+        <div class="panel reveal" id="projects-app">
+          <div class="filter-bar">
+            <div class="search">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              <input id="project-search" type="text" placeholder="Ara (ör. Python, Desktop, AI)" data-tr-placeholder="Ara (ör. Python, Desktop, AI)" data-en-placeholder="Search (e.g., Python, Desktop, AI)" />
+            </div>
+
+            <select id="project-sort" aria-label="Sort">
+              <option value="featured" data-tr="Öne çıkanlar" data-en="Featured">Öne çıkanlar</option>
+              <option value="az" data-tr="A → Z" data-en="A → Z">A → Z</option>
+              <option value="za" data-tr="Z → A" data-en="Z → A">Z → A</option>
+            </select>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="chip-row" aria-label="Status filters">
+            <button class="chip active" type="button" data-filter="status" data-value="all" data-tr="Tümü" data-en="All">Tümü</button>
+            <button class="chip" type="button" data-filter="status" data-value="completed" data-tr="Tamamlandı" data-en="Completed">Tamamlandı</button>
+            <button class="chip" type="button" data-filter="status" data-value="rnd" data-tr="Ar-Ge" data-en="R&D">Ar-Ge</button>
+          </div>
+
+          <div class="chip-row" style="margin-top:10px;" aria-label="Category filters">
+            <button class="chip active" type="button" data-filter="category" data-value="all" data-tr="Tüm kategoriler" data-en="All categories">Tüm kategoriler</button>
+            <button class="chip" type="button" data-filter="category" data-value="Desktop">Desktop</button>
+            <button class="chip" type="button" data-filter="category" data-value="Web">Web</button>
+            <button class="chip" type="button" data-filter="category" data-value="AI">AI</button>
+            <button class="chip" type="button" data-filter="category" data-value="Computer Vision">Computer Vision</button>
+            <button class="chip" type="button" data-filter="category" data-value="Security">Security</button>
+            <button class="chip" type="button" data-filter="category" data-value="Automation">Automation</button>
+            <button class="chip" type="button" data-filter="category" data-value="Tools">Tools</button>
+            <button class="chip" type="button" data-filter="category" data-value="Education">Education</button>
+            <button class="chip" type="button" data-filter="category" data-value="App">App</button>
+            <button class="chip" type="button" data-filter="category" data-value="System">System</button>
+          </div>
+          <div class="chip-row" style="margin-top:10px;">
+            <div class="active-tag" id="active-tag"></div>
+            <button id="clear-tag" class="btn btn-small btn-ghost" type="button">
+              <i class="fa-solid fa-xmark"></i>
+              <span data-tr="Etiket filtresini temizle" data-en="Clear tag filter">Etiket filtresini temizle</span>
+            </button>
+            <div class="muted" style="margin-left:auto;">
+              <span id="projects-count">0</span>
+              <span data-tr="sonuç" data-en="results">sonuç</span>
             </div>
           </div>
         </div>
 
-        <h2 class="panel-title reveal" style="margin: 0 0 12px;" data-tr="Tamamlanan" data-en="Completed">Tamamlanan</h2>
-        <div class="grid" style="margin-bottom: 44px;">
-          <article class="card reveal">
-            <div class="card-icon"><i class="fa-solid fa-language"></i></div>
-            <h3>LingoPark</h3>
-            <p class="muted" data-tr="Modern dil öğrenme platformu. Kullanıcı dostu arayüz ve etkileşimli alıştırmalar." data-en="Modern language learning platform with a friendly UI and interactive exercises.">Modern dil öğrenme platformu. Kullanıcı dostu arayüz ve etkileşimli alıştırmalar.</p>
-            <div class="tags" aria-label="Tags"><span class="tag">Web</span><span class="tag">Product</span><span class="tag">UX</span></div>
-            <div class="card-actions"><a class="btn btn-small btn-ghost" href="projects/lingopark.html">
-            <i class="fa-solid fa-file-lines"></i>
-            <span data-tr="Detaylar" data-en="Details">Detaylar</span>
-          </a><a class="btn btn-small btn-primary" href="https://github.com/idginity124/LingoPark" target="_blank" rel="noopener">
-            <i class="fab fa-github"></i>
-            <span>GitHub</span>
-          </a></div>
-          </article>
+        <div class="grid" id="projects-grid" style="margin-top: 14px;"></div>
 
-          <article class="card reveal">
-            <div class="card-icon"><i class="fa-solid fa-video"></i></div>
-            <h3>VidExtract</h3>
-            <p class="muted" data-tr="Modern video/ses indirme aracı (masaüstü). Çoklu platform desteği ve akıllı akış." data-en="Modern desktop video/audio downloader with multi-platform support and smart flows.">Modern video/ses indirme aracı (masaüstü). Çoklu platform desteği ve akıllı akış.</p>
-            <div class="tags" aria-label="Tags"><span class="tag">Python</span><span class="tag">Desktop</span><span class="tag">FFmpeg</span></div>
-            <div class="card-actions"><a class="btn btn-small btn-ghost" href="projects/vidextract.html">
-            <i class="fa-solid fa-file-lines"></i>
-            <span data-tr="Detaylar" data-en="Details">Detaylar</span>
-          </a><a class="btn btn-small btn-ghost" href="https://github.com/idginity124/VidExtract/releases" target="_blank" rel="noopener">
-            <i class="fa-solid fa-bolt"></i>
-            <span data-tr="Releases" data-en="Releases">Releases</span>
-          </a><a class="btn btn-small btn-primary" href="https://github.com/idginity124/VidExtract" target="_blank" rel="noopener">
-            <i class="fab fa-github"></i>
-            <span>GitHub</span>
-          </a></div>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon"><i class="fa-solid fa-photo-film"></i></div>
-            <h3>MediaManagerPro</h3>
-            <p class="muted" data-tr="Büyük medya arşivleri için akıllı düzenleme ve yönetim sistemi." data-en="Smart organization and management system for large media archives.">Büyük medya arşivleri için akıllı düzenleme ve yönetim sistemi.</p>
-            <div class="tags" aria-label="Tags"><span class="tag">Media</span><span class="tag">Automation</span><span class="tag">Workflow</span></div>
-            <div class="card-actions"><a class="btn btn-small btn-ghost" href="projects/mediamanagerpro.html">
-            <i class="fa-solid fa-file-lines"></i>
-            <span data-tr="Detaylar" data-en="Details">Detaylar</span>
-          </a><a class="btn btn-small btn-primary" href="https://github.com/idginity124/MediaManagerPro" target="_blank" rel="noopener">
-            <i class="fab fa-github"></i>
-            <span>GitHub</span>
-          </a></div>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon"><i class="fa-solid fa-circle-question"></i></div>
-            <h3>Quiz App</h3>
-            <p class="muted" data-tr="Dinamik soru havuzu oluşturabilen test ve değerlendirme uygulaması." data-en="Assessment app that can create dynamic question pools.">Dinamik soru havuzu oluşturabilen test ve değerlendirme uygulaması.</p>
-            <div class="tags" aria-label="Tags"><span class="tag">App</span><span class="tag">UX</span><span class="tag">Education</span></div>
-            <div class="card-actions"><a class="btn btn-small btn-ghost" href="projects/quiz-app.html">
-            <i class="fa-solid fa-file-lines"></i>
-            <span data-tr="Detaylar" data-en="Details">Detaylar</span>
-          </a><a class="btn btn-small btn-primary" href="https://github.com/idginity124/quiz-app" target="_blank" rel="noopener">
-            <i class="fab fa-github"></i>
-            <span>GitHub</span>
-          </a></div>
-          </article>
-
+        <div class="empty-state" id="projects-empty">
+          <strong data-tr="Sonuç bulunamadı" data-en="No results">Sonuç bulunamadı</strong>
+          <p class="muted" style="margin-top:8px;" data-tr="Arama kelimelerini değiştir veya filtreleri temizle." data-en="Try a different search or clear filters.">
+            Arama kelimelerini değiştir veya filtreleri temizle.
+          </p>
         </div>
 
-        <h2 class="panel-title reveal" style="margin: 0 0 12px;" data-tr="Ar-Ge" data-en="R&D">Ar-Ge</h2>
-        <div class="grid">
-          <article class="card wip-card reveal" role="article">
-            <div class="status" data-tr="Yapay Zeka" data-en="AI Model">Yapay Zeka</div>
-            <h3>AvianSense AI</h3>
-            <p class="muted" data-tr="Havalimanları için uçuş güvenliğini artıran; kuş sürülerini gerçek zamanlı tespit eden bilgisayarlı görü sistemi." data-en="Computer vision system detecting bird flocks in real-time to enhance aviation safety at airports.">Havalimanları için uçuş güvenliğini artıran; kuş sürülerini gerçek zamanlı tespit eden bilgisayarlı görü sistemi.</p>
-            <div class="card-actions" style="margin-top: 8px;">
-              <a class="btn btn-small btn-ghost" href="projects/aviansense-ai.html">
-                <i class="fa-solid fa-file-lines"></i>
-                <span data-tr="Detaylar" data-en="Details">Detaylar</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="card wip-card reveal" role="article">
-            <div class="status" data-tr="Otomasyon" data-en="Automation">Otomasyon</div>
-            <h3>DeskMind AI</h3>
-            <p class="muted" data-tr="Kullanıcı alışkanlıklarını öğrenerek masaüstü dosyalarını otomatik kategorize eden akıllı asistan." data-en="Smart assistant that learns user habits to automatically categorize desktop files.">Kullanıcı alışkanlıklarını öğrenerek masaüstü dosyalarını otomatik kategorize eden akıllı asistan.</p>
-            <div class="card-actions" style="margin-top: 8px;">
-              <a class="btn btn-small btn-ghost" href="projects/deskmind-ai.html">
-                <i class="fa-solid fa-file-lines"></i>
-                <span data-tr="Detaylar" data-en="Details">Detaylar</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="card wip-card reveal" role="article">
-            <div class="status" data-tr="Güvenlik" data-en="Security">Güvenlik</div>
-            <h3>CipherVault</h3>
-            <p class="muted" data-tr="Yerel şifreleme kullanan, buluttan bağımsız güvenli şifre yöneticisi konsepti." data-en="Cloud-independent secure password manager concept using local encryption.">Yerel şifreleme kullanan, buluttan bağımsız güvenli şifre yöneticisi konsepti.</p>
-            <div class="card-actions" style="margin-top: 8px;">
-              <a class="btn btn-small btn-ghost" href="projects/ciphervault.html">
-                <i class="fa-solid fa-file-lines"></i>
-                <span data-tr="Detaylar" data-en="Details">Detaylar</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="card wip-card reveal" role="article">
-            <div class="status" data-tr="Sistem" data-en="System">Sistem</div>
-            <h3>SysGaze</h3>
-            <p class="muted" data-tr="Detaylı sistem kaynakları ve anlık performansı izleyen profesyonel monitör konsepti." data-en="Professional monitor concept for detailed system resources and real-time performance.">Detaylı sistem kaynakları ve anlık performansı izleyen profesyonel monitör konsepti.</p>
-            <div class="card-actions" style="margin-top: 8px;">
-              <a class="btn btn-small btn-ghost" href="projects/sysgaze.html">
-                <i class="fa-solid fa-file-lines"></i>
-                <span data-tr="Detaylar" data-en="Details">Detaylar</span>
-              </a>
-            </div>
-          </article>
-
+        <div class="panel reveal" style="margin-top: 18px;">
+          <h2 class="panel-title" data-tr="Yeni proje ekleme" data-en="Add a new project">Yeni proje ekleme</h2>
+          <ul class="bullets">
+            <li data-tr="projects/_template.html dosyasını kopyala (örn. projects/yeni-proje.html)" data-en="Copy projects/_template.html (e.g., projects/new-project.html)">projects/_template.html dosyasını kopyala (örn. projects/yeni-proje.html)</li>
+            <li data-tr="assets/data/projects.json içine yeni proje objesi ekle" data-en="Add the new project entry to assets/data/projects.json">assets/data/projects.json içine yeni proje objesi ekle</li>
+            <li data-tr="Ekran görüntülerini assets/img içine koy (isteğe bağlı)" data-en="(Optional) Put screenshots under assets/img">Ekran görüntülerini assets/img içine koy (isteğe bağlı)</li>
+          </ul>
+          <p class="muted" style="margin-top:10px;" data-tr="Not: Kartlar bu JSON dosyasından otomatik üretilir." data-en="Note: Cards are generated automatically from the JSON file.">
+            Not: Kartlar bu JSON dosyasından otomatik üretilir.
+          </p>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer-inner">
-      <div class="muted">&copy; <span id="current-year">2026</span> Ekrem Bulgan</div>
-      <div class="muted"><span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <strong>Ekrem Bulgan</strong>
+          <div class="muted" style="margin-top:6px;" data-tr="AI • Bilgisayarlı Görü • Otomasyon" data-en="AI • Computer Vision • Automation">
+            AI • Bilgisayarlı Görü • Otomasyon
+          </div>
+          <div class="muted" style="margin-top:10px;"><a data-email href="#">ekrembulgan2@gmail.com</a></div>
+        </div>
+
+        <div>
+          <div class="muted" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;" data-tr="Kısayollar" data-en="Shortcuts">Kısayollar</div>
+          <div class="footer-links" style="margin-top:10px;">
+            <a href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+            <a href="blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+            <a href="now.html" data-tr="Şimdi" data-en="Now">Şimdi</a>
+            <a href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="muted" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;" data-tr="Bağlantılar" data-en="Links">Bağlantılar</div>
+          <div class="footer-social" style="margin-top:10px;">
+            <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a class="icon-btn" href="assets/cv/Ekrem_Bulgan_CV.pdf" target="_blank" rel="noopener" aria-label="Resume">
+              <i class="fa-solid fa-file-lines"></i>
+            </a>
+            <a class="icon-btn" href="contact.html" aria-label="Contact">
+              <i class="fa-regular fa-paper-plane"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; <span id="current-year">2026</span> Ekrem Bulgan</div>
+        <div><span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></div>
+      </div>
     </div>
   </footer>
 

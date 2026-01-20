@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VidExtract | Ekrem Bulgan</title>
-  <meta name="description" content="VidExtract proje sayfasına yönlendirme." />
-  <meta http-equiv="refresh" content="0; url=projects/vidextract.html" />
+  <title>Yazılar | Ekrem Bulgan</title>
+  <meta name="description" content="Notes, checklists and technical write-ups." />
+  <meta property="og:title" content="Blog | Ekrem Bulgan" />
+  <meta property="og:description" content="Notes, checklists and technical write-ups." />
+  <meta property="og:type" content="website" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="manifest.webmanifest" />
+
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -47,19 +50,41 @@
     </div>
   </nav>
 
+  <noscript>
+    <div class="noscript" data-tr="Bu site bazı özellikler için JavaScript kullanır. Lütfen JavaScript'i etkinleştirin." data-en="This site uses JavaScript for some features. Please enable JavaScript.">
+      Bu site bazı özellikler için JavaScript kullanır. Lütfen JavaScript'i etkinleştirin.
+    </div>
+  </noscript>
+
   <main id="main">
     <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
       <div class="container">
-        <div class="panel reveal">
-          <h1 class="panel-title" data-tr="Yönlendiriliyorsun…" data-en="Redirecting…">Yönlendiriliyorsun…</h1>
-          <p class="muted" data-tr="VidExtract proje sayfasına aktarılıyorsun." data-en="Taking you to the VidExtract project page.">
-            VidExtract proje sayfasına aktarılıyorsun.
+        <div class="section-head reveal">
+          <h1 class="section-title" style="margin:0" data-tr="Yazılar" data-en="Blog">Yazılar</h1>
+          <p class="section-desc" data-tr="Notlar, kontrol listeleri ve teknik yazılar. (Şimdilik şablon/taslak içerikler var; kolayca düzenleyebilirsin.)" data-en="Notes, checklists and technical write-ups. (Currently includes draft/template posts — feel free to edit.)">
+            Notlar, kontrol listeleri ve teknik yazılar. (Şimdilik şablon/taslak içerikler var; kolayca düzenleyebilirsin.)
           </p>
-          <div class="card-actions" style="margin-top: 12px;">
-            <a class="btn btn-primary" href="projects/vidextract.html">
-              <i class="fa-solid fa-arrow-right"></i>
-              <span data-tr="Devam" data-en="Continue">Devam</span>
+        </div>
+
+        <div class="panel reveal" id="blog-app">
+          <div class="card-actions" style="justify-content: space-between; align-items: center; gap: 10px;">
+            <div class="muted">
+              <span data-tr="Toplam:" data-en="Total:">Toplam:</span>
+              <strong id="posts-count">3</strong>
+            </div>
+            <a class="btn btn-small btn-ghost" href="projects/_template.html" target="_blank" rel="noopener">
+              <i class="fa-solid fa-layer-group"></i>
+              <span data-tr="Şablon mantığı" data-en="Template idea">Şablon mantığı</span>
             </a>
+          </div>
+
+          <div class="grid" id="posts-grid" style="margin-top: 14px;"></div>
+
+          <div class="empty-state" id="posts-empty">
+            <strong data-tr="Henüz yazı yok" data-en="No posts yet">Henüz yazı yok</strong>
+            <p class="muted" style="margin: 8px 0 0;" data-tr="assets/data/posts.json dosyasına yazı ekleyebilirsin." data-en="Add posts in assets/data/posts.json.">
+              assets/data/posts.json dosyasına yazı ekleyebilirsin.
+            </p>
           </div>
         </div>
       </div>
@@ -115,12 +140,6 @@
     <i class="fa-solid fa-arrow-up"></i>
   </button>
 
-  <script>
-    // JS redirect fallback
-    if (!location.href.includes('projects/vidextract.html')) {
-      location.replace('projects/vidextract.html');
-    }
-  </script>
   <script src="assets/app.js"></script>
 </body>
 </html>

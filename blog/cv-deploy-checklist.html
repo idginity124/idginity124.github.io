@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Vision deploy checklist | Ekrem Bulgan</title>
+  <meta name="description" content="What to measure and log when deploying real-time CV systems: latency, FPS, drift, logging." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="../manifest.webmanifest" />
+
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
+  <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <a class="logo" href="../index.html" aria-label="Home">EB<span class="dot">.</span></a>
+        <div class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <a class="nav-link" href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <a class="nav-link" href="../about.html" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+          <a class="nav-link" href="../blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+          <a class="nav-link" href="../now.html" data-tr="Şimdi" data-en="Now">Şimdi</a>
+          <a class="nav-link" href="../contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="lang-btn" class="pill" type="button" aria-label="Toggle language">EN</button>
+        <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <button id="menu-btn" class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
+      <div class="container post">
+        <div class="crumbs reveal" aria-label="Breadcrumb">
+          <a href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <span class="crumb-sep">/</span>
+          <a href="../blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">Computer Vision deploy checklist</span>
+        </div>
+
+        <header class="post-header reveal">
+          <span class="badge" data-tr="Taslak" data-en="Draft">Taslak</span>
+          <h1 class="post-title">Computer Vision deploy checklist</h1>
+          <div class="post-meta">
+            <span>2026-01-19</span>
+            <span>•</span>
+            <span data-tr="7 dk" data-en="7 min">7 dk</span>
+            <span>•</span>
+            <span>Computer Vision</span>
+            <span>•</span>
+            <span>MLOps</span>
+          </div>
+
+          <div class="card-actions" style="margin-top: 12px;">
+            <button id="copy-link" class="btn btn-small btn-ghost" type="button">
+              <i class="fa-regular fa-copy"></i>
+              <span data-tr="Linki kopyala" data-en="Copy link">Linki kopyala</span>
+            </button>
+            <a class="btn btn-small btn-primary" href="../contact.html">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span data-tr="Konuşalım" data-en="Let's talk">Konuşalım</span>
+            </a>
+          </div>
+        </header>
+
+        <article class="post-body reveal">
+          <p class="muted" data-tr="Bu yazı bir şablondur. İstersen kendi deneyimlerinle güncelleyebilirsin." data-en="This is a template post you can replace with your own experience.">
+            Bu yazı bir şablondur. İstersen kendi deneyimlerinle güncelleyebilirsin.
+          </p>
+
+          <h2 data-tr="1) Problem tanımı" data-en="1) Define the problem">1) Problem tanımı</h2>
+          <ul>
+            <li>Giriş verisi: kamera açısı, FPS, çözünürlük, ışık.</li>
+            <li>Çıkış: tespit, takip, risk skoru, alarm.</li>
+            <li>Operasyonel hedef: gecikme, yanlış alarm, bakım kolaylığı.</li>
+          </ul>
+
+          <h2 data-tr="2) Performans metrikleri" data-en="2) Performance metrics">2) Performans metrikleri</h2>
+          <ul>
+            <li><strong>Latency</strong>: uçtan uca (kamera → alarm).</li>
+            <li><strong>FPS</strong>: sürdürülebilir throughput.</li>
+            <li><strong>Precision/Recall</strong>: saha koşullarına göre eşik.</li>
+            <li><strong>False alarm rate</strong>: operasyon maliyetiyle birlikte.</li>
+          </ul>
+
+          <h2 data-tr="3) İzlenebilirlik" data-en="3) Observability">3) İzlenebilirlik</h2>
+          <ul>
+            <li>Log: istek/yanıt, hata kodları, model sürümü.</li>
+            <li>Görselleştirme: örnek frame snapshot, heatmap.</li>
+            <li>Drift sinyalleri: veri dağılımı kayması (ışık, hava, kamera).</li>
+          </ul>
+
+          <blockquote>
+            "Deploy" sadece modeli çalıştırmak değil: ölçmek, izlemek, iyileştirmek.
+          </blockquote>
+
+          <h2 data-tr="4) Güvenlik ve hata senaryoları" data-en="4) Security and failure modes">4) Güvenlik ve hata senaryoları</h2>
+          <ul>
+            <li>Girdi doğrulama, rate limiting (API varsa).</li>
+            <li>Model crash → fallback davranışı.</li>
+            <li>Eksik frame / bozuk stream → alarm bastırma/uyarı.</li>
+          </ul>
+
+          <h2 data-tr="5) Sonraki adımlar" data-en="5) Next steps">5) Sonraki adımlar</h2>
+          <ul>
+            <li>Basit bir dashboard prototipi.</li>
+            <li>Model sürümleme + A/B değerlendirme.</li>
+            <li>Edge optimizasyon (quantization / TRT).</li>
+          </ul>
+
+          <div class="card-actions" style="margin-top: 16px;">
+            <a class="btn btn-ghost" href="../blog.html">
+              <i class="fa-solid fa-arrow-left"></i>
+              <span data-tr="Yazılara dön" data-en="Back to blog">Yazılara dön</span>
+            </a>
+            <a class="btn btn-primary" href="../projects.html">
+              <i class="fa-solid fa-layer-group"></i>
+              <span data-tr="Projeleri incele" data-en="Browse projects">Projeleri incele</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <strong>Ekrem Bulgan</strong>
+          <div class="muted" style="margin-top:6px;" data-tr="AI • Bilgisayarlı Görü • Otomasyon" data-en="AI • Computer Vision • Automation">
+            AI • Bilgisayarlı Görü • Otomasyon
+          </div>
+          <div class="muted" style="margin-top:10px;"><a data-email href="#">ekrembulgan2@gmail.com</a></div>
+        </div>
+
+        <div>
+          <div class="muted" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;" data-tr="Kısayollar" data-en="Shortcuts">Kısayollar</div>
+          <div class="footer-links" style="margin-top:10px;">
+            <a href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+            <a href="../about.html" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+            <a href="../blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+            <a href="../now.html" data-tr="Şimdi" data-en="Now">Şimdi</a>
+            <a href="../contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="muted" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;" data-tr="Bağlantılar" data-en="Links">Bağlantılar</div>
+          <div class="footer-social" style="margin-top:10px;">
+            <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a class="icon-btn" href="../assets/cv/Ekrem_Bulgan_CV.pdf" target="_blank" rel="noopener" aria-label="Resume">
+              <i class="fa-solid fa-file-lines"></i>
+            </a>
+            <a class="icon-btn" href="../contact.html" aria-label="Contact">
+              <i class="fa-regular fa-paper-plane"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; <span id="current-year">2026</span> Ekrem Bulgan</div>
+        <div><span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

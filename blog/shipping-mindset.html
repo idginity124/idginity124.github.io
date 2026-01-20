@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From prototype to product: shipping mindset | Ekrem Bulgan</title>
+  <meta name="description" content="What makes a project feel like a product: scope, metrics, docs, and distribution." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="../manifest.webmanifest" />
+
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
+  <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <a class="logo" href="../index.html" aria-label="Home">EB<span class="dot">.</span></a>
+        <div class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <a class="nav-link" href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <a class="nav-link" href="../about.html" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+          <a class="nav-link" href="../blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+          <a class="nav-link" href="../now.html" data-tr="Şimdi" data-en="Now">Şimdi</a>
+          <a class="nav-link" href="../contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="lang-btn" class="pill" type="button" aria-label="Toggle language">EN</button>
+        <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <button id="menu-btn" class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
+      <div class="container">
+        <div class="crumbs reveal" aria-label="Breadcrumb">
+          <a href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <span class="crumb-sep">/</span>
+          <a href="../blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+          <span class="crumb-sep">/</span>
+          <span aria-current="page">Shipping mindset</span>
+        </div>
+
+        <article class="post">
+          <header class="post-header reveal">
+            <span class="status-pill draft" data-tr="Taslak" data-en="Draft">Taslak</span>
+            <h1 class="post-title">From prototype to product: shipping mindset</h1>
+            <div class="post-meta">
+              <span>2026-01-19</span>
+              <span>•</span>
+              <span data-tr="5 dk" data-en="5 min">5 dk</span>
+              <span>•</span>
+              <span>Product • Mindset</span>
+            </div>
+            <div class="card-actions" style="margin-top:12px;">
+              <button id="copy-link" class="btn btn-small btn-ghost" type="button">
+                <i class="fa-regular fa-copy"></i>
+                <span data-tr="Linki kopyala" data-en="Copy link">Linki kopyala</span>
+              </button>
+              <a class="btn btn-small btn-primary" href="../contact.html">
+                <i class="fa-regular fa-paper-plane"></i>
+                <span data-tr="Konuşalım" data-en="Let's talk">Konuşalım</span>
+              </a>
+            </div>
+          </header>
+
+          <div class="post-body reveal">
+            <p class="muted" data-tr="Not: Bu yazı bir şablon/draft yazıdır. Kendi deneyimlerinle güncelleyebilirsin." data-en="Note: This is a draft/template post. Feel free to rewrite with your own experience.">
+              Not: Bu yazı bir şablon/draft yazıdır. Kendi deneyimlerinle güncelleyebilirsin.
+            </p>
+
+            <h2>1) Define “done” as a user outcome</h2>
+            <ul>
+              <li><strong>Prototype:</strong> proves a technical idea.</li>
+              <li><strong>Product:</strong> solves a user problem reliably (with constraints, defaults and guardrails).</li>
+            </ul>
+
+            <h2>2) Keep scope tight, but ship complete loops</h2>
+            <p>
+              A professional project doesn't need 50 features — it needs a complete loop: input → processing → feedback → result.
+              If you can’t explain the loop in one sentence, the scope is too large.
+            </p>
+
+            <h2>3) Treat docs as a feature</h2>
+            <ul>
+              <li>One-page overview: what it does, who it's for, what it doesn't do.</li>
+              <li>Installation + troubleshooting.</li>
+              <li>Known limitations.</li>
+            </ul>
+
+            <blockquote>
+              Shipping is not "just pushing code" — it’s delivering a predictable experience.
+            </blockquote>
+
+            <h2>4) Add basic metrics, even for small tools</h2>
+            <ul>
+              <li>How often errors happen</li>
+              <li>How long key operations take</li>
+              <li>Common user paths</li>
+            </ul>
+
+            <h2>5) Make distribution boring</h2>
+            <p>
+              Packaging, versioning, and release notes are what make a project feel real. If distribution is painful,
+              users will never reach the value of your work.
+            </p>
+
+            <p class="muted" style="margin-top:14px;">
+              Want to turn your next project into a portfolio-grade case study? Use the structure on my project pages:
+              <a href="../projects.html">Projects</a>.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <strong>Ekrem Bulgan</strong>
+          <div class="muted" style="margin-top:6px;" data-tr="AI • Bilgisayarlı Görü • Otomasyon" data-en="AI • Computer Vision • Automation">
+            AI • Bilgisayarlı Görü • Otomasyon
+          </div>
+          <div class="muted" style="margin-top:10px;"><a data-email href="#">ekrembulgan2@gmail.com</a></div>
+        </div>
+
+        <div>
+          <div class="muted" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;" data-tr="Kısayollar" data-en="Shortcuts">Kısayollar</div>
+          <div class="footer-links" style="margin-top:10px;">
+            <a href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+            <a href="../about.html" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+            <a href="../blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+            <a href="../now.html" data-tr="Şimdi" data-en="Now">Şimdi</a>
+            <a href="../contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="muted" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;" data-tr="Bağlantılar" data-en="Links">Bağlantılar</div>
+          <div class="footer-social" style="margin-top:10px;">
+            <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a class="icon-btn" href="../assets/cv/Ekrem_Bulgan_CV.pdf" target="_blank" rel="noopener" aria-label="Resume">
+              <i class="fa-solid fa-file-lines"></i>
+            </a>
+            <a class="icon-btn" href="../contact.html" aria-label="Contact">
+              <i class="fa-regular fa-paper-plane"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; <span id="current-year">2026</span> Ekrem Bulgan</div>
+        <div><span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

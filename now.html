@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VidExtract | Ekrem Bulgan</title>
-  <meta name="description" content="VidExtract proje sayfasına yönlendirme." />
-  <meta http-equiv="refresh" content="0; url=projects/vidextract.html" />
+  <title>Şimdi | Ekrem Bulgan</title>
+  <meta name="description" content="What I'm focused on now: projects, learning, and next steps." />
+  <meta property="og:title" content="Now | Ekrem Bulgan" />
+  <meta property="og:description" content="Current focus, what I'm building, and what's next." />
+  <meta property="og:type" content="website" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="manifest.webmanifest" />
+
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,18 +53,53 @@
   <main id="main">
     <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
       <div class="container">
-        <div class="panel reveal">
-          <h1 class="panel-title" data-tr="Yönlendiriliyorsun…" data-en="Redirecting…">Yönlendiriliyorsun…</h1>
-          <p class="muted" data-tr="VidExtract proje sayfasına aktarılıyorsun." data-en="Taking you to the VidExtract project page.">
-            VidExtract proje sayfasına aktarılıyorsun.
+        <div class="section-head reveal">
+          <h1 class="section-title" style="margin:0" data-tr="Şimdi" data-en="Now">Şimdi</h1>
+          <p class="section-desc" data-tr="Bu sayfa: şu an odaklandığım işler, öğrenme alanlarım ve yakın hedefler." data-en="This page: what I'm focused on, what I'm learning, and what's next.">
+            Bu sayfa: şu an odaklandığım işler, öğrenme alanlarım ve yakın hedefler.
           </p>
-          <div class="card-actions" style="margin-top: 12px;">
-            <a class="btn btn-primary" href="projects/vidextract.html">
-              <i class="fa-solid fa-arrow-right"></i>
-              <span data-tr="Devam" data-en="Continue">Devam</span>
+          <p class="muted" style="margin:10px 0 0;" data-tr="Son güncelleme: Ocak 2026" data-en="Last updated: January 2026">Son güncelleme: Ocak 2026</p>
+        </div>
+
+        <div class="two-col">
+          <div class="panel reveal" id="focus">
+            <h2 class="panel-title" data-tr="Şu an odak" data-en="Current focus">Şu an odak</h2>
+            <ul class="bullets">
+              <li data-tr="Projeleri daha ürün gibi sunmak: dokümantasyon, demo, sürümleme." data-en="Making projects feel like products: docs, demos, releases.">Projeleri daha ürün gibi sunmak: dokümantasyon, demo, sürümleme.</li>
+              <li data-tr="Bilgisayarlı görü tarafında gerçek zaman optimizasyon ve ölçümleme." data-en="Real-time optimization and measurement for computer vision.">Bilgisayarlı görü tarafında gerçek zaman optimizasyon ve ölçümleme.</li>
+              <li data-tr="Masaüstü araçlarda profesyonel UX: akış, hata yönetimi, kısayollar." data-en="Pro UX for desktop tools: flow, error handling, shortcuts.">Masaüstü araçlarda profesyonel UX: akış, hata yönetimi, kısayollar.</li>
+            </ul>
+          </div>
+
+          <div class="panel reveal" id="open">
+            <h2 class="panel-title" data-tr="Açık olduğum" data-en="Open to">Açık olduğum</h2>
+            <ul class="bullets">
+              <li data-tr="Freelance proje & danışmanlık (AI/CV, otomasyon, desktop araçlar)." data-en="Freelance projects & consulting (AI/CV, automation, desktop tools).">Freelance proje & danışmanlık (AI/CV, otomasyon, desktop araçlar).</li>
+              <li data-tr="Ürün geliştirme ekipleriyle iş birliği (prototip → MVP → release)." data-en="Collaboration with product teams (prototype → MVP → release).">Ürün geliştirme ekipleriyle iş birliği (prototip → MVP → release).</li>
+              <li data-tr="Açık kaynak katkıları (özellikle araçlar ve tooling)." data-en="Open-source contributions (especially tools and tooling).">Açık kaynak katkıları (özellikle araçlar ve tooling).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel reveal" id="next" style="margin-top:18px;">
+          <h2 class="panel-title" data-tr="Yakın hedefler" data-en="Next steps">Yakın hedefler</h2>
+          <div class="prose">
+            <p data-tr="Hedef: her projeye kısa bir vaka çalışması eklemek (problem, çözüm, mimari, dersler) ve mümkünse küçük bir demo/preview ile desteklemek." data-en="Goal: add a short case study to each project (problem, solution, architecture, lessons) and support it with a small demo/preview when possible.">
+              Hedef: her projeye kısa bir vaka çalışması eklemek (problem, çözüm, mimari, dersler) ve mümkünse küçük bir demo/preview ile desteklemek.
+            </p>
+          </div>
+          <div class="card-actions" style="margin-top: 10px;">
+            <a class="btn btn-primary" href="projects.html">
+              <i class="fa-solid fa-layer-group"></i>
+              <span data-tr="Projeleri gör" data-en="View projects">Projeleri gör</span>
+            </a>
+            <a class="btn btn-ghost" href="contact.html">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span data-tr="İletişime geç" data-en="Contact">İletişime geç</span>
             </a>
           </div>
         </div>
+
       </div>
     </section>
   </main>
@@ -115,12 +153,6 @@
     <i class="fa-solid fa-arrow-up"></i>
   </button>
 
-  <script>
-    // JS redirect fallback
-    if (!location.href.includes('projects/vidextract.html')) {
-      location.replace('projects/vidextract.html');
-    }
-  </script>
   <script src="assets/app.js"></script>
 </body>
 </html>

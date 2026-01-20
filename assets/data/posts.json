@@ -1,0 +1,70 @@
+{
+  "posts": [
+    {
+      "id": "shipping-mindset",
+      "title": {
+        "tr": "Prototipten Ürüne: “Shipping” zihniyeti",
+        "en": "From prototype to product: shipping mindset"
+      },
+      "date": "2026-01-19",
+      "readingTime": {
+        "tr": "5 dk",
+        "en": "5 min"
+      },
+      "tags": [
+        "Product",
+        "Mindset"
+      ],
+      "draft": true,
+      "summary": {
+        "tr": "Ürün gibi duran projeler: kapsam, metrikler, dokümantasyon ve dağıtım pratiği.",
+        "en": "What makes a project feel like a product: scope, metrics, docs, and distribution."
+      },
+      "path": "blog/shipping-mindset.html"
+    },
+    {
+      "id": "desktop-tool-ux",
+      "title": {
+        "tr": "Masaüstü Aracı UX’i: 12 maddelik kontrol listesi",
+        "en": "Desktop tool UX: a 12-point checklist"
+      },
+      "date": "2026-01-19",
+      "readingTime": {
+        "tr": "6 dk",
+        "en": "6 min"
+      },
+      "tags": [
+        "UX",
+        "Desktop"
+      ],
+      "draft": true,
+      "summary": {
+        "tr": "Bir desktop uygulamasını “pro” hissettiren detaylar: akış, geri bildirim, hatalar, kısayollar.",
+        "en": "Small UX details that make desktop apps feel professional: flow, feedback, errors, shortcuts."
+      },
+      "path": "blog/desktop-tool-ux.html"
+    },
+    {
+      "id": "cv-deploy-checklist",
+      "title": {
+        "tr": "Computer Vision deploy checklist",
+        "en": "Computer Vision deploy checklist"
+      },
+      "date": "2026-01-19",
+      "readingTime": {
+        "tr": "7 dk",
+        "en": "7 min"
+      },
+      "tags": [
+        "Computer Vision",
+        "MLOps"
+      ],
+      "draft": true,
+      "summary": {
+        "tr": "Gerçek zamanlı CV sistemlerinde performans/izlenebilirlik: gecikme, FPS, drift, logging.",
+        "en": "What to measure and log when deploying real-time CV systems: latency, FPS, drift, logging."
+      },
+      "path": "blog/cv-deploy-checklist.html"
+    }
+  ]
+}

@@ -1,188 +1,222 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AvianSense AI | Proje Detayları</title>
-  <meta name="description" content="AvianSense AI — project details, features, and technical notes." />
-  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-
-  <link rel="stylesheet" href="../assets/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AvianSense AI | Proje Detayları</title>
+<meta content="AvianSense AI — project details, features, and technical notes." name="description"/>
+<link href="../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="../manifest.webmanifest" rel="manifest"/>
+<link href="../assets/styles.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-  <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
-  <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
-
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div style="display:flex; align-items:center; gap:14px;">
-        <a class="logo" href="../index.html" aria-label="Home">EB<span class="dot">.</span></a>
-        <div class="nav-links" aria-label="Primary">
-          <a class="nav-link" href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
-          <a class="nav-link" href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
-          <a class="nav-link" href="../contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
-        </div>
-      </div>
-
-      <div class="nav-controls">
-        <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle theme">
-          <i class="fa-solid fa-moon"></i>
-        </button>
-        <button id="lang-btn" class="pill" type="button" aria-label="Toggle language">EN</button>
-        <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
-        <button id="menu-btn" class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <main id="main">
-    <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
-      <div class="container">
-        <div class="crumbs reveal" aria-label="Breadcrumb">
-          <a href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
-          <span class="crumb-sep">/</span>
-          <a href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
-          <span class="crumb-sep">/</span>
-          <span aria-current="page">AvianSense AI</span>
-        </div>
-
-        <div class="project-head reveal">
-          <div class="project-title-row">
-            <div class="project-mark" aria-hidden="true">AA</div>
-            <div>
-              <span class="badge" data-tr="Ar-Ge" data-en="R&D">Ar-Ge</span>
-              <h1 class="section-title" style="margin:10px 0 6px">AvianSense AI</h1>
-              <p class="section-desc" style="margin:0" data-tr="Havalimanlarında kuş sürülerini gerçek zamanlı tespit ederek uçuş güvenliğine katkı sağlayan bilgisayarlı görü sistemi." data-en="Computer vision system that detects bird flocks in real time to support aviation safety at airports.">Havalimanlarında kuş sürülerini gerçek zamanlı tespit ederek uçuş güvenliğine katkı sağlayan bilgisayarlı görü sistemi.</p>
-            </div>
-          </div>
-          <div class="project-actions"><a class="btn btn-small btn-primary" href="../contact.html" >
-              <i class="fa-regular fa-paper-plane"></i>
-              <span data-tr="İletişim" data-en="Contact">İletişim</span>
-            </a></div>
-        </div>
-
-        <div class="facts reveal"><div class="fact">
-              <div class="fact-k" data-tr="Alan" data-en="Domain">Alan</div>
-              <div class="fact-v" data-tr="Bilgisayarlı Görü" data-en="Computer Vision">Bilgisayarlı Görü</div>
-            </div>
+<a class="skip-link" data-en="Skip to content" data-tr="İçeriğe geç" href="#main">İçeriğe geç</a>
+<div aria-hidden="true" class="top-progress"><span class="top-progress__bar" id="progress-bar"></span></div>
+<nav class="nav">
+<div class="container nav-inner">
+<div style="display:flex; align-items:center; gap:14px;">
+<a aria-label="Home" class="logo" href="../index.html">EB<span class="dot">.</span></a>
+<div aria-label="Primary" class="nav-links">
+<a class="nav-link" data-en="Home" data-tr="Ana Sayfa" href="../index.html">Ana Sayfa</a>
+<a class="nav-link" data-en="Projects" data-tr="Projeler" href="../projects.html">Projeler</a>
+<a class="nav-link" data-en="About" data-tr="Hakkımda" href="../about.html">Hakkımda</a>
+<a class="nav-link" data-en="Blog" data-tr="Yazılar" href="../blog.html">Yazılar</a>
+<a class="nav-link" data-en="Now" data-tr="Şimdi" href="../now.html">Şimdi</a>
+<a class="nav-link" data-en="Contact" data-tr="İletişim" href="../contact.html">İletişim</a>
+</div>
+</div>
+<div class="nav-controls">
+<button aria-label="Toggle theme" class="icon-btn" id="theme-btn" type="button">
+<i class="fa-solid fa-moon"></i>
+</button>
+<button aria-label="Toggle language" class="pill" id="lang-btn" type="button">EN</button>
+<a aria-label="GitHub" class="icon-btn" href="https://github.com/idginity124" rel="noopener" target="_blank">
+<i class="fab fa-github"></i>
+</a>
+<button aria-expanded="false" aria-label="Menu" class="nav-toggle" id="menu-btn" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+</div>
+</div>
+</nav>
+<main id="main">
+<section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
+<div class="container">
+<div aria-label="Breadcrumb" class="crumbs reveal">
+<a data-en="Home" data-tr="Ana Sayfa" href="../index.html">Ana Sayfa</a>
+<span class="crumb-sep">/</span>
+<a data-en="Projects" data-tr="Projeler" href="../projects.html">Projeler</a>
+<span class="crumb-sep">/</span>
+<span aria-current="page">AvianSense AI</span>
+</div>
+<div class="project-head reveal">
+<div class="project-title-row">
+<div aria-hidden="true" class="project-mark">AA</div>
+<div>
+<span class="badge" data-en="R&amp;D" data-tr="Ar-Ge">Ar-Ge</span>
+<h1 class="section-title" style="margin:10px 0 6px">AvianSense AI</h1>
+<p class="section-desc" data-en="Computer vision system that detects bird flocks in real time to support aviation safety at airports." data-tr="Havalimanlarında kuş sürülerini gerçek zamanlı tespit ederek uçuş güvenliğine katkı sağlayan bilgisayarlı görü sistemi." style="margin:0">Havalimanlarında kuş sürülerini gerçek zamanlı tespit ederek uçuş güvenliğine katkı sağlayan bilgisayarlı görü sistemi.</p>
+</div>
+</div>
+<div class="project-actions"><a class="btn btn-small btn-primary" href="../contact.html">
+<i class="fa-regular fa-paper-plane"></i>
+<span data-en="Contact" data-tr="İletişim">İletişim</span>
+</a></div>
+</div>
+<div class="facts reveal"><div class="fact">
+<div class="fact-k" data-en="Domain" data-tr="Alan">Alan</div>
+<div class="fact-v" data-en="Computer Vision" data-tr="Bilgisayarlı Görü">Bilgisayarlı Görü</div>
+</div>
 <div class="fact">
-              <div class="fact-k" data-tr="Durum" data-en="Status">Durum</div>
-              <div class="fact-v" data-tr="Ar-Ge" data-en="R&D">Ar-Ge</div>
-            </div>
+<div class="fact-k" data-en="Status" data-tr="Durum">Durum</div>
+<div class="fact-v" data-en="R&amp;D" data-tr="Ar-Ge">Ar-Ge</div>
+</div>
 <div class="fact">
-              <div class="fact-k" data-tr="Gerçek zaman" data-en="Real-time">Gerçek zaman</div>
-              <div class="fact-v" data-tr="Hedef" data-en="Target">Hedef</div>
-            </div>
+<div class="fact-k" data-en="Real-time" data-tr="Gerçek zaman">Gerçek zaman</div>
+<div class="fact-v" data-en="Target" data-tr="Hedef">Hedef</div>
+</div>
 <div class="fact">
-              <div class="fact-k" data-tr="Çıktı" data-en="Output">Çıktı</div>
-              <div class="fact-v" data-tr="Tespit + uyarı" data-en="Detection + alerting">Tespit + uyarı</div>
-            </div></div>
-
-        <div class="panel reveal" style="margin-top: 18px;">
-          <h2 class="panel-title" data-tr="Özet" data-en="Overview">Özet</h2>
-          <div class="prose">
-            <p data-tr="AvianSense AI, kamera görüntülerinden kuş sürülerini tespit edip sahadaki risk göstergelerini üretmeyi hedefleyen bir Ar-Ge projesidir. Öncelik; düşük gecikme, sahaya uygun yanlış alarm kontrolü ve izlenebilir metriklerdir." data-en="AvianSense AI is an R&D project aiming to detect bird flocks from camera feeds and generate field-friendly risk indicators. Priorities include low latency, controllable false alarms, and traceable metrics.">AvianSense AI, kamera görüntülerinden kuş sürülerini tespit edip sahadaki risk göstergelerini üretmeyi hedefleyen bir Ar-Ge projesidir. Öncelik; düşük gecikme, sahaya uygun yanlış alarm kontrolü ve izlenebilir metriklerdir.</p>
-          </div>
-          <div class="tags" style="margin-top: 12px;"><span class="tag">AI</span>
+<div class="fact-k" data-en="Output" data-tr="Çıktı">Çıktı</div>
+<div class="fact-v" data-en="Detection + alerting" data-tr="Tespit + uyarı">Tespit + uyarı</div>
+</div></div><div class="project-layout"><div class="project-content"><div class="panel reveal" id="overview" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Overview" data-tr="Özet">Özet</h2>
+<div class="prose">
+<p data-en="AvianSense AI is an R&amp;D project aiming to detect bird flocks from camera feeds and generate field-friendly risk indicators. Priorities include low latency, controllable false alarms, and traceable metrics." data-tr="AvianSense AI, kamera görüntülerinden kuş sürülerini tespit edip sahadaki risk göstergelerini üretmeyi hedefleyen bir Ar-Ge projesidir. Öncelik; düşük gecikme, sahaya uygun yanlış alarm kontrolü ve izlenebilir metriklerdir.">AvianSense AI, kamera görüntülerinden kuş sürülerini tespit edip sahadaki risk göstergelerini üretmeyi hedefleyen bir Ar-Ge projesidir. Öncelik; düşük gecikme, sahaya uygun yanlış alarm kontrolü ve izlenebilir metriklerdir.</p>
+</div>
+<div class="tags" style="margin-top: 12px;"><span class="tag">AI</span>
 <span class="tag">Computer Vision</span>
 <span class="tag">Real-time</span>
 <span class="tag">Safety</span></div>
-        </div>
-
-        <div class="panel reveal" style="margin-top: 18px;">
-          <h2 class="panel-title" data-tr="Öne Çıkan Özellikler" data-en="Key Features">Öne Çıkan Özellikler</h2>
-          <div class="grid feature-grid"><article class="card reveal">
-              <div class="card-icon"><i class="fa-solid fa-eye"></i></div>
-              <h3 data-tr="Gerçek zamanlı tespit" data-en="Real-time detection">Gerçek zamanlı tespit</h3>
-              <p class="muted" data-tr="Video akışında kuş/kuş sürüsü tespiti." data-en="Bird/flock detection on live video streams.">Video akışında kuş/kuş sürüsü tespiti.</p>
-            </article>
+</div><div class="panel reveal" id="features" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Key Features" data-tr="Öne Çıkan Özellikler">Öne Çıkan Özellikler</h2>
+<div class="grid feature-grid"><article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-eye"></i></div>
+<h3 data-en="Real-time detection" data-tr="Gerçek zamanlı tespit">Gerçek zamanlı tespit</h3>
+<p class="muted" data-en="Bird/flock detection on live video streams." data-tr="Video akışında kuş/kuş sürüsü tespiti.">Video akışında kuş/kuş sürüsü tespiti.</p>
+</article>
 <article class="card reveal">
-              <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
-              <h3 data-tr="Yanlış alarm kontrolü" data-en="False alarm control">Yanlış alarm kontrolü</h3>
-              <p class="muted" data-tr="Saha koşullarında karar eşikleri ve filtreleme." data-en="Thresholding and filtering for field conditions.">Saha koşullarında karar eşikleri ve filtreleme.</p>
-            </article>
+<div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
+<h3 data-en="False alarm control" data-tr="Yanlış alarm kontrolü">Yanlış alarm kontrolü</h3>
+<p class="muted" data-en="Thresholding and filtering for field conditions." data-tr="Saha koşullarında karar eşikleri ve filtreleme.">Saha koşullarında karar eşikleri ve filtreleme.</p>
+</article>
 <article class="card reveal">
-              <div class="card-icon"><i class="fa-solid fa-route"></i></div>
-              <h3 data-tr="Takip" data-en="Tracking">Takip</h3>
-              <p class="muted" data-tr="Kuş hareketlerini izleme ve davranış sinyalleri." data-en="Tracking movement and behavior signals.">Kuş hareketlerini izleme ve davranış sinyalleri.</p>
-            </article>
+<div class="card-icon"><i class="fa-solid fa-route"></i></div>
+<h3 data-en="Tracking" data-tr="Takip">Takip</h3>
+<p class="muted" data-en="Tracking movement and behavior signals." data-tr="Kuş hareketlerini izleme ve davranış sinyalleri.">Kuş hareketlerini izleme ve davranış sinyalleri.</p>
+</article>
 <article class="card reveal">
-              <div class="card-icon"><i class="fa-solid fa-bell"></i></div>
-              <h3 data-tr="Uyarı sistemi" data-en="Alerting">Uyarı sistemi</h3>
-              <p class="muted" data-tr="Risk seviyesine göre bildirim/uyarı kurgusu." data-en="Notifications based on risk level.">Risk seviyesine göre bildirim/uyarı kurgusu.</p>
-            </article>
+<div class="card-icon"><i class="fa-solid fa-bell"></i></div>
+<h3 data-en="Alerting" data-tr="Uyarı sistemi">Uyarı sistemi</h3>
+<p class="muted" data-en="Notifications based on risk level." data-tr="Risk seviyesine göre bildirim/uyarı kurgusu.">Risk seviyesine göre bildirim/uyarı kurgusu.</p>
+</article>
 <article class="card reveal">
-              <div class="card-icon"><i class="fa-solid fa-gauge-high"></i></div>
-              <h3 data-tr="Performans metrikleri" data-en="Metrics">Performans metrikleri</h3>
-              <p class="muted" data-tr="Precision/recall, gecikme, FPS gibi ölçümler." data-en="Precision/recall, latency, FPS tracking.">Precision/recall, gecikme, FPS gibi ölçümler.</p>
-            </article>
+<div class="card-icon"><i class="fa-solid fa-gauge-high"></i></div>
+<h3 data-en="Metrics" data-tr="Performans metrikleri">Performans metrikleri</h3>
+<p class="muted" data-en="Precision/recall, latency, FPS tracking." data-tr="Precision/recall, gecikme, FPS gibi ölçümler.">Precision/recall, gecikme, FPS gibi ölçümler.</p>
+</article>
 <article class="card reveal">
-              <div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
-              <h3 data-tr="Saha entegrasyonu" data-en="Field integration">Saha entegrasyonu</h3>
-              <p class="muted" data-tr="Kamera, kayıt, panel ve alarm çıkışlarıyla entegrasyon." data-en="Integrations with cameras, logging, dashboards, alarms.">Kamera, kayıt, panel ve alarm çıkışlarıyla entegrasyon.</p>
-            </article></div>
-        </div>
-
-        <div class="panel reveal" style="margin-top: 18px;">
-          <h2 class="panel-title" data-tr="Teknik Notlar & Mimari" data-en="Technical Notes & Architecture">Teknik Notlar & Mimari</h2>
-          <p class="muted" data-tr="Bu kısım, projenin nasıl çalıştığını yüksek seviyede özetler." data-en="This section summarizes how the project works at a high level.">
+<div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
+<h3 data-en="Field integration" data-tr="Saha entegrasyonu">Saha entegrasyonu</h3>
+<p class="muted" data-en="Integrations with cameras, logging, dashboards, alarms." data-tr="Kamera, kayıt, panel ve alarm çıkışlarıyla entegrasyon.">Kamera, kayıt, panel ve alarm çıkışlarıyla entegrasyon.</p>
+</article></div>
+</div><div class="panel reveal" id="architecture" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Technical Notes &amp; Architecture" data-tr="Teknik Notlar &amp; Mimari">Teknik Notlar &amp; Mimari</h2>
+<p class="muted" data-en="This section summarizes how the project works at a high level." data-tr="Bu kısım, projenin nasıl çalıştığını yüksek seviyede özetler.">
             Bu kısım, projenin nasıl çalıştığını yüksek seviyede özetler.
           </p>
-          <pre class="codeblock">Camera Stream
+<pre class="codeblock">Camera Stream
   ├─ Frame grabber
   ├─ Detection model (bird/flock)
   ├─ Tracking + filtering
   ├─ Risk scoring
   └─ Alerts + dashboard (future)
 </pre>
-        </div>
+</div><div class="panel reveal" id="roadmap" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Roadmap" data-tr="Yol Haritası">Yol Haritası</h2>
+<ul class="bullets"><li data-en="Field dataset collection + labeling standard" data-tr="Saha veri seti toplama ve etiketleme standardı">Saha veri seti toplama ve etiketleme standardı</li>
+<li data-en="Real-time optimization (quantization / TRT)" data-tr="Gerçek zaman optimizasyon (quantization / TRT)">Gerçek zaman optimizasyon (quantization / TRT)</li>
+<li data-en="Operations dashboard prototype" data-tr="Operasyon paneli (dashboard) prototipi">Operasyon paneli (dashboard) prototipi</li></ul>
+</div><div class="panel reveal" id="section" style="margin-top: 18px;">
+<div class="card-actions">
+<a class="btn btn-ghost" href="../projects.html">
+<i class="fa-solid fa-arrow-left"></i>
+<span data-en="Back to projects" data-tr="Projeler sayfasına dön">Projeler sayfasına dön</span>
+</a>
+<a class="btn btn-primary" href="../contact.html">
+<i class="fa-regular fa-paper-plane"></i>
+<span data-en="Let's talk about this project" data-tr="Bu proje hakkında konuşalım">Bu proje hakkında konuşalım</span>
+</a>
+</div>
+</div>
+<div class="panel reveal" id="lessons" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Notes &amp; next steps" data-tr="Notlar &amp; Sonraki adımlar">Notlar &amp; Sonraki adımlar</h2>
+<div class="prose">
+<p data-en="A place to capture decisions, trade-offs, and what I would improve in the next iteration." data-tr="Bu bölüm; kararları, trade-off’ları ve bir sonraki iterasyonda planladığım geliştirmeleri kısa bir özet halinde tutmak için var.">Bu bölüm; kararları, trade-off’ları ve bir sonraki iterasyonda planladığım geliştirmeleri kısa bir özet halinde tutmak için var.</p>
+<ul class="bullets">
+<li data-en="Clear metrics for performance/UX improvements" data-tr="Performans/UX iyileştirmeleri için net metrikler">Performans/UX iyileştirmeleri için net metrikler</li>
+<li data-en="Better feedback and logging for failure modes" data-tr="Hata senaryoları için daha iyi geri bildirim ve loglama">Hata senaryoları için daha iyi geri bildirim ve loglama</li>
+<li data-en="Expanding documentation and test coverage" data-tr="Dokümantasyon ve test kapsamını genişletme">Dokümantasyon ve test kapsamını genişletme</li>
+</ul>
+</div>
+</div>
+</div><aside class="project-sidebar reveal"><div class="toc" id="toc"></div><div class="sidebar-card"><div class="sidebar-title" data-en="Quick actions" data-tr="Hızlı aksiyonlar">Hızlı aksiyonlar</div><div class="card-actions" style="margin-top:10px;"><button class="btn btn-small btn-ghost" id="copy-link" type="button"><i class="fa-regular fa-copy"></i><span data-en="Copy link" data-tr="Linki kopyala">Linki kopyala</span></button><a class="btn btn-small btn-primary" href="../contact.html"><i class="fa-regular fa-paper-plane"></i><span data-en="Contact" data-tr="İletişim">İletişim</span></a></div><p class="muted" data-en="Tip: Use the table of contents to jump between sections." data-tr="İpucu: Sağ taraftaki içerik menüsünden bölümlere hızlıca gidebilirsin." style="margin-top:10px; font-size:0.95rem;">İpucu: Sağ taraftaki içerik menüsünden bölümlere hızlıca gidebilirsin.</p></div></aside></div>
 
-        
-        
-        <div class="panel reveal" style="margin-top: 18px;">
-          <h2 class="panel-title" data-tr="Yol Haritası" data-en="Roadmap">Yol Haritası</h2>
-          <ul class="bullets"><li data-tr="Saha veri seti toplama ve etiketleme standardı" data-en="Field dataset collection + labeling standard">Saha veri seti toplama ve etiketleme standardı</li>
-<li data-tr="Gerçek zaman optimizasyon (quantization / TRT)" data-en="Real-time optimization (quantization / TRT)">Gerçek zaman optimizasyon (quantization / TRT)</li>
-<li data-tr="Operasyon paneli (dashboard) prototipi" data-en="Operations dashboard prototype">Operasyon paneli (dashboard) prototipi</li></ul>
-        </div>
-        
-        
 
-        <div class="panel reveal" style="margin-top: 18px;">
-          <div class="card-actions">
-            <a class="btn btn-ghost" href="../projects.html">
-              <i class="fa-solid fa-arrow-left"></i>
-              <span data-tr="Projeler sayfasına dön" data-en="Back to projects">Projeler sayfasına dön</span>
-            </a>
-            <a class="btn btn-primary" href="../contact.html">
-              <i class="fa-regular fa-paper-plane"></i>
-              <span data-tr="Bu proje hakkında konuşalım" data-en="Let's talk about this project">Bu proje hakkında konuşalım</span>
-            </a>
+
+
+
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<strong>Ekrem Bulgan</strong>
+<div class="muted" data-en="AI • Computer Vision • Automation" data-tr="AI • Bilgisayarlı Görü • Otomasyon" style="margin-top:6px;">
+            AI • Bilgisayarlı Görü • Otomasyon
           </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="muted">&copy; <span id="current-year">2026</span> Ekrem Bulgan</div>
-      <div class="muted"><span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></div>
-    </div>
-  </footer>
-
-  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
-    <i class="fa-solid fa-arrow-up"></i>
-  </button>
-
-  <script src="../assets/app.js"></script>
+<div class="muted" style="margin-top:10px;"><a data-email="" href="#">ekrembulgan2@gmail.com</a></div>
+</div>
+<div>
+<div class="muted" data-en="Shortcuts" data-tr="Kısayollar" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;">Kısayollar</div>
+<div class="footer-links" style="margin-top:10px;">
+<a data-en="Projects" data-tr="Projeler" href="../projects.html">Projeler</a>
+<a data-en="About" data-tr="Hakkımda" href="../about.html">Hakkımda</a>
+<a data-en="Blog" data-tr="Yazılar" href="../blog.html">Yazılar</a>
+<a data-en="Now" data-tr="Şimdi" href="../now.html">Şimdi</a>
+<a data-en="Contact" data-tr="İletişim" href="../contact.html">İletişim</a>
+</div>
+</div>
+<div>
+<div class="muted" data-en="Links" data-tr="Bağlantılar" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;">Bağlantılar</div>
+<div class="footer-social" style="margin-top:10px;">
+<a aria-label="GitHub" class="icon-btn" href="https://github.com/idginity124" rel="noopener" target="_blank">
+<i class="fab fa-github"></i>
+</a>
+<a aria-label="Resume" class="icon-btn" href="../assets/cv/Ekrem_Bulgan_CV.pdf" rel="noopener" target="_blank">
+<i class="fa-solid fa-file-lines"></i>
+</a>
+<a aria-label="Contact" class="icon-btn" href="../contact.html">
+<i class="fa-regular fa-paper-plane"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="current-year">2026</span> Ekrem Bulgan</div>
+<div><span data-en="All rights reserved." data-tr="Tüm hakları saklıdır.">Tüm hakları saklıdır.</span></div>
+</div>
+</div>
+</footer>
+<button aria-label="Back to top" class="to-top" id="to-top" type="button">
+<i class="fa-solid fa-arrow-up"></i>
+</button>
+<script src="../assets/app.js"></script>
 </body>
 </html>

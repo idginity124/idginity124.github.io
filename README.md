@@ -1,35 +1,60 @@
-# Portfolio (GitHub Pages)
+# Ekrem Bulgan — Portfolio (GitHub Pages)
 
-Bu repo **tamamen statik** bir portföy sitesidir ve **GitHub Pages** üzerinde sorunsuz çalışacak şekilde düzenlenmiştir.
+This is a **static** portfolio site that works on **GitHub Pages** (no backend required).
 
-## Sayfalar
+## Pages
 
-- `index.html` — Ana sayfa
-- `projects.html` — Proje listesi
-- `projects/*.html` — Her proje için ayrı detay sayfası
-- `contact.html` — İletişim
-- `vidextract.html` — Eski linkler için yönlendirme (redirect) → `projects/vidextract.html`
+- `index.html` — Home
+- `projects.html` — Projects list (rendered from JSON)
+- `projects/*.html` — One page per project (case study format + TOC)
+- `blog.html` — Writing (rendered from JSON)
+- `blog/*.html` — Individual posts
+- `about.html` — About
+- `now.html` — Now page
+- `contact.html` — Contact
+- `404.html` — Custom 404
 
-## Local test (önerilen)
+## Main data files
 
-```bash
-python -m http.server 5500
-```
+### Projects
 
-Sonra tarayıcıda:
-- `http://localhost:5500`
+Edit: `assets/data/projects.json`
 
-## GitHub Pages deploy
+- The **Projects** page (`projects.html`) is generated from this file.
+- Each item should point to a detail page in `projects/<id>.html`.
 
-Senin durumunda `idginity124.github.io` bir **user pages** olduğu için:
-- Bu dosyaları `idginity124.github.io` reposunun kök dizinine koy
-- `main` (veya `master`) branch’e pushla
-- Pages ayarlarında yayın kaynağı `root` olacak şekilde açık olmalı
+### Blog posts
 
-## Yeni proje ekleme
+Edit: `assets/data/posts.json`
 
-1. `projects/_template.html` dosyasını kopyala (örn: `projects/yeni-proje.html`)
-2. İçerikleri (başlık, özet, etiketler, linkler) düzenle
-3. `projects.html` içine yeni kartı ekle (Detaylar linki yeni sayfayı göstermeli)
+- The **Blog** page (`blog.html`) is generated from this file.
+- Each post points to a file under `blog/<slug>.html`.
 
-> İpucu: Detay sayfaları için görsel ekleyeceksen `assets/img/` altına koyup sayfada `../assets/img/...` olarak çağırabilirsin.
+## How to add a new project
+
+1. Copy `projects/_template.html` → `projects/<your-project>.html`
+2. Update the content + links inside the page.
+3. Add a new entry to `assets/data/projects.json`.
+4. Deploy (commit + push). GitHub Pages will serve it.
+
+## How to add a new blog post
+
+1. Copy an existing post in `blog/` (or create a new HTML file).
+2. Add a new entry to `assets/data/posts.json`.
+3. Deploy (commit + push).
+
+## Assets
+
+- Styles: `assets/styles.css`
+- JS: `assets/app.js`
+- CV PDF: `assets/cv/Ekrem_Bulgan_CV.pdf`
+
+## SEO
+
+- `sitemap.xml`
+- `robots.txt`
+- `manifest.webmanifest`
+
+---
+
+If you want, you can turn the blog into a Jekyll collection later. For now, it stays **simple + static**.
