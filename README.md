@@ -58,3 +58,21 @@ Edit: `assets/data/posts.json`
 ---
 
 If you want, you can turn the blog into a Jekyll collection later. For now, it stays **simple + static**.
+
+
+## Blog ekleme (GitHub Pages - Admin yok)
+
+Bu repo **tamamen statik**. Blog yazısı eklemek için:
+
+1) `content/blog/` içine yeni bir Markdown dosyası oluştur:
+   - Örnek: `content/blog/yeni-yazi.tr.md`
+   - Şablon: `content/blog/_template.md`
+
+2) `assets/data/posts.json` dosyasına bir kayıt ekle:
+   - `id`: dosya adı (uzantısız)
+   - `path`: `blog/post.html?slug=<id>`
+   - `format`: `md`
+
+3) Commit + push → GitHub Pages otomatik yayınlar.
+
+> Not: Çok dil istersen aynı slug için `yeni-yazi.en.md` de ekleyebilirsin.

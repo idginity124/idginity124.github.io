@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog • Ekrem Bulgan</title>
+
+  <link rel="icon" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="stylesheet" href="../assets/fx.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Markdown renderer -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+  <script src="../assets/blog-post.js" defer></script>
+
+  <style>
+    .post-shell{max-width:960px;margin:0 auto;padding:28px 16px 72px}
+    .post-hero{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin:8px 0 18px}
+    .post-hero h1{font-size:clamp(26px,3vw,38px);letter-spacing:-.02em;margin:0}
+    .post-meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .post-body{margin-top:14px}
+    .post-body :is(h1,h2,h3){scroll-margin-top:90px}
+    .post-body img{max-width:100%;border-radius:16px}
+    .post-body pre{overflow:auto}
+    .post-body code{white-space:pre-wrap}
+    .post-nav{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 0}
+  </style>
+</head>
+<body class="page">
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <header class="topbar">
+    <a class="brand" href="../index.html">
+      <span class="brand-dot"></span>
+      <span>Ekrem</span>
+    </a>
+    <nav class="topnav">
+      <a href="../projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+      <a href="../blog.html" class="active" data-tr="Blog" data-en="Writing">Blog</a>
+      <a href="../about.html" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+      <a href="../contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn" id="btn-fx" title="FX">FX</button>
+      <button class="icon-btn" id="btn-anime" title="Anime">Anime</button>
+      <button class="icon-btn" id="btn-lang" title="Language">TR</button>
+      <button class="icon-btn" id="btn-theme" title="Theme">☾</button>
+    </div>
+  </header>
+
+  <main class="post-shell">
+    <div class="post-hero">
+      <div>
+        <h1 id="post-title">...</h1>
+        <div class="post-meta muted" id="post-meta"></div>
+        <div class="post-nav">
+          <a class="btn btn-small" href="../blog.html"><i class="fa-solid fa-arrow-left"></i><span data-tr="Geri" data-en="Back">Geri</span></a>
+          <button class="btn btn-small" id="copy-link"><i class="fa-solid fa-link"></i><span data-tr="Linki kopyala" data-en="Copy link">Linki kopyala</span></button>
+        </div>
+      </div>
+    </div>
+
+    <article class="card post-body" style="padding:22px">
+      <div id="post-content" class="prose"></div>
+    </article>
+
+    <div id="post-error" class="card" style="padding:18px; display:none; margin-top:14px"></div>
+  </main>
+
+  <script src="../assets/app.js" defer></script>
+  <script src="https://kit.fontawesome.com/a2e0e9c6dd.js" crossorigin="anonymous" defer></script>
+</body>
+</html>
