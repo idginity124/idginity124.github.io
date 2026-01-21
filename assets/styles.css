@@ -1823,3 +1823,81 @@ blockquote {
   .fx-layer { display: none !important; }
   body.fx-on::after { display: none !important; }
 }
+
+
+/* ------------------------------------------------------------------------- */
+/* ANIME SPEED LINES (lightweight overlay)                                   */
+/* ------------------------------------------------------------------------- */
+.speed-lines{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 420ms ease;
+  transform: translateZ(0);
+  will-change: opacity, background-position;
+  /* diagonal speed lines */
+  background-image:
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.055) 0 2px, transparent 2px 14px),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.028) 0 1px, transparent 1px 18px);
+  background-size: 420px 420px, 540px 540px;
+  background-position: 0 0, 0 0;
+  /* fade edges so it feels premium, not noisy */
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 30%, rgba(0,0,0,1) 0 55%, rgba(0,0,0,0) 85%);
+  mask-image: radial-gradient(120% 90% at 50% 30%, rgba(0,0,0,1) 0 55%, rgba(0,0,0,0) 85%);
+  mix-blend-mode: overlay;
+  animation: speedlinesMove 2.8s linear infinite;
+}
+
+body.anime-on.fx-on .speed-lines{
+  opacity: 0.18;
+}
+
+body.is-scrolling .speed-lines{
+  opacity: 0 !important;
+  animation-play-state: paused !important;
+}
+
+@keyframes speedlinesMove{
+  from{ background-position: 0 0, 0 0; }
+  to  { background-position: 520px 520px, -640px 640px; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .speed-lines{ animation: none !important; }
+}
+
+/* ------------------------------------------------------------------------- */
+/* ANIME IMPACT RING (click/tap feedback; desktop only)                      */
+/* ------------------------------------------------------------------------- */
+.impact-ring{
+  position: fixed;
+  width: 14px;
+  height: 14px;
+  left: 0;
+  top: 0;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 50;
+  transform: translate(-50%,-50%) scale(0.35);
+  opacity: 0;
+  border: 2px solid rgba(255,255,255,0.85);
+  filter: drop-shadow(0 0 14px rgba(255,255,255,0.28));
+  animation: impactPop 560ms ease-out forwards;
+  will-change: transform, opacity;
+}
+.impact-ring::after{
+  content:"";
+  position:absolute;
+  inset:-8px;
+  border-radius:999px;
+  border: 1px solid rgba(255,255,255,0.35);
+  opacity:0.65;
+}
+@keyframes impactPop{
+  0%{ opacity:0; transform: translate(-50%,-50%) scale(0.2); }
+  12%{ opacity:0.95; }
+  100%{ opacity:0; transform: translate(-50%,-50%) scale(4.8); }
+}

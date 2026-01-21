@@ -1029,6 +1029,8 @@ function setFx(on) {
   __fxState.fx = !!on;
   if (!__fxState.fx) __fxState.anime = false;
   applyFxState();
+
+  initImpactFx({ prefersReduced, saveData, isMobile });
 }
 
 function setAnime(on) {
@@ -1067,6 +1069,45 @@ function initEffects() {
   }
 
   applyFxState();
+}
+
+
+
+// -------------------------- Anime Impact FX (desktop) -----------------------
+let __impactListenerAttached = false;
+
+function spawnImpactRing(x, y){
+  const el = document.createElement('div');
+  el.className = 'impact-ring';
+  el.style.left = `${x}px`;
+  el.style.top = `${y}px`;
+  // Slight tint using current CSS variable (primary/accent)
+  const primary = getComputedStyle(document.body).getPropertyValue('--primary').trim();
+  if (primary) el.style.borderColor = primary;
+  document.body.appendChild(el);
+  window.setTimeout(() => { try { el.remove(); } catch {} }, 700);
+}
+
+function initImpactFx({prefersReduced, saveData, isMobile}){
+  if (__impactListenerAttached) return;
+  __impactListenerAttached = true;
+
+  const canRun = () => {
+    if (prefersReduced || saveData || isMobile) return false;
+    if (!document.body.classList.contains('anime-on')) return false;
+    if (document.body.classList.contains('is-scrolling')) return false;
+    return true;
+  };
+
+  document.addEventListener('pointerdown', (e) => {
+    // only primary click/tap
+    if (e.button != null && e.button !== 0) return;
+    // avoid while selecting text / interacting with inputs
+    const t = e.target;
+    if (t && (t.closest && (t.closest('input, textarea, select, button, a, [role="button"]')))) return;
+    if (!canRun()) return;
+    spawnImpactRing(e.clientX, e.clientY);
+  }, { passive: true });
 }
 
 // ---------------------------------------------------------------------------
