@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#060611" />
-<title>Desktop tool UX: a 12-point checklist | Ekrem Bulgan</title>
-  <meta name="description" content="Small UX details that make desktop apps feel professional: flow, feedback, errors, shortcuts." />
+  <meta name="theme-color" content="#060611" />
+  <title>Masaüstü uygulama UX: VidExtract’ten 10 pratik detay | Ekrem Bulgan</title>
+  <meta name="description" content="Masaüstü uygulamalarında UX’i profesyonel hissettiren küçük ama etkili detaylar." />
+  <meta property="og:title" content="Masaüstü uygulama UX: VidExtract’ten 10 pratik detay | Ekrem Bulgan" />
+  <meta property="og:description" content="Masaüstü uygulamalarında UX’i profesyonel hissettiren küçük ama etkili detaylar." />
+  <meta property="og:type" content="article" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="../manifest.webmanifest" />
 
@@ -19,7 +22,7 @@
   <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
   <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
   <div class="fx-layer" aria-hidden="true"><canvas id="fx-canvas"></canvas></div>
-    <div class="speed-lines" aria-hidden="true"></div>
+  <div class="speed-lines" aria-hidden="true"></div>
 
   <nav class="nav">
     <div class="container nav-inner">
@@ -58,18 +61,20 @@
         <div class="crumbs reveal" aria-label="Breadcrumb">
           <a href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
           <span class="crumb-sep">/</span>
-          <a href="../blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+          <a href="../blog.html" data-tr="Yazılar" data-en="Writing">Yazılar</a>
           <span class="crumb-sep">/</span>
-          <span aria-current="page">Desktop tool UX checklist</span>
+          <span aria-current="page">Desktop UX notları</span>
         </div>
 
-        <article class="post reveal">
-          <header class="post-header">
-            <h1 class="post-title">Desktop tool UX: a 12-point checklist</h1>
-            <div class="post-meta">
-              <span>2026-01-19</span>
-              <span>6 min</span>
-              <span class="muted">UX • Desktop</span>
+        <div class="panel reveal" style="margin-top: 14px;">
+          <header class="post-head">
+            <h1 class="post-title" style="margin: 0;">Masaüstü uygulama UX: VidExtract’ten 10 pratik detay</h1>
+            <div class="post-meta" style="margin-top: 8px;">
+              <span>2026-01-21</span>
+              <span>•</span>
+              <span data-tr="5 dk" data-en="5 dk">5 dk</span>
+              <span>•</span>
+              <span>Desktop • UX • Python</span>
             </div>
 
             <div class="card-actions" style="margin-top: 12px;">
@@ -77,107 +82,91 @@
                 <i class="fa-regular fa-copy"></i>
                 <span data-tr="Linki kopyala" data-en="Copy link">Linki kopyala</span>
               </button>
-              <a class="btn btn-small btn-primary" href="../projects.html?category=Desktop">
-                <i class="fa-solid fa-layer-group"></i>
-                <span data-tr="Desktop projelerini gör" data-en="See desktop projects">Desktop projelerini gör</span>
+              <a class="btn btn-small btn-primary" href="../contact.html">
+                <i class="fa-regular fa-paper-plane"></i>
+                <span data-tr="Konuşalım" data-en="Let's talk">Konuşalım</span>
               </a>
             </div>
           </header>
 
-          <div class="post-body">
-            <p class="muted">
-              This is a practical checklist I use when I want a desktop application to feel <em>professional</em>.
-              It’s intentionally tool-agnostic: you can apply it to PySide, Electron, .NET, Flutter, or anything else.
+          <div class="post-body reveal" style="margin-top: 14px;">
+            <p>
+              Masaüstü uygulamalarında kullanıcıyı “pro” hissettiren şey çoğu zaman büyük özellikler değil,
+              küçük detaylar. VidExtract’i geliştirirken en çok işime yarayan 10 maddeyi buraya yazdım.
             </p>
 
-            <h2>1) Make the primary action obvious</h2>
+            <h2>1) İndirme/işlem sırasında net progress</h2>
             <ul>
-              <li>One clear “happy path” button (Download, Export, Run, Save…)</li>
-              <li>Secondary actions are visible but not competing</li>
+              <li>Yüzde + kalan süre tahmini (yaklaşık bile olsa)</li>
+              <li>“Şu an ne yapıyor?” mesajı (indiriyor / dönüştürüyor / kaydediyor)</li>
             </ul>
 
-            <h2>2) Fast feedback, always</h2>
+            <h2>2) İptal / durdurma butonu</h2>
+            <p>
+              Uzun işlemlerde iptal edememek kullanıcıyı deli eder. İptal her zaman çalışmalı.
+            </p>
+
+            <h2>3) Hata mesajı = çözüm</h2>
+            <p>
+              “Error occurred” yerine: ne oldu + kullanıcı ne yapabilir.
+              (Örn. URL geçersiz, internet yok, FFmpeg bulunamadı vs.)
+            </p>
+
+            <h2>4) Varsayılanlar iyi olsun</h2>
+            <p>
+              Kullanıcı ilk açtığında ayarlarla boğuşmasın.
+              Varsayılan kalite/format, dosya yolu ve isimlendirme mantıklı olmalı.
+            </p>
+
+            <h2>5) Kısayol / hızlı akış</h2>
             <ul>
-              <li>Show progress, state, and what’s happening (not only spinner)</li>
-              <li>Use toasts for small actions (copy, saved, updated)</li>
+              <li>Enter ile başlatma</li>
+              <li>URL yapıştırınca otomatik algılama</li>
+              <li>Son kullanılan ayarları hatırlama</li>
             </ul>
 
-            <h2>3) Errors should be actionable</h2>
-            <ul>
-              <li>Tell the user what failed, why it matters, and what to do next</li>
-              <li>Provide a “Copy error details” button</li>
-            </ul>
+            <h2>6) “Başarılı” mesajı göster ve dosyayı aç</h2>
+            <p>
+              İş bitince kullanıcıya sonucu net göster: dosya yolu + “Klasörü aç” gibi bir buton.
+            </p>
 
-            <h2>4) Save preferences automatically</h2>
-            <ul>
-              <li>Remember last folder, last selected format, last window size</li>
-              <li>Don’t punish the user for leaving the app</li>
-            </ul>
+            <h2>7) Sessiz ama erişilebilir log</h2>
+            <p>
+              Normal kullanıcı ekranda log görmek istemez, ama sorun olunca log hayat kurtarır.
+              Ben bunu genelde “Detaylar” gibi bir panelde saklı tutuyorum.
+            </p>
 
-            <h2>5) Respect keyboard power users</h2>
-            <ul>
-              <li>Basic shortcuts: Ctrl/Cmd+K (search), Ctrl/Cmd+L (focus input), Esc (close modal)</li>
-              <li>Tab order should make sense</li>
-            </ul>
+            <h2>8) Boş durumlar güzel olsun</h2>
+            <p>
+              Hiç URL yokken / hiç indirme yokken ekran boş kalmasın.
+              Kısa bir yönlendirme ve temiz bir boş durum tasarımı yeterli.
+            </p>
 
-            <h2>6) Make default settings safe</h2>
-            <ul>
-              <li>Defaults should avoid data loss, overwrites, or destructive actions</li>
-              <li>If destructive: ask once, allow “Don’t ask again”</li>
-            </ul>
+            <h2>9) Küçük animasyonlar, doğru yerde</h2>
+            <p>
+              Çok değil; sadece aksiyon aldığında küçük bir geri bildirim.
+              (buton basımı, tamamlandı animasyonu vs.)
+            </p>
 
-            <h2>7) Use clear labels, not internal terms</h2>
-            <ul>
-              <li>Users don’t know your internal architecture</li>
-              <li>Write labels like a product, not like a developer console</li>
-            </ul>
+            <h2>10) Performans: UI asla donmasın</h2>
+            <p>
+              İşlem uzun sürüyorsa thread/async kullan. Kullanıcı scroll yaparken bile UI akıcı kalmalı.
+            </p>
 
-            <h2>8) Provide a “reset to defaults”</h2>
-            <ul>
-              <li>Settings screens must be reversible</li>
-              <li>Bonus: show what will change</li>
-            </ul>
-
-            <h2>9) Logs should exist (but not overwhelm)</h2>
-            <ul>
-              <li>Keep logs tucked away but accessible</li>
-              <li>Export logs for debugging</li>
-            </ul>
-
-            <h2>10) Handle network/offline gracefully</h2>
-            <ul>
-              <li>Timeouts and retries should be visible</li>
-              <li>Queue tasks if possible</li>
-            </ul>
-
-            <h2>11) Ship with a tiny help page</h2>
-            <ul>
-              <li>3 screenshots + 3 steps is often enough</li>
-              <li>Link to GitHub issues if open source</li>
-            </ul>
-
-            <h2>12) Measure “pain” in the UI</h2>
-            <ul>
-              <li>What do users click the most?</li>
-              <li>Where do they abandon?</li>
-              <li>Which error is most common?</li>
-            </ul>
-
-            <blockquote>
-              Professional UX is usually a collection of small, boring decisions — consistently applied.
-            </blockquote>
+            <p class="muted" style="margin-top:14px;">
+              VidExtract sayfasında bu maddelerin bir kısmını doğrudan görebilirsin:
+              <a href="../projects/vidextract.html">VidExtract proje detayları</a>.
+            </p>
           </div>
-        </article>
 
-        <div class="panel reveal" style="margin-top: 18px;">
-          <div class="card-actions">
+          <div class="card-actions" style="margin-top: 18px;">
             <a class="btn btn-ghost" href="../blog.html">
               <i class="fa-solid fa-arrow-left"></i>
-              <span data-tr="Yazılara dön" data-en="Back to blog">Yazılara dön</span>
+              <span data-tr="Tüm yazılar" data-en="All posts">Tüm yazılar</span>
             </a>
-            <a class="btn btn-primary" href="../contact.html">
-              <i class="fa-regular fa-paper-plane"></i>
-              <span data-tr="Konuşalım" data-en="Let’s talk">Konuşalım</span>
+            <a class="btn btn-primary" href="../projects.html">
+              <i class="fa-solid fa-layer-group"></i>
+              <span data-tr="Projeler" data-en="Projects">Projeler</span>
             </a>
           </div>
         </div>

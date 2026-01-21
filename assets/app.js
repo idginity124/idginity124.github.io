@@ -782,12 +782,23 @@ function renderPostsInto(containerSel, limit = null) {
   const grid = $(containerSel);
   if (!grid || !__postsData) return;
 
-  const posts = (__postsData.posts || []).slice();
+  // Default: hide drafts from public lists
+  const posts = (__postsData.posts || []).filter((p) => !p.draft).slice();
   posts.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+
   const out = limit ? posts.slice(0, limit) : posts;
 
   grid.innerHTML = '';
   out.forEach((p) => grid.appendChild(postCard(p)));
+
+  // Blog list extras (count + empty state)
+  if (containerSel === '#posts-grid') {
+    const countEl = $('#posts-count');
+    if (countEl) countEl.textContent = String(posts.length);
+
+    const empty = $('#posts-empty');
+    if (empty) empty.classList.toggle('is-visible', out.length === 0);
+  }
 
   initReveal();
 }

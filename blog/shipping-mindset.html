@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#060611" />
-<title>From prototype to product: shipping mindset | Ekrem Bulgan</title>
-  <meta name="description" content="What makes a project feel like a product: scope, metrics, docs, and distribution." />
+  <meta name="theme-color" content="#060611" />
+  <title>Prototipten ürüne: portföyde proje sunma rutini | Ekrem Bulgan</title>
+  <meta name="description" content="Portföyde projeyi ürün gibi göstermek için kullandığım pratik kontrol listesi." />
+  <meta property="og:title" content="Prototipten ürüne: portföyde proje sunma rutini | Ekrem Bulgan" />
+  <meta property="og:description" content="Portföyde projeyi ürün gibi göstermek için kullandığım pratik kontrol listesi." />
+  <meta property="og:type" content="article" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="../manifest.webmanifest" />
 
@@ -19,7 +22,7 @@
   <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
   <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
   <div class="fx-layer" aria-hidden="true"><canvas id="fx-canvas"></canvas></div>
-    <div class="speed-lines" aria-hidden="true"></div>
+  <div class="speed-lines" aria-hidden="true"></div>
 
   <nav class="nav">
     <div class="container nav-inner">
@@ -58,22 +61,23 @@
         <div class="crumbs reveal" aria-label="Breadcrumb">
           <a href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
           <span class="crumb-sep">/</span>
-          <a href="../blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+          <a href="../blog.html" data-tr="Yazılar" data-en="Writing">Yazılar</a>
           <span class="crumb-sep">/</span>
-          <span aria-current="page">Shipping mindset</span>
+          <span aria-current="page">Portföy rutini</span>
         </div>
 
-        <article class="post">
-          <header class="post-header reveal">
-            <h1 class="post-title">From prototype to product: shipping mindset</h1>
-            <div class="post-meta">
-              <span>2026-01-19</span>
+        <div class="panel reveal" style="margin-top: 14px;">
+          <header class="post-head">
+            <h1 class="post-title" style="margin: 0;">Prototipten ürüne: portföyde proje sunma rutini</h1>
+            <div class="post-meta" style="margin-top: 8px;">
+              <span>2026-01-21</span>
               <span>•</span>
-              <span data-tr="5 dk" data-en="5 min">5 dk</span>
+              <span data-tr="4 dk" data-en="4 dk">4 dk</span>
               <span>•</span>
-              <span>Product • Mindset</span>
+              <span>Portfolio • Product • Release</span>
             </div>
-            <div class="card-actions" style="margin-top:12px;">
+
+            <div class="card-actions" style="margin-top: 12px;">
               <button id="copy-link" class="btn btn-small btn-ghost" type="button">
                 <i class="fa-regular fa-copy"></i>
                 <span data-tr="Linki kopyala" data-en="Copy link">Linki kopyala</span>
@@ -85,53 +89,76 @@
             </div>
           </header>
 
-          <div class="post-body reveal">
-            <p class="muted" data-tr="Not: Bu yazı bir şablon/draft yazıdır. Kendi deneyimlerinle güncelleyebilirsin." data-en="Note: This is a draft/template post. Feel free to rewrite with your own experience.">
-              Not: Bu yazı bir şablon/draft yazıdır. Kendi deneyimlerinle güncelleyebilirsin.
-            </p>
-
-            <h2>1) Define “done” as a user outcome</h2>
-            <ul>
-              <li><strong>Prototype:</strong> proves a technical idea.</li>
-              <li><strong>Product:</strong> solves a user problem reliably (with constraints, defaults and guardrails).</li>
-            </ul>
-
-            <h2>2) Keep scope tight, but ship complete loops</h2>
+          <div class="post-body reveal" style="margin-top: 14px;">
             <p>
-              A professional project doesn't need 50 features — it needs a complete loop: input → processing → feedback → result.
-              If you can’t explain the loop in one sentence, the scope is too large.
+              Bir projeyi “bitirdim” demek benim için sadece kodu yazıp bırakmak değil.
+              Portföyde gerçekten <em>ürün gibi</em> görünmesi için küçük ama kritik bir kontrol listem var.
             </p>
 
-            <h2>3) Treat docs as a feature</h2>
+            <h2>1) Tek cümlelik problem → çözüm</h2>
+            <p>
+              Projeyi anlatırken “ne yaptın?” yerine “hangi problemi çözüyor?” üzerinden başlıyorum.
+              Sonra da tek cümlede çözümü söylüyorum.
+            </p>
             <ul>
-              <li>One-page overview: what it does, who it's for, what it doesn't do.</li>
-              <li>Installation + troubleshooting.</li>
-              <li>Known limitations.</li>
+              <li><strong>Problem:</strong> Kullanıcı hangi noktada zorlanıyor?</li>
+              <li><strong>Çözüm:</strong> Proje bunun neresini sadeleştiriyor / hızlandırıyor?</li>
             </ul>
+
+            <h2>2) İlk 60 saniye</h2>
+            <p>
+              Birinin projeye bakıp karar verdiği kısım genelde ilk 60 saniye.
+              O yüzden proje sayfasında şu üç şeye mutlaka yer veriyorum:
+            </p>
+            <ul>
+              <li>Kısa özet (2–3 satır)</li>
+              <li>1–2 ekran görüntüsü / arayüz fotoğrafı</li>
+              <li>Kurulum veya çalışma adımı (en basit haliyle)</li>
+            </ul>
+
+            <h2>3) “Kurulum” kısmını acısız yapmak</h2>
+            <p>
+              Kurulum zor olunca projeyi kimse denemiyor. Ben genelde:
+            </p>
+            <ul>
+              <li>tek komutla çalıştırma (veya net bir indirme linki)</li>
+              <li>minimum bağımlılık</li>
+              <li>yaygın hatalara kısa çözümler</li>
+            </ul>
+
+            <h2>4) Release + sürüm notu</h2>
+            <p>
+              GitHub’da <strong>release</strong> görmek projeyi “ciddi” gösteriyor.
+              Küçük bile olsa sürüm notu yazmak; ne değişti, ne eklendi, hangi hatalar düzeldi gibi konuları netleştiriyor.
+            </p>
 
             <blockquote>
-              Shipping is not "just pushing code" — it’s delivering a predictable experience.
+              “Portföy projesi”, aslında küçük bir üründür: deneyen kişi için öngörülebilir ve temiz bir deneyim.
             </blockquote>
 
-            <h2>4) Add basic metrics, even for small tools</h2>
-            <ul>
-              <li>How often errors happen</li>
-              <li>How long key operations take</li>
-              <li>Common user paths</li>
-            </ul>
-
-            <h2>5) Make distribution boring</h2>
+            <h2>5) Neyi yapmıyor?</h2>
             <p>
-              Packaging, versioning, and release notes are what make a project feel real. If distribution is painful,
-              users will never reach the value of your work.
+              Sınırları net koymak hem güven verir hem de beklentiyi doğru ayarlar.
+              “Şu anda bunu kapsam dışı tuttum” demek çoğu zaman artı yazıyor.
             </p>
 
             <p class="muted" style="margin-top:14px;">
-              Want to turn your next project into a portfolio-grade case study? Use the structure on my project pages:
-              <a href="../projects.html">Projects</a>.
+              Bu kontrol listesini bu sitedeki proje sayfalarını düzenlerken kullanıyorum.
+              İstersen <a href="../projects.html">Projeler</a> kısmından örneklere bakabilirsin.
             </p>
           </div>
-        </article>
+
+          <div class="card-actions" style="margin-top: 18px;">
+            <a class="btn btn-ghost" href="../blog.html">
+              <i class="fa-solid fa-arrow-left"></i>
+              <span data-tr="Tüm yazılar" data-en="All posts">Tüm yazılar</span>
+            </a>
+            <a class="btn btn-primary" href="../projects.html">
+              <i class="fa-solid fa-layer-group"></i>
+              <span data-tr="Projeler" data-en="Projects">Projeler</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   </main>

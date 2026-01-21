@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#060611" />
 <title>Projeler | Ekrem Bulgan</title>
-  <meta name="description" content="Projects, case studies and R&D notes." />
+  <meta name="description" content="Selected projects, case studies and technical notes by Ekrem Bulgan." />
   <meta property="og:title" content="Projects | Ekrem Bulgan" />
-  <meta property="og:description" content="Projects, case studies and R&D notes." />
+  <meta property="og:description" content="Selected projects, case studies and technical notes." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="manifest.webmanifest" />
@@ -66,12 +66,130 @@
       <div class="container">
         <div class="section-head reveal">
           <h1 class="section-title" style="margin:0" data-tr="Projeler" data-en="Projects">Projeler</h1>
-          <p class="section-desc" data-tr="Her proje için ayrı sayfa + kısa teknik notlar. Filtrelemek için etiketlere tıklayabilirsin." data-en="Each project has its own page + short technical notes. Click tags to filter.">
-            Her proje için ayrı sayfa + kısa teknik notlar. Filtrelemek için etiketlere tıklayabilirsin.
+          <p class="section-desc"
+             data-tr="Seçili projelerim ve kısa teknik notlar. Kartlardan detay sayfasına geçebilirsin."
+             data-en="Selected projects and short technical notes. Open details from the cards.">
+            Seçili projelerim ve kısa teknik notlar. Kartlardan detay sayfasına geçebilirsin.
           </p>
         </div>
 
-        
+        <div class="panel reveal" id="projects-app">
+          <div class="filter-bar">
+            <div class="search">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              <input id="project-search" type="text"
+                     placeholder="Ara (ör. Python, Desktop, AI)"
+                     data-tr-placeholder="Ara (ör. Python, Desktop, AI)"
+                     data-en-placeholder="Search (e.g., Python, Desktop, AI)" />
+            </div>
+
+            <select id="project-sort" aria-label="Sort">
+              <option value="featured" data-tr="Öne çıkanlar" data-en="Featured">Öne çıkanlar</option>
+              <option value="az" data-tr="A → Z" data-en="A → Z">A → Z</option>
+              <option value="za" data-tr="Z → A" data-en="Z → A">Z → A</option>
+            </select>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="chip-row" aria-label="Status filters">
+            <button class="chip active" type="button" data-filter="status" data-value="all" data-tr="Tümü" data-en="All">Tümü</button>
+            <button class="chip" type="button" data-filter="status" data-value="completed" data-tr="Tamamlandı" data-en="Completed">Tamamlandı</button>
+            <button class="chip" type="button" data-filter="status" data-value="rnd" data-tr="Ar-Ge / Konsept" data-en="R&D / Concept">Ar-Ge / Konsept</button>
+          </div>
+
+          <div class="chip-row" style="margin-top:10px;" aria-label="Category filters">
+            <button class="chip active" type="button" data-filter="category" data-value="all" data-tr="Tüm kategoriler" data-en="All categories">Tüm kategoriler</button>
+            <button class="chip" type="button" data-filter="category" data-value="Desktop">Desktop</button>
+            <button class="chip" type="button" data-filter="category" data-value="Web">Web</button>
+            <button class="chip" type="button" data-filter="category" data-value="AI">AI</button>
+            <button class="chip" type="button" data-filter="category" data-value="Computer Vision">Computer Vision</button>
+            <button class="chip" type="button" data-filter="category" data-value="Security">Security</button>
+            <button class="chip" type="button" data-filter="category" data-value="Automation">Automation</button>
+            <button class="chip" type="button" data-filter="category" data-value="Tools">Tools</button>
+            <button class="chip" type="button" data-filter="category" data-value="Education">Education</button>
+            <button class="chip" type="button" data-filter="category" data-value="App">App</button>
+            <button class="chip" type="button" data-filter="category" data-value="System">System</button>
+          </div>
+
+          <div class="chip-row" style="margin-top:10px;">
+            <div class="active-tag" id="active-tag"></div>
+            <button id="clear-tag" class="btn btn-small btn-ghost" type="button">
+              <i class="fa-solid fa-xmark"></i>
+              <span data-tr="Etiketi temizle" data-en="Clear tag">Etiketi temizle</span>
+            </button>
+            <div class="muted" style="margin-left:auto;">
+              <strong id="projects-count">0</strong>
+              <span data-tr="sonuç" data-en="results">sonuç</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" id="projects-grid" style="margin-top: 14px;"></div>
+
+        <div class="empty-state" id="projects-empty">
+          <strong data-tr="Sonuç bulunamadı" data-en="No results">Sonuç bulunamadı</strong>
+          <p class="muted" style="margin-top:8px;"
+             data-tr="Arama kelimelerini değiştir veya filtreleri temizle."
+             data-en="Try a different search or clear filters.">
+            Arama kelimelerini değiştir veya filtreleri temizle.
+          </p>
+        </div>
+
+        <div class="panel reveal" style="margin-top: 18px;">
+          <div class="card-actions">
+            <a class="btn btn-primary" href="contact.html">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span data-tr="Bir proje konuşalım" data-en="Let's talk">Bir proje konuşalım</span>
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/idginity124?tab=repositories" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+              <span data-tr="Tüm repolar" data-en="All repos">Tüm repolar</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <strong>Ekrem Bulgan</strong>
+          <div class="muted" style="margin-top:6px;" data-tr="AI • Bilgisayarlı Görü • Otomasyon" data-en="AI • Computer Vision • Automation">
+            AI • Bilgisayarlı Görü • Otomasyon
+          </div>
+          <div class="muted" style="margin-top:10px;"><a data-email href="#">ekrembulgan2@gmail.com</a></div>
+        </div>
+
+        <div>
+          <div class="muted" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;" data-tr="Kısayollar" data-en="Shortcuts">Kısayollar</div>
+          <div class="footer-links" style="margin-top:10px;">
+            <a href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+            <a href="about.html" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+            <a href="blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+            <a href="now.html" data-tr="Şimdi" data-en="Now">Şimdi</a>
+            <a href="contact.html" data-tr="İletişim" data-en="Contact">İletişim</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="muted" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;" data-tr="Bağlantılar" data-en="Links">Bağlantılar</div>
+          <div class="footer-social" style="margin-top:10px;">
+            <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a class="icon-btn" href="assets/cv/Ekrem_Bulgan_CV.pdf" target="_blank" rel="noopener" aria-label="Resume">
+              <i class="fa-solid fa-file-lines"></i>
+            </a>
+            <a class="icon-btn" href="contact.html" aria-label="Contact">
+              <i class="fa-regular fa-paper-plane"></i>
+            </a>
+          </div>
+        </div>
+      </div>
 
       <div class="footer-bottom">
         <div>&copy; <span id="current-year">2026</span> Ekrem Bulgan</div>

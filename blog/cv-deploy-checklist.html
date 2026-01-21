@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#060611" />
-<title>Computer Vision deploy checklist | Ekrem Bulgan</title>
-  <meta name="description" content="What to measure and log when deploying real-time CV systems: latency, FPS, drift, logging." />
+  <meta name="theme-color" content="#060611" />
+  <title>Web’de animasyon + performans: kasma yaşamamak için notlar | Ekrem Bulgan</title>
+  <meta name="description" content="Efektleri koruyup scroll akıcılığını bozmamak için uyguladığım pratik adımlar." />
+  <meta property="og:title" content="Web’de animasyon + performans: kasma yaşamamak için notlar | Ekrem Bulgan" />
+  <meta property="og:description" content="Efektleri koruyup scroll akıcılığını bozmamak için uyguladığım pratik adımlar." />
+  <meta property="og:type" content="article" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="../manifest.webmanifest" />
 
@@ -19,7 +22,7 @@
   <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
   <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
   <div class="fx-layer" aria-hidden="true"><canvas id="fx-canvas"></canvas></div>
-    <div class="speed-lines" aria-hidden="true"></div>
+  <div class="speed-lines" aria-hidden="true"></div>
 
   <nav class="nav">
     <div class="container nav-inner">
@@ -54,96 +57,94 @@
 
   <main id="main">
     <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
-      <div class="container post">
+      <div class="container">
         <div class="crumbs reveal" aria-label="Breadcrumb">
           <a href="../index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
           <span class="crumb-sep">/</span>
-          <a href="../blog.html" data-tr="Yazılar" data-en="Blog">Yazılar</a>
+          <a href="../blog.html" data-tr="Yazılar" data-en="Writing">Yazılar</a>
           <span class="crumb-sep">/</span>
-          <span aria-current="page">Computer Vision deploy checklist</span>
+          <span aria-current="page">Performans notları</span>
         </div>
 
-        <header class="post-header reveal">
-          <span class="badge" data-tr="Taslak" data-en="Draft">Taslak</span>
-          <h1 class="post-title">Computer Vision deploy checklist</h1>
-          <div class="post-meta">
-            <span>2026-01-19</span>
-            <span>•</span>
-            <span data-tr="7 dk" data-en="7 min">7 dk</span>
-            <span>•</span>
-            <span>Computer Vision</span>
-            <span>•</span>
-            <span>MLOps</span>
+        <div class="panel reveal" style="margin-top: 14px;">
+          <header class="post-head">
+            <h1 class="post-title" style="margin: 0;">Web’de animasyon + performans: kasma yaşamamak için notlar</h1>
+            <div class="post-meta" style="margin-top: 8px;">
+              <span>2026-01-21</span>
+              <span>•</span>
+              <span data-tr="6 dk" data-en="6 dk">6 dk</span>
+              <span>•</span>
+              <span>Web • Performance • UX</span>
+            </div>
+
+            <div class="card-actions" style="margin-top: 12px;">
+              <button id="copy-link" class="btn btn-small btn-ghost" type="button">
+                <i class="fa-regular fa-copy"></i>
+                <span data-tr="Linki kopyala" data-en="Copy link">Linki kopyala</span>
+              </button>
+              <a class="btn btn-small btn-primary" href="../contact.html">
+                <i class="fa-regular fa-paper-plane"></i>
+                <span data-tr="Konuşalım" data-en="Let's talk">Konuşalım</span>
+              </a>
+            </div>
+          </header>
+
+          <div class="post-body reveal" style="margin-top: 14px;">
+            <p>
+              Efekt ve animasyonlar siteyi “farklı” yapıyor ama bir şartım var:
+              <strong>akıcı olmayacaksa hiç olmasın.</strong>
+              Bu portföyü toparlarken scroll kasmasını azaltmak için uyguladığım notlar:
+            </p>
+
+            <h2>1) Scroll event’ine yüklenme</h2>
+            <ul>
+              <li>Scroll’da ağır hesap yapmamaya çalış.</li>
+              <li>Gerekiyorsa <code>requestAnimationFrame</code> ile “tek frame” içine topla.</li>
+            </ul>
+
+            <h2>2) IntersectionObserver ile “reveal”</h2>
+            <p>
+              Her şeyi her an animasyona sokmak yerine, ekrana girince tetiklemek çok daha hafif.
+              Reveal efektlerini bu yüzden sadece görünür olunca başlatıyorum.
+            </p>
+
+            <h2>3) Canvas efektlerinde FPS’i kontrol et</h2>
+            <ul>
+              <li>Parçacık sayısını sınırlamak</li>
+              <li>Ekran küçülünce kaliteyi düşürmek</li>
+              <li>Arka planda sekme pasifken animasyonu durdurmak</li>
+            </ul>
+
+            <h2>4) “prefers-reduced-motion” saygısı</h2>
+            <p>
+              Bazı insanlar animasyon istemez. Sistem ayarında hareket azaltma açıksa efektleri otomatik azaltmak iyi duruyor.
+            </p>
+
+            <h2>5) Büyük gölgeler ve blur’ları abartma</h2>
+            <p>
+              Çok fazla blur/gölge GPU’yu yorar. “Az ama doğru” yaklaşımı daha iyi.
+            </p>
+
+            <blockquote>
+              Gösteriş + performans bir denge işi. Etkiyi artıran şey animasyonun miktarı değil, yerinde kullanılması.
+            </blockquote>
+
+            <p class="muted" style="margin-top:14px;">
+              Bu sayfadaki efektler hoşuna gitmezse üstteki <span class="tag">FX</span> ve <span class="tag">Anime</span> butonlarıyla kapatabiliyorsun.
+            </p>
           </div>
 
-          <div class="card-actions" style="margin-top: 12px;">
-            <button id="copy-link" class="btn btn-small btn-ghost" type="button">
-              <i class="fa-regular fa-copy"></i>
-              <span data-tr="Linki kopyala" data-en="Copy link">Linki kopyala</span>
-            </button>
-            <a class="btn btn-small btn-primary" href="../contact.html">
-              <i class="fa-regular fa-paper-plane"></i>
-              <span data-tr="Konuşalım" data-en="Let's talk">Konuşalım</span>
-            </a>
-          </div>
-        </header>
-
-        <article class="post-body reveal">
-          <p class="muted" data-tr="Bu yazı bir şablondur. İstersen kendi deneyimlerinle güncelleyebilirsin." data-en="This is a template post you can replace with your own experience.">
-            Bu yazı bir şablondur. İstersen kendi deneyimlerinle güncelleyebilirsin.
-          </p>
-
-          <h2 data-tr="1) Problem tanımı" data-en="1) Define the problem">1) Problem tanımı</h2>
-          <ul>
-            <li>Giriş verisi: kamera açısı, FPS, çözünürlük, ışık.</li>
-            <li>Çıkış: tespit, takip, risk skoru, alarm.</li>
-            <li>Operasyonel hedef: gecikme, yanlış alarm, bakım kolaylığı.</li>
-          </ul>
-
-          <h2 data-tr="2) Performans metrikleri" data-en="2) Performance metrics">2) Performans metrikleri</h2>
-          <ul>
-            <li><strong>Latency</strong>: uçtan uca (kamera → alarm).</li>
-            <li><strong>FPS</strong>: sürdürülebilir throughput.</li>
-            <li><strong>Precision/Recall</strong>: saha koşullarına göre eşik.</li>
-            <li><strong>False alarm rate</strong>: operasyon maliyetiyle birlikte.</li>
-          </ul>
-
-          <h2 data-tr="3) İzlenebilirlik" data-en="3) Observability">3) İzlenebilirlik</h2>
-          <ul>
-            <li>Log: istek/yanıt, hata kodları, model sürümü.</li>
-            <li>Görselleştirme: örnek frame snapshot, heatmap.</li>
-            <li>Drift sinyalleri: veri dağılımı kayması (ışık, hava, kamera).</li>
-          </ul>
-
-          <blockquote>
-            "Deploy" sadece modeli çalıştırmak değil: ölçmek, izlemek, iyileştirmek.
-          </blockquote>
-
-          <h2 data-tr="4) Güvenlik ve hata senaryoları" data-en="4) Security and failure modes">4) Güvenlik ve hata senaryoları</h2>
-          <ul>
-            <li>Girdi doğrulama, rate limiting (API varsa).</li>
-            <li>Model crash → fallback davranışı.</li>
-            <li>Eksik frame / bozuk stream → alarm bastırma/uyarı.</li>
-          </ul>
-
-          <h2 data-tr="5) Sonraki adımlar" data-en="5) Next steps">5) Sonraki adımlar</h2>
-          <ul>
-            <li>Basit bir dashboard prototipi.</li>
-            <li>Model sürümleme + A/B değerlendirme.</li>
-            <li>Edge optimizasyon (quantization / TRT).</li>
-          </ul>
-
-          <div class="card-actions" style="margin-top: 16px;">
+          <div class="card-actions" style="margin-top: 18px;">
             <a class="btn btn-ghost" href="../blog.html">
               <i class="fa-solid fa-arrow-left"></i>
-              <span data-tr="Yazılara dön" data-en="Back to blog">Yazılara dön</span>
+              <span data-tr="Tüm yazılar" data-en="All posts">Tüm yazılar</span>
             </a>
             <a class="btn btn-primary" href="../projects.html">
               <i class="fa-solid fa-layer-group"></i>
-              <span data-tr="Projeleri incele" data-en="Browse projects">Projeleri incele</span>
+              <span data-tr="Projeler" data-en="Projects">Projeler</span>
             </a>
           </div>
-        </article>
+        </div>
       </div>
     </section>
   </main>
