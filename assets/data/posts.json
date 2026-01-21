@@ -15,7 +15,7 @@
         "Product",
         "Mindset"
       ],
-      "draft": true,
+      "draft": false,
       "summary": {
         "tr": "Ürün gibi duran projeler: kapsam, metrikler, dokümantasyon ve dağıtım pratiği.",
         "en": "What makes a project feel like a product: scope, metrics, docs, and distribution."
@@ -37,7 +37,7 @@
         "UX",
         "Desktop"
       ],
-      "draft": true,
+      "draft": false,
       "summary": {
         "tr": "Bir desktop uygulamasını “pro” hissettiren detaylar: akış, geri bildirim, hatalar, kısayollar.",
         "en": "Small UX details that make desktop apps feel professional: flow, feedback, errors, shortcuts."
@@ -59,35 +59,12 @@
         "Computer Vision",
         "MLOps"
       ],
-      "draft": true,
+      "draft": false,
       "summary": {
         "tr": "Gerçek zamanlı CV sistemlerinde performans/izlenebilirlik: gecikme, FPS, drift, logging.",
         "en": "What to measure and log when deploying real-time CV systems: latency, FPS, drift, logging."
       },
       "path": "blog/cv-deploy-checklist.html"
-    },
-    {
-      "id": "blog-system",
-      "title": {
-        "tr": "Blog yazısı ekleme akışı (GitHub Pages)",
-        "en": "How blog posting works (GitHub Pages)"
-      },
-      "date": "2026-01-21",
-      "readingTime": {
-        "tr": "3 dk",
-        "en": "3 min"
-      },
-      "tags": [
-        "Portfolio",
-        "Blog"
-      ],
-      "draft": false,
-      "summary": {
-        "tr": "Admin panel olmadan: Markdown + posts.json ile hızlı yayın akışı.",
-        "en": "No admin panel: a fast publishing flow with Markdown + posts.json."
-      },
-      "path": "blog/post.html?slug=blog-system",
-      "format": "md"
     }
   ]
 }

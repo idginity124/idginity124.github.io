@@ -167,7 +167,9 @@
       size,
       sway: 0.6 + Math.random() * 1.4,
       phase: Math.random() * 6.2,
-      hue: 330 + Math.random() * 22, // pink-ish
+      
+      kind: (Math.random() < 0.72 ? 'spark' : 'kana'),
+      glyph: (Math.random() < 0.5 ? '☆' : (Math.random() < 0.5 ? '✦' : (Math.random() < 0.5 ? '✧' : 'ツ'))),hue: 210 + Math.random() * 90, // cyan → violet
       alpha: 0.26 + Math.random() * 0.18,
     };
   }
@@ -262,27 +264,53 @@
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rot);
 
-      // Sakura-ish petal shape
+      // Anime particles (sparkles + kana)
       const s = p.size;
       ctx.globalAlpha = p.alpha;
-      ctx.fillStyle = `hsla(${p.hue}, 90%, 70%, ${p.alpha})`;
-      ctx.shadowBlur = 18;
+
+      // soft glow
+      ctx.shadowBlur = 16;
       ctx.shadowColor = `hsla(${p.hue}, 90%, 65%, 0.35)`;
 
+      // motion trail (very subtle)
+      ctx.strokeStyle = `hsla(${p.hue}, 85%, 70%, ${p.alpha * 0.35})`;
+      ctx.lineWidth = Math.max(1, s * 0.08);
       ctx.beginPath();
-      ctx.moveTo(0, -s * 0.6);
-      ctx.bezierCurveTo(s * 0.55, -s * 0.75, s * 0.75, -s * 0.1, 0, s);
-      ctx.bezierCurveTo(-s * 0.75, -s * 0.1, -s * 0.55, -s * 0.75, 0, -s * 0.6);
-      ctx.closePath();
-      ctx.fill();
+      ctx.moveTo(-Math.min(18, p.vx * 18), -Math.min(18, p.vy * 10));
+      ctx.lineTo(0, 0);
+      ctx.stroke();
 
-      // small highlight
-      ctx.globalAlpha = p.alpha * 0.55;
-      ctx.shadowBlur = 0;
-      ctx.fillStyle = `hsla(${p.hue}, 85%, 86%, 0.55)`;
-      ctx.beginPath();
-      ctx.ellipse(-s * 0.14, -s * 0.1, s * 0.18, s * 0.32, -0.6, 0, Math.PI * 2);
-      ctx.fill();
+      if (p.kind === 'kana') {
+        // tiny kana-like glyph (generic, non-copyright)
+        ctx.shadowBlur = 18;
+        ctx.fillStyle = `hsla(${p.hue}, 92%, 78%, ${p.alpha})`;
+        ctx.font = `${Math.round(10 + s)}px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(p.glyph, 0, 0);
+      } else {
+        // 4-point sparkle star
+        ctx.fillStyle = `hsla(${p.hue}, 92%, 74%, ${p.alpha})`;
+        const r1 = s * 0.55;
+        const r2 = s * 0.18;
+
+        ctx.beginPath();
+        for (let k = 0; k < 8; k++) {
+          const ang = (Math.PI / 4) * k;
+          const r = (k % 2 === 0) ? r1 : r2;
+          ctx.lineTo(Math.cos(ang) * r, Math.sin(ang) * r);
+        }
+        ctx.closePath();
+        ctx.fill();
+
+        // inner dot
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = p.alpha * 0.55;
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.beginPath();
+        ctx.arc(0, 0, Math.max(1.2, s * 0.06), 0, Math.PI * 2);
+        ctx.fill();
+      }
 
       ctx.restore();
     }
