@@ -74,7 +74,7 @@
       "detail": "projects/lingopark.html",
       "links": {
         "github": "https://github.com/idginity124/LingoPark",
-        "releases": null,
+        "releases": "https://github.com/idginity124/LingoPark/releases",
         "demo": null
       },
       "summary": {
@@ -113,7 +113,7 @@
       "detail": "projects/mediamanagerpro.html",
       "links": {
         "github": "https://github.com/idginity124/MediaManagerPro",
-        "releases": null,
+        "releases": "https://github.com/idginity124/MediaManagerPro/releases",
         "demo": null
       },
       "summary": {
