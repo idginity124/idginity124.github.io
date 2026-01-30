@@ -206,9 +206,9 @@
       "featured": false,
       "icon": "fa-solid fa-folder-tree",
       "status": {
-        "code": "rnd",
-        "tr": "Ar-Ge",
-        "en": "R&D"
+        "code": "completed",
+        "tr": "Tamamlandı",
+        "en": "Completed"
       },
       "type": {
         "tr": "Masaüstü asistanı",
@@ -231,13 +231,13 @@
       "cover": null,
       "detail": "projects/deskmind-ai.html",
       "links": {
-        "github": null,
-        "releases": null,
+        "github": "https://github.com/idginity124/DeskMindAI",
+        "releases": "https://github.com/idginity124/DeskMindAI/releases",
         "demo": null
       },
       "summary": {
-        "tr": "Kullanıcı alışkanlıklarını öğrenerek dosyaları otomatik sınıflandırmayı hedefleyen akıllı masaüstü asistan konsepti.",
-        "en": "Concept for a smart desktop assistant that learns habits and auto-organizes files."
+        "tr": "Windows için local-first, gerçek zamanlı dosya organizasyonu yapan masaüstü otomasyon aracı (arka planda servis mantığı).",
+        "en": "Local-first, real-time desktop automation tool for Windows that organizes files safely in the background."
       }
     },
     {
