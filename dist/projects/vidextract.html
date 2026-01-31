@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VidExtract | Proje DetaylarÄ±</title>
+<meta content="VidExtract â€” project details, features, and technical notes." name="description"/>
+<link href="../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="../manifest.webmanifest" rel="manifest"/>
+<link href="../assets/styles.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+<a class="skip-link" data-en="Skip to content" data-tr="Ä°Ã§eriÄŸe geÃ§" href="#main">Ä°Ã§eriÄŸe geÃ§</a>
+<div aria-hidden="true" class="top-progress"><span class="top-progress__bar" id="progress-bar"></span></div>
+  <div class="fx-layer" aria-hidden="true"><canvas id="fx-canvas"></canvas></div>
+    <div class="speed-lines" aria-hidden="true"></div>
+<nav class="nav">
+<div class="container nav-inner">
+<div style="display:flex; align-items:center; gap:14px;">
+<a aria-label="Home" class="logo" href="../index.html">EB<span class="dot">.</span></a>
+<div aria-label="Primary" class="nav-links">
+<a class="nav-link" data-en="Home" data-tr="Ana Sayfa" href="../index.html">Ana Sayfa</a>
+<a class="nav-link" data-en="Projects" data-tr="Projeler" href="../projects.html">Projeler</a>
+<a class="nav-link" data-en="About" data-tr="HakkÄ±mda" href="../about.html">HakkÄ±mda</a>
+<a class="nav-link" data-en="Blog" data-tr="YazÄ±lar" href="../blog.html">YazÄ±lar</a>
+<a class="nav-link" data-en="Now" data-tr="Åimdi" href="../now.html">Åimdi</a>
+<a class="nav-link" data-en="Contact" data-tr="Ä°letiÅŸim" href="../contact.html">Ä°letiÅŸim</a>
+</div>
+</div>
+<div class="nav-controls">
+<button aria-label="Toggle theme" class="icon-btn" id="theme-btn" type="button">
+<i class="fa-solid fa-moon"></i>
+</button>
+<button aria-label="Toggle language" class="pill" id="lang-btn" type="button">EN</button>
+        <button id="fx-btn" class="icon-btn" type="button" data-tr-aria="Efektleri aÃ§/kapat" data-en-aria="Toggle effects" aria-label="Toggle effects" title="FX"><i class="fa-solid fa-code"></i></button>
+        <button id="anime-btn" class="icon-btn" type="button" data-tr-aria="Anime modunu aÃ§/kapat" data-en-aria="Toggle anime mode" aria-label="Toggle anime mode" title="Anime"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+<a aria-label="GitHub" class="icon-btn" href="https://github.com/idginity124" rel="noopener" target="_blank">
+<i class="fab fa-github"></i>
+</a>
+<button aria-expanded="false" aria-label="Menu" class="nav-toggle" id="menu-btn" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+</div>
+</div>
+</nav>
+<main id="main">
+<section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
+<div class="container">
+<div aria-label="Breadcrumb" class="crumbs reveal">
+<a data-en="Home" data-tr="Ana Sayfa" href="../index.html">Ana Sayfa</a>
+<span class="crumb-sep">/</span>
+<a data-en="Projects" data-tr="Projeler" href="../projects.html">Projeler</a>
+<span class="crumb-sep">/</span>
+<span aria-current="page">VidExtract</span>
+</div>
+<div class="project-head reveal">
+<div class="project-title-row">
+<div aria-hidden="true" class="project-mark">V</div>
+<div>
+<span class="badge" data-en="Completed" data-tr="TamamlandÄ±">TamamlandÄ±</span>
+<h1 class="section-title" style="margin:10px 0 6px">VidExtract</h1>
+<p class="section-desc" data-en="Multi-platform video/audio downloader with a modern desktop UI and auto FFmpeg setup." data-tr="Ã‡ok platformlu video/ses indirme aracÄ± â€” modern masaÃ¼stÃ¼ UI ve otomatik FFmpeg kurulumu." style="margin:0">Ã‡ok platformlu video/ses indirme aracÄ± â€” modern masaÃ¼stÃ¼ UI ve otomatik FFmpeg kurulumu.</p>
+</div>
+</div>
+<div class="project-actions"><a class="btn btn-small btn-primary" href="https://github.com/idginity124/VidExtract" rel="noopener" target="_blank">
+<i class="fab fa-github"></i>
+<span data-en="GitHub" data-tr="GitHub">GitHub</span>
+</a>
+<a class="btn btn-small btn-ghost" href="https://github.com/idginity124/VidExtract/releases" rel="noopener" target="_blank">
+<i class="fa-solid fa-box"></i>
+<span data-en="Releases" data-tr="Releases">Releases</span>
+</a></div>
+</div>
+<div class="facts reveal"><div class="fact">
+<div class="fact-k" data-en="Type" data-tr="TÃ¼r">TÃ¼r</div>
+<div class="fact-v" data-en="Desktop app" data-tr="MasaÃ¼stÃ¼ uygulama">MasaÃ¼stÃ¼ uygulama</div>
+</div>
+<div class="fact">
+<div class="fact-k" data-en="Platform" data-tr="Platform">Platform</div>
+<div class="fact-v" data-en="Windows" data-tr="Windows">Windows</div>
+</div>
+<div class="fact">
+<div class="fact-k" data-en="UI" data-tr="UI">UI</div>
+<div class="fact-v" data-en="PySide6" data-tr="PySide6">PySide6</div>
+</div>
+<div class="fact">
+<div class="fact-k" data-en="Engine" data-tr="Motor">Motor</div>
+<div class="fact-v" data-en="yt-dlp + FFmpeg" data-tr="yt-dlp + FFmpeg">yt-dlp + FFmpeg</div>
+</div></div><div class="project-layout"><div class="project-content"><div class="panel reveal" id="overview" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Overview" data-tr="Ã–zet">Ã–zet</h2>
+<div class="prose">
+<p data-en="VidExtract is a modern PySide6 desktop application aimed at downloading video/audio from platforms like YouTube, Reddit, Instagram, and TikTok. It focuses on usability with smart clipboard monitoring, multi-language support, and automatic FFmpeg configuration." data-tr="VidExtract; YouTube, Reddit, Instagram, TikTok ve benzeri platformlardan video/ses indirmenizi hedefleyen, PySide6 tabanlÄ± modern bir masaÃ¼stÃ¼ uygulamasÄ±dÄ±r. KullanÄ±m kolaylÄ±ÄŸÄ± iÃ§in akÄ±llÄ± pano izleme, Ã§oklu dil desteÄŸi ve otomatik FFmpeg yapÄ±landÄ±rmasÄ± gibi Ã¶zellikleri Ã¶ne Ã§Ä±karÄ±r.">VidExtract; YouTube, Reddit, Instagram, TikTok ve benzeri platformlardan video/ses indirmenizi hedefleyen, PySide6 tabanlÄ± modern bir masaÃ¼stÃ¼ uygulamasÄ±dÄ±r. KullanÄ±m kolaylÄ±ÄŸÄ± iÃ§in akÄ±llÄ± pano izleme, Ã§oklu dil desteÄŸi ve otomatik FFmpeg yapÄ±landÄ±rmasÄ± gibi Ã¶zellikleri Ã¶ne Ã§Ä±karÄ±r.</p>
+</div>
+<div class="tags" style="margin-top: 12px;"><span class="tag">Python</span>
+<span class="tag">PySide6</span>
+<span class="tag">FFmpeg</span>
+<span class="tag">yt-dlp</span>
+<span class="tag">Desktop</span>
+<span class="tag">Multi-language</span></div>
+</div><div class="panel reveal" id="features" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Key Features" data-tr="Ã–ne Ã‡Ä±kan Ã–zellikler">Ã–ne Ã‡Ä±kan Ã–zellikler</h2>
+<div class="grid feature-grid"><article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-globe"></i></div>
+<h3 data-en="Multi-platform" data-tr="Ã‡oklu platform">Ã‡oklu platform</h3>
+<p class="muted" data-en="YouTube, Reddit, X/Twitter, Instagram, TikTok, SoundCloud and more." data-tr="YouTube, Reddit, X/Twitter, Instagram, TikTok, SoundCloud ve daha fazlasÄ±.">YouTube, Reddit, X/Twitter, Instagram, TikTok, SoundCloud ve daha fazlasÄ±.</p>
+</article>
+<article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-clipboard"></i></div>
+<h3 data-en="Smart clipboard" data-tr="AkÄ±llÄ± pano izleme">AkÄ±llÄ± pano izleme</h3>
+<p class="muted" data-en="Detects copied URLs and auto-fills input." data-tr="Kopyalanan URLâ€™leri algÄ±layÄ±p otomatik doldurma.">Kopyalanan URLâ€™leri algÄ±layÄ±p otomatik doldurma.</p>
+</article>
+<article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-language"></i></div>
+<h3 data-en="Multi-language" data-tr="Ã‡oklu dil">Ã‡oklu dil</h3>
+<p class="muted" data-en="10+ languages (e.g., TR/EN/ES/DE/FR/RU/AR/ZH)." data-tr="10+ dil desteÄŸi (Ã¶rn. TR/EN/ES/DE/FR/RU/AR/ZH).">10+ dil desteÄŸi (Ã¶rn. TR/EN/ES/DE/FR/RU/AR/ZH).</p>
+</article>
+<article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-gears"></i></div>
+<h3 data-en="Auto FFmpeg" data-tr="Otomatik FFmpeg">Otomatik FFmpeg</h3>
+<p class="muted" data-en="FFmpeg detect/download/config flow." data-tr="FFmpeg tespit/indirme/yapÄ±landÄ±rma akÄ±ÅŸÄ±.">FFmpeg tespit/indirme/yapÄ±landÄ±rma akÄ±ÅŸÄ±.</p>
+</article>
+<article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-film"></i></div>
+<h3 data-en="High quality" data-tr="YÃ¼ksek kalite">YÃ¼ksek kalite</h3>
+<p class="muted" data-en="4K/8K video and high-quality audio conversion options." data-tr="4K/8K video ve yÃ¼ksek kalite ses dÃ¶nÃ¼ÅŸÃ¼mÃ¼ seÃ§enekleri.">4K/8K video ve yÃ¼ksek kalite ses dÃ¶nÃ¼ÅŸÃ¼mÃ¼ seÃ§enekleri.</p>
+</article>
+<article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
+<h3 data-en="Playlist support" data-tr="Playlist desteÄŸi">Playlist desteÄŸi</h3>
+<p class="muted" data-en="Download YouTube playlists in one go." data-tr="YouTube playlistlerini tek seferde indirme.">YouTube playlistlerini tek seferde indirme.</p>
+</article></div>
+</div><div class="panel reveal" id="architecture" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Technical Notes &amp; Architecture" data-tr="Teknik Notlar &amp; Mimari">Teknik Notlar &amp; Mimari</h2>
+<pre class="codeblock">Desktop UI (PySide6)
+  â”œâ”€ URL input + service selection
+  â”œâ”€ Download options (video/audio, quality, format)
+  â”œâ”€ Progress/logging view
+  â””â”€ Settings (general/advanced)
+
+Core
+  â”œâ”€ yt-dlp: extraction + download
+  â”œâ”€ FFmpeg: post-processing / audio conversion
+  â”œâ”€ Settings manager: persistent preferences
+  â””â”€ Logger: structured logs for debugging
+</pre>
+</div><div class="panel reveal" id="screenshots" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Screenshots" data-tr="Ekran GÃ¶rÃ¼ntÃ¼leri">Ekran GÃ¶rÃ¼ntÃ¼leri</h2>
+<div class="image-grid" style="margin-top: 12px;"><figure class="img-card">
+<img alt="Home screen" loading="lazy" src="../assets/img/main_menu.png" width="464" height="598" decoding="async"/>
+<figcaption class="muted" data-en="Home screen" data-tr="Ana ekran">Ana ekran</figcaption>
+</figure><figure class="img-card">
+<img alt="YouTube URL input" loading="lazy" src="../assets/img/youtube_input.png" width="789" height="754" decoding="async"/>
+<figcaption class="muted" data-en="YouTube URL input" data-tr="YouTube link giriÅŸi">YouTube link giriÅŸi</figcaption>
+</figure><figure class="img-card">
+<img alt="Download screen" loading="lazy" src="../assets/img/download_screen.png" width="902" height="773" decoding="async"/>
+<figcaption class="muted" data-en="Download screen" data-tr="Ä°ndirme ekranÄ±">Ä°ndirme ekranÄ±</figcaption>
+</figure><figure class="img-card">
+<img alt="Settings" loading="lazy" src="../assets/img/settings_general.png" width="599" height="503" decoding="async"/>
+<figcaption class="muted" data-en="Settings" data-tr="Ayarlar">Ayarlar</figcaption>
+</figure></div>
+</div><div class="panel reveal" id="roadmap" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Roadmap" data-tr="Yol HaritasÄ±">Yol HaritasÄ±</h2>
+<ul class="bullets"><li data-en="Advanced queue / multi-download management" data-tr="Daha geliÅŸmiÅŸ kuyruk/Ã§oklu indirme yÃ¶netimi">Daha geliÅŸmiÅŸ kuyruk/Ã§oklu indirme yÃ¶netimi</li>
+<li data-en="Post-download auto organization/tagging" data-tr="Ä°ndirme sonrasÄ± otomatik klasÃ¶rleme/etiketleme">Ä°ndirme sonrasÄ± otomatik klasÃ¶rleme/etiketleme</li>
+<li data-en="Richer error reporting and debug bundle" data-tr="Daha detaylÄ± hata raporlama ve â€œdebug bundleâ€">Daha detaylÄ± hata raporlama ve â€œdebug bundleâ€</li></ul>
+</div><div class="panel reveal" id="section" style="margin-top: 18px;">
+<div class="card-actions">
+<a class="btn btn-ghost" href="../projects.html">
+<i class="fa-solid fa-arrow-left"></i>
+<span data-en="Back to projects" data-tr="Projeler sayfasÄ±na dÃ¶n">Projeler sayfasÄ±na dÃ¶n</span>
+</a>
+<a class="btn btn-primary" href="../contact.html">
+<i class="fa-regular fa-paper-plane"></i>
+<span data-en="Let's talk about this project" data-tr="Bu proje hakkÄ±nda konuÅŸalÄ±m">Bu proje hakkÄ±nda konuÅŸalÄ±m</span>
+</a>
+</div>
+</div>
+<div class="panel reveal" id="lessons" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Notes &amp; next steps" data-tr="Notlar &amp; Sonraki adÄ±mlar">Notlar &amp; Sonraki adÄ±mlar</h2>
+<div class="prose">
+<ul class="bullets">
+<li data-en="Clear metrics for performance/UX improvements" data-tr="Performans/UX iyileÅŸtirmeleri iÃ§in net metrikler">Performans/UX iyileÅŸtirmeleri iÃ§in net metrikler</li>
+<li data-en="Better feedback and logging for failure modes" data-tr="Hata senaryolarÄ± iÃ§in daha iyi geri bildirim ve loglama">Hata senaryolarÄ± iÃ§in daha iyi geri bildirim ve loglama</li>
+<li data-en="Expanding documentation and test coverage" data-tr="DokÃ¼mantasyon ve test kapsamÄ±nÄ± geniÅŸletme">DokÃ¼mantasyon ve test kapsamÄ±nÄ± geniÅŸletme</li>
+</ul>
+</div>
+</div>
+</div><aside class="project-sidebar reveal"><div class="toc" id="toc"></div><div class="sidebar-card"><div class="sidebar-title" data-en="Quick actions" data-tr="HÄ±zlÄ± aksiyonlar">HÄ±zlÄ± aksiyonlar</div><div class="card-actions" style="margin-top:10px;"><button class="btn btn-small btn-ghost" id="copy-link" type="button"><i class="fa-regular fa-copy"></i><span data-en="Copy link" data-tr="Linki kopyala">Linki kopyala</span></button><a class="btn btn-small btn-primary" href="../contact.html"><i class="fa-regular fa-paper-plane"></i><span data-en="Contact" data-tr="Ä°letiÅŸim">Ä°letiÅŸim</span></a></div>
+</div></aside></div>
+
+
+
+
+
+
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<strong>Ekrem Bulgan</strong>
+<div class="muted" data-en="AI â€¢ Computer Vision â€¢ Automation" data-tr="AI â€¢ BilgisayarlÄ± GÃ¶rÃ¼ â€¢ Otomasyon" style="margin-top:6px;">
+            AI â€¢ BilgisayarlÄ± GÃ¶rÃ¼ â€¢ Otomasyon
+          </div>
+<div class="muted" style="margin-top:10px;"><a data-email="" href="#">ekrembulgan2@gmail.com</a></div>
+</div>
+<div>
+<div class="muted" data-en="Shortcuts" data-tr="KÄ±sayollar" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;">KÄ±sayollar</div>
+<div class="footer-links" style="margin-top:10px;">
+<a data-en="Projects" data-tr="Projeler" href="../projects.html">Projeler</a>
+<a data-en="About" data-tr="HakkÄ±mda" href="../about.html">HakkÄ±mda</a>
+<a data-en="Blog" data-tr="YazÄ±lar" href="../blog.html">YazÄ±lar</a>
+<a data-en="Now" data-tr="Åimdi" href="../now.html">Åimdi</a>
+<a data-en="Contact" data-tr="Ä°letiÅŸim" href="../contact.html">Ä°letiÅŸim</a>
+</div>
+</div>
+<div>
+<div class="muted" data-en="Links" data-tr="BaÄŸlantÄ±lar" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;">BaÄŸlantÄ±lar</div>
+<div class="footer-social" style="margin-top:10px;">
+<a aria-label="GitHub" class="icon-btn" href="https://github.com/idginity124" rel="noopener" target="_blank">
+<i class="fab fa-github"></i>
+</a>
+<a aria-label="Resume" class="icon-btn" href="../assets/cv/Ekrem_Bulgan_CV.pdf" rel="noopener" target="_blank">
+<i class="fa-solid fa-file-lines"></i>
+</a>
+<a aria-label="Contact" class="icon-btn" href="../contact.html">
+<i class="fa-regular fa-paper-plane"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<div>Â© <span id="current-year">2026</span> Ekrem Bulgan</div>
+<div><span data-en="All rights reserved." data-tr="TÃ¼m haklarÄ± saklÄ±dÄ±r.">TÃ¼m haklarÄ± saklÄ±dÄ±r.</span></div>
+</div>
+</div>
+</footer>
+<button aria-label="Back to top" class="to-top" id="to-top" type="button">
+<i class="fa-solid fa-arrow-up"></i>
+</button>
+<script src="../assets/fx.min.js" defer></script>
+  <script src="../assets/app.min.js" defer></script>
+</body>
+</html>
+

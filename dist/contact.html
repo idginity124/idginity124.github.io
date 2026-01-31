@@ -1,0 +1,207 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#060611" />
+<title>Ä°letiÅŸim | Ekrem Bulgan</title>
+  <meta name="description" content="Contact Ekrem Bulgan for projects, collaboration or consulting." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <link rel="stylesheet" href="assets/styles.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-tr="Ä°Ã§eriÄŸe geÃ§" data-en="Skip to content">Ä°Ã§eriÄŸe geÃ§</a>
+  <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
+  <div class="fx-layer" aria-hidden="true"><canvas id="fx-canvas"></canvas></div>
+    <div class="speed-lines" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <a class="logo" href="index.html" aria-label="Home">EB<span class="dot">.</span></a>
+        <div class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+          <a class="nav-link" href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+          <a class="nav-link" href="about.html" data-tr="HakkÄ±mda" data-en="About">HakkÄ±mda</a>
+          <a class="nav-link" href="blog.html" data-tr="YazÄ±lar" data-en="Blog">YazÄ±lar</a>
+          <a class="nav-link" href="now.html" data-tr="Åimdi" data-en="Now">Åimdi</a>
+          <a class="nav-link" href="contact.html" data-tr="Ä°letiÅŸim" data-en="Contact">Ä°letiÅŸim</a>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="lang-btn" class="pill" type="button" aria-label="Toggle language">EN</button>
+        <button id="fx-btn" class="icon-btn" type="button" data-tr-aria="Efektleri aÃ§/kapat" data-en-aria="Toggle effects" aria-label="Toggle effects" title="FX"><i class="fa-solid fa-code"></i></button>
+        <button id="anime-btn" class="icon-btn" type="button" data-tr-aria="Anime modunu aÃ§/kapat" data-en-aria="Toggle anime mode" aria-label="Toggle anime mode" title="Anime"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+        <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <button id="menu-btn" class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
+      <div class="container">
+        <div class="section-head reveal">
+          <h1 class="section-title" style="margin:0" data-tr="Ä°letiÅŸim" data-en="Contact">Ä°letiÅŸim</h1>
+          <p class="section-desc" data-tr="Projeler, iÅŸ birliÄŸi veya danÄ±ÅŸmanlÄ±k iÃ§in yazabilirsin." data-en="Reach out for projects, collaboration, or consulting.">
+            Projeler, iÅŸ birliÄŸi veya danÄ±ÅŸmanlÄ±k iÃ§in yazabilirsin.
+          </p>
+        </div>
+
+        <div class="two-col">
+          <div class="panel reveal">
+            <h2 class="panel-title" data-tr="HÄ±zlÄ± baÄŸlantÄ±lar" data-en="Quick links">HÄ±zlÄ± baÄŸlantÄ±lar</h2>
+
+            <div class="contact-links">
+              <div class="contact-link" role="group" aria-label="Email">
+                <i class="fa-regular fa-envelope"></i>
+                <div style="display:flex; flex-direction:column; gap:2px;">
+                  <strong data-tr="E-posta" data-en="Email">E-posta</strong>
+                  <span class="muted"><a data-email href="#">ekrembulgan2@gmail.com</a></span>
+                </div>
+              </div>
+
+              <button id="copy-email" class="btn btn-ghost" type="button">
+                <i class="fa-regular fa-copy"></i>
+                <span data-tr="E-postayÄ± kopyala" data-en="Copy email">E-postayÄ± kopyala</span>
+              </button>
+
+              <div class="contact-link" role="group" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+                <div style="display:flex; flex-direction:column; gap:2px;">
+                  <strong>GitHub</strong>
+                  <span class="muted">idginity124</span>
+                </div>
+                <div style="margin-left:auto;">
+                  <a class="btn btn-small btn-primary" href="https://github.com/idginity124" target="_blank" rel="noopener">
+                    <span data-tr="AÃ§" data-en="Open">AÃ§</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-link" role="group" aria-label="CV">
+                <i class="fa-solid fa-file-lines"></i>
+                <div style="display:flex; flex-direction:column; gap:2px;">
+                  <strong data-tr="CV" data-en="Resume">CV</strong>
+                  <span class="muted" data-tr="PDF" data-en="PDF">PDF</span>
+                </div>
+                <div style="margin-left:auto;">
+                  <button id="download-cv" class="btn btn-small btn-primary" type="button">
+                    <i class="fa-solid fa-download"></i>
+                    <span data-tr="Ä°ndir" data-en="Download">Ä°ndir</span>
+                  </button>
+                </div>
+              </div>
+</div>
+          </div>
+
+          <div class="panel reveal">
+            <h2 class="panel-title" data-tr="HÄ±zlÄ± mesaj" data-en="Quick message">HÄ±zlÄ± mesaj</h2>
+            <p class="muted" data-tr="Formu doldurunca e-posta uygulaman aÃ§Ä±lÄ±r ve mesaj taslaÄŸÄ± hazÄ±rlanÄ±r." data-en="Submitting opens your email client with a prepared draft.">
+              Formu doldurunca e-posta uygulaman aÃ§Ä±lÄ±r ve mesaj taslaÄŸÄ± hazÄ±rlanÄ±r.
+            </p>
+
+            <form id="contact-form" class="form" style="margin-top: 14px;">
+              <div class="form-row">
+                <label for="name" data-tr="Ad" data-en="Name">Ad</label>
+                <input id="name" name="name" type="text" required placeholder="Ad" data-tr-placeholder="Ad" data-en-placeholder="Name" />
+              </div>
+
+              <div class="form-row">
+                <label for="subject" data-tr="Konu" data-en="Subject">Konu</label>
+                <input id="subject" name="subject" type="text" required placeholder="Konu" data-tr-placeholder="Konu" data-en-placeholder="Subject" />
+              </div>
+
+              <div class="form-row">
+                <label for="message" data-tr="Mesaj" data-en="Message">Mesaj</label>
+                <textarea id="message" name="message" rows="6" required placeholder="Mesaj" data-tr-placeholder="Mesaj" data-en-placeholder="Message"></textarea>
+              </div>
+
+              <div class="card-actions" style="margin-top: 4px;">
+                <button class="btn btn-primary" type="submit">
+                  <i class="fa-regular fa-paper-plane"></i>
+                  <span data-tr="E-posta oluÅŸtur" data-en="Create email">E-posta oluÅŸtur</span>
+                </button>
+                <a class="btn btn-ghost" href="mailto:ekrembulgan2@gmail.com">
+                  <i class="fa-regular fa-envelope"></i>
+                  <span data-tr="Mail aÃ§" data-en="Open email">Mail aÃ§</span>
+                </a>
+              </div>
+            </form>
+
+            <p id="contact-note" class="muted" style="margin-top:10px;"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <strong>Ekrem Bulgan</strong>
+          <div class="muted" style="margin-top:6px;" data-tr="AI â€¢ BilgisayarlÄ± GÃ¶rÃ¼ â€¢ Otomasyon" data-en="AI â€¢ Computer Vision â€¢ Automation">
+            AI â€¢ BilgisayarlÄ± GÃ¶rÃ¼ â€¢ Otomasyon
+          </div>
+          <div class="muted" style="margin-top:10px;"><a data-email href="#">ekrembulgan2@gmail.com</a></div>
+        </div>
+
+        <div>
+          <div class="muted" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;" data-tr="KÄ±sayollar" data-en="Shortcuts">KÄ±sayollar</div>
+          <div class="footer-links" style="margin-top:10px;">
+            <a href="projects.html" data-tr="Projeler" data-en="Projects">Projeler</a>
+            <a href="about.html" data-tr="HakkÄ±mda" data-en="About">HakkÄ±mda</a>
+            <a href="blog.html" data-tr="YazÄ±lar" data-en="Blog">YazÄ±lar</a>
+            <a href="now.html" data-tr="Åimdi" data-en="Now">Åimdi</a>
+            <a href="contact.html" data-tr="Ä°letiÅŸim" data-en="Contact">Ä°letiÅŸim</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="muted" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;" data-tr="BaÄŸlantÄ±lar" data-en="Links">BaÄŸlantÄ±lar</div>
+          <div class="footer-social" style="margin-top:10px;">
+            <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a class="icon-btn" href="assets/cv/Ekrem_Bulgan_CV.pdf" target="_blank" rel="noopener" aria-label="Resume">
+              <i class="fa-solid fa-file-lines"></i>
+            </a>
+            <a class="icon-btn" href="contact.html" aria-label="Contact">
+              <i class="fa-regular fa-paper-plane"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; <span id="current-year">2026</span> Ekrem Bulgan</div>
+        <div><span data-tr="TÃ¼m haklarÄ± saklÄ±dÄ±r." data-en="All rights reserved.">TÃ¼m haklarÄ± saklÄ±dÄ±r.</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="assets/fx.min.js" defer></script>
+  <script src="assets/app.min.js" defer></script>
+</body>
+</html>
+

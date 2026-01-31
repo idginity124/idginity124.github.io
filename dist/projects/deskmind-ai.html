@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DeskMind AI | Proje DetaylarÄ±</title>
+<meta content="DeskMind AI â€” project details, features, and technical notes." name="description"/>
+<link href="../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="../manifest.webmanifest" rel="manifest"/>
+<link href="../assets/styles.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+<a class="skip-link" data-en="Skip to content" data-tr="Ä°Ã§eriÄŸe geÃ§" href="#main">Ä°Ã§eriÄŸe geÃ§</a>
+<div aria-hidden="true" class="top-progress"><span class="top-progress__bar" id="progress-bar"></span></div>
+  <div class="fx-layer" aria-hidden="true"><canvas id="fx-canvas"></canvas></div>
+    <div class="speed-lines" aria-hidden="true"></div>
+<nav class="nav">
+<div class="container nav-inner">
+<div style="display:flex; align-items:center; gap:14px;">
+<a aria-label="Home" class="logo" href="../index.html">EB<span class="dot">.</span></a>
+<div aria-label="Primary" class="nav-links">
+<a class="nav-link" data-en="Home" data-tr="Ana Sayfa" href="../index.html">Ana Sayfa</a>
+<a class="nav-link" data-en="Projects" data-tr="Projeler" href="../projects.html">Projeler</a>
+<a class="nav-link" data-en="About" data-tr="HakkÄ±mda" href="../about.html">HakkÄ±mda</a>
+<a class="nav-link" data-en="Blog" data-tr="YazÄ±lar" href="../blog.html">YazÄ±lar</a>
+<a class="nav-link" data-en="Now" data-tr="Åimdi" href="../now.html">Åimdi</a>
+<a class="nav-link" data-en="Contact" data-tr="Ä°letiÅŸim" href="../contact.html">Ä°letiÅŸim</a>
+</div>
+</div>
+<div class="nav-controls">
+<button aria-label="Toggle theme" class="icon-btn" id="theme-btn" type="button">
+<i class="fa-solid fa-moon"></i>
+</button>
+<button aria-label="Toggle language" class="pill" id="lang-btn" type="button">EN</button>
+        <button id="fx-btn" class="icon-btn" type="button" data-tr-aria="Efektleri aÃ§/kapat" data-en-aria="Toggle effects" aria-label="Toggle effects" title="FX"><i class="fa-solid fa-code"></i></button>
+        <button id="anime-btn" class="icon-btn" type="button" data-tr-aria="Anime modunu aÃ§/kapat" data-en-aria="Toggle anime mode" aria-label="Toggle anime mode" title="Anime"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+<a aria-label="GitHub" class="icon-btn" href="https://github.com/idginity124" rel="noopener" target="_blank">
+<i class="fab fa-github"></i>
+</a>
+<button aria-expanded="false" aria-label="Menu" class="nav-toggle" id="menu-btn" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+</div>
+</div>
+</nav>
+<main id="main">
+<section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
+<div class="container">
+<div aria-label="Breadcrumb" class="crumbs reveal">
+<a data-en="Home" data-tr="Ana Sayfa" href="../index.html">Ana Sayfa</a>
+<span class="crumb-sep">/</span>
+<a data-en="Projects" data-tr="Projeler" href="../projects.html">Projeler</a>
+<span class="crumb-sep">/</span>
+<span aria-current="page">DeskMind AI</span>
+</div>
+<div class="project-head reveal">
+<div class="project-title-row">
+<div aria-hidden="true" class="project-mark">DA</div>
+<div>
+<span class="badge" data-en="Completed" data-tr="TamamlandÄ±">TamamlandÄ±</span>
+<h1 class="section-title" style="margin:10px 0 6px">DeskMind AI</h1>
+<p class="section-desc" data-en="Smart assistant that learns user habits to automatically categorize desktop files." data-tr="MasaÃ¼stÃ¼ dosyalarÄ±nÄ± kullanÄ±cÄ± alÄ±ÅŸkanlÄ±klarÄ±ndan Ã¶ÄŸrenerek otomatik kategorize eden akÄ±llÄ± asistan." style="margin:0">MasaÃ¼stÃ¼ dosyalarÄ±nÄ± kullanÄ±cÄ± alÄ±ÅŸkanlÄ±klarÄ±ndan Ã¶ÄŸrenerek otomatik kategorize eden akÄ±llÄ± asistan.</p>
+</div>
+</div>
+<div class="project-actions"><a class="btn btn-small btn-primary" href="../contact.html">
+<i class="fa-regular fa-paper-plane"></i>
+<span data-en="Contact" data-tr="Ä°letiÅŸim">Ä°letiÅŸim</span>
+</a></div>
+</div>
+<div class="facts reveal"><div class="fact">
+<div class="fact-k" data-en="Domain" data-tr="Alan">Alan</div>
+<div class="fact-v" data-en="Automation" data-tr="Otomasyon">Otomasyon</div>
+</div>
+<div class="fact">
+<div class="fact-k" data-en="Status" data-tr="Durum">Durum</div>
+<div class="fact-v" data-en="Completed" data-tr="TamamlandÄ±">TamamlandÄ±</div>
+</div>
+<div class="fact">
+<div class="fact-k" data-en="Approach" data-tr="YaklaÅŸÄ±m">YaklaÅŸÄ±m</div>
+<div class="fact-v" data-en="Local-first" data-tr="Local-first">Local-first</div>
+</div>
+<div class="fact">
+<div class="fact-k" data-en="Goal" data-tr="AmaÃ§">AmaÃ§</div>
+<div class="fact-v" data-en="Organization" data-tr="DÃ¼zen">DÃ¼zen</div>
+</div></div><div class="project-layout"><div class="project-content"><div class="panel reveal" id="overview" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Overview" data-tr="Ã–zet">Ã–zet</h2>
+<div class="prose">
+<p data-en="DeskMind AI aims to reduce desktop clutter by learning from file type, naming, folder history, and user behavior to produce automatic suggestions. Priorities: privacy (local-first) and reversible actions." data-tr="DeskMind AI; masaÃ¼stÃ¼ karmaÅŸasÄ±nÄ± azaltmak iÃ§in dosya tÃ¼rÃ¼, isim, klasÃ¶r geÃ§miÅŸi ve kullanÄ±cÄ± davranÄ±ÅŸlarÄ±ndan Ã¶ÄŸrenerek otomatik Ã¶neriler Ã¼retmeyi hedefler. Ã–ncelik: gizlilik (lokalde Ã§alÄ±ÅŸma) ve geri alÄ±nabilir aksiyonlar.">DeskMind AI; masaÃ¼stÃ¼ karmaÅŸasÄ±nÄ± azaltmak iÃ§in dosya tÃ¼rÃ¼, isim, klasÃ¶r geÃ§miÅŸi ve kullanÄ±cÄ± davranÄ±ÅŸlarÄ±ndan Ã¶ÄŸrenerek otomatik Ã¶neriler Ã¼retmeyi hedefler. Ã–ncelik: gizlilik (lokalde Ã§alÄ±ÅŸma) ve geri alÄ±nabilir aksiyonlar.</p>
+</div>
+<div class="tags" style="margin-top: 12px;"><span class="tag">Automation</span>
+<span class="tag">AI</span>
+<span class="tag">Local-first</span>
+<span class="tag">Productivity</span></div>
+</div><div class="panel reveal" id="features" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Key Features" data-tr="Ã–ne Ã‡Ä±kan Ã–zellikler">Ã–ne Ã‡Ä±kan Ã–zellikler</h2>
+<div class="grid feature-grid"><article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-folder-open"></i></div>
+<h3 data-en="Smart suggestions" data-tr="AkÄ±llÄ± Ã¶neriler">AkÄ±llÄ± Ã¶neriler</h3>
+<p class="muted" data-en="Suggest the most likely target folder." data-tr="DosyayÄ± en olasÄ± klasÃ¶re Ã¶nerme.">DosyayÄ± en olasÄ± klasÃ¶re Ã¶nerme.</p>
+</article>
+<article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+<h3 data-en="Auto rules" data-tr="Otomatik kurallar">Otomatik kurallar</h3>
+<p class="muted" data-en="Turn suggestions into rules with user approval." data-tr="KullanÄ±cÄ± onayÄ±yla kurala dÃ¶nÃ¼ÅŸtÃ¼rme.">KullanÄ±cÄ± onayÄ±yla kurala dÃ¶nÃ¼ÅŸtÃ¼rme.</p>
+</article>
+<article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-user-shield"></i></div>
+<h3 data-en="Privacy" data-tr="Gizlilik">Gizlilik</h3>
+<p class="muted" data-en="Designed to run locally when possible." data-tr="MÃ¼mkÃ¼n olduÄŸunda yerel Ã§alÄ±ÅŸacak ÅŸekilde tasarÄ±m.">MÃ¼mkÃ¼n olduÄŸunda yerel Ã§alÄ±ÅŸacak ÅŸekilde tasarÄ±m.</p>
+</article>
+<article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+<h3 data-en="Undo" data-tr="Geri al">Geri al</h3>
+<p class="muted" data-en="Undo for move/rename operations." data-tr="TaÅŸÄ±ma/yeniden adlandÄ±rma iÅŸlemleri iÃ§in geri alma.">TaÅŸÄ±ma/yeniden adlandÄ±rma iÅŸlemleri iÃ§in geri alma.</p>
+</article>
+<article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-filter"></i></div>
+<h3 data-en="File signals" data-tr="Dosya sinyalleri">Dosya sinyalleri</h3>
+<p class="muted" data-en="File type, naming, history, and usage signals." data-tr="Dosya tipi, isim, geÃ§miÅŸ ve kullanÄ±m sinyalleri.">Dosya tipi, isim, geÃ§miÅŸ ve kullanÄ±m sinyalleri.</p>
+</article>
+<article class="card reveal">
+<div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+<h3 data-en="Learning loop" data-tr="Ã–ÄŸrenme dÃ¶ngÃ¼sÃ¼">Ã–ÄŸrenme dÃ¶ngÃ¼sÃ¼</h3>
+<p class="muted" data-en="Continuously improves from user decisions." data-tr="KullanÄ±cÄ± kararlarÄ±ndan sÃ¼rekli iyileÅŸen model.">KullanÄ±cÄ± kararlarÄ±ndan sÃ¼rekli iyileÅŸen model.</p>
+</article></div>
+</div><div class="panel reveal" id="architecture" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Technical Notes &amp; Architecture" data-tr="Teknik Notlar &amp; Mimari">Teknik Notlar &amp; Mimari</h2>
+<pre class="codeblock">Desktop Events
+  â”œâ”€ File watcher
+  â”œâ”€ Feature extractor (name/type/path/history)
+  â”œâ”€ Recommender (rules + ML)
+  â”œâ”€ Action runner (move/rename) + undo log
+  â””â”€ Feedback loop (accept/reject)
+</pre>
+</div><div class="panel reveal" id="roadmap" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Roadmap" data-tr="Yol HaritasÄ±">Yol HaritasÄ±</h2>
+<ul class="bullets"><li data-en="MVP recommendation engine (rules-first)" data-tr="Minimum viable Ã¶neri motoru (rules-first)">Minimum viable Ã¶neri motoru (rules-first)</li>
+<li data-en="Model experiments (lightweight classifier)" data-tr="Model denemeleri (lightweight classifier)">Model denemeleri (lightweight classifier)</li>
+<li data-en="Small desktop UI / tray app" data-tr="KÃ¼Ã§Ã¼k masaÃ¼stÃ¼ UI / tray app">KÃ¼Ã§Ã¼k masaÃ¼stÃ¼ UI / tray app</li></ul>
+</div><div class="panel reveal" id="section" style="margin-top: 18px;">
+<div class="card-actions">
+<a class="btn btn-ghost" href="../projects.html">
+<i class="fa-solid fa-arrow-left"></i>
+<span data-en="Back to projects" data-tr="Projeler sayfasÄ±na dÃ¶n">Projeler sayfasÄ±na dÃ¶n</span>
+</a>
+<a class="btn btn-primary" href="../contact.html">
+<i class="fa-regular fa-paper-plane"></i>
+<span data-en="Let's talk about this project" data-tr="Bu proje hakkÄ±nda konuÅŸalÄ±m">Bu proje hakkÄ±nda konuÅŸalÄ±m</span>
+</a>
+</div>
+</div>
+<div class="panel reveal" id="lessons" style="margin-top: 18px;">
+<h2 class="panel-title" data-en="Notes &amp; next steps" data-tr="Notlar &amp; Sonraki adÄ±mlar">Notlar &amp; Sonraki adÄ±mlar</h2>
+<div class="prose">
+<ul class="bullets">
+<li data-en="Clear metrics for performance/UX improvements" data-tr="Performans/UX iyileÅŸtirmeleri iÃ§in net metrikler">Performans/UX iyileÅŸtirmeleri iÃ§in net metrikler</li>
+<li data-en="Better feedback and logging for failure modes" data-tr="Hata senaryolarÄ± iÃ§in daha iyi geri bildirim ve loglama">Hata senaryolarÄ± iÃ§in daha iyi geri bildirim ve loglama</li>
+<li data-en="Expanding documentation and test coverage" data-tr="DokÃ¼mantasyon ve test kapsamÄ±nÄ± geniÅŸletme">DokÃ¼mantasyon ve test kapsamÄ±nÄ± geniÅŸletme</li>
+</ul>
+</div>
+</div>
+</div><aside class="project-sidebar reveal"><div class="toc" id="toc"></div><div class="sidebar-card"><div class="sidebar-title" data-en="Quick actions" data-tr="HÄ±zlÄ± aksiyonlar">HÄ±zlÄ± aksiyonlar</div><div class="card-actions" style="margin-top:10px;"><button class="btn btn-small btn-ghost" id="copy-link" type="button"><i class="fa-regular fa-copy"></i><span data-en="Copy link" data-tr="Linki kopyala">Linki kopyala</span></button><a class="btn btn-small btn-primary" href="../contact.html"><i class="fa-regular fa-paper-plane"></i><span data-en="Contact" data-tr="Ä°letiÅŸim">Ä°letiÅŸim</span></a></div>
+</div></aside></div>
+
+
+
+
+
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<strong>Ekrem Bulgan</strong>
+<div class="muted" data-en="AI â€¢ Computer Vision â€¢ Automation" data-tr="AI â€¢ BilgisayarlÄ± GÃ¶rÃ¼ â€¢ Otomasyon" style="margin-top:6px;">
+            AI â€¢ BilgisayarlÄ± GÃ¶rÃ¼ â€¢ Otomasyon
+          </div>
+<div class="muted" style="margin-top:10px;"><a href="mailto:ekrembulgan2@gmail.com">ekrembulgan2@gmail.com</a>
+</div>
+<div>
+<div class="muted" data-en="Shortcuts" data-tr="KÄ±sayollar" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;">KÄ±sayollar</div>
+<div class="footer-links" style="margin-top:10px;">
+<a data-en="Projects" data-tr="Projeler" href="../projects.html">Projeler</a>
+<a data-en="About" data-tr="HakkÄ±mda" href="../about.html">HakkÄ±mda</a>
+<a data-en="Blog" data-tr="YazÄ±lar" href="../blog.html">YazÄ±lar</a>
+<a data-en="Now" data-tr="Åimdi" href="../now.html">Åimdi</a>
+<a data-en="Contact" data-tr="Ä°letiÅŸim" href="../contact.html">Ä°letiÅŸim</a>
+</div>
+</div>
+<div>
+<div class="muted" data-en="Links" data-tr="BaÄŸlantÄ±lar" style="text-transform:uppercase; letter-spacing:.08em; font-size:.78rem;">BaÄŸlantÄ±lar</div>
+<div class="footer-social" style="margin-top:10px;">
+<a aria-label="GitHub" class="icon-btn" href="https://github.com/idginity124" rel="noopener" target="_blank">
+<i class="fab fa-github"></i>
+</a>
+<a aria-label="Resume" class="icon-btn" href="../assets/cv/Ekrem_Bulgan_CV.pdf" rel="noopener" target="_blank">
+<i class="fa-solid fa-file-lines"></i>
+</a>
+<a aria-label="Contact" class="icon-btn" href="../contact.html">
+<i class="fa-regular fa-paper-plane"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<div>Â© <span id="current-year">2026</span> Ekrem Bulgan</div>
+<div><span data-en="All rights reserved." data-tr="TÃ¼m haklarÄ± saklÄ±dÄ±r.">TÃ¼m haklarÄ± saklÄ±dÄ±r.</span></div>
+</div>
+</div>
+</footer>
+<button aria-label="Back to top" class="to-top" id="to-top" type="button">
+<i class="fa-solid fa-arrow-up"></i>
+</button>
+<script src="../assets/fx.min.js" defer></script>
+  <script src="../assets/app.min.js" defer></script>
+</body>
+</html>
+
