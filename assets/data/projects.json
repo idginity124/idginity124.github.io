@@ -70,7 +70,7 @@
         "Product",
         "Education"
       ],
-      "cover": null,
+      "cover": "assets/img/covers/lingopark.svg",
       "detail": "projects/lingopark.html",
       "links": {
         "github": "https://github.com/idginity124/LingoPark",
@@ -109,7 +109,7 @@
         "Automation",
         "Workflow"
       ],
-      "cover": null,
+      "cover": "assets/img/covers/mediamanagerpro.svg",
       "detail": "projects/mediamanagerpro.html",
       "links": {
         "github": "https://github.com/idginity124/MediaManagerPro",
@@ -148,7 +148,7 @@
         "UX",
         "App"
       ],
-      "cover": null,
+      "cover": "assets/img/covers/quiz-app.svg",
       "detail": "projects/quiz-app.html",
       "links": {
         "github": "https://github.com/idginity124/quiz-app",
@@ -188,7 +188,7 @@
         "Real-time",
         "Safety"
       ],
-      "cover": null,
+      "cover": "assets/img/covers/aviansense-ai.svg",
       "detail": "projects/aviansense-ai.html",
       "links": {
         "github": null,
@@ -228,7 +228,7 @@
         "Desktop",
         "Productivity"
       ],
-      "cover": null,
+      "cover": "assets/img/covers/deskmind-ai.svg",
       "detail": "projects/deskmind-ai.html",
       "links": {
         "github": "https://github.com/idginity124/DeskMindAI",
@@ -269,7 +269,7 @@
         "Offline-first",
         "Security"
       ],
-      "cover": null,
+      "cover": "assets/img/covers/ciphervault.svg",
       "detail": "projects/ciphervault.html",
       "links": {
         "github": "https://github.com/idginity124/CipherVault",
@@ -308,7 +308,7 @@
         "Monitoring",
         "Performance"
       ],
-      "cover": null,
+      "cover": "assets/img/covers/sysgaze.svg",
       "detail": "projects/sysgaze.html",
       "links": {
         "github": null,

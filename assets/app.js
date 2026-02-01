@@ -373,6 +373,77 @@ function initFooterYear() {
   if (el) el.textContent = String(new Date().getFullYear());
 }
 
+function initLightbox() {
+  const imgs = Array.from(document.querySelectorAll('main img, .prose img, .screens img, .gallery img'))
+    .filter(img => {
+      const src = (img.getAttribute('src') || '').toLowerCase();
+      // ignore tiny icons / logos in nav/footer
+      const w = parseInt(img.getAttribute('width') || '0', 10);
+      const h = parseInt(img.getAttribute('height') || '0', 10);
+      if (w && h && (w <= 140 || h <= 140)) return false;
+      return src.endsWith('.png') || src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.webp') || src.endsWith('.gif') || src.endsWith('.svg');
+    });
+
+  if (!imgs.length) return;
+
+  let backdrop = document.querySelector('.lightbox-backdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.className = 'lightbox-backdrop';
+    backdrop.innerHTML = `
+      <button class="lightbox-close" type="button" aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img class="lightbox-img" alt="">
+      <div class="lightbox-hint" data-tr="Kapatmak için Esc" data-en="Press Esc to close">Kapatmak için Esc</div>
+    `;
+    document.body.appendChild(backdrop);
+  }
+
+  const lbImg = backdrop.querySelector('.lightbox-img');
+  const closeBtn = backdrop.querySelector('.lightbox-close');
+
+  const close = () => {
+    backdrop.classList.remove('is-open');
+    document.body.classList.remove('no-scroll');
+    lbImg.removeAttribute('src');
+    lbImg.setAttribute('alt', '');
+  };
+
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) close();
+  });
+  closeBtn.addEventListener('click', close);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && backdrop.classList.contains('is-open')) close();
+  });
+
+  imgs.forEach(img => {
+    img.classList.add('zoomable');
+    img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', img.getAttribute('alt') || 'Preview image');
+
+    const open = () => {
+      const src = img.getAttribute('src');
+      if (!src) return;
+      lbImg.setAttribute('src', src);
+      lbImg.setAttribute('alt', img.getAttribute('alt') || '');
+      backdrop.classList.add('is-open');
+      document.body.classList.add('no-scroll');
+    };
+
+    img.addEventListener('click', open);
+    img.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open();
+      }
+    });
+  });
+}
+
 // ---------------------------------------------------------------------------
 // CONTACT
 // ---------------------------------------------------------------------------
@@ -582,7 +653,24 @@ function projectCard(p) {
     actions.appendChild(gh);
   }
 
-  card.appendChild(icon);
+  // Cover (optional)
+  if (p.cover) {
+    const cover = document.createElement('div');
+    cover.className = 'project-cover';
+
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.alt = `${p.name || 'Project'} cover`;
+    img.src = BASE + p.cover;
+
+    cover.appendChild(img);
+    cover.appendChild(icon); // icon overlays the cover
+    card.appendChild(cover);
+  } else {
+    card.appendChild(icon);
+  }
+
   card.appendChild(titleRow);
   card.appendChild(meta);
   card.appendChild(desc);
@@ -1239,6 +1327,7 @@ async function init() {
   initReveal();
   initBackToTop();
   initFooterYear();
+  initLightbox();
 
   // Page-specific
   initContact();
