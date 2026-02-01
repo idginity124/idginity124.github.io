@@ -246,37 +246,39 @@
       "featured": false,
       "icon": "fa-solid fa-vault",
       "status": {
-        "code": "rnd",
-        "tr": "Konsept",
-        "en": "Concept"
+        "code": "completed",
+        "tr": "Yayınlandı",
+        "en": "Released"
       },
       "type": {
-        "tr": "Güvenlik aracı",
-        "en": "Security tool"
+        "tr": "Parola kasası",
+        "en": "Password vault"
       },
       "platform": {
-        "tr": "Offline-first",
-        "en": "Offline-first"
+        "tr": "Windows + Android",
+        "en": "Windows + Android"
       },
       "category": [
         "Security",
         "Tools"
       ],
       "tags": [
-        "Security",
         "Encryption",
-        "Offline-first"
+        "Flutter",
+        "Local-first",
+        "Offline-first",
+        "Security"
       ],
       "cover": null,
       "detail": "projects/ciphervault.html",
       "links": {
-        "github": null,
-        "releases": null,
+        "github": "https://github.com/idginity124/CipherVault",
+        "releases": "https://github.com/idginity124/CipherVault/releases/latest",
         "demo": null
       },
       "summary": {
-        "tr": "Buluttan bağımsız, yerel şifreleme yaklaşımıyla güvenli parola kasası konsepti (kullanıcı kontrolü + basit UX).",
-        "en": "Cloud-independent password vault concept with local encryption and a simple, user-controlled UX."
+        "tr": "Yerel şifreleme, arama/kategori, QR ile içe aktarma ve yedekleme akışı olan offline parola kasası (Windows + Android).",
+        "en": "Offline password vault with local encryption, search/categories, QR import and backup flows (Windows + Android)."
       }
     },
     {
