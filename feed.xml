@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>Ekrem Bulgan — Blog</title>
+<link>/blog.html</link>
+<description>Ekrem Bulgan blog yazıları</description>
+<language>tr</language>
+<lastBuildDate>Sun, 01 Feb 2026 12:00:00 +0000</lastBuildDate>
+<item>
+<title>Web’de animasyon + performans: kasma yaşamamak için notlar | Ekrem Bulgan</title>
+<link>/blog/cv-deploy-checklist.html</link>
+<guid>/blog/cv-deploy-checklist.html</guid>
+<description><![CDATA[Efektleri koruyup scroll akıcılığını bozmamak için uyguladığım pratik adımlar.]]></description>
+</item>
+<item>
+<title>Masaüstü uygulama UX: VidExtract’ten 10 pratik detay | Ekrem Bulgan</title>
+<link>/blog/desktop-tool-ux.html</link>
+<guid>/blog/desktop-tool-ux.html</guid>
+<description><![CDATA[Masaüstü uygulamalarında UX’i profesyonel hissettiren küçük ama etkili detaylar.]]></description>
+</item>
+<item>
+<title>Prototipten ürüne: portföyde proje sunma rutini | Ekrem Bulgan</title>
+<link>/blog/shipping-mindset.html</link>
+<guid>/blog/shipping-mindset.html</guid>
+<description><![CDATA[Portföyde projeyi ürün gibi göstermek için kullandığım pratik kontrol listesi.]]></description>
+</item>
+</channel>
+</rss>

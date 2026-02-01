@@ -55,6 +55,62 @@ function showToast(message) {
   showToast._t = window.setTimeout(() => toast.classList.remove("is-visible"), 2400);
 }
 
+
+function runtimeSeoFixes() {
+  try {
+    const pageUrl = location.href.split("#")[0];
+
+    // Canonical
+    let canon = document.querySelector('link[rel="canonical"]');
+    if (!canon) {
+      canon = document.createElement("link");
+      canon.rel = "canonical";
+      document.head.appendChild(canon);
+    }
+    canon.href = pageUrl;
+
+    // og:url
+    let ogUrl = document.querySelector('meta[property="og:url"]');
+    if (!ogUrl) {
+      ogUrl = document.createElement("meta");
+      ogUrl.setAttribute("property", "og:url");
+      document.head.appendChild(ogUrl);
+    }
+    ogUrl.setAttribute("content", pageUrl);
+
+    // Make og:image/twitter:image absolute (better for share cards)
+    const toAbs = (val) => {
+      if (!val) return val;
+      if (/^https?:\/\//i.test(val) || val.startsWith("data:")) return val;
+      return new URL(val, pageUrl).href;
+    };
+
+    const ogImg = document.querySelector('meta[property="og:image"]');
+    if (ogImg) ogImg.setAttribute("content", toAbs(ogImg.getAttribute("content")));
+
+    const twImg = document.querySelector('meta[name="twitter:image"]');
+    if (twImg) twImg.setAttribute("content", toAbs(twImg.getAttribute("content")));
+
+    // Helpful defaults
+    let twCard = document.querySelector('meta[name="twitter:card"]');
+    if (!twCard) {
+      twCard = document.createElement("meta");
+      twCard.setAttribute("name", "twitter:card");
+      twCard.setAttribute("content", "summary_large_image");
+      document.head.appendChild(twCard);
+    }
+  } catch { /* ignore */ }
+}
+
+function runtimeImagePerfFixes() {
+  try {
+    document.querySelectorAll("img").forEach((img) => {
+      if (!img.hasAttribute("loading")) img.setAttribute("loading", "lazy");
+      if (!img.hasAttribute("decoding")) img.setAttribute("decoding", "async");
+    });
+  } catch { /* ignore */ }
+}
+
 async function copyToClipboard(text) {
   try {
     await navigator.clipboard.writeText(text);
@@ -136,6 +192,53 @@ function formatDate(iso) {
     year: "numeric",
     month: "short",
     day: "2-digit",
+  });
+}
+
+
+// ---------------------------------------------------------------------------
+// SERVICE WORKER (PWA)
+// ---------------------------------------------------------------------------
+
+function initServiceWorker() {
+  // GitHub Pages + local dev friendly
+  if (!('serviceWorker' in navigator)) return;
+
+  const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  const isHttps = location.protocol === 'https:';
+
+  if (!(isLocalhost || isHttps)) return;
+
+  navigator.serviceWorker.register(BASE + 'sw.js').then((reg) => {
+    // Auto-update: activate new SW as soon as it's ready, then reload once.
+    const promptUpdate = () => {
+      if (reg && reg.waiting) {
+        try { reg.waiting.postMessage({ type: 'SKIP_WAITING' }); } catch { /* ignore */ }
+        showToast(currentLang === "tr" ? "Yeni sürüm hazır — yenileniyor…" : "Update ready — reloading…");
+      }
+    };
+
+    reg.addEventListener('updatefound', () => {
+      const sw = reg.installing;
+      if (!sw) return;
+      sw.addEventListener('statechange', () => {
+        if (sw.state === 'installed' && navigator.serviceWorker.controller) {
+          promptUpdate();
+        }
+      });
+    });
+
+    // If an update is already waiting (rare but possible)
+    promptUpdate();
+
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      // Prevent reload loops
+      if (initServiceWorker._reloaded) return;
+      initServiceWorker._reloaded = true;
+      location.reload();
+    });
+  }).catch((e) => {
+    console.warn('SW registration failed:', e);
   });
 }
 
@@ -1317,6 +1420,10 @@ async function init() {
   initEffects();
   initTypewriter();
 
+  // SEO / Share
+  runtimeSeoFixes();
+  runtimeImagePerfFixes();
+
   // Nav
   initNav();
   setActiveNav();
@@ -1328,6 +1435,9 @@ async function init() {
   initBackToTop();
   initFooterYear();
   initLightbox();
+
+  // PWA
+  initServiceWorker();
 
   // Page-specific
   initContact();

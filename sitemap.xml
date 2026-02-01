@@ -1,79 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://idginity124.github.io/404.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/about.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/about.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/blog.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/blog.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/blog/cv-deploy-checklist.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/blog/cv-deploy-checklist.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/blog/desktop-tool-ux.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/blog/desktop-tool-ux.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/blog/shipping-mindset.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/blog/shipping-mindset.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/contact.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/contact.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/index.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/index.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/now.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/now.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/projects.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/projects.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/projects/aviansense-ai.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/projects/aviansense-ai.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/projects/ciphervault.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/projects/ciphervault.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/projects/deskmind-ai.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/projects/deskmind-ai.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/projects/lingopark.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/projects/lingopark.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/projects/mediamanagerpro.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/projects/mediamanagerpro.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/projects/quiz-app.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/projects/quiz-app.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/projects/sysgaze.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/projects/sysgaze.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/projects/vidextract.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://idginity124.github.io/projects/vidextract.html</loc>
-    <lastmod>2026-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://idginity124.github.io/vidextract.html</loc>
-    <lastmod>2026-01-21</lastmod>
+    <loc>/vidextract.html</loc>
+    <lastmod>2026-02-01</lastmod>
   </url>
 </urlset>
