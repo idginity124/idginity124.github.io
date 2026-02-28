@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ekrem Bulgan – Admin Panel</title>
+<style>
+  :root {
+    --bg: #0d0d14;
+    --surface: #16161f;
+    --surface2: #1e1e2a;
+    --border: rgba(255,255,255,0.08);
+    --primary: #e040fb;
+    --primary-dim: rgba(224,64,251,0.15);
+    --green: #00e676;
+    --red: #ff5252;
+    --yellow: #ffea00;
+    --text: #f0f0f0;
+    --muted: rgba(255,255,255,0.45);
+    --radius: 10px;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* LOGIN */
+  #login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at 50% 0%, rgba(224,64,251,0.12) 0%, transparent 70%);
+  }
+
+  .login-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    width: 380px;
+    text-align: center;
+  }
+
+  .login-box h1 { font-size: 1.4rem; margin-bottom: 6px; }
+  .login-box p { color: var(--muted); font-size: .85rem; margin-bottom: 28px; }
+
+  input[type="email"], input[type="password"], input[type="text"], textarea, select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    padding: 10px 14px;
+    font-size: .9rem;
+    outline: none;
+    transition: border-color .2s;
+    font-family: inherit;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--primary);
+  }
+
+  textarea { resize: vertical; min-height: 80px; }
+
+  .login-box input { margin-bottom: 12px; }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 18px; border-radius: 8px; border: none;
+    font-size: .85rem; font-weight: 600; cursor: pointer;
+    transition: opacity .2s, transform .1s;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn-primary { background: var(--primary); color: #000; }
+  .btn-ghost { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+  .btn-danger { background: var(--red); color: #fff; }
+  .btn-success { background: var(--green); color: #000; }
+  .btn:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-full { width: 100%; justify-content: center; }
+
+  /* LAYOUT */
+  #app { display: none; }
+
+  .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+
+  .topbar-brand { font-weight: 700; font-size: 1rem; }
+  .topbar-brand span { color: var(--primary); }
+
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .user-badge { font-size: .78rem; color: var(--muted); }
+
+  .layout { display: flex; min-height: calc(100vh - 56px); }
+
+  .sidebar {
+    width: 220px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 20px 12px;
+    display: flex; flex-direction: column; gap: 4px;
+    position: sticky; top: 56px; height: calc(100vh - 56px);
+    overflow-y: auto;
+  }
+
+  .sidebar-label {
+    font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); padding: 8px 10px 4px;
+  }
+
+  .nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; border-radius: 8px;
+    cursor: pointer; font-size: .88rem;
+    color: var(--muted); transition: all .15s;
+    border: none; background: none; width: 100%; text-align: left;
+  }
+
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active { background: var(--primary-dim); color: var(--primary); }
+
+  .main { flex: 1; padding: 28px 32px; max-width: 900px; }
+
+  /* SECTIONS */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-title {
+    font-size: 1.3rem; font-weight: 700; margin-bottom: 6px;
+  }
+  .section-desc { color: var(--muted); font-size: .85rem; margin-bottom: 24px; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-size: .95rem; font-weight: 600; margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  /* FORM GRID */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-grid.full { grid-template-columns: 1fr; }
+  .form-col { display: flex; flex-direction: column; gap: 5px; }
+  .form-col.span2 { grid-column: span 2; }
+  .form-label { font-size: .78rem; color: var(--muted); }
+
+  /* SAVE BAR */
+  .save-bar {
+    display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+    margin-top: 20px; padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* STATUS */
+  .status-dot {
+    display: inline-block;
+    width: 8px; height: 8px; border-radius: 50%;
+    margin-right: 6px;
+  }
+  .status-dot.green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .status-dot.red { background: var(--red); }
+  .status-dot.yellow { background: var(--yellow); }
+
+  /* TOAST */
+  #toast {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text); padding: 12px 20px; border-radius: 10px;
+    font-size: .85rem; opacity: 0; pointer-events: none;
+    transition: opacity .3s; z-index: 999;
+  }
+  #toast.show { opacity: 1; }
+
+  /* LIST ITEMS */
+  .list-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--surface2);
+    border-radius: 8px; margin-bottom: 8px;
+    gap: 12px;
+  }
+  .list-item-info { flex: 1; min-width: 0; }
+  .list-item-title { font-size: .9rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .list-item-sub { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+  .list-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+  /* BADGE */
+  .badge {
+    font-size: .7rem; padding: 2px 8px; border-radius: 20px;
+    font-weight: 600;
+  }
+  .badge-green { background: rgba(0,230,118,.15); color: var(--green); }
+  .badge-yellow { background: rgba(255,234,0,.15); color: var(--yellow); }
+  .badge-muted { background: var(--surface2); color: var(--muted); }
+
+  /* TABS */
+  .tabs { display: flex; gap: 4px; margin-bottom: 20px; }
+  .tab {
+    padding: 7px 16px; border-radius: 8px; cursor: pointer;
+    font-size: .85rem; border: none; background: var(--surface2); color: var(--muted);
+    transition: all .15s;
+  }
+  .tab.active { background: var(--primary-dim); color: var(--primary); }
+
+  /* MODAL */
+  .modal-backdrop {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,.7); z-index: 200;
+    align-items: center; justify-content: center;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px; width: 560px; max-height: 80vh;
+    overflow-y: auto; max-width: 95vw;
+  }
+  .modal-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  /* DASHBOARD STATS */
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .stat-value { font-size: 2rem; font-weight: 700; color: var(--primary); }
+  .stat-label { font-size: .75rem; color: var(--muted); margin-top: 4px; }
+
+  @media (max-width: 700px) {
+    .sidebar { display: none; }
+    .main { padding: 16px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>🔐 Admin Panel</h1>
+    <p>Ekrem Bulgan Portfolyo Yönetimi</p>
+    <input type="email" id="login-email" placeholder="E-posta" autocomplete="email"/>
+    <input type="password" id="login-pass" placeholder="Şifre" autocomplete="current-password"/>
+    <button class="btn btn-primary btn-full" onclick="doLogin()">Giriş Yap</button>
+    <p id="login-error" style="color:#ff5252;font-size:.8rem;margin-top:10px;display:none;"></p>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-brand">EB<span>.</span> Admin</div>
+    <div class="topbar-right">
+      <span class="user-badge" id="user-email"></span>
+      <button class="btn btn-ghost" onclick="doLogout()" style="padding:6px 12px;font-size:.8rem;">Çıkış</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div class="sidebar-label">Genel</div>
+      <button class="nav-item active" onclick="showSection('dashboard')" id="nav-dashboard">
+        📊 Dashboard
+      </button>
+
+      <div class="sidebar-label">İçerikler</div>
+      <button class="nav-item" onclick="showSection('hero')" id="nav-hero">
+        🏠 Ana Sayfa Hero
+      </button>
+      <button class="nav-item" onclick="showSection('about')" id="nav-about">
+        👤 Hakkımda
+      </button>
+      <button class="nav-item" onclick="showSection('now')" id="nav-now">
+        ⚡ Şimdi
+      </button>
+      <button class="nav-item" onclick="showSection('projects')" id="nav-projects">
+        📦 Projeler
+      </button>
+      <button class="nav-item" onclick="showSection('posts')" id="nav-posts">
+        ✍️ Yazılar
+      </button>
+
+      <div class="sidebar-label" style="margin-top:auto;">Site</div>
+      <a class="nav-item" href="../index.html" target="_blank">
+        🌐 Siteyi Gör
+      </a>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+
+      <!-- DASHBOARD -->
+      <div class="section active" id="section-dashboard">
+        <div class="section-title">Dashboard</div>
+        <div class="section-desc">Firestore bağlantı durumu ve içerik özeti.</div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-projects">–</div>
+            <div class="stat-label">Proje</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-posts">–</div>
+            <div class="stat-label">Yazı</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-featured">–</div>
+            <div class="stat-label">Öne Çıkan</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-drafts">–</div>
+            <div class="stat-label">Taslak</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Firebase Durumu</div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="status-dot green" id="fb-dot"></span>
+            <span id="fb-status-text">Bağlanıyor...</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🚀 İlk Kurulum — Firestore'a Veri Yükle</div>
+          <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">
+            Mevcut JSON dosyalarındaki proje ve yazıları Firestore'a bir kez aktar.
+            Sonraki güncellemeleri buradan yapabilirsin.
+          </p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="seedProjects()">📦 Projeleri Aktar</button>
+            <button class="btn btn-ghost" onclick="seedPosts()">✍️ Yazıları Aktar</button>
+            <button class="btn btn-ghost" onclick="seedContent()">📝 Sayfa İçeriklerini Aktar</button>
+          </div>
+          <p id="seed-status" style="margin-top:12px;font-size:.82rem;color:var(--green);display:none;"></p>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="section" id="section-hero">
+        <div class="section-title">Ana Sayfa Hero</div>
+        <div class="section-desc">Ana sayfadaki başlık, alt metin ve kart içerikleri.</div>
+
+        <div class="card">
+          <div class="card-title">Başlık & Alt Metin</div>
+          <div class="form-grid">
+            <div class="form-col span2">
+              <label class="form-label">Hero Başlık (TR)</label>
+              <textarea id="hero-title-tr" rows="2"></textarea>
+            </div>
+            <div class="form-col span2">
+              <label class="form-label">Hero Başlık (EN)</label>
+              <textarea id="hero-title-en" rows="2"></textarea>
+            </div>
+            <div class="form-col span2">
+              <label class="form-label">Alt Metin (TR)</label>
+              <textarea id="hero-subtitle-tr" rows="3"></textarea>
+            </div>
+            <div class="form-col span2">
+              <label class="form-label">Alt Metin (EN)</label>
+              <textarea id="hero-subtitle-en" rows="3"></textarea>
+            </div>
+            <div class="form-col span2">
+              <label class="form-label">Typewriter Satırlar (TR) — | ile ayır</label>
+              <input type="text" id="hero-typewriter-tr"/>
+            </div>
+            <div class="form-col span2">
+              <label class="form-label">Typewriter Satırlar (EN) — | ile ayır</label>
+              <input type="text" id="hero-typewriter-en"/>
+            </div>
+          </div>
+          <div class="save-bar">
+            <button class="btn btn-ghost" onclick="loadSection('hero')">↩ Sıfırla</button>
+            <button class="btn btn-primary" onclick="saveSection('hero')">💾 Kaydet</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Profil Kartı</div>
+          <div class="form-grid">
+            <div class="form-col span2">
+              <label class="form-label">Rol (TR)</label>
+              <input type="text" id="hero-role-tr"/>
+            </div>
+            <div class="form-col span2">
+              <label class="form-label">Rol (EN)</label>
+              <input type="text" id="hero-role-en"/>
+            </div>
+            <div class="form-col">
+              <label class="form-label">Odak (TR)</label>
+              <input type="text" id="hero-focus-tr"/>
+            </div>
+            <div class="form-col">
+              <label class="form-label">Odak (EN)</label>
+              <input type="text" id="hero-focus-en"/>
+            </div>
+            <div class="form-col">
+              <label class="form-label">Çıktı (TR)</label>
+              <input type="text" id="hero-output-tr"/>
+            </div>
+            <div class="form-col">
+              <label class="form-label">Çıktı (EN)</label>
+              <input type="text" id="hero-output-en"/>
+            </div>
+          </div>
+          <div class="save-bar">
+            <button class="btn btn-ghost" onclick="loadSection('hero')">↩ Sıfırla</button>
+            <button class="btn btn-primary" onclick="saveSection('hero')">💾 Kaydet</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="section" id="section-about">
+        <div class="section-title">Hakkımda</div>
+        <div class="section-desc">about.html sayfasındaki içerikler.</div>
+
+        <div class="card">
+          <div class="form-grid">
+            <div class="form-col span2">
+              <label class="form-label">Kısa Özet (TR)</label>
+              <textarea id="about-summary-tr" rows="4"></textarea>
+            </div>
+            <div class="form-col span2">
+              <label class="form-label">Kısa Özet (EN)</label>
+              <textarea id="about-summary-en" rows="4"></textarea>
+            </div>
+            <div class="form-col">
+              <label class="form-label">Odak (TR)</label>
+              <input type="text" id="about-focus-tr"/>
+            </div>
+            <div class="form-col">
+              <label class="form-label">Odak (EN)</label>
+              <input type="text" id="about-focus-en"/>
+            </div>
+            <div class="form-col span2">
+              <label class="form-label">Zaman Çizgisi Satır 2 (TR)</label>
+              <input type="text" id="about-timeline2-tr"/>
+            </div>
+            <div class="form-col span2">
+              <label class="form-label">Zaman Çizgisi Satır 3 (TR)</label>
+              <input type="text" id="about-timeline3-tr"/>
+            </div>
+          </div>
+          <div class="save-bar">
+            <button class="btn btn-ghost" onclick="loadSection('about')">↩ Sıfırla</button>
+            <button class="btn btn-primary" onclick="saveSection('about')">💾 Kaydet</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOW -->
+      <div class="section" id="section-now">
+        <div class="section-title">Şimdi</div>
+        <div class="section-desc">now.html — şu an odak, açık olduğun şeyler ve yakın hedefler.</div>
+
+        <div class="card">
+          <div class="card-title">Şu An Odak</div>
+          <div class="form-grid">
+            <div class="form-col span2"><label class="form-label">Madde 1 (TR)</label><input type="text" id="now-focus1-tr"/></div>
+            <div class="form-col span2"><label class="form-label">Madde 1 (EN)</label><input type="text" id="now-focus1-en"/></div>
+            <div class="form-col span2"><label class="form-label">Madde 2 (TR)</label><input type="text" id="now-focus2-tr"/></div>
+            <div class="form-col span2"><label class="form-label">Madde 3 (TR)</label><input type="text" id="now-focus3-tr"/></div>
+          </div>
+          <div class="save-bar">
+            <button class="btn btn-ghost" onclick="loadSection('now')">↩ Sıfırla</button>
+            <button class="btn btn-primary" onclick="saveSection('now')">💾 Kaydet</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Açık Olduğum</div>
+          <div class="form-grid">
+            <div class="form-col span2"><label class="form-label">Madde 1 (TR)</label><input type="text" id="now-open1-tr"/></div>
+            <div class="form-col span2"><label class="form-label">Madde 2 (TR)</label><input type="text" id="now-open2-tr"/></div>
+            <div class="form-col span2"><label class="form-label">Madde 3 (TR)</label><input type="text" id="now-open3-tr"/></div>
+          </div>
+          <div class="save-bar">
+            <button class="btn btn-ghost" onclick="loadSection('now')">↩ Sıfırla</button>
+            <button class="btn btn-primary" onclick="saveSection('now')">💾 Kaydet</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Yakın Hedefler</div>
+          <div class="form-grid">
+            <div class="form-col span2">
+              <label class="form-label">Hedef Metni (TR)</label>
+              <textarea id="now-goals-tr" rows="3"></textarea>
+            </div>
+            <div class="form-col span2">
+              <label class="form-label">Hedef Metni (EN)</label>
+              <textarea id="now-goals-en" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="save-bar">
+            <button class="btn btn-ghost" onclick="loadSection('now')">↩ Sıfırla</button>
+            <button class="btn btn-primary" onclick="saveSection('now')">💾 Kaydet</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="section" id="section-projects">
+        <div class="section-title">Projeler</div>
+        <div class="section-desc">Proje kartlarını düzenle, yeni proje ekle.</div>
+
+        <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
+          <button class="btn btn-primary" onclick="openProjectModal()">+ Yeni Proje</button>
+        </div>
+
+        <div id="projects-list"></div>
+      </div>
+
+      <!-- POSTS -->
+      <div class="section" id="section-posts">
+        <div class="section-title">Yazılar</div>
+        <div class="section-desc">Blog yazılarını yönet.</div>
+
+        <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
+          <button class="btn btn-primary" onclick="openPostModal()">+ Yeni Yazı</button>
+        </div>
+
+        <div id="posts-list"></div>
+      </div>
+
+    </div><!-- /main -->
+  </div><!-- /layout -->
+</div><!-- /app -->
+
+<!-- PROJECT MODAL -->
+<div class="modal-backdrop" id="project-modal">
+  <div class="modal">
+    <div class="modal-title" id="project-modal-title">Proje Düzenle</div>
+    <div class="form-grid">
+      <div class="form-col"><label class="form-label">ID (slug)</label><input type="text" id="proj-id"/></div>
+      <div class="form-col"><label class="form-label">İsim</label><input type="text" id="proj-name"/></div>
+      <div class="form-col span2"><label class="form-label">Özet (TR)</label><textarea id="proj-summary-tr" rows="2"></textarea></div>
+      <div class="form-col span2"><label class="form-label">Özet (EN)</label><textarea id="proj-summary-en" rows="2"></textarea></div>
+      <div class="form-col"><label class="form-label">Tür (TR)</label><input type="text" id="proj-type-tr"/></div>
+      <div class="form-col"><label class="form-label">Tür (EN)</label><input type="text" id="proj-type-en"/></div>
+      <div class="form-col"><label class="form-label">GitHub URL</label><input type="text" id="proj-github"/></div>
+      <div class="form-col"><label class="form-label">Cover (assets/img/...)</label><input type="text" id="proj-cover"/></div>
+      <div class="form-col"><label class="form-label">Durum</label>
+        <select id="proj-status">
+          <option value="completed">Tamamlandı</option>
+          <option value="rnd">Ar-Ge</option>
+          <option value="wip">Devam ediyor</option>
+        </select>
+      </div>
+      <div class="form-col"><label class="form-label">Tags (virgülle)</label><input type="text" id="proj-tags"/></div>
+      <div class="form-col span2">
+        <label class="form-label">
+          <input type="checkbox" id="proj-featured" style="width:auto;margin-right:6px;"/>
+          Öne Çıkan
+        </label>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('project-modal')">İptal</button>
+      <button class="btn btn-primary" onclick="saveProject()">Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<!-- POST MODAL -->
+<div class="modal-backdrop" id="post-modal">
+  <div class="modal">
+    <div class="modal-title" id="post-modal-title">Yazı Düzenle</div>
+    <div class="form-grid">
+      <div class="form-col"><label class="form-label">ID (slug)</label><input type="text" id="post-id"/></div>
+      <div class="form-col"><label class="form-label">Tarih (YYYY-MM-DD)</label><input type="text" id="post-date"/></div>
+      <div class="form-col span2"><label class="form-label">Başlık (TR)</label><input type="text" id="post-title-tr"/></div>
+      <div class="form-col span2"><label class="form-label">Başlık (EN)</label><input type="text" id="post-title-en"/></div>
+      <div class="form-col span2"><label class="form-label">Özet (TR)</label><textarea id="post-summary-tr" rows="2"></textarea></div>
+      <div class="form-col span2"><label class="form-label">Özet (EN)</label><textarea id="post-summary-en" rows="2"></textarea></div>
+      <div class="form-col"><label class="form-label">Okuma Süresi (TR) — örn: 5 dk</label><input type="text" id="post-reading-tr"/></div>
+      <div class="form-col"><label class="form-label">Tags (virgülle)</label><input type="text" id="post-tags"/></div>
+      <div class="form-col"><label class="form-label">Path (blog/xxx.html)</label><input type="text" id="post-path"/></div>
+      <div class="form-col">
+        <label class="form-label">
+          <input type="checkbox" id="post-draft" style="width:auto;margin-right:6px;"/>
+          Taslak
+        </label>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('post-modal')">İptal</button>
+      <button class="btn btn-primary" onclick="savePost()">Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- FIREBASE SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, collection, getDocs, deleteDoc, addDoc }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ⚠️ BU DEĞERLERİ SENİN FIREBASE PROJENDEKİLERLE DEĞİŞTİR
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDPc5ZQg3Qqge-JXAC-_2QcuE6-vkIDIaQ",
+  authDomain: "websites-9c326.firebaseapp.com",
+  projectId: "websites-9c326",
+  storageBucket: "websites-9c326.firebasestorage.app",
+  messagingSenderId: "616521643232",
+  appId: "1:616521643232:web:8bbe38bc74593816938c85",
+};
+
+const app  = initializeApp(FIREBASE_CONFIG);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+// ---- expose to window ----
+window._fb = { auth, db, signInWithEmailAndPassword, signOut,
+               doc, getDoc, setDoc, collection, getDocs, deleteDoc, addDoc };
+
+// ---- auth state ----
+onAuthStateChanged(auth, user => {
+  if (user) {
+    document.getElementById("login-screen").style.display = "none";
+    document.getElementById("app").style.display = "block";
+    document.getElementById("user-email").textContent = user.email;
+    window._loadDashboard();
+  } else {
+    document.getElementById("login-screen").style.display = "flex";
+    document.getElementById("app").style.display = "none";
+  }
+});
+</script>
+
+<script>
+// ---- LOGIN / LOGOUT ----
+async function doLogin() {
+  const email = document.getElementById("login-email").value.trim();
+  const pass  = document.getElementById("login-pass").value;
+  const err   = document.getElementById("login-error");
+  err.style.display = "none";
+  try {
+    await window._fb.signInWithEmailAndPassword(window._fb.auth, email, pass);
+  } catch(e) {
+    err.textContent = "Giriş başarısız: " + e.message;
+    err.style.display = "block";
+  }
+}
+
+async function doLogout() {
+  await window._fb.signOut(window._fb.auth);
+}
+
+// Enter ile giriş
+document.getElementById("login-pass").addEventListener("keydown", e => {
+  if (e.key === "Enter") doLogin();
+});
+
+// ---- TOAST ----
+function toast(msg, color = "var(--green)") {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.style.borderColor = color;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2800);
+}
+
+// ---- NAVIGATION ----
+function showSection(name) {
+  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
+  document.getElementById("section-" + name).classList.add("active");
+  const navEl = document.getElementById("nav-" + name);
+  if (navEl) navEl.classList.add("active");
+
+  if (name === "projects") loadProjectsList();
+  if (name === "posts")    loadPostsList();
+  if (name !== "dashboard") loadSection(name);
+}
+
+// ---- DASHBOARD ----
+window._loadDashboard = async function() {
+  const { db, collection, getDocs, doc, getDoc } = window._fb;
+  try {
+    const projects = await getDocs(collection(db, "projects"));
+    const posts    = await getDocs(collection(db, "posts"));
+    const pArr = projects.docs.map(d => d.data());
+    const bArr = posts.docs.map(d => d.data());
+
+    document.getElementById("stat-projects").textContent = pArr.length;
+    document.getElementById("stat-posts").textContent    = bArr.length;
+    document.getElementById("stat-featured").textContent = pArr.filter(p => p.featured).length;
+    document.getElementById("stat-drafts").textContent   = bArr.filter(p => p.draft).length;
+    document.getElementById("fb-status-text").textContent = "Bağlandı — Firestore aktif";
+    document.getElementById("fb-dot").className = "status-dot green";
+  } catch(e) {
+    document.getElementById("fb-status-text").textContent = "Bağlantı hatası: " + e.message;
+    document.getElementById("fb-dot").className = "status-dot red";
+  }
+};
+
+// ---- CONTENT SECTIONS ----
+const SECTION_DEFAULTS = {
+  hero: {
+    "title-tr": "Flutter, AI ve otomasyon araçlarıyla gerçek ürünler geliştiriyorum",
+    "title-en": "I build real products with Flutter, AI and automation tools",
+    "subtitle-tr": "Merhaba, ben Ekrem. Adli Bilişim Mühendisliği mezunuyum. Flutter ile mobil & masaüstü uygulamalar, Python ile masaüstü otomasyon araçları ve WP botları geliştiriyorum.",
+    "subtitle-en": "Hi, I'm Ekrem. Digital Forensics Engineering graduate. I build mobile & desktop apps with Flutter, desktop automation tools with Python, and WP bots.",
+    "typewriter-tr": "build: flutter_app… | automate: masaüstü_araç… | ship: wpbot + demo… | status: üretimde",
+    "typewriter-en": "build: flutter_app… | automate: desktop_tool… | ship: wpbot + demo… | status: shipping",
+    "role-tr": "Flutter & AI Geliştirici • Masaüstü Otomasyon",
+    "role-en": "Flutter & AI Developer • Desktop Automation",
+    "focus-tr": "Flutter, Masaüstü Otomasyon, WP Bot",
+    "focus-en": "Flutter, Desktop Automation, WP Bot",
+    "output-tr": "Uygulama, Bot, Otomasyon Aracı",
+    "output-en": "App, Bot, Automation Tool",
+  },
+  about: {
+    "summary-tr": "Adli Bilişim Mühendisliği mezunuyum. Flutter ile cross-platform mobil ve masaüstü uygulamalar, Python ile masaüstü otomasyon araçları ve WP/Telegram botları geliştiriyorum.",
+    "summary-en": "Digital Forensics Engineering graduate. I build cross-platform apps with Flutter, desktop automation tools with Python, and WP/Telegram bots.",
+    "focus-tr": "Flutter, Masaüstü Otomasyon, WP Bot",
+    "focus-en": "Flutter, Desktop Automation, WP Bot",
+    "timeline2-tr": "Odak: Flutter ile mobil & masaüstü uygulama geliştirme",
+    "timeline3-tr": "Uygulama: Masaüstü otomasyon araçları, WP & Telegram botları, AI entegrasyonu",
+  },
+  now: {
+    "focus1-tr": "Flutter + AI entegrasyonu: akıllı özellikleri uygulamalara eklemek.",
+    "focus1-en": "Flutter + AI integration: adding smart features to apps.",
+    "focus2-tr": "Flutter ile yeni mobil & masaüstü projeler geliştirme.",
+    "focus3-tr": "WP & Telegram botları ile iş süreçlerini otomatikleştirme.",
+    "open1-tr": "Freelance proje & danışmanlık (Flutter, otomasyon, WP bot, masaüstü araçlar).",
+    "open2-tr": "Ürün geliştirme ekipleriyle iş birliği (prototip → MVP → release).",
+    "open3-tr": "Açık kaynak katkıları (özellikle araçlar ve tooling).",
+    "goals-tr": "Odak: Flutter uzmanlığını derinleştirmek, WP bot portföyü oluşturmak ve masaüstü otomasyon araçlarını ürün kalitesine taşımak.",
+    "goals-en": "Goal: deepen Flutter expertise, build a WP bot portfolio, and bring desktop automation tools to production quality.",
+  }
+};
+
+async function loadSection(name) {
+  if (!["hero","about","now"].includes(name)) return;
+  const { db, doc, getDoc } = window._fb;
+  let data = SECTION_DEFAULTS[name];
+  try {
+    const snap = await getDoc(doc(db, "content", name));
+    if (snap.exists()) data = { ...data, ...snap.data() };
+  } catch {}
+
+  Object.entries(data).forEach(([key, val]) => {
+    const el = document.getElementById(`${name}-${key}`);
+    if (el) el.value = val || "";
+  });
+}
+
+async function saveSection(name) {
+  const { db, doc, setDoc } = window._fb;
+  const fields = Object.keys(SECTION_DEFAULTS[name]);
+  const data = {};
+  fields.forEach(key => {
+    const el = document.getElementById(`${name}-${key}`);
+    if (el) data[key] = el.value;
+  });
+  try {
+    await setDoc(doc(db, "content", name), data);
+    toast("✅ Kaydedildi!");
+  } catch(e) {
+    toast("❌ Hata: " + e.message, "var(--red)");
+  }
+}
+
+// ---- SEED (first time) ----
+async function seedProjects() {
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = "Yükleniyor...";
+  const { db, doc, setDoc } = window._fb;
+  const status = document.getElementById("seed-status");
+  try {
+    const res = await fetch("assets/data/projects.json");
+    const json = await res.json();
+    for (const p of json.projects) {
+      await setDoc(doc(db, "projects", p.id), p);
+    }
+    status.textContent = `✅ ${json.projects.length} proje aktarıldı!`;
+    status.style.display = "block";
+    toast("Projeler aktarıldı!");
+  } catch(e) {
+    status.textContent = "❌ Hata: " + e.message;
+    status.style.color = "var(--red)";
+    status.style.display = "block";
+  }
+  btn.disabled = false;
+  btn.textContent = "📦 Projeleri Aktar";
+}
+window.seedProjects = seedProjects;
+
+async function seedPosts() {
+  const btn = event.target;
+  btn.disabled = true;
+  const { db, doc, setDoc } = window._fb;
+  const status = document.getElementById("seed-status");
+  try {
+    const res = await fetch("assets/data/posts.json");
+    const json = await res.json();
+    for (const p of json.posts) {
+      await setDoc(doc(db, "posts", p.id), p);
+    }
+    status.textContent = `✅ ${json.posts.length} yazı aktarıldı!`;
+    status.style.display = "block";
+    toast("Yazılar aktarıldı!");
+  } catch(e) {
+    status.textContent = "❌ Hata: " + e.message;
+    status.style.display = "block";
+  }
+  btn.disabled = false;
+}
+window.seedPosts = seedPosts;
+
+async function seedContent() {
+  const { db, doc, setDoc } = window._fb;
+  const status = document.getElementById("seed-status");
+  try {
+    for (const [section, data] of Object.entries(SECTION_DEFAULTS)) {
+      await setDoc(doc(db, "content", section), data);
+    }
+    status.textContent = "✅ Sayfa içerikleri aktarıldı!";
+    status.style.display = "block";
+    toast("İçerikler aktarıldı!");
+  } catch(e) {
+    status.textContent = "❌ " + e.message;
+    status.style.display = "block";
+  }
+}
+window.seedContent = seedContent;
+
+// ---- PROJECTS LIST ----
+async function loadProjectsList() {
+  const { db, collection, getDocs } = window._fb;
+  const list = document.getElementById("projects-list");
+  list.innerHTML = "<div style='color:var(--muted);font-size:.85rem;'>Yükleniyor...</div>";
+  const snap = await getDocs(collection(db, "projects"));
+  if (snap.empty) {
+    list.innerHTML = "<div style='color:var(--muted);font-size:.85rem;'>Henüz proje yok. Dashboard'dan aktar.</div>";
+    return;
+  }
+  list.innerHTML = "";
+  snap.docs.forEach(d => {
+    const p = d.data();
+    const lang = "tr";
+    const name = p.name || d.id;
+    const summary = p.summary ? (p.summary[lang] || p.summary.tr || "") : "";
+    const featured = p.featured ? `<span class="badge badge-green">Öne Çıkan</span>` : "";
+    const status = p.status ? (p.status.tr || p.status.code || "") : "";
+
+    const item = document.createElement("div");
+    item.className = "list-item";
+    item.innerHTML = `
+      <div class="list-item-info">
+        <div class="list-item-title">${name} ${featured}</div>
+        <div class="list-item-sub">${status} — ${summary.substring(0,80)}${summary.length>80?"...":""}</div>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-ghost" onclick="editProject('${d.id}')">Düzenle</button>
+        <button class="btn btn-danger" onclick="deleteProject('${d.id}')">Sil</button>
+      </div>`;
+    list.appendChild(item);
+  });
+}
+
+let _editingProjectId = null;
+
+async function openProjectModal(id = null) {
+  _editingProjectId = id;
+  document.getElementById("project-modal-title").textContent = id ? "Proje Düzenle" : "Yeni Proje";
+  if (id) {
+    const { db, doc, getDoc } = window._fb;
+    const snap = await getDoc(doc(db, "projects", id));
+    if (snap.exists()) {
+      const p = snap.data();
+      document.getElementById("proj-id").value       = id;
+      document.getElementById("proj-id").disabled    = true;
+      document.getElementById("proj-name").value     = p.name || "";
+      document.getElementById("proj-summary-tr").value = p.summary?.tr || "";
+      document.getElementById("proj-summary-en").value = p.summary?.en || "";
+      document.getElementById("proj-type-tr").value  = p.type?.tr || "";
+      document.getElementById("proj-type-en").value  = p.type?.en || "";
+      document.getElementById("proj-github").value   = p.links?.github || "";
+      document.getElementById("proj-cover").value    = p.cover || "";
+      document.getElementById("proj-status").value   = p.status?.code || "completed";
+      document.getElementById("proj-tags").value     = (p.tags || []).join(", ");
+      document.getElementById("proj-featured").checked = !!p.featured;
+    }
+  } else {
+    document.getElementById("proj-id").disabled = false;
+    ["proj-id","proj-name","proj-summary-tr","proj-summary-en","proj-type-tr","proj-type-en","proj-github","proj-cover","proj-tags"].forEach(id => {
+      document.getElementById(id).value = "";
+    });
+    document.getElementById("proj-featured").checked = false;
+  }
+  document.getElementById("project-modal").classList.add("open");
+}
+window.openProjectModal = openProjectModal;
+
+async function editProject(id) { openProjectModal(id); }
+window.editProject = editProject;
+
+async function saveProject() {
+  const { db, doc, setDoc } = window._fb;
+  const id = _editingProjectId || document.getElementById("proj-id").value.trim();
+  if (!id) { toast("ID boş olamaz", "var(--red)"); return; }
+  const statusCode = document.getElementById("proj-status").value;
+  const statusMap = { completed: { code:"completed", tr:"Tamamlandı", en:"Completed" },
+                      rnd: { code:"rnd", tr:"Ar-Ge", en:"R&D" },
+                      wip: { code:"wip", tr:"Devam Ediyor", en:"In Progress" } };
+  const tags = document.getElementById("proj-tags").value.split(",").map(t=>t.trim()).filter(Boolean);
+  const data = {
+    name: document.getElementById("proj-name").value,
+    featured: document.getElementById("proj-featured").checked,
+    summary: { tr: document.getElementById("proj-summary-tr").value, en: document.getElementById("proj-summary-en").value },
+    type: { tr: document.getElementById("proj-type-tr").value, en: document.getElementById("proj-type-en").value },
+    status: statusMap[statusCode],
+    links: { github: document.getElementById("proj-github").value || null },
+    cover: document.getElementById("proj-cover").value,
+    tags,
+  };
+  try {
+    await setDoc(doc(db, "projects", id), data);
+    toast("✅ Proje kaydedildi!");
+    closeModal("project-modal");
+    loadProjectsList();
+  } catch(e) { toast("❌ " + e.message, "var(--red)"); }
+}
+window.saveProject = saveProject;
+
+async function deleteProject(id) {
+  if (!confirm(`"${id}" projesini silmek istediğine emin misin?`)) return;
+  const { db, doc, deleteDoc } = window._fb;
+  await deleteDoc(doc(db, "projects", id));
+  toast("Proje silindi.");
+  loadProjectsList();
+}
+window.deleteProject = deleteProject;
+
+// ---- POSTS LIST ----
+async function loadPostsList() {
+  const { db, collection, getDocs } = window._fb;
+  const list = document.getElementById("posts-list");
+  list.innerHTML = "<div style='color:var(--muted);font-size:.85rem;'>Yükleniyor...</div>";
+  const snap = await getDocs(collection(db, "posts"));
+  if (snap.empty) {
+    list.innerHTML = "<div style='color:var(--muted);font-size:.85rem;'>Henüz yazı yok.</div>";
+    return;
+  }
+  list.innerHTML = "";
+  snap.docs.forEach(d => {
+    const p = d.data();
+    const title = p.title?.tr || d.id;
+    const draft = p.draft ? `<span class="badge badge-yellow">Taslak</span>` : `<span class="badge badge-green">Yayın</span>`;
+    const item = document.createElement("div");
+    item.className = "list-item";
+    item.innerHTML = `
+      <div class="list-item-info">
+        <div class="list-item-title">${title} ${draft}</div>
+        <div class="list-item-sub">${p.date || ""} — ${(p.tags||[]).join(", ")}</div>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-ghost" onclick="editPost('${d.id}')">Düzenle</button>
+        <button class="btn btn-danger" onclick="deletePost('${d.id}')">Sil</button>
+      </div>`;
+    list.appendChild(item);
+  });
+}
+
+let _editingPostId = null;
+
+async function openPostModal(id = null) {
+  _editingPostId = id;
+  document.getElementById("post-modal-title").textContent = id ? "Yazı Düzenle" : "Yeni Yazı";
+  if (id) {
+    const { db, doc, getDoc } = window._fb;
+    const snap = await getDoc(doc(db, "posts", id));
+    if (snap.exists()) {
+      const p = snap.data();
+      document.getElementById("post-id").value = id;
+      document.getElementById("post-id").disabled = true;
+      document.getElementById("post-date").value = p.date || "";
+      document.getElementById("post-title-tr").value = p.title?.tr || "";
+      document.getElementById("post-title-en").value = p.title?.en || "";
+      document.getElementById("post-summary-tr").value = p.summary?.tr || "";
+      document.getElementById("post-summary-en").value = p.summary?.en || "";
+      document.getElementById("post-reading-tr").value = p.readingTime?.tr || "";
+      document.getElementById("post-tags").value = (p.tags||[]).join(", ");
+      document.getElementById("post-path").value = p.path || "";
+      document.getElementById("post-draft").checked = !!p.draft;
+    }
+  } else {
+    document.getElementById("post-id").disabled = false;
+    ["post-id","post-date","post-title-tr","post-title-en","post-summary-tr","post-summary-en","post-reading-tr","post-tags","post-path"].forEach(id => {
+      document.getElementById(id).value = "";
+    });
+    document.getElementById("post-draft").checked = true;
+  }
+  document.getElementById("post-modal").classList.add("open");
+}
+window.openPostModal = openPostModal;
+
+async function editPost(id) { openPostModal(id); }
+window.editPost = editPost;
+
+async function savePost() {
+  const { db, doc, setDoc } = window._fb;
+  const id = _editingPostId || document.getElementById("post-id").value.trim();
+  if (!id) { toast("ID boş olamaz", "var(--red)"); return; }
+  const tags = document.getElementById("post-tags").value.split(",").map(t=>t.trim()).filter(Boolean);
+  const rt = document.getElementById("post-reading-tr").value;
+  const data = {
+    title: { tr: document.getElementById("post-title-tr").value, en: document.getElementById("post-title-en").value },
+    summary: { tr: document.getElementById("post-summary-tr").value, en: document.getElementById("post-summary-en").value },
+    date: document.getElementById("post-date").value,
+    readingTime: { tr: rt, en: rt.replace("dk","min") },
+    tags, path: document.getElementById("post-path").value,
+    draft: document.getElementById("post-draft").checked,
+  };
+  try {
+    await setDoc(doc(db, "posts", id), data);
+    toast("✅ Yazı kaydedildi!");
+    closeModal("post-modal");
+    loadPostsList();
+  } catch(e) { toast("❌ " + e.message, "var(--red)"); }
+}
+window.savePost = savePost;
+
+async function deletePost(id) {
+  if (!confirm(`"${id}" yazısını silmek istediğine emin misin?`)) return;
+  const { db, doc, deleteDoc } = window._fb;
+  await deleteDoc(doc(db, "posts", id));
+  toast("Yazı silindi.");
+  loadPostsList();
+}
+window.deletePost = deletePost;
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove("open");
+}
+window.closeModal = closeModal;
+
+// Close modal on backdrop click
+document.querySelectorAll(".modal-backdrop").forEach(el => {
+  el.addEventListener("click", e => {
+    if (e.target === el) el.classList.remove("open");
+  });
+});
+
+window.showSection = showSection;
+window.loadSection = loadSection;
+window.saveSection = saveSection;
+window.doLogin = doLogin;
+window.doLogout = doLogout;
+</script>
+</body>
+</html>
