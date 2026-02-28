@@ -1218,73 +1218,42 @@ function initCopyLink() {
 // FX + ANIME (visual identity toggles)
 // ---------------------------------------------------------------------------
 
-let __fxState = { fx: false, anime: false };
+let __fxState = { fx: false };
 
 function applyFxState() {
   document.body.classList.toggle('fx-on', __fxState.fx);
-  document.body.classList.toggle('anime-on', __fxState.anime);
-
   localStorage.setItem(STORAGE.fx, __fxState.fx ? '1' : '0');
-  localStorage.setItem(STORAGE.anime, __fxState.anime ? '1' : '0');
 
   const fxBtn = $('#fx-btn');
   if (fxBtn) fxBtn.classList.toggle('active', __fxState.fx);
 
-  const animeBtn = $('#anime-btn');
-  if (animeBtn) animeBtn.classList.toggle('active', __fxState.anime);
-
   if (window.EBFX && typeof window.EBFX.set === 'function') {
-    window.EBFX.set({ enabled: __fxState.fx, anime: __fxState.anime });
+    window.EBFX.set({ enabled: __fxState.fx });
   }
 }
 
 function setFx(on) {
   __fxState.fx = !!on;
-  if (!__fxState.fx) __fxState.anime = false;
-  applyFxState();
-
-  initImpactFx({ prefersReduced, saveData, isMobile });
-}
-
-function setAnime(on) {
-  __fxState.anime = !!on;
-  if (__fxState.anime) __fxState.fx = true;
   applyFxState();
 }
 
 function initEffects() {
   const storedFx = localStorage.getItem(STORAGE.fx);
-  const storedAnime = localStorage.getItem(STORAGE.anime);
-
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const saveData = navigator.connection && navigator.connection.saveData;
-
-  // Defaults: FX on for desktop unless user prefers reduced motion / Save-Data.
   const isMobile = window.matchMedia && window.matchMedia('(max-width: 820px)').matches;
-  const defaultFx = !(prefersReduced || saveData || isMobile);
+  
+  // Varsayılan olarak FX kapalı başlasın (performans için)
+  const defaultFx = false; 
 
   __fxState.fx = storedFx != null ? storedFx === '1' : defaultFx;
-  __fxState.anime = storedAnime != null ? storedAnime === '1' : false;
-  if (__fxState.anime) __fxState.fx = true;
 
   const fxBtn = $('#fx-btn');
   if (fxBtn) fxBtn.addEventListener('click', () => setFx(!__fxState.fx));
 
-  const animeBtn = $('#anime-btn');
-  if (animeBtn) animeBtn.addEventListener('click', () => setAnime(!__fxState.anime));
-
-  // Auto-disable if user turns on reduced motion after load
-  const m = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (m && m.addEventListener) {
-    m.addEventListener('change', () => {
-      if (m.matches) setFx(false);
-    });
-  }
-
+  if (prefersReduced) setFx(false);
+  
   applyFxState();
 }
-
-
 
 // -------------------------- Anime Impact FX (desktop) -----------------------
 let __impactListenerAttached = false;
