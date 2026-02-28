@@ -2037,3 +2037,18 @@ body.no-scroll {
   border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
   background: color-mix(in srgb, var(--surface) 60%, transparent);
 }
+
+/* Scroll başlarken efektleri öldür (Tüy gibi performans) */
+body.is-scrolling .fx-layer,
+body.is-scrolling .speed-lines {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Kartların scroll sırasında hesaplama yapmasını engelle */
+body.is-scrolling .card,
+body.is-scrolling .panel {
+  pointer-events: none;
+  will-change: auto;
+}
