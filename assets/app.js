@@ -1053,7 +1053,8 @@ async function initSkillsWidget() {
     return skill.tags.some((t) => tags.includes(t));
   }
 
-  function renderResult(skill) {
+  // 1. DEĞİŞİKLİK: doScroll parametresi eklendi
+  function renderResult(skill, doScroll = true) {
     const matched = projects.filter((p) => matchesSkill(p, skill));
 
     result.innerHTML = '';
@@ -1099,7 +1100,10 @@ async function initSkillsWidget() {
     result.appendChild(list);
     result.appendChild(actions);
 
-    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // SADECE tıklanma durumunda kaydırır, sayfa ilk yüklendiğinde kaydırmaz
+    if (doScroll) {
+      result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }
 
   // Render skill buttons
@@ -1113,7 +1117,7 @@ async function initSkillsWidget() {
     b.addEventListener('click', () => {
       $$('.skill-card', grid).forEach((x) => x.classList.remove('active'));
       b.classList.add('active');
-      renderResult(s);
+      renderResult(s, true); // 2. DEĞİŞİKLİK: Kullanıcı tıklarsa kaydır (true)
     });
 
     grid.appendChild(b);
@@ -1122,7 +1126,7 @@ async function initSkillsWidget() {
       // Default select first
       requestAnimationFrame(() => {
         b.classList.add('active');
-        renderResult(s);
+        renderResult(s, false); // 3. DEĞİŞİKLİK: Sayfa ilk açıldığında ASLA kaydırma (false)
       });
     }
   });
@@ -1140,14 +1144,13 @@ async function initSkillsWidget() {
       b.addEventListener('click', () => {
         $$('.skill-card', grid).forEach((x) => x.classList.remove('active'));
         b.classList.add('active');
-        renderResult(s);
+        renderResult(s, true); // Tıklayınca kaydır
       });
       grid.appendChild(b);
     });
-    renderResult(skills[Math.max(0, idx)]);
+    renderResult(skills[Math.max(0, idx)], false); // Dil değiştiğinde kaydırma (false)
   });
 }
-
 // ------------------------------- Auto TOC ----------------------------------
 
 function initTOC() {
