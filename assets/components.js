@@ -77,3 +77,13 @@ if (navContainer) navContainer.outerHTML = siteNav;
 
 const footerContainer = document.getElementById('site-footer-placeholder');
 if (footerContainer) footerContainer.outerHTML = siteFooter;
+
+// Görünmez Analitik (Umami) Kurulumu
+(function() {
+  const el = document.createElement('script');
+  el.async = true;
+  el.defer = true;
+  el.src = "https://cloud.umami.is/script.js";
+  el.setAttribute('data-website-id', '33115090-6911-46fb-9f25-9f7c41ecee41');
+  document.head.appendChild(el);
+})();

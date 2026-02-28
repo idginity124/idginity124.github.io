@@ -305,9 +305,29 @@
 
     <div class="main">
 
+       <button class="nav-item" onclick="showSection('contact')" id="nav-contact">💬 İletişim & Linkler</button>
+
+      <div class="sidebar-label" style="margin-top:auto;">Site</div>
+      <a class="nav-item" href="index.html" target="_blank">🌐 Siteyi Gör</a>
+    </nav>
+
+    <div class="main">
+
       <div class="section active" id="section-dashboard">
         <div class="section-title">Dashboard</div>
         <div class="section-desc">Firestore bağlantı durumu ve içerik özeti.</div>
+
+        <div class="card" style="border-left: 4px solid var(--primary);">
+          <div class="card-title">📈 Ziyaretçi Analizi & Etkileşim</div>
+          <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">
+            Sitenin trafik durumunu ve freelance platformu buton tıklamalarını buradan izleyebilirsin.
+          </p>
+          <div style="display:flex;gap:10px;">
+            <a href="https://cloud.umami.is/share/HjfQtNJESuGMUMdg/idginity124.github.io" target="_blank" class="btn btn-primary">
+              📊 Umami Canlı Paneli Aç
+            </a>
+          </div>
+        </div>
 
         <div class="stats-grid">
           <div class="stat-card">
@@ -349,7 +369,7 @@
           </div>
           <p id="seed-status" style="margin-top:12px;font-size:.82rem;color:var(--green);display:none;"></p>
         </div>
-      </div>
+        </div>
 
       <div class="section" id="section-hero">
         <div class="section-title">Ana Sayfa Hero</div>
