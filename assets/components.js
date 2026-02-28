@@ -1,6 +1,5 @@
 // assets/components.js
 
-// Bulunduğumuz klasör derinliğine göre '../' hesapla
 const BASE_URL = (() => {
   const path = (location.pathname || "/").split("?")[0];
   const parts = path.split("/").filter(Boolean);
@@ -10,7 +9,7 @@ const BASE_URL = (() => {
   return depth <= 0 ? "" : "../".repeat(depth);
 })();
 
-// ORTAK ÜST MENÜ (NAV)
+// ORTAK ÜST MENÜ (FX Butonu Silindi)
 const siteNav = `
   <nav class="nav">
     <div class="container nav-inner">
@@ -28,7 +27,6 @@ const siteNav = `
       <div class="nav-controls">
         <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
         <button id="lang-btn" class="pill" type="button" aria-label="Toggle language">EN</button>
-        <button id="fx-btn" class="icon-btn" type="button" data-tr-aria="Efektleri aç/kapat" data-en-aria="Toggle effects" aria-label="Toggle effects" title="FX"><i class="fa-solid fa-code"></i></button>
         <a class="icon-btn" href="https://github.com/idginity124" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
         <button id="menu-btn" class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
       </div>
@@ -74,7 +72,6 @@ const siteFooter = `
   </footer>
 `;
 
-// HTML içine yerleştirme işlemleri
 const navContainer = document.getElementById('site-nav-placeholder');
 if (navContainer) navContainer.outerHTML = siteNav;
 

@@ -12,9 +12,7 @@
 const CONTACT_EMAIL = "ekrembulgan2@gmail.com";
 const STORAGE = {
   lang: "eb_lang",
-  theme: "eb_theme",
-  fx: "eb_fx",
-  anime: "eb_anime",
+  theme: "eb_theme"
 };
 
 // ---------------------------------------------------------------------------
@@ -54,7 +52,6 @@ function showToast(message) {
   if (showToast._t) window.clearTimeout(showToast._t);
   showToast._t = window.setTimeout(() => toast.classList.remove("is-visible"), 2400);
 }
-
 
 function runtimeSeoFixes() {
   try {
@@ -209,7 +206,6 @@ function formatDate(iso) {
 // ---------------------------------------------------------------------------
 
 function initServiceWorker() {
-  // GitHub Pages + local dev friendly
   if (!('serviceWorker' in navigator)) return;
 
   const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
@@ -218,7 +214,6 @@ function initServiceWorker() {
   if (!(isLocalhost || isHttps)) return;
 
   navigator.serviceWorker.register(BASE + 'sw.js').then((reg) => {
-    // Auto-update: activate new SW as soon as it's ready, then reload once.
     const promptUpdate = () => {
       if (reg && reg.waiting) {
         try { reg.waiting.postMessage({ type: 'SKIP_WAITING' }); } catch { /* ignore */ }
@@ -236,11 +231,9 @@ function initServiceWorker() {
       });
     });
 
-    // If an update is already waiting (rare but possible)
     promptUpdate();
 
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-      // Prevent reload loops
       if (initServiceWorker._reloaded) return;
       initServiceWorker._reloaded = true;
       location.reload();
@@ -305,11 +298,6 @@ function setTheme(theme) {
   const icon = $("#theme-btn i");
   if (icon) {
     icon.className = t === "dark" ? "fa-solid fa-moon" : "fa-solid fa-sun";
-  }
-
-  // Refresh FX palette when theme changes
-  if (window.EBFX && typeof window.EBFX.set === 'function') {
-    window.EBFX.set({ enabled: document.body.classList.contains('fx-on'), anime: document.body.classList.contains('anime-on') });
   }
 }
 
@@ -443,36 +431,20 @@ function initBackToTop() {
 }
 
 // Smooth-scroll performance guard
-// - Adds body.is-scrolling during scroll, letting CSS disable expensive effects
-// - Pauses canvas FX while scrolling (major jank reduction)
 function initScrollPerfGuard() {
   let t = 0;
   let active = false;
-
-  const pauseFx = () => {
-    if (!window.EBFX) return;
-    if (!document.body.classList.contains('fx-on') && !document.body.classList.contains('anime-on')) return;
-    try { window.EBFX.stop(false); } catch { /* ignore */ }
-  };
-
-  const resumeFx = () => {
-    if (!window.EBFX) return;
-    if (!document.body.classList.contains('fx-on') && !document.body.classList.contains('anime-on')) return;
-    try { window.EBFX.start(); } catch { /* ignore */ }
-  };
 
   const onScroll = () => {
     if (!active) {
       active = true;
       document.body.classList.add('is-scrolling');
-      pauseFx();
     }
 
     if (t) window.clearTimeout(t);
     t = window.setTimeout(() => {
       active = false;
       document.body.classList.remove('is-scrolling');
-      resumeFx();
     }, 140);
   };
 
@@ -488,7 +460,6 @@ function initLightbox() {
   const imgs = Array.from(document.querySelectorAll('main img, .prose img, .screens img, .gallery img'))
     .filter(img => {
       const src = (img.getAttribute('src') || '').toLowerCase();
-      // ignore tiny icons / logos in nav/footer
       const w = parseInt(img.getAttribute('width') || '0', 10);
       const h = parseInt(img.getAttribute('height') || '0', 10);
       if (w && h && (w <= 140 || h <= 140)) return false;
@@ -764,7 +735,6 @@ function projectCard(p) {
     actions.appendChild(gh);
   }
 
-  // Cover (optional)
   if (p.cover) {
     const cover = document.createElement('div');
     cover.className = 'project-cover';
@@ -776,7 +746,7 @@ function projectCard(p) {
     img.src = BASE + p.cover;
 
     cover.appendChild(img);
-    cover.appendChild(icon); // icon overlays the cover
+    cover.appendChild(icon); 
     card.appendChild(cover);
   } else {
     card.appendChild(icon);
@@ -811,7 +781,6 @@ function renderProjects() {
     empty.classList.toggle('is-visible', projects.length === 0);
   }
 
-  // Re-init reveals for newly rendered cards
   initReveal();
 }
 
@@ -850,7 +819,6 @@ async function initProjectsPage() {
 
   __projectsState.data = data;
 
-  // Init from query params
   const qp = new URLSearchParams(location.search || '');
   const status = qp.get('status');
   const category = qp.get('category');
@@ -862,7 +830,6 @@ async function initProjectsPage() {
   if (tag) __projectsState.tag = tag;
   if (q) __projectsState.search = q;
 
-  // Search
   const search = $("#project-search");
   if (search) {
     search.addEventListener('input', (e) => {
@@ -871,7 +838,6 @@ async function initProjectsPage() {
     });
   }
 
-  // Chips
   $$('.chip[data-filter]').forEach((b) => {
     b.addEventListener('click', () => {
       const type = b.dataset.filter;
@@ -885,7 +851,6 @@ async function initProjectsPage() {
     });
   });
 
-  // Clear tag
   const clearTag = $("#clear-tag");
   if (clearTag) {
     clearTag.addEventListener('click', () => {
@@ -895,7 +860,6 @@ async function initProjectsPage() {
     });
   }
 
-  // Sort
   const sort = $("#project-sort");
   if (sort) {
     sort.addEventListener('change', (e) => {
@@ -904,7 +868,6 @@ async function initProjectsPage() {
     });
   }
 
-  // Tag-click from rendered cards (event delegation)
   const grid = $("#projects-grid");
   if (grid) {
     grid.addEventListener('click', (e) => {
@@ -917,7 +880,6 @@ async function initProjectsPage() {
     });
   }
 
-  // Dynamic rerender for language changes
   __dynamicRerenders.push(() => {
     syncProjectsUI();
     renderProjects();
@@ -981,7 +943,6 @@ function renderPostsInto(containerSel, limit = null) {
   const grid = $(containerSel);
   if (!grid || !__postsData) return;
 
-  // Default: hide drafts from public lists
   const posts = (__postsData.posts || []).filter((p) => !p.draft).slice();
   posts.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
 
@@ -990,7 +951,6 @@ function renderPostsInto(containerSel, limit = null) {
   grid.innerHTML = '';
   out.forEach((p) => grid.appendChild(postCard(p)));
 
-  // Blog list extras (count + empty state)
   if (containerSel === '#posts-grid') {
     const countEl = $('#posts-count');
     if (countEl) countEl.textContent = String(posts.length);
@@ -1003,7 +963,6 @@ function renderPostsInto(containerSel, limit = null) {
 }
 
 async function initBlogPages() {
-  // blog index
   const blogApp = $("#blog-app");
   const latest = $("#latest-writing");
 
@@ -1053,7 +1012,6 @@ async function initSkillsWidget() {
     return skill.tags.some((t) => tags.includes(t));
   }
 
-  // 1. DEĞİŞİKLİK: doScroll parametresi eklendi
   function renderResult(skill, doScroll = true) {
     const matched = projects.filter((p) => matchesSkill(p, skill));
 
@@ -1100,13 +1058,11 @@ async function initSkillsWidget() {
     result.appendChild(list);
     result.appendChild(actions);
 
-    // SADECE tıklanma durumunda kaydırır, sayfa ilk yüklendiğinde kaydırmaz
     if (doScroll) {
       result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }
 
-  // Render skill buttons
   grid.innerHTML = '';
   skills.forEach((s, idx) => {
     const b = document.createElement('button');
@@ -1117,22 +1073,20 @@ async function initSkillsWidget() {
     b.addEventListener('click', () => {
       $$('.skill-card', grid).forEach((x) => x.classList.remove('active'));
       b.classList.add('active');
-      renderResult(s, true); // 2. DEĞİŞİKLİK: Kullanıcı tıklarsa kaydır (true)
+      renderResult(s, true);
     });
 
     grid.appendChild(b);
 
     if (idx === 0) {
-      // Default select first
       requestAnimationFrame(() => {
         b.classList.add('active');
-        renderResult(s, false); // 3. DEĞİŞİKLİK: Sayfa ilk açıldığında ASLA kaydırma (false)
+        renderResult(s, false);
       });
     }
   });
 
   __dynamicRerenders.push(() => {
-    // Repaint labels inside current selection
     const active = $('.skill-card.active', grid);
     const idx = active ? $$('.skill-card', grid).indexOf(active) : 0;
     grid.innerHTML = '';
@@ -1144,11 +1098,11 @@ async function initSkillsWidget() {
       b.addEventListener('click', () => {
         $$('.skill-card', grid).forEach((x) => x.classList.remove('active'));
         b.classList.add('active');
-        renderResult(s, true); // Tıklayınca kaydır
+        renderResult(s, true); 
       });
       grid.appendChild(b);
     });
-    renderResult(skills[Math.max(0, idx)], false); // Dil değiştiğinde kaydırma (false)
+    renderResult(skills[Math.max(0, idx)], false); 
   });
 }
 // ------------------------------- Auto TOC ----------------------------------
@@ -1213,85 +1167,6 @@ function initCopyLink() {
   });
 }
 
-
-// ---------------------------------------------------------------------------
-// FX + ANIME (visual identity toggles)
-// ---------------------------------------------------------------------------
-
-let __fxState = { fx: false };
-
-function applyFxState() {
-  document.body.classList.toggle('fx-on', __fxState.fx);
-  localStorage.setItem(STORAGE.fx, __fxState.fx ? '1' : '0');
-
-  const fxBtn = $('#fx-btn');
-  if (fxBtn) fxBtn.classList.toggle('active', __fxState.fx);
-
-  if (window.EBFX && typeof window.EBFX.set === 'function') {
-    window.EBFX.set({ enabled: __fxState.fx });
-  }
-}
-
-function setFx(on) {
-  __fxState.fx = !!on;
-  applyFxState();
-}
-
-function initEffects() {
-  const storedFx = localStorage.getItem(STORAGE.fx);
-  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isMobile = window.matchMedia && window.matchMedia('(max-width: 820px)').matches;
-  
-  // Varsayılan olarak FX kapalı başlasın (performans için)
-  const defaultFx = false; 
-
-  __fxState.fx = storedFx != null ? storedFx === '1' : defaultFx;
-
-  const fxBtn = $('#fx-btn');
-  if (fxBtn) fxBtn.addEventListener('click', () => setFx(!__fxState.fx));
-
-  if (prefersReduced) setFx(false);
-  
-  applyFxState();
-}
-
-// -------------------------- Anime Impact FX (desktop) -----------------------
-let __impactListenerAttached = false;
-
-function spawnImpactRing(x, y){
-  const el = document.createElement('div');
-  el.className = 'impact-ring';
-  el.style.left = `${x}px`;
-  el.style.top = `${y}px`;
-  // Slight tint using current CSS variable (primary/accent)
-  const primary = getComputedStyle(document.body).getPropertyValue('--primary').trim();
-  if (primary) el.style.borderColor = primary;
-  document.body.appendChild(el);
-  window.setTimeout(() => { try { el.remove(); } catch {} }, 700);
-}
-
-function initImpactFx({prefersReduced, saveData, isMobile}){
-  if (__impactListenerAttached) return;
-  __impactListenerAttached = true;
-
-  const canRun = () => {
-    if (prefersReduced || saveData || isMobile) return false;
-    if (!document.body.classList.contains('anime-on')) return false;
-    if (document.body.classList.contains('is-scrolling')) return false;
-    return true;
-  };
-
-  document.addEventListener('pointerdown', (e) => {
-    // only primary click/tap
-    if (e.button != null && e.button !== 0) return;
-    // avoid while selecting text / interacting with inputs
-    const t = e.target;
-    if (t && (t.closest && (t.closest('input, textarea, select, button, a, [role="button"]')))) return;
-    if (!canRun()) return;
-    spawnImpactRing(e.clientX, e.clientY);
-  }, { passive: true });
-}
-
 // ---------------------------------------------------------------------------
 // HERO TYPEWRITER (subtle, optional)
 // ---------------------------------------------------------------------------
@@ -1309,7 +1184,6 @@ function initTypewriter() {
   const el = $('#typewriter');
   if (!el) return;
 
-  // Re-run typewriter on language change (rerenderDynamic)
   if (!el.dataset.twBound) {
     el.dataset.twBound = '1';
     __dynamicRerenders.push(() => initTypewriter());
@@ -1328,7 +1202,6 @@ function initTypewriter() {
 
   stopTypewriter();
 
-  // Reduced motion: show first line only
   if (prefersReduced) {
     el.textContent = lines[0] || '';
     return;
@@ -1361,7 +1234,6 @@ function initTypewriter() {
       return;
     }
 
-    // deleting
     charIdx--;
     el.textContent = current.slice(0, Math.max(0, charIdx));
 
@@ -1396,8 +1268,6 @@ async function init() {
   setTheme(storedTheme || (prefersLight ? "light" : "dark"));
   initTheme();
 
-  // FX / Anime
-  initEffects();
   initTypewriter();
 
   // SEO / Share
