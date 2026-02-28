@@ -135,7 +135,7 @@
     const isMobile = (w <= 820);
     colW = isMobile ? 18 : 16;
 
-    const count = Math.floor(w / colW);
+    const count = Math.floor(w / colW / 2);
     columns = new Array(count).fill(0).map((_, i) => {
       const speed = (isMobile ? 0.55 : 0.85) + Math.random() * (isMobile ? 0.65 : 1.05);
       return {
@@ -353,7 +353,7 @@
     // 30-45fps cap (skip frames)
     if (!lastT) lastT = ts;
     const delta = ts - lastT;
-    if (delta < 22) {
+    if (delta < 40) {
       raf = requestAnimationFrame(step);
       return;
     }
@@ -380,6 +380,23 @@
 
     raf = requestAnimationFrame(step);
   }
+
+  // Pause on scroll for performance
+  let scrollTimer = null;
+  let pausedByScroll = false;
+  window.addEventListener('scroll', () => {
+    if (running) {
+      stop();
+      pausedByScroll = true;
+    }
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      if (pausedByScroll && (state.enabled || state.anime)) {
+        pausedByScroll = false;
+        start();
+      }
+    }, 150);
+  }, { passive: true });
 
   function start() {
     if (running) return;
