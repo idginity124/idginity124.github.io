@@ -167,6 +167,14 @@ const BASE = (() => {
 
 const __jsonCache = new Map();
 async function fetchJSON(relPath) {
+  // Firebase Firestore'dan önce yüklenmiş veri varsa kullan
+  if (relPath.includes('projects.json') && window.__fbProjects) {
+    return { projects: window.__fbProjects };
+  }
+  if (relPath.includes('posts.json') && window.__fbPosts) {
+    return { posts: window.__fbPosts };
+  }
+
   const url = BASE + relPath;
   if (__jsonCache.has(url)) return __jsonCache.get(url);
 
