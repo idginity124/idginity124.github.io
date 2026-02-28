@@ -965,10 +965,29 @@ window.saveProject = saveProject;
 
 async function deleteProject(id) {
   if (!confirm(`"${id}" projesini silmek istediğine emin misin?`)) return;
+  
   const { db, doc, deleteDoc } = window._fb;
-  await deleteDoc(doc(db, "projects", id));
-  toast("Proje silindi.");
-  loadProjectsList();
+  
+  try {
+    // 1. Firebase'den sil
+    await deleteDoc(doc(db, "projects", id));
+    
+    // 2. Kullanıcıya yapılacaklar listesini göster
+    const temizlikMesaji = `
+      ✅ "${id}" Firebase'den silindi!
+      
+      ⚠️ TAM TEMİZLİK İÇİN ŞUNLARI YAPMALISIN:
+      1. Dosya Sil: projects/${id}.html
+      2. Görsel Sil: assets/img/covers/${id}.png (ve .svg)
+      3. JSON Güncelle: assets/data/projects.json dosyasından bu ID'yi çıkar.
+    `;
+    
+    alert(temizlikMesaji);
+    loadProjectsList();
+    
+  } catch(e) {
+    toast("Hata: " + e.message, "var(--red)");
+  }
 }
 window.deleteProject = deleteProject;
 
@@ -1064,9 +1083,23 @@ window.savePost = savePost;
 async function deletePost(id) {
   if (!confirm(`"${id}" yazısını silmek istediğine emin misin?`)) return;
   const { db, doc, deleteDoc } = window._fb;
-  await deleteDoc(doc(db, "posts", id));
-  toast("Yazı silindi.");
-  loadPostsList();
+  
+  try {
+    await deleteDoc(doc(db, "posts", id));
+    
+    // Temizlik Rehberi
+    const msg = `
+✅ "${id}" yazısı Firestore'dan silindi.
+
+⚠️ YEREL DOSYA TEMİZLİĞİ İÇİN:
+1. SİL: blog/${id}.html
+2. GÜNCELLE: assets/data/posts.json (bu ID'ye sahip objeyi kaldır)
+
+Not: Statik sayfalarındaki (index.html vb.) linkleri manuel kontrol etmeyi unutma.`;
+    
+    alert(msg);
+    loadPostsList();
+  } catch(e) { toast("Hata: " + e.message, "var(--red)"); }
 }
 window.deletePost = deletePost;
 

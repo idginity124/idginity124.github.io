@@ -122,85 +122,6 @@
       }
     },
     {
-      "id": "quiz-app",
-      "name": "Quiz App",
-      "featured": false,
-      "icon": "fa-solid fa-circle-question",
-      "status": {
-        "code": "completed",
-        "tr": "Tamamlandı",
-        "en": "Completed"
-      },
-      "type": {
-        "tr": "Uygulama",
-        "en": "App"
-      },
-      "platform": {
-        "tr": "—",
-        "en": "—"
-      },
-      "category": [
-        "App",
-        "Education"
-      ],
-      "tags": [
-        "Education",
-        "UX",
-        "App"
-      ],
-      "cover": "assets/img/covers/quiz-app.svg",
-      "detail": "projects/quiz-app.html",
-      "links": {
-        "github": "https://github.com/idginity124/quiz-app",
-        "releases": null,
-        "demo": null
-      },
-      "summary": {
-        "tr": "Dinamik soru havuzu ile test/değerlendirme akışı: kullanıcı deneyimi ve içerik yönetimi odaklı.",
-        "en": "Assessment app concept with dynamic question pools and a clean UX for creating and taking quizzes."
-      }
-    },
-    {
-      "id": "aviansense-ai",
-      "name": "AvianSense AI",
-      "featured": true,
-      "icon": "fa-solid fa-feather-pointed",
-      "status": {
-        "code": "rnd",
-        "tr": "Ar-Ge",
-        "en": "R&D"
-      },
-      "type": {
-        "tr": "Bilgisayarlı görü sistemi",
-        "en": "Computer vision system"
-      },
-      "platform": {
-        "tr": "Gerçek zaman hedef",
-        "en": "Real-time target"
-      },
-      "category": [
-        "AI",
-        "Computer Vision"
-      ],
-      "tags": [
-        "AI",
-        "Computer Vision",
-        "Real-time",
-        "Safety"
-      ],
-      "cover": "assets/img/covers/aviansense-ai.svg",
-      "detail": "projects/aviansense-ai.html",
-      "links": {
-        "github": null,
-        "releases": null,
-        "demo": null
-      },
-      "summary": {
-        "tr": "Havalimanlarında kuş sürülerini gerçek zamanlı tespit etmeyi hedefleyen Ar-Ge projesi (algılama → takip → risk skorlaması).",
-        "en": "R&D project targeting real-time bird/flock detection for aviation safety (detect → track → risk score)."
-      }
-    },
-    {
       "id": "deskmind-ai",
       "name": "DeskMind AI",
       "featured": false,
@@ -279,45 +200,6 @@
       "summary": {
         "tr": "Yerel şifreleme, arama/kategori, QR ile içe aktarma ve yedekleme akışı olan offline parola kasası (Windows + Android).",
         "en": "Offline password vault with local encryption, search/categories, QR import and backup flows (Windows + Android)."
-      }
-    },
-    {
-      "id": "sysgaze",
-      "name": "SysGaze",
-      "featured": false,
-      "icon": "fa-solid fa-gauge-high",
-      "status": {
-        "code": "rnd",
-        "tr": "Konsept",
-        "en": "Concept"
-      },
-      "type": {
-        "tr": "Sistem monitörü",
-        "en": "System monitor"
-      },
-      "platform": {
-        "tr": "Gerçek zaman",
-        "en": "Real-time"
-      },
-      "category": [
-        "System",
-        "Tools"
-      ],
-      "tags": [
-        "System",
-        "Monitoring",
-        "Performance"
-      ],
-      "cover": "assets/img/covers/sysgaze.svg",
-      "detail": "projects/sysgaze.html",
-      "links": {
-        "github": null,
-        "releases": null,
-        "demo": null
-      },
-      "summary": {
-        "tr": "Kaynak kullanımı ve performans metriklerini anlık izleyen profesyonel sistem monitörü konsepti.",
-        "en": "Concept for a professional system monitor that tracks resource usage and performance metrics in real time."
       }
     }
   ]
