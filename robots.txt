@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: /sitemap.xml
+# Sitemap lokasyonunu Google'a bildir
+Sitemap: https://idginity124.github.io/sitemap.xml
