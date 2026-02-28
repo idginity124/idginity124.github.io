@@ -30,7 +30,7 @@
         "Desktop",
         "UX"
       ],
-      "cover": "assets/img/main_menu.png",
+      "cover": "assets/img/covers/vidextract.png",
       "detail": "projects/vidextract.html",
       "links": {
         "github": "https://github.com/idginity124/VidExtract",
@@ -70,7 +70,7 @@
         "Product",
         "Education"
       ],
-      "cover": "assets/img/covers/lingopark.svg",
+      "cover": "assets/img/covers/lingopark.png",
       "detail": "projects/lingopark.html",
       "links": {
         "github": "https://github.com/idginity124/LingoPark",
@@ -109,7 +109,7 @@
         "Automation",
         "Workflow"
       ],
-      "cover": "assets/img/covers/mediamanagerpro.svg",
+      "cover": "assets/img/covers/mediamanagerpro.png",
       "detail": "projects/mediamanagerpro.html",
       "links": {
         "github": "https://github.com/idginity124/MediaManagerPro",
@@ -228,7 +228,7 @@
         "Desktop",
         "Productivity"
       ],
-      "cover": "assets/img/covers/deskmind-ai.svg",
+      "cover": "assets/img/covers/deskmind-ai.png",
       "detail": "projects/deskmind-ai.html",
       "links": {
         "github": "https://github.com/idginity124/DeskMindAI",
@@ -269,7 +269,7 @@
         "Offline-first",
         "Security"
       ],
-      "cover": "assets/img/covers/ciphervault.svg",
+      "cover": "assets/img/covers/ciphervault.png",
       "detail": "projects/ciphervault.html",
       "links": {
         "github": "https://github.com/idginity124/CipherVault",
