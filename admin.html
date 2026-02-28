@@ -264,7 +264,6 @@
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
     <h1>🔐 Admin Panel</h1>
@@ -276,7 +275,6 @@
   </div>
 </div>
 
-<!-- MAIN APP -->
 <div id="app">
   <div class="topbar">
     <div class="topbar-brand">EB<span>.</span> Admin</div>
@@ -287,28 +285,26 @@
   </div>
 
   <div class="layout">
-    <!-- SIDEBAR -->
     <nav class="sidebar">
-  <div class="sidebar-label">Genel</div>
-  <button class="nav-item active" onclick="showSection('dashboard')" id="nav-dashboard">
-    📊 Dashboard
-  </button>
+      <div class="sidebar-label">Genel</div>
+      <button class="nav-item active" onclick="showSection('dashboard')" id="nav-dashboard">
+        📊 Dashboard
+      </button>
 
-  <div class="sidebar-label">İçerikler</div>
-  <button class="nav-item" onclick="showSection('hero')" id="nav-hero">🏠 Ana Sayfa Hero</button>
-  <button class="nav-item" onclick="showSection('about')" id="nav-about">👤 Hakkımda</button>
-  <button class="nav-item" onclick="showSection('now')" id="nav-now">⚡ Şimdi</button>
-  <button class="nav-item" onclick="showSection('projects')" id="nav-projects">📦 Projeler</button>
-  <button class="nav-item" onclick="showSection('posts')" id="nav-posts">✍️ Yazılar</button>
+      <div class="sidebar-label">İçerikler</div>
+      <button class="nav-item" onclick="showSection('hero')" id="nav-hero">🏠 Ana Sayfa Hero</button>
+      <button class="nav-item" onclick="showSection('about')" id="nav-about">👤 Hakkımda</button>
+      <button class="nav-item" onclick="showSection('now')" id="nav-now">⚡ Şimdi</button>
+      <button class="nav-item" onclick="showSection('projects')" id="nav-projects">📦 Projeler</button>
+      <button class="nav-item" onclick="showSection('posts')" id="nav-posts">✍️ Yazılar</button>
+      <button class="nav-item" onclick="showSection('contact')" id="nav-contact">💬 İletişim & Linkler</button>
 
-  <div class="sidebar-label" style="margin-top:auto;">Site</div>
-  <a class="nav-item" href="index.html" target="_blank">🌐 Siteyi Gör</a>
-</nav>
+      <div class="sidebar-label" style="margin-top:auto;">Site</div>
+      <a class="nav-item" href="index.html" target="_blank">🌐 Siteyi Gör</a>
+    </nav>
 
-    <!-- CONTENT -->
     <div class="main">
 
-      <!-- DASHBOARD -->
       <div class="section active" id="section-dashboard">
         <div class="section-title">Dashboard</div>
         <div class="section-desc">Firestore bağlantı durumu ve içerik özeti.</div>
@@ -355,7 +351,6 @@
         </div>
       </div>
 
-      <!-- HERO -->
       <div class="section" id="section-hero">
         <div class="section-title">Ana Sayfa Hero</div>
         <div class="section-desc">Ana sayfadaki başlık, alt metin ve kart içerikleri.</div>
@@ -429,7 +424,6 @@
         </div>
       </div>
 
-      <!-- ABOUT -->
       <div class="section" id="section-about">
         <div class="section-title">Hakkımda</div>
         <div class="section-desc">about.html sayfasındaki içerikler.</div>
@@ -468,7 +462,6 @@
         </div>
       </div>
 
-      <!-- NOW -->
       <div class="section" id="section-now">
         <div class="section-title">Şimdi</div>
         <div class="section-desc">now.html — şu an odak, açık olduğun şeyler ve yakın hedefler.</div>
@@ -519,7 +512,26 @@
         </div>
       </div>
 
-      <!-- PROJECTS -->
+      <div class="section" id="section-contact">
+        <div class="section-title">İletişim & Freelance Linkleri</div>
+        <div class="section-desc">İletişim sayfasındaki sosyal medya ve freelance platform linklerini yönet.</div>
+
+        <div class="card">
+          <div class="form-grid">
+            <div class="form-col span2"><label class="form-label">E-posta</label><input type="text" id="contact-email"/></div>
+            <div class="form-col span2"><label class="form-label">LinkedIn URL</label><input type="text" id="contact-linkedin"/></div>
+            <div class="form-col span2"><label class="form-label">GitHub URL</label><input type="text" id="contact-github"/></div>
+            <div class="form-col span2"><label class="form-label">Upwork URL</label><input type="text" id="contact-upwork"/></div>
+            <div class="form-col span2"><label class="form-label">Fiverr URL</label><input type="text" id="contact-fiverr"/></div>
+            <div class="form-col span2"><label class="form-label">Bionluk URL</label><input type="text" id="contact-bionluk"/></div>
+          </div>
+          <div class="save-bar">
+            <button class="btn btn-ghost" onclick="loadSection('contact')">↩ Sıfırla</button>
+            <button class="btn btn-primary" onclick="saveSection('contact')">💾 Kaydet</button>
+          </div>
+        </div>
+      </div>
+
       <div class="section" id="section-projects">
         <div class="section-title">Projeler</div>
         <div class="section-desc">Proje kartlarını düzenle, yeni proje ekle.</div>
@@ -531,7 +543,6 @@
         <div id="projects-list"></div>
       </div>
 
-      <!-- POSTS -->
       <div class="section" id="section-posts">
         <div class="section-title">Yazılar</div>
         <div class="section-desc">Blog yazılarını yönet.</div>
@@ -543,12 +554,7 @@
         <div id="posts-list"></div>
       </div>
 
-    </div><!-- /main -->
-  </div><!-- /layout -->
-</div><!-- /app -->
-
-<!-- PROJECT MODAL -->
-<div class="modal-backdrop" id="project-modal">
+    </div></div></div><div class="modal-backdrop" id="project-modal">
   <div class="modal">
     <div class="modal-title" id="project-modal-title">Proje Düzenle</div>
     <div class="form-grid">
@@ -582,7 +588,6 @@
   </div>
 </div>
 
-<!-- POST MODAL -->
 <div class="modal-backdrop" id="post-modal">
   <div class="modal">
     <div class="modal-title" id="post-modal-title">Yazı Düzenle</div>
@@ -612,7 +617,6 @@
 
 <div id="toast"></div>
 
-<!-- FIREBASE SDK -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
@@ -753,11 +757,19 @@ const SECTION_DEFAULTS = {
     "open3-tr": "Açık kaynak katkıları (özellikle araçlar ve tooling).",
     "goals-tr": "Odak: Flutter uzmanlığını derinleştirmek, WP bot portföyü oluşturmak ve masaüstü otomasyon araçlarını ürün kalitesine taşımak.",
     "goals-en": "Goal: deepen Flutter expertise, build a WP bot portfolio, and bring desktop automation tools to production quality.",
+  },
+  contact: {
+    "email": "ekrembulgan2@gmail.com",
+    "linkedin": "https://linkedin.com/in/ekrembulgan",
+    "github": "https://github.com/idginity124",
+    "upwork": "https://www.upwork.com/freelancers/~01ada95984844a48c9",
+    "fiverr": "https://www.fiverr.com/s/zWEbKZb",
+    "bionluk": "https://bionluk.com/ekrembulgan"
   }
 };
 
 async function loadSection(name) {
-  if (!["hero","about","now"].includes(name)) return;
+  if (!["hero","about","now","contact"].includes(name)) return;
   const { db, doc, getDoc } = window._fb;
   let data = SECTION_DEFAULTS[name];
   try {
@@ -779,9 +791,25 @@ async function saveSection(name) {
     const el = document.getElementById(`${name}-${key}`);
     if (el) data[key] = el.value;
   });
+  
   try {
     await setDoc(doc(db, "content", name), data);
-    toast("✅ Kaydedildi!");
+    
+    // --- AKILLI UYARI SİSTEMİ ---
+    let fileGuide = "ilgili HTML dosyası";
+    if (name === "hero") fileGuide = "index.html (Ana sayfa yazıları)";
+    if (name === "about") fileGuide = "about.html (Hakkımda metinleri)";
+    if (name === "now") fileGuide = "now.html (Şimdi odak maddeleri)";
+    if (name === "contact") fileGuide = "contact.html (İletişim linkleri) ve app.js (E-posta)";
+
+    const msg = `
+✅ Firestore başarıyla güncellendi!
+
+⚠️ YEREL DOSYA SENKRONİZASYONU:
+Bu değişikliklerin tüm ziyaretçilere yansıması için (eğer henüz otomatik Firebase entegrasyonu kurmadıysan) kendi bilgisayarındaki şu dosyada ilgili yeri manuel güncelleyip GitHub'a pushlamayı unutma:
+👉 Dosya: ${fileGuide}
+    `;
+    alert(msg);
   } catch(e) {
     toast("❌ Hata: " + e.message, "var(--red)");
   }
