@@ -617,7 +617,7 @@ function initTOC() {
 		rootMargin: "-20% 0px -72% 0px",
 		threshold: [.1, .2, .3, .4, .5]
 	});
-	a.forEach(t => o.observe(t.el)), __dynamicRerenders.push(() => initTOC())
+	a.forEach(t => o.observe(t.el)), t.dataset.tocBound || (t.dataset.tocBound = "1", __dynamicRerenders.push(() => initTOC()))
 }
 
 function initCopyLink() {
