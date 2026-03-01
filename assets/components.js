@@ -1,28 +1,10 @@
 const BASE_URL = (() => {
-	let a = (location.pathname || "/").split("?")[0],
-		t = a.split("/").filter(Boolean),
-		e = t[t.length - 1] || "",
-		i = e.includes("."),
-		l = i ? Math.max(0, t.length - 1) : t.length;
-	return l <= 0 ? "" : "../".repeat(l)
-})();
-
-(function() {
-	const links = [
-		{ rel: 'stylesheet', href: BASE_URL + 'assets/styles.css' },
-		{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-		{ rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
-		{ rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap' },
-    { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' },
-	];
-	links.forEach(({ rel, href, crossorigin }) => {
-		if (document.querySelector(`link[href="${href}"]`)) return;
-		const el = document.createElement('link');
-		el.rel = rel;
-		el.href = href;
-		if (crossorigin) el.crossOrigin = '';
-		document.head.appendChild(el);
-	});
+  let a = (location.pathname || "/").split("?")[0],
+    t = a.split("/").filter(Boolean),
+    e = t[t.length - 1] || "",
+    i = e.includes("."),
+    l = i ? Math.max(0, t.length - 1) : t.length;
+  return l <= 0 ? "" : "../".repeat(l)
 })();
 
 const siteNav = `
@@ -93,6 +75,6 @@ const footerContainer = document.getElementById("site-footer-placeholder");
 footerContainer && (footerContainer.outerHTML = siteFooter);
 
 (function() {
-	let a = document.createElement("script");
-	a.async = !0, a.defer = !0, a.src = "https://cloud.umami.is/script.js", a.setAttribute("data-website-id", "33115090-6911-46fb-9f25-9f7c41ecee41"), a.setAttribute("data-domains", "idginity124.github.io"), document.head.appendChild(a)
+  let a = document.createElement("script");
+  a.async = !0, a.defer = !0, a.src = "https://cloud.umami.is/script.js", a.setAttribute("data-website-id", "33115090-6911-46fb-9f25-9f7c41ecee41"), a.setAttribute("data-domains", "idginity124.github.io"), document.head.appendChild(a)
 })();
