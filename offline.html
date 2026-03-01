@@ -7,7 +7,9 @@
     <title>Offline | Ekrem Bulgan</title>
     <meta name="description" content="Şu an çevrimdışısın. İnternet bağlantın gelince tekrar dene." />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="preload" href="assets/styles.css" as="style">
+<link rel="stylesheet" href="assets/styles.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="assets/styles.css"></noscript>
   </head>
   <body>
     <main id="main">

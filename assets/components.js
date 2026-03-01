@@ -69,10 +69,10 @@ const siteFooter = `
 `;
 
 const navContainer = document.getElementById("site-nav-placeholder");
-navContainer && (navContainer.outerHTML = siteNav);
+if (navContainer) navContainer.innerHTML = siteNav;
 
 const footerContainer = document.getElementById("site-footer-placeholder");
-footerContainer && (footerContainer.outerHTML = siteFooter);
+if (footerContainer) footerContainer.innerHTML = siteFooter;
 
 (function() {
   let a = document.createElement("script");

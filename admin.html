@@ -48,317 +48,275 @@
   }
 
   .login-box h1 { font-size: 1.4rem; margin-bottom: 6px; }
-  .login-box p { color: var(--muted); font-size: .85rem; margin-bottom: 28px; }
+  .login-box p { color: var(--muted); font-size: .9rem; margin-bottom: 18px; }
 
-  input[type="email"], input[type="password"], input[type="text"], textarea, select {
+  .input {
     width: 100%;
-    background: var(--surface2);
+    padding: 12px 14px;
+    border-radius: 10px;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    background: var(--surface2);
     color: var(--text);
-    padding: 10px 14px;
-    font-size: .9rem;
     outline: none;
-    transition: border-color .2s;
-    font-family: inherit;
+    margin-bottom: 12px;
+    font-size: .95rem;
   }
+  .input:focus { border-color: rgba(224,64,251,0.55); box-shadow: 0 0 0 3px rgba(224,64,251,0.15); }
 
-  input:focus, textarea:focus, select:focus {
-    border-color: var(--primary);
-  }
-
-  textarea { resize: vertical; min-height: 80px; }
-
-  .login-box input { margin-bottom: 12px; }
-
-  /* BUTTONS */
   .btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 9px 18px; border-radius: 8px; border: none;
-    font-size: .85rem; font-weight: 600; cursor: pointer;
-    transition: opacity .2s, transform .1s;
+    width: 100%;
+    padding: 12px 14px;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: .95rem;
   }
-  .btn:active { transform: scale(.97); }
-  .btn-primary { background: var(--primary); color: #000; }
-  .btn-ghost { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
-  .btn-danger { background: var(--red); color: #fff; }
-  .btn-success { background: var(--green); color: #000; }
-  .btn:disabled { opacity: .5; cursor: not-allowed; }
-  .btn-full { width: 100%; justify-content: center; }
+  .btn-primary { background: var(--primary); color: #0b0b10; }
+  .btn-primary:hover { filter: brightness(1.06); }
 
-  /* LAYOUT */
+  .error {
+    margin-top: 12px;
+    color: var(--red);
+    font-size: .88rem;
+    display: none;
+  }
+
+  /* APP */
   #app { display: none; }
 
   .topbar {
-    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(13,13,20,0.85);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    padding: 0 24px;
-    height: 56px;
-    display: flex; align-items: center; justify-content: space-between;
-    position: sticky; top: 0; z-index: 100;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .topbar-brand { font-weight: 700; font-size: 1rem; }
-  .topbar-brand span { color: var(--primary); }
+  .brand {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 18px rgba(224,64,251,0.6);
+  }
+  .brand strong { font-size: 1rem; }
+  .brand span { color: var(--muted); font-size: .85rem; }
 
-  .topbar-right { display: flex; align-items: center; gap: 12px; }
-  .user-badge { font-size: .78rem; color: var(--muted); }
+  .topbar .right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--muted);
+    font-size: .85rem;
+  }
+  .logout {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .logout:hover { border-color: rgba(224,64,251,0.45); }
 
-  .layout { display: flex; min-height: calc(100vh - 56px); }
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: calc(100vh - 54px);
+  }
 
   .sidebar {
-    width: 220px;
-    background: var(--surface);
     border-right: 1px solid var(--border);
-    padding: 20px 12px;
-    display: flex; flex-direction: column; gap: 4px;
-    position: sticky; top: 56px; height: calc(100vh - 56px);
-    overflow-y: auto;
+    padding: 18px 14px;
+    background: linear-gradient(180deg, rgba(224,64,251,0.06), transparent 35%);
   }
 
-  .sidebar-label {
-    font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--muted); padding: 8px 10px 4px;
-  }
+  .nav-title { color: var(--muted); font-size: .78rem; margin-bottom: 10px; letter-spacing: .04em; }
 
   .nav-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 12px; border-radius: 8px;
-    cursor: pointer; font-size: .88rem;
-    color: var(--muted); transition: all .15s;
-    border: none; background: none; width: 100%; text-align: left;
+    padding: 10px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.02);
+  }
+  .nav-item:hover { border-color: rgba(224,64,251,0.35); }
+  .nav-item.active { background: rgba(224,64,251,0.12); border-color: rgba(224,64,251,0.55); }
+  .nav-item .emoji { width: 22px; text-align: center; }
+
+  .content {
+    padding: 18px;
   }
 
-  .nav-item:hover { background: var(--surface2); color: var(--text); }
-  .nav-item.active { background: var(--primary-dim); color: var(--primary); }
-
-  .main { flex: 1; padding: 28px 32px; max-width: 900px; }
-
-  /* SECTIONS */
-  .section { display: none; }
-  .section.active { display: block; }
-
-  .section-title {
-    font-size: 1.3rem; font-weight: 700; margin-bottom: 6px;
-  }
-  .section-desc { color: var(--muted); font-size: .85rem; margin-bottom: 24px; }
-
-  /* CARDS */
-  .card {
+  .section {
+    display: none;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 24px;
+    border-radius: 16px;
+    padding: 18px;
     margin-bottom: 16px;
   }
+  .section.active { display: block; }
 
-  .card-title {
-    font-size: .95rem; font-weight: 600; margin-bottom: 16px;
-    display: flex; align-items: center; justify-content: space-between;
+  .section-title { font-size: 1.05rem; margin-bottom: 6px; }
+  .section-desc { color: var(--muted); font-size: .9rem; margin-bottom: 14px; }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { border-right: 0; border-bottom: 1px solid var(--border); }
+    .grid-2 { grid-template-columns: 1fr; }
   }
 
-  /* FORM GRID */
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .form-grid.full { grid-template-columns: 1fr; }
-  .form-col { display: flex; flex-direction: column; gap: 5px; }
-  .form-col.span2 { grid-column: span 2; }
-  .form-label { font-size: .78rem; color: var(--muted); }
-
-  /* SAVE BAR */
-  .save-bar {
-    display: flex; align-items: center; justify-content: flex-end; gap: 10px;
-    margin-top: 20px; padding-top: 16px;
-    border-top: 1px solid var(--border);
-  }
-
-  /* STATUS */
-  .status-dot {
-    display: inline-block;
-    width: 8px; height: 8px; border-radius: 50%;
-    margin-right: 6px;
-  }
-  .status-dot.green { background: var(--green); box-shadow: 0 0 6px var(--green); }
-  .status-dot.red { background: var(--red); }
-  .status-dot.yellow { background: var(--yellow); }
-
-  /* TOAST */
-  #toast {
-    position: fixed; bottom: 24px; right: 24px;
-    background: var(--surface2); border: 1px solid var(--border);
-    color: var(--text); padding: 12px 20px; border-radius: 10px;
-    font-size: .85rem; opacity: 0; pointer-events: none;
-    transition: opacity .3s; z-index: 999;
-  }
-  #toast.show { opacity: 1; }
-
-  /* LIST ITEMS */
-  .list-item {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 16px;
+  .card {
     background: var(--surface2);
-    border-radius: 8px; margin-bottom: 8px;
-    gap: 12px;
-  }
-  .list-item-info { flex: 1; min-width: 0; }
-  .list-item-title { font-size: .9rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .list-item-sub { font-size: .78rem; color: var(--muted); margin-top: 2px; }
-  .list-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
-
-  /* BADGE */
-  .badge {
-    font-size: .7rem; padding: 2px 8px; border-radius: 20px;
-    font-weight: 600;
-  }
-  .badge-green { background: rgba(0,230,118,.15); color: var(--green); }
-  .badge-yellow { background: rgba(255,234,0,.15); color: var(--yellow); }
-  .badge-muted { background: var(--surface2); color: var(--muted); }
-
-  /* TABS */
-  .tabs { display: flex; gap: 4px; margin-bottom: 20px; }
-  .tab {
-    padding: 7px 16px; border-radius: 8px; cursor: pointer;
-    font-size: .85rem; border: none; background: var(--surface2); color: var(--muted);
-    transition: all .15s;
-  }
-  .tab.active { background: var(--primary-dim); color: var(--primary); }
-
-  /* MODAL */
-  .modal-backdrop {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,.7); z-index: 200;
-    align-items: center; justify-content: center;
-  }
-  .modal-backdrop.open { display: flex; }
-  .modal {
-    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 28px; width: 560px; max-height: 80vh;
-    overflow-y: auto; max-width: 95vw;
+    padding: 14px;
   }
-  .modal-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
-  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+  .card h3 { font-size: .95rem; margin-bottom: 10px; }
+  .row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .row label { color: var(--muted); font-size: .85rem; }
+  textarea.input { min-height: 120px; resize: vertical; }
 
-  /* DIVIDER */
-  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
 
-  /* DASHBOARD STATS */
-  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
-  .stat-card {
+  .btn-sm {
+    width: auto;
+    padding: 10px 12px;
+    font-size: .88rem;
+    border-radius: 12px;
+  }
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-ghost:hover { border-color: rgba(224,64,251,0.45); }
+  .btn-danger {
+    background: rgba(255,82,82,0.12);
+    border: 1px solid rgba(255,82,82,0.3);
+    color: #ffb3b3;
+  }
+  .btn-danger:hover { border-color: rgba(255,82,82,0.55); }
+
+  .list {
+    margin-top: 10px;
+    display: grid;
+    gap: 10px;
+  }
+  .item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 12px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .item strong { font-size: .92rem; }
+  .item small { color: var(--muted); display: block; margin-top: 3px; }
+
+  .toast {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px 20px;
-    text-align: center;
+    padding: 12px 14px;
+    border-radius: 14px;
+    color: var(--text);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
   }
-  .stat-value { font-size: 2rem; font-weight: 700; color: var(--primary); }
-  .stat-label { font-size: .75rem; color: var(--muted); margin-top: 4px; }
-
-  @media (max-width: 700px) {
-    .sidebar { display: none; }
-    .main { padding: 16px; }
-    .form-grid { grid-template-columns: 1fr; }
-    .stats-grid { grid-template-columns: 1fr 1fr; }
-  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(-4px); }
 </style>
 </head>
+
 <body>
 
+<!-- LOGIN SCREEN -->
 <div id="login-screen">
   <div class="login-box">
-    <h1>🔐 Admin Panel</h1>
-    <p>Ekrem Bulgan Portfolyo Yönetimi</p>
-    <input type="email" id="login-email" placeholder="E-posta" autocomplete="email"/>
-    <input type="password" id="login-pass" placeholder="Şifre" autocomplete="current-password"/>
-    <button class="btn btn-primary btn-full" onclick="doLogin()">Giriş Yap</button>
-    <p id="login-error" style="color:#ff5252;font-size:.8rem;margin-top:10px;display:none;"></p>
+    <h1>Admin Panel</h1>
+    <p>Firebase hesabınla giriş yap.</p>
+    <input class="input" id="login-email" type="email" placeholder="Email">
+    <input class="input" id="login-pass" type="password" placeholder="Şifre">
+    <button class="btn btn-primary" onclick="doLogin()">Giriş Yap</button>
+    <div class="error" id="login-error"></div>
   </div>
 </div>
 
+<!-- APP -->
 <div id="app">
+
   <div class="topbar">
-    <div class="topbar-brand">EB<span>.</span> Admin</div>
-    <div class="topbar-right">
-      <span class="user-badge" id="user-email"></span>
-      <button class="btn btn-ghost" onclick="doLogout()" style="padding:6px 12px;font-size:.8rem;">Çıkış</button>
+    <div class="brand">
+      <div class="dot"></div>
+      <div>
+        <strong>Ekrem Bulgan</strong><br>
+        <span>Admin Panel</span>
+      </div>
+    </div>
+    <div class="right">
+      <span id="user-email"></span>
+      <button class="logout" onclick="doLogout()">Çıkış</button>
     </div>
   </div>
 
   <div class="layout">
-    <nav class="sidebar">
-      <div class="sidebar-label">Genel</div>
-      <button class="nav-item active" onclick="showSection('dashboard')" id="nav-dashboard">
-        📊 Dashboard
-      </button>
+    <aside class="sidebar">
+      <div class="nav-title">MENÜ</div>
+      <div class="nav-item active" id="nav-dashboard" onclick="showSection('dashboard')"><div class="emoji">📊</div>Dashboard</div>
+      <div class="nav-item" id="nav-projects" onclick="showSection('projects')"><div class="emoji">📦</div>Projeler</div>
+      <div class="nav-item" id="nav-posts" onclick="showSection('posts')"><div class="emoji">✍️</div>Blog Yazıları</div>
+      <div class="nav-item" id="nav-hero" onclick="showSection('hero')"><div class="emoji">🏠</div>Ana Sayfa Hero</div>
+      <div class="nav-item" id="nav-about" onclick="showSection('about')"><div class="emoji">👤</div>About Sayfası</div>
+      <div class="nav-item" id="nav-now" onclick="showSection('now')"><div class="emoji">⏱️</div>Now Sayfası</div>
+    </aside>
 
-      <div class="sidebar-label">İçerikler</div>
-      <button class="nav-item" onclick="showSection('hero')" id="nav-hero">🏠 Ana Sayfa Hero</button>
-      <button class="nav-item" onclick="showSection('about')" id="nav-about">👤 Hakkımda</button>
-      <button class="nav-item" onclick="showSection('now')" id="nav-now">⚡ Şimdi</button>
-      <button class="nav-item" onclick="showSection('projects')" id="nav-projects">📦 Projeler</button>
-      <button class="nav-item" onclick="showSection('posts')" id="nav-posts">✍️ Yazılar</button>
-      <button class="nav-item" onclick="showSection('contact')" id="nav-contact">💬 İletişim & Linkler</button>
-
-      <div class="sidebar-label" style="margin-top:auto;">Site</div>
-      <a class="nav-item" href="index.html" target="_blank">🌐 Siteyi Gör</a>
-    </nav>
-
-    <div class="main">
-
-       <button class="nav-item" onclick="showSection('contact')" id="nav-contact">💬 İletişim & Linkler</button>
-
-      <div class="sidebar-label" style="margin-top:auto;">Site</div>
-      <a class="nav-item" href="index.html" target="_blank">🌐 Siteyi Gör</a>
-    </nav>
-
-    <div class="main">
+    <main class="content">
 
       <div class="section active" id="section-dashboard">
         <div class="section-title">Dashboard</div>
-        <div class="section-desc">Firestore bağlantı durumu ve içerik özeti.</div>
+        <div class="section-desc">Mevcut içerikleri yönet. (Firestore)</div>
 
-        <div class="card" style="border-left: 4px solid var(--primary);">
-          <div class="card-title">📈 Ziyaretçi Analizi & Etkileşim</div>
-          <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">
-            Sitenin trafik durumunu ve freelance platformu buton tıklamalarını buradan izleyebilirsin.
-          </p>
-          <div style="display:flex;gap:10px;">
-            <a href="https://cloud.umami.is/share/HjfQtNJESuGMUMdg/idginity124.github.io" target="_blank" class="btn btn-primary">
-              📊 Umami Canlı Paneli Aç
-            </a>
-          </div>
-        </div>
-
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-value" id="stat-projects">–</div>
-            <div class="stat-label">Proje</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-value" id="stat-posts">–</div>
-            <div class="stat-label">Yazı</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-value" id="stat-featured">–</div>
-            <div class="stat-label">Öne Çıkan</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-value" id="stat-drafts">–</div>
-            <div class="stat-label">Taslak</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Firebase Durumu</div>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <span class="status-dot green" id="fb-dot"></span>
-            <span id="fb-status-text">Bağlanıyor...</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">🚀 İlk Kurulum — Firestore'a Veri Yükle</div>
-          <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">
+        <div class="card" style="margin-bottom:16px;">
+          <h3>🚀 İlk Kurulum — Firestore'a Veri Yükle</h3>
+          <p style="color:var(--muted);font-size:.9rem;margin-bottom:16px;">
             Mevcut JSON dosyalarındaki proje ve yazıları Firestore'a bir kez aktar.
             Sonraki güncellemeleri buradan yapabilirsin.
           </p>
@@ -367,6 +325,21 @@
             <button class="btn btn-ghost" onclick="seedPosts()">✍️ Yazıları Aktar</button>
             <button class="btn btn-ghost" onclick="seedContent()">📝 Sayfa İçeriklerini Aktar</button>
           </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+            <button class="btn btn-ghost" onclick="exportProjects()">⬇️ Projeleri JSON indir</button>
+            <button class="btn btn-ghost" onclick="exportPosts()">⬇️ Yazıları JSON indir</button>
+          </div>
+          <p style="color:var(--muted);font-size:.82rem;margin-top:8px;">
+            İnen dosyaları <b>assets/data/</b> içine koyup deploy et (posts.json / projects.json).
+          </p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+            <button class="btn btn-ghost" onclick="exportHero()">⬇️ Hero JSON indir</button>
+            <button class="btn btn-ghost" onclick="exportAbout()">⬇️ About JSON indir</button>
+            <button class="btn btn-ghost" onclick="exportNow()">⬇️ Now JSON indir</button>
+          </div>
+          <p style="color:var(--muted);font-size:.82rem;margin-top:8px;">
+            İnen dosyaları <b>assets/data/</b> içine koy: <b>hero.json</b>, <b>about.json</b>, <b>now.json</b>
+          </p>
           <p id="seed-status" style="margin-top:12px;font-size:.82rem;color:var(--green);display:none;"></p>
         </div>
         </div>
@@ -375,267 +348,170 @@
         <div class="section-title">Ana Sayfa Hero</div>
         <div class="section-desc">Ana sayfadaki başlık, alt metin ve kart içerikleri.</div>
 
-        <div class="card">
-          <div class="card-title">Başlık & Alt Metin</div>
-          <div class="form-grid">
-            <div class="form-col span2">
-              <label class="form-label">Hero Başlık (TR)</label>
-              <textarea id="hero-title-tr" rows="2"></textarea>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Başlık</h3>
+            <div class="row">
+              <label>TR</label>
+              <input class="input" id="hero-title-tr" placeholder="TR Başlık">
             </div>
-            <div class="form-col span2">
-              <label class="form-label">Hero Başlık (EN)</label>
-              <textarea id="hero-title-en" rows="2"></textarea>
-            </div>
-            <div class="form-col span2">
-              <label class="form-label">Alt Metin (TR)</label>
-              <textarea id="hero-subtitle-tr" rows="3"></textarea>
-            </div>
-            <div class="form-col span2">
-              <label class="form-label">Alt Metin (EN)</label>
-              <textarea id="hero-subtitle-en" rows="3"></textarea>
-            </div>
-            <div class="form-col span2">
-              <label class="form-label">Typewriter Satırlar (TR) — | ile ayır</label>
-              <input type="text" id="hero-typewriter-tr"/>
-            </div>
-            <div class="form-col span2">
-              <label class="form-label">Typewriter Satırlar (EN) — | ile ayır</label>
-              <input type="text" id="hero-typewriter-en"/>
+            <div class="row">
+              <label>EN</label>
+              <input class="input" id="hero-title-en" placeholder="EN Title">
             </div>
           </div>
-          <div class="save-bar">
-            <button class="btn btn-ghost" onclick="loadSection('hero')">↩ Sıfırla</button>
-            <button class="btn btn-primary" onclick="saveSection('hero')">💾 Kaydet</button>
+
+          <div class="card">
+            <h3>Alt Metin</h3>
+            <div class="row">
+              <label>TR</label>
+              <textarea class="input" id="hero-sub-tr" placeholder="TR Alt metin"></textarea>
+            </div>
+            <div class="row">
+              <label>EN</label>
+              <textarea class="input" id="hero-sub-en" placeholder="EN Subtitle"></textarea>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-title">Profil Kartı</div>
-          <div class="form-grid">
-            <div class="form-col span2">
-              <label class="form-label">Rol (TR)</label>
-              <input type="text" id="hero-role-tr"/>
-            </div>
-            <div class="form-col span2">
-              <label class="form-label">Rol (EN)</label>
-              <input type="text" id="hero-role-en"/>
-            </div>
-            <div class="form-col">
-              <label class="form-label">Odak (TR)</label>
-              <input type="text" id="hero-focus-tr"/>
-            </div>
-            <div class="form-col">
-              <label class="form-label">Odak (EN)</label>
-              <input type="text" id="hero-focus-en"/>
-            </div>
-            <div class="form-col">
-              <label class="form-label">Çıktı (TR)</label>
-              <input type="text" id="hero-output-tr"/>
-            </div>
-            <div class="form-col">
-              <label class="form-label">Çıktı (EN)</label>
-              <input type="text" id="hero-output-en"/>
-            </div>
-          </div>
-          <div class="save-bar">
-            <button class="btn btn-ghost" onclick="loadSection('hero')">↩ Sıfırla</button>
-            <button class="btn btn-primary" onclick="saveSection('hero')">💾 Kaydet</button>
-          </div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm" onclick="saveHero()">Kaydet</button>
+          <button class="btn btn-ghost btn-sm" onclick="reloadHero()">Yenile</button>
         </div>
       </div>
 
       <div class="section" id="section-about">
-        <div class="section-title">Hakkımda</div>
-        <div class="section-desc">about.html sayfasındaki içerikler.</div>
+        <div class="section-title">About Sayfası</div>
+        <div class="section-desc">About sayfası başlık ve içerik metinleri.</div>
 
-        <div class="card">
-          <div class="form-grid">
-            <div class="form-col span2">
-              <label class="form-label">Kısa Özet (TR)</label>
-              <textarea id="about-summary-tr" rows="4"></textarea>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Başlık</h3>
+            <div class="row">
+              <label>TR</label>
+              <input class="input" id="about-title-tr" placeholder="TR Başlık">
             </div>
-            <div class="form-col span2">
-              <label class="form-label">Kısa Özet (EN)</label>
-              <textarea id="about-summary-en" rows="4"></textarea>
-            </div>
-            <div class="form-col">
-              <label class="form-label">Odak (TR)</label>
-              <input type="text" id="about-focus-tr"/>
-            </div>
-            <div class="form-col">
-              <label class="form-label">Odak (EN)</label>
-              <input type="text" id="about-focus-en"/>
-            </div>
-            <div class="form-col span2">
-              <label class="form-label">Zaman Çizgisi Satır 2 (TR)</label>
-              <input type="text" id="about-timeline2-tr"/>
-            </div>
-            <div class="form-col span2">
-              <label class="form-label">Zaman Çizgisi Satır 3 (TR)</label>
-              <input type="text" id="about-timeline3-tr"/>
+            <div class="row">
+              <label>EN</label>
+              <input class="input" id="about-title-en" placeholder="EN Title">
             </div>
           </div>
-          <div class="save-bar">
-            <button class="btn btn-ghost" onclick="loadSection('about')">↩ Sıfırla</button>
-            <button class="btn btn-primary" onclick="saveSection('about')">💾 Kaydet</button>
+
+          <div class="card">
+            <h3>İçerik</h3>
+            <div class="row">
+              <label>TR</label>
+              <textarea class="input" id="about-body-tr" placeholder="TR içerik"></textarea>
+            </div>
+            <div class="row">
+              <label>EN</label>
+              <textarea class="input" id="about-body-en" placeholder="EN content"></textarea>
+            </div>
           </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm" onclick="saveAbout()">Kaydet</button>
+          <button class="btn btn-ghost btn-sm" onclick="reloadAbout()">Yenile</button>
         </div>
       </div>
 
       <div class="section" id="section-now">
-        <div class="section-title">Şimdi</div>
-        <div class="section-desc">now.html — şu an odak, açık olduğun şeyler ve yakın hedefler.</div>
+        <div class="section-title">Now Sayfası</div>
+        <div class="section-desc">Now sayfası başlık ve içerik metinleri.</div>
 
-        <div class="card">
-          <div class="card-title">Şu An Odak</div>
-          <div class="form-grid">
-            <div class="form-col span2"><label class="form-label">Madde 1 (TR)</label><input type="text" id="now-focus1-tr"/></div>
-            <div class="form-col span2"><label class="form-label">Madde 1 (EN)</label><input type="text" id="now-focus1-en"/></div>
-            <div class="form-col span2"><label class="form-label">Madde 2 (TR)</label><input type="text" id="now-focus2-tr"/></div>
-            <div class="form-col span2"><label class="form-label">Madde 3 (TR)</label><input type="text" id="now-focus3-tr"/></div>
-          </div>
-          <div class="save-bar">
-            <button class="btn btn-ghost" onclick="loadSection('now')">↩ Sıfırla</button>
-            <button class="btn btn-primary" onclick="saveSection('now')">💾 Kaydet</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Açık Olduğum</div>
-          <div class="form-grid">
-            <div class="form-col span2"><label class="form-label">Madde 1 (TR)</label><input type="text" id="now-open1-tr"/></div>
-            <div class="form-col span2"><label class="form-label">Madde 2 (TR)</label><input type="text" id="now-open2-tr"/></div>
-            <div class="form-col span2"><label class="form-label">Madde 3 (TR)</label><input type="text" id="now-open3-tr"/></div>
-          </div>
-          <div class="save-bar">
-            <button class="btn btn-ghost" onclick="loadSection('now')">↩ Sıfırla</button>
-            <button class="btn btn-primary" onclick="saveSection('now')">💾 Kaydet</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Yakın Hedefler</div>
-          <div class="form-grid">
-            <div class="form-col span2">
-              <label class="form-label">Hedef Metni (TR)</label>
-              <textarea id="now-goals-tr" rows="3"></textarea>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Başlık</h3>
+            <div class="row">
+              <label>TR</label>
+              <input class="input" id="now-title-tr" placeholder="TR Başlık">
             </div>
-            <div class="form-col span2">
-              <label class="form-label">Hedef Metni (EN)</label>
-              <textarea id="now-goals-en" rows="3"></textarea>
+            <div class="row">
+              <label>EN</label>
+              <input class="input" id="now-title-en" placeholder="EN Title">
             </div>
           </div>
-          <div class="save-bar">
-            <button class="btn btn-ghost" onclick="loadSection('now')">↩ Sıfırla</button>
-            <button class="btn btn-primary" onclick="saveSection('now')">💾 Kaydet</button>
+
+          <div class="card">
+            <h3>İçerik</h3>
+            <div class="row">
+              <label>TR</label>
+              <textarea class="input" id="now-body-tr" placeholder="TR içerik"></textarea>
+            </div>
+            <div class="row">
+              <label>EN</label>
+              <textarea class="input" id="now-body-en" placeholder="EN content"></textarea>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="section" id="section-contact">
-        <div class="section-title">İletişim & Freelance Linkleri</div>
-        <div class="section-desc">İletişim sayfasındaki sosyal medya ve freelance platform linklerini yönet.</div>
-
-        <div class="card">
-          <div class="form-grid">
-            <div class="form-col span2"><label class="form-label">E-posta</label><input type="text" id="contact-email"/></div>
-            <div class="form-col span2"><label class="form-label">LinkedIn URL</label><input type="text" id="contact-linkedin"/></div>
-            <div class="form-col span2"><label class="form-label">GitHub URL</label><input type="text" id="contact-github"/></div>
-            <div class="form-col span2"><label class="form-label">Upwork URL</label><input type="text" id="contact-upwork"/></div>
-            <div class="form-col span2"><label class="form-label">Fiverr URL</label><input type="text" id="contact-fiverr"/></div>
-            <div class="form-col span2"><label class="form-label">Bionluk URL</label><input type="text" id="contact-bionluk"/></div>
-          </div>
-          <div class="save-bar">
-            <button class="btn btn-ghost" onclick="loadSection('contact')">↩ Sıfırla</button>
-            <button class="btn btn-primary" onclick="saveSection('contact')">💾 Kaydet</button>
-          </div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm" onclick="saveNow()">Kaydet</button>
+          <button class="btn btn-ghost btn-sm" onclick="reloadNow()">Yenile</button>
         </div>
       </div>
 
       <div class="section" id="section-projects">
         <div class="section-title">Projeler</div>
-        <div class="section-desc">Proje kartlarını düzenle, yeni proje ekle.</div>
+        <div class="section-desc">Projeleri ekle/sil/güncelle.</div>
 
-        <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
-          <button class="btn btn-primary" onclick="openProjectModal()">+ Yeni Proje</button>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Yeni / Düzenle</h3>
+            <input class="input" id="proj-id" placeholder="(Düzenlemek için ID - boş bırak yeni ekler)">
+            <input class="input" id="proj-title" placeholder="Başlık">
+            <input class="input" id="proj-subtitle" placeholder="Alt Başlık">
+            <input class="input" id="proj-tags" placeholder="Etiketler (virgülle)">
+            <input class="input" id="proj-img" placeholder="Görsel URL">
+            <input class="input" id="proj-link" placeholder="Proje Link">
+            <textarea class="input" id="proj-desc" placeholder="Açıklama"></textarea>
+
+            <div class="btn-row">
+              <button class="btn btn-primary btn-sm" onclick="saveProject()">Kaydet</button>
+              <button class="btn btn-ghost btn-sm" onclick="clearProjectForm()">Temizle</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Mevcut Projeler</h3>
+            <div class="list" id="projects-list"></div>
+          </div>
         </div>
-
-        <div id="projects-list"></div>
       </div>
 
       <div class="section" id="section-posts">
-        <div class="section-title">Yazılar</div>
-        <div class="section-desc">Blog yazılarını yönet.</div>
+        <div class="section-title">Blog Yazıları</div>
+        <div class="section-desc">Yazıları ekle/sil/güncelle.</div>
 
-        <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
-          <button class="btn btn-primary" onclick="openPostModal()">+ Yeni Yazı</button>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Yeni / Düzenle</h3>
+            <input class="input" id="post-id" placeholder="(Düzenlemek için ID - boş bırak yeni ekler)">
+            <input class="input" id="post-title" placeholder="Başlık">
+            <input class="input" id="post-date" placeholder="Tarih (YYYY-MM-DD)">
+            <input class="input" id="post-tags" placeholder="Etiketler (virgülle)">
+            <textarea class="input" id="post-excerpt" placeholder="Kısa özet"></textarea>
+            <textarea class="input" id="post-content" placeholder="İçerik"></textarea>
+
+            <div class="btn-row">
+              <button class="btn btn-primary btn-sm" onclick="savePost()">Kaydet</button>
+              <button class="btn btn-ghost btn-sm" onclick="clearPostForm()">Temizle</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Mevcut Yazılar</h3>
+            <div class="list" id="posts-list"></div>
+          </div>
         </div>
-
-        <div id="posts-list"></div>
       </div>
 
-    </div></div></div><div class="modal-backdrop" id="project-modal">
-  <div class="modal">
-    <div class="modal-title" id="project-modal-title">Proje Düzenle</div>
-    <div class="form-grid">
-      <div class="form-col"><label class="form-label">ID (slug)</label><input type="text" id="proj-id"/></div>
-      <div class="form-col"><label class="form-label">İsim</label><input type="text" id="proj-name"/></div>
-      <div class="form-col span2"><label class="form-label">Özet (TR)</label><textarea id="proj-summary-tr" rows="2"></textarea></div>
-      <div class="form-col span2"><label class="form-label">Özet (EN)</label><textarea id="proj-summary-en" rows="2"></textarea></div>
-      <div class="form-col"><label class="form-label">Tür (TR)</label><input type="text" id="proj-type-tr"/></div>
-      <div class="form-col"><label class="form-label">Tür (EN)</label><input type="text" id="proj-type-en"/></div>
-      <div class="form-col"><label class="form-label">GitHub URL</label><input type="text" id="proj-github"/></div>
-      <div class="form-col"><label class="form-label">Cover (assets/img/...)</label><input type="text" id="proj-cover"/></div>
-      <div class="form-col"><label class="form-label">Durum</label>
-        <select id="proj-status">
-          <option value="completed">Tamamlandı</option>
-          <option value="rnd">Ar-Ge</option>
-          <option value="wip">Devam ediyor</option>
-        </select>
-      </div>
-      <div class="form-col"><label class="form-label">Tags (virgülle)</label><input type="text" id="proj-tags"/></div>
-      <div class="form-col span2">
-        <label class="form-label">
-          <input type="checkbox" id="proj-featured" style="width:auto;margin-right:6px;"/>
-          Öne Çıkan
-        </label>
-      </div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('project-modal')">İptal</button>
-      <button class="btn btn-primary" onclick="saveProject()">Kaydet</button>
-    </div>
+    </main>
   </div>
 </div>
 
-<div class="modal-backdrop" id="post-modal">
-  <div class="modal">
-    <div class="modal-title" id="post-modal-title">Yazı Düzenle</div>
-    <div class="form-grid">
-      <div class="form-col"><label class="form-label">ID (slug)</label><input type="text" id="post-id"/></div>
-      <div class="form-col"><label class="form-label">Tarih (YYYY-MM-DD)</label><input type="text" id="post-date"/></div>
-      <div class="form-col span2"><label class="form-label">Başlık (TR)</label><input type="text" id="post-title-tr"/></div>
-      <div class="form-col span2"><label class="form-label">Başlık (EN)</label><input type="text" id="post-title-en"/></div>
-      <div class="form-col span2"><label class="form-label">Özet (TR)</label><textarea id="post-summary-tr" rows="2"></textarea></div>
-      <div class="form-col span2"><label class="form-label">Özet (EN)</label><textarea id="post-summary-en" rows="2"></textarea></div>
-      <div class="form-col"><label class="form-label">Okuma Süresi (TR) — örn: 5 dk</label><input type="text" id="post-reading-tr"/></div>
-      <div class="form-col"><label class="form-label">Tags (virgülle)</label><input type="text" id="post-tags"/></div>
-      <div class="form-col"><label class="form-label">Path (blog/xxx.html)</label><input type="text" id="post-path"/></div>
-      <div class="form-col">
-        <label class="form-label">
-          <input type="checkbox" id="post-draft" style="width:auto;margin-right:6px;"/>
-          Taslak
-        </label>
-      </div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('post-modal')">İptal</button>
-      <button class="btn btn-primary" onclick="savePost()">Kaydet</button>
-    </div>
-  </div>
-</div>
-
-<div id="toast"></div>
+<div class="toast" id="toast"></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -695,12 +571,6 @@ async function doLogout() {
   await window._fb.signOut(window._fb.auth);
 }
 
-// Enter ile giriş
-document.getElementById("login-pass").addEventListener("keydown", e => {
-  if (e.key === "Enter") doLogin();
-});
-
-// ---- TOAST ----
 function toast(msg, color = "var(--green)") {
   const t = document.getElementById("toast");
   t.textContent = msg;
@@ -709,453 +579,530 @@ function toast(msg, color = "var(--green)") {
   setTimeout(() => t.classList.remove("show"), 2800);
 }
 
+// ---- EXPORT (Firestore -> JSON Download) ----
+function downloadJson(filename, dataObj) {
+  const blob = new Blob([JSON.stringify(dataObj, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function exportProjects() {
+  const btn = event?.target;
+  if (btn) btn.disabled = true;
+
+  try {
+    const snap = await window._fb.getDocs(window._fb.collection(window._fb.db, "projects"));
+    const projects = snap.docs.map(d => d.data());
+    downloadJson("projects.json", { projects });
+    toast("projects.json indirildi!");
+  } catch (e) {
+    console.error(e);
+    toast("Export hata: " + e.message, "var(--red)");
+  }
+
+  if (btn) btn.disabled = false;
+}
+
+async function exportPosts() {
+  const btn = event?.target;
+  if (btn) btn.disabled = true;
+
+  try {
+    const snap = await window._fb.getDocs(window._fb.collection(window._fb.db, "posts"));
+    const posts = snap.docs.map(d => d.data());
+    downloadJson("posts.json", { posts });
+    toast("posts.json indirildi!");
+  } catch (e) {
+    console.error(e);
+    toast("Export hata: " + e.message, "var(--red)");
+  }
+
+  if (btn) btn.disabled = false;
+}
+
+window.exportProjects = exportProjects;
+window.exportPosts = exportPosts;
+
+async function exportHero() {
+  const btn = event?.target;
+  if (btn) btn.disabled = true;
+
+  try {
+    // hero -> content/hero
+    const snap = await window._fb.getDoc(window._fb.doc(window._fb.db, "content", "hero"));
+    const data = snap.exists() ? snap.data() : {};
+    downloadJson("hero.json", data);
+    toast("hero.json indirildi!");
+  } catch (e) {
+    console.error(e);
+    toast("Export hata: " + e.message, "var(--red)");
+  }
+
+  if (btn) btn.disabled = false;
+}
+
+async function exportAbout() {
+  const btn = event?.target;
+  if (btn) btn.disabled = true;
+
+  try {
+    // about -> pages/about
+    const snap = await window._fb.getDoc(window._fb.doc(window._fb.db, "pages", "about"));
+    const data = snap.exists() ? snap.data() : {};
+    downloadJson("about.json", data);
+    toast("about.json indirildi!");
+  } catch (e) {
+    console.error(e);
+    toast("Export hata: " + e.message, "var(--red)");
+  }
+
+  if (btn) btn.disabled = false;
+}
+
+async function exportNow() {
+  const btn = event?.target;
+  if (btn) btn.disabled = true;
+
+  try {
+    // now -> pages/now
+    const snap = await window._fb.getDoc(window._fb.doc(window._fb.db, "pages", "now"));
+    const data = snap.exists() ? snap.data() : {};
+    downloadJson("now.json", data);
+    toast("now.json indirildi!");
+  } catch (e) {
+    console.error(e);
+    toast("Export hata: " + e.message, "var(--red)");
+  }
+
+  if (btn) btn.disabled = false;
+}
+
+window.exportHero = exportHero;
+window.exportAbout = exportAbout;
+window.exportNow = exportNow;
 // ---- NAVIGATION ----
 function showSection(name) {
   document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
   document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
   document.getElementById("section-" + name).classList.add("active");
-  const navEl = document.getElementById("nav-" + name);
-  if (navEl) navEl.classList.add("active");
+  document.getElementById("nav-" + name).classList.add("active");
 
-  if (name === "projects") loadProjectsList();
-  if (name === "posts")    loadPostsList();
-  if (name !== "dashboard") loadSection(name);
+  if (name === "projects") loadProjects();
+  if (name === "posts") loadPosts();
+  if (name === "hero") reloadHero();
+  if (name === "about") reloadAbout();
+  if (name === "now")  reloadNow();
 }
 
-// ---- DASHBOARD ----
+window.showSection = showSection;
+
+// ---- DASHBOARD LOAD ----
 window._loadDashboard = async function() {
-  const { db, collection, getDocs, doc, getDoc } = window._fb;
-  try {
-    const projects = await getDocs(collection(db, "projects"));
-    const posts    = await getDocs(collection(db, "posts"));
-    const pArr = projects.docs.map(d => d.data());
-    const bArr = posts.docs.map(d => d.data());
-
-    document.getElementById("stat-projects").textContent = pArr.length;
-    document.getElementById("stat-posts").textContent    = bArr.length;
-    document.getElementById("stat-featured").textContent = pArr.filter(p => p.featured).length;
-    document.getElementById("stat-drafts").textContent   = bArr.filter(p => p.draft).length;
-    document.getElementById("fb-status-text").textContent = "Bağlandı — Firestore aktif";
-    document.getElementById("fb-dot").className = "status-dot green";
-  } catch(e) {
-    document.getElementById("fb-status-text").textContent = "Bağlantı hatası: " + e.message;
-    document.getElementById("fb-dot").className = "status-dot red";
-  }
+  showSection("dashboard");
+  await loadProjects();
+  await loadPosts();
 };
 
-// ---- CONTENT SECTIONS ----
-const SECTION_DEFAULTS = {
-  hero: {
-    "title-tr": "Flutter, AI ve otomasyon araçlarıyla gerçek ürünler geliştiriyorum",
-    "title-en": "I build real products with Flutter, AI and automation tools",
-    "subtitle-tr": "Merhaba, ben Ekrem. Adli Bilişim Mühendisliği mezunuyum. Flutter ile mobil & masaüstü uygulamalar, Python ile masaüstü otomasyon araçları ve WP botları geliştiriyorum.",
-    "subtitle-en": "Hi, I'm Ekrem. Digital Forensics Engineering graduate. I build mobile & desktop apps with Flutter, desktop automation tools with Python, and WP bots.",
-    "typewriter-tr": "build: flutter_app… | automate: masaüstü_araç… | ship: wpbot + demo… | status: üretimde",
-    "typewriter-en": "build: flutter_app… | automate: desktop_tool… | ship: wpbot + demo… | status: shipping",
-    "role-tr": "Flutter & AI Geliştirici • Masaüstü Otomasyon",
-    "role-en": "Flutter & AI Developer • Desktop Automation",
-    "focus-tr": "Flutter, Masaüstü Otomasyon, WP Bot",
-    "focus-en": "Flutter, Desktop Automation, WP Bot",
-    "output-tr": "Uygulama, Bot, Otomasyon Aracı",
-    "output-en": "App, Bot, Automation Tool",
-  },
-  about: {
-    "summary-tr": "Adli Bilişim Mühendisliği mezunuyum. Flutter ile cross-platform mobil ve masaüstü uygulamalar, Python ile masaüstü otomasyon araçları ve WP/Telegram botları geliştiriyorum.",
-    "summary-en": "Digital Forensics Engineering graduate. I build cross-platform apps with Flutter, desktop automation tools with Python, and WP/Telegram bots.",
-    "focus-tr": "Flutter, Masaüstü Otomasyon, WP Bot",
-    "focus-en": "Flutter, Desktop Automation, WP Bot",
-    "timeline2-tr": "Odak: Flutter ile mobil & masaüstü uygulama geliştirme",
-    "timeline3-tr": "Uygulama: Masaüstü otomasyon araçları, WP & Telegram botları, AI entegrasyonu",
-  },
-  now: {
-    "focus1-tr": "Flutter + AI entegrasyonu: akıllı özellikleri uygulamalara eklemek.",
-    "focus1-en": "Flutter + AI integration: adding smart features to apps.",
-    "focus2-tr": "Flutter ile yeni mobil & masaüstü projeler geliştirme.",
-    "focus3-tr": "WP & Telegram botları ile iş süreçlerini otomatikleştirme.",
-    "open1-tr": "Freelance proje & danışmanlık (Flutter, otomasyon, WP bot, masaüstü araçlar).",
-    "open2-tr": "Ürün geliştirme ekipleriyle iş birliği (prototip → MVP → release).",
-    "open3-tr": "Açık kaynak katkıları (özellikle araçlar ve tooling).",
-    "goals-tr": "Odak: Flutter uzmanlığını derinleştirmek, WP bot portföyü oluşturmak ve masaüstü otomasyon araçlarını ürün kalitesine taşımak.",
-    "goals-en": "Goal: deepen Flutter expertise, build a WP bot portfolio, and bring desktop automation tools to production quality.",
-  },
-  contact: {
-    "email": "ekrembulgan2@gmail.com",
-    "linkedin": "https://linkedin.com/in/ekrembulgan",
-    "github": "https://github.com/idginity124",
-    "upwork": "https://www.upwork.com/freelancers/~01ada95984844a48c9",
-    "fiverr": "https://www.fiverr.com/s/zWEbKZb",
-    "bionluk": "https://bionluk.com/ekrembulgan"
-  }
-};
-
-async function loadSection(name) {
-  if (!["hero","about","now","contact"].includes(name)) return;
-  const { db, doc, getDoc } = window._fb;
-  let data = SECTION_DEFAULTS[name];
-  try {
-    const snap = await getDoc(doc(db, "content", name));
-    if (snap.exists()) data = { ...data, ...snap.data() };
-  } catch {}
-
-  Object.entries(data).forEach(([key, val]) => {
-    const el = document.getElementById(`${name}-${key}`);
-    if (el) el.value = val || "";
-  });
+// ---- HELPERS ----
+function splitTags(s) {
+  return (s || "")
+    .split(",")
+    .map(x => x.trim())
+    .filter(Boolean);
 }
 
-async function saveSection(name) {
-  const { db, doc, setDoc } = window._fb;
-  const fields = Object.keys(SECTION_DEFAULTS[name]);
-  const data = {};
-  fields.forEach(key => {
-    const el = document.getElementById(`${name}-${key}`);
-    if (el) data[key] = el.value;
-  });
-  
-  try {
-    await setDoc(doc(db, "content", name), data);
-    
-    // --- AKILLI UYARI SİSTEMİ ---
-    let fileGuide = "ilgili HTML dosyası";
-    if (name === "hero") fileGuide = "index.html (Ana sayfa yazıları)";
-    if (name === "about") fileGuide = "about.html (Hakkımda metinleri)";
-    if (name === "now") fileGuide = "now.html (Şimdi odak maddeleri)";
-    if (name === "contact") fileGuide = "contact.html (İletişim linkleri) ve app.js (E-posta)";
-
-    const msg = `
-✅ Firestore başarıyla güncellendi!
-
-⚠️ YEREL DOSYA SENKRONİZASYONU:
-Bu değişikliklerin tüm ziyaretçilere yansıması için (eğer henüz otomatik Firebase entegrasyonu kurmadıysan) kendi bilgisayarındaki şu dosyada ilgili yeri manuel güncelleyip GitHub'a pushlamayı unutma:
-👉 Dosya: ${fileGuide}
-    `;
-    alert(msg);
-  } catch(e) {
-    toast("❌ Hata: " + e.message, "var(--red)");
-  }
-}
-
-// ---- SEED (first time) ----
+// ---- SEED (JSON -> Firestore) ----
 async function seedProjects() {
-  const btn = event.target;
-  btn.disabled = true;
-  btn.textContent = "Yükleniyor...";
-  const { db, doc, setDoc } = window._fb;
-  const status = document.getElementById("seed-status");
+  const el = document.getElementById("seed-status");
+  el.style.display = "block";
+  el.style.color = "var(--yellow)";
+  el.textContent = "Projeler aktarılıyor...";
+
   try {
-    const res = await fetch("assets/data/projects.json");
-    const json = await res.json();
-    for (const p of json.projects) {
-      await setDoc(doc(db, "projects", p.id), p);
+    const r = await fetch("assets/data/projects.json");
+    const j = await r.json();
+    const arr = j.projects || [];
+
+    for (const p of arr) {
+      // id varsa onu kullan, yoksa auto
+      if (p.id) {
+        await window._fb.setDoc(window._fb.doc(window._fb.db, "projects", String(p.id)), p);
+      } else {
+        await window._fb.addDoc(window._fb.collection(window._fb.db, "projects"), p);
+      }
     }
-    status.textContent = `✅ ${json.projects.length} proje aktarıldı!`;
-    status.style.display = "block";
+
+    el.style.color = "var(--green)";
+    el.textContent = "✅ Projeler aktarıldı!";
     toast("Projeler aktarıldı!");
-  } catch(e) {
-    status.textContent = "❌ Hata: " + e.message;
-    status.style.color = "var(--red)";
-    status.style.display = "block";
-  }
-  btn.disabled = false;
-  btn.textContent = "📦 Projeleri Aktar";
-}
-window.seedProjects = seedProjects;
-
-async function seedPosts() {
-  const btn = event.target;
-  btn.disabled = true;
-  const { db, doc, setDoc } = window._fb;
-  const status = document.getElementById("seed-status");
-  try {
-    const res = await fetch("assets/data/posts.json");
-    const json = await res.json();
-    for (const p of json.posts) {
-      await setDoc(doc(db, "posts", p.id), p);
-    }
-    status.textContent = `✅ ${json.posts.length} yazı aktarıldı!`;
-    status.style.display = "block";
-    toast("Yazılar aktarıldı!");
-  } catch(e) {
-    status.textContent = "❌ Hata: " + e.message;
-    status.style.display = "block";
-  }
-  btn.disabled = false;
-}
-window.seedPosts = seedPosts;
-
-async function seedContent() {
-  const { db, doc, setDoc } = window._fb;
-  const status = document.getElementById("seed-status");
-  try {
-    for (const [section, data] of Object.entries(SECTION_DEFAULTS)) {
-      await setDoc(doc(db, "content", section), data);
-    }
-    status.textContent = "✅ Sayfa içerikleri aktarıldı!";
-    status.style.display = "block";
-    toast("İçerikler aktarıldı!");
-  } catch(e) {
-    status.textContent = "❌ " + e.message;
-    status.style.display = "block";
-  }
-}
-window.seedContent = seedContent;
-
-// ---- PROJECTS LIST ----
-async function loadProjectsList() {
-  const { db, collection, getDocs } = window._fb;
-  const list = document.getElementById("projects-list");
-  list.innerHTML = "<div style='color:var(--muted);font-size:.85rem;'>Yükleniyor...</div>";
-  const snap = await getDocs(collection(db, "projects"));
-  if (snap.empty) {
-    list.innerHTML = "<div style='color:var(--muted);font-size:.85rem;'>Henüz proje yok. Dashboard'dan aktar.</div>";
-    return;
-  }
-  list.innerHTML = "";
-  snap.docs.forEach(d => {
-    const p = d.data();
-    const lang = "tr";
-    const name = p.name || d.id;
-    const summary = p.summary ? (p.summary[lang] || p.summary.tr || "") : "";
-    const featured = p.featured ? `<span class="badge badge-green">Öne Çıkan</span>` : "";
-    const status = p.status ? (p.status.tr || p.status.code || "") : "";
-
-    const item = document.createElement("div");
-    item.className = "list-item";
-    item.innerHTML = `
-      <div class="list-item-info">
-        <div class="list-item-title">${name} ${featured}</div>
-        <div class="list-item-sub">${status} — ${summary.substring(0,80)}${summary.length>80?"...":""}</div>
-      </div>
-      <div class="list-item-actions">
-        <button class="btn btn-ghost" onclick="editProject('${d.id}')">Düzenle</button>
-        <button class="btn btn-danger" onclick="deleteProject('${d.id}')">Sil</button>
-      </div>`;
-    list.appendChild(item);
-  });
-}
-
-let _editingProjectId = null;
-
-async function openProjectModal(id = null) {
-  _editingProjectId = id;
-  document.getElementById("project-modal-title").textContent = id ? "Proje Düzenle" : "Yeni Proje";
-  if (id) {
-    const { db, doc, getDoc } = window._fb;
-    const snap = await getDoc(doc(db, "projects", id));
-    if (snap.exists()) {
-      const p = snap.data();
-      document.getElementById("proj-id").value       = id;
-      document.getElementById("proj-id").disabled    = true;
-      document.getElementById("proj-name").value     = p.name || "";
-      document.getElementById("proj-summary-tr").value = p.summary?.tr || "";
-      document.getElementById("proj-summary-en").value = p.summary?.en || "";
-      document.getElementById("proj-type-tr").value  = p.type?.tr || "";
-      document.getElementById("proj-type-en").value  = p.type?.en || "";
-      document.getElementById("proj-github").value   = p.links?.github || "";
-      document.getElementById("proj-cover").value    = p.cover || "";
-      document.getElementById("proj-status").value   = p.status?.code || "completed";
-      document.getElementById("proj-tags").value     = (p.tags || []).join(", ");
-      document.getElementById("proj-featured").checked = !!p.featured;
-    }
-  } else {
-    document.getElementById("proj-id").disabled = false;
-    ["proj-id","proj-name","proj-summary-tr","proj-summary-en","proj-type-tr","proj-type-en","proj-github","proj-cover","proj-tags"].forEach(id => {
-      document.getElementById(id).value = "";
-    });
-    document.getElementById("proj-featured").checked = false;
-  }
-  document.getElementById("project-modal").classList.add("open");
-}
-window.openProjectModal = openProjectModal;
-
-async function editProject(id) { openProjectModal(id); }
-window.editProject = editProject;
-
-async function saveProject() {
-  const { db, doc, setDoc } = window._fb;
-  const id = _editingProjectId || document.getElementById("proj-id").value.trim();
-  if (!id) { toast("ID boş olamaz", "var(--red)"); return; }
-  const statusCode = document.getElementById("proj-status").value;
-  const statusMap = { completed: { code:"completed", tr:"Tamamlandı", en:"Completed" },
-                      rnd: { code:"rnd", tr:"Ar-Ge", en:"R&D" },
-                      wip: { code:"wip", tr:"Devam Ediyor", en:"In Progress" } };
-  const tags = document.getElementById("proj-tags").value.split(",").map(t=>t.trim()).filter(Boolean);
-  const data = {
-    name: document.getElementById("proj-name").value,
-    featured: document.getElementById("proj-featured").checked,
-    summary: { tr: document.getElementById("proj-summary-tr").value, en: document.getElementById("proj-summary-en").value },
-    type: { tr: document.getElementById("proj-type-tr").value, en: document.getElementById("proj-type-en").value },
-    status: statusMap[statusCode],
-    links: { github: document.getElementById("proj-github").value || null },
-    cover: document.getElementById("proj-cover").value,
-    tags,
-  };
-  try {
-    await setDoc(doc(db, "projects", id), data);
-    toast("✅ Proje kaydedildi!");
-    closeModal("project-modal");
-    loadProjectsList();
-  } catch(e) { toast("❌ " + e.message, "var(--red)"); }
-}
-window.saveProject = saveProject;
-
-async function deleteProject(id) {
-  if (!confirm(`"${id}" projesini silmek istediğine emin misin?`)) return;
-  
-  const { db, doc, deleteDoc } = window._fb;
-  
-  try {
-    // 1. Firebase'den sil
-    await deleteDoc(doc(db, "projects", id));
-    
-    // 2. Kullanıcıya yapılacaklar listesini göster
-    const temizlikMesaji = `
-      ✅ "${id}" Firebase'den silindi!
-      
-      ⚠️ TAM TEMİZLİK İÇİN ŞUNLARI YAPMALISIN:
-      1. Dosya Sil: projects/${id}.html
-      2. Görsel Sil: assets/img/covers/${id}.png (ve .svg)
-      3. JSON Güncelle: assets/data/projects.json dosyasından bu ID'yi çıkar.
-    `;
-    
-    alert(temizlikMesaji);
-    loadProjectsList();
-    
-  } catch(e) {
+  } catch (e) {
+    console.error(e);
+    el.style.color = "var(--red)";
+    el.textContent = "❌ Hata: " + e.message;
     toast("Hata: " + e.message, "var(--red)");
   }
 }
+
+async function seedPosts() {
+  const el = document.getElementById("seed-status");
+  el.style.display = "block";
+  el.style.color = "var(--yellow)";
+  el.textContent = "Yazılar aktarılıyor...";
+
+  try {
+    const r = await fetch("assets/data/posts.json");
+    const j = await r.json();
+    const arr = j.posts || [];
+
+    for (const p of arr) {
+      if (p.id) {
+        await window._fb.setDoc(window._fb.doc(window._fb.db, "posts", String(p.id)), p);
+      } else {
+        await window._fb.addDoc(window._fb.collection(window._fb.db, "posts"), p);
+      }
+    }
+
+    el.style.color = "var(--green)";
+    el.textContent = "✅ Yazılar aktarıldı!";
+    toast("Yazılar aktarıldı!");
+  } catch (e) {
+    console.error(e);
+    el.style.color = "var(--red)";
+    el.textContent = "❌ Hata: " + e.message;
+    toast("Hata: " + e.message, "var(--red)");
+  }
+}
+
+async function seedContent() {
+  const el = document.getElementById("seed-status");
+  el.style.display = "block";
+  el.style.color = "var(--yellow)";
+  el.textContent = "Sayfa içerikleri aktarılıyor...";
+
+  try {
+    const hero = await fetch("assets/data/hero.json").then(r => r.json()).catch(() => null);
+    const about = await fetch("assets/data/about.json").then(r => r.json()).catch(() => null);
+    const now = await fetch("assets/data/now.json").then(r => r.json()).catch(() => null);
+
+    if (hero)  await window._fb.setDoc(window._fb.doc(window._fb.db, "content", "hero"), hero);
+    if (about) await window._fb.setDoc(window._fb.doc(window._fb.db, "pages", "about"), about);
+    if (now)   await window._fb.setDoc(window._fb.doc(window._fb.db, "pages", "now"), now);
+
+    el.style.color = "var(--green)";
+    el.textContent = "✅ Sayfa içerikleri aktarıldı!";
+    toast("Sayfa içerikleri aktarıldı!");
+  } catch (e) {
+    console.error(e);
+    el.style.color = "var(--red)";
+    el.textContent = "❌ Hata: " + e.message;
+    toast("Hata: " + e.message, "var(--red)");
+  }
+}
+
+window.seedProjects = seedProjects;
+window.seedPosts = seedPosts;
+window.seedContent = seedContent;
+
+// ---- CRUD: PROJECTS ----
+async function loadProjects() {
+  const wrap = document.getElementById("projects-list");
+  if (!wrap) return;
+  wrap.innerHTML = "<small style='color:var(--muted)'>Yükleniyor...</small>";
+
+  try {
+    const snap = await window._fb.getDocs(window._fb.collection(window._fb.db, "projects"));
+    const items = snap.docs.map(d => ({ _id: d.id, ...d.data() }));
+
+    wrap.innerHTML = "";
+    items.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `
+        <div>
+          <strong>${p.title || "Başlık yok"}</strong>
+          <small>ID: ${p._id}</small>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-ghost btn-sm" onclick="editProject('${p._id}')">Düzenle</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteProject('${p._id}')">Sil</button>
+        </div>`;
+      wrap.appendChild(div);
+    });
+  } catch (e) {
+    console.error(e);
+    wrap.innerHTML = "<small style='color:var(--red)'>Hata: " + e.message + "</small>";
+  }
+}
+
+async function saveProject() {
+  const id = document.getElementById("proj-id").value.trim();
+  const data = {
+    id: id || undefined,
+    title: document.getElementById("proj-title").value.trim(),
+    subtitle: document.getElementById("proj-subtitle").value.trim(),
+    tags: splitTags(document.getElementById("proj-tags").value),
+    img: document.getElementById("proj-img").value.trim(),
+    link: document.getElementById("proj-link").value.trim(),
+    desc: document.getElementById("proj-desc").value.trim(),
+  };
+
+  try {
+    if (id) {
+      await window._fb.setDoc(window._fb.doc(window._fb.db, "projects", id), data);
+      toast("Proje güncellendi!");
+    } else {
+      const ref = await window._fb.addDoc(window._fb.collection(window._fb.db, "projects"), data);
+      toast("Proje eklendi! ID: " + ref.id);
+    }
+    clearProjectForm();
+    await loadProjects();
+  } catch (e) {
+    console.error(e);
+    toast("Hata: " + e.message, "var(--red)");
+  }
+}
+
+function clearProjectForm() {
+  ["proj-id","proj-title","proj-subtitle","proj-tags","proj-img","proj-link","proj-desc"]
+    .forEach(id => document.getElementById(id).value = "");
+}
+
+async function editProject(docId) {
+  try {
+    const snap = await window._fb.getDoc(window._fb.doc(window._fb.db, "projects", docId));
+    if (!snap.exists()) return;
+    const p = snap.data();
+    document.getElementById("proj-id").value = docId;
+    document.getElementById("proj-title").value = p.title || "";
+    document.getElementById("proj-subtitle").value = p.subtitle || "";
+    document.getElementById("proj-tags").value = (p.tags || []).join(", ");
+    document.getElementById("proj-img").value = p.img || "";
+    document.getElementById("proj-link").value = p.link || "";
+    document.getElementById("proj-desc").value = p.desc || "";
+    toast("Form dolduruldu, düzenleyebilirsin.");
+  } catch(e) {
+    console.error(e);
+    toast("Hata: " + e.message, "var(--red)");
+  }
+}
+
+async function deleteProject(docId) {
+  if (!confirm("Silinsin mi?")) return;
+  try {
+    await window._fb.deleteDoc(window._fb.doc(window._fb.db, "projects", docId));
+    toast("Silindi!");
+    await loadProjects();
+  } catch(e) {
+    console.error(e);
+    toast("Hata: " + e.message, "var(--red)");
+  }
+}
+
+window.loadProjects = loadProjects;
+window.saveProject = saveProject;
+window.clearProjectForm = clearProjectForm;
+window.editProject = editProject;
 window.deleteProject = deleteProject;
 
-// ---- POSTS LIST ----
-async function loadPostsList() {
-  const { db, collection, getDocs } = window._fb;
-  const list = document.getElementById("posts-list");
-  list.innerHTML = "<div style='color:var(--muted);font-size:.85rem;'>Yükleniyor...</div>";
-  const snap = await getDocs(collection(db, "posts"));
-  if (snap.empty) {
-    list.innerHTML = "<div style='color:var(--muted);font-size:.85rem;'>Henüz yazı yok.</div>";
-    return;
-  }
-  list.innerHTML = "";
-  snap.docs.forEach(d => {
-    const p = d.data();
-    const title = p.title?.tr || d.id;
-    const draft = p.draft ? `<span class="badge badge-yellow">Taslak</span>` : `<span class="badge badge-green">Yayın</span>`;
-    const item = document.createElement("div");
-    item.className = "list-item";
-    item.innerHTML = `
-      <div class="list-item-info">
-        <div class="list-item-title">${title} ${draft}</div>
-        <div class="list-item-sub">${p.date || ""} — ${(p.tags||[]).join(", ")}</div>
-      </div>
-      <div class="list-item-actions">
-        <button class="btn btn-ghost" onclick="editPost('${d.id}')">Düzenle</button>
-        <button class="btn btn-danger" onclick="deletePost('${d.id}')">Sil</button>
-      </div>`;
-    list.appendChild(item);
-  });
-}
+// ---- CRUD: POSTS ----
+async function loadPosts() {
+  const wrap = document.getElementById("posts-list");
+  if (!wrap) return;
+  wrap.innerHTML = "<small style='color:var(--muted)'>Yükleniyor...</small>";
 
-let _editingPostId = null;
+  try {
+    const snap = await window._fb.getDocs(window._fb.collection(window._fb.db, "posts"));
+    const items = snap.docs.map(d => ({ _id: d.id, ...d.data() }));
 
-async function openPostModal(id = null) {
-  _editingPostId = id;
-  document.getElementById("post-modal-title").textContent = id ? "Yazı Düzenle" : "Yeni Yazı";
-  if (id) {
-    const { db, doc, getDoc } = window._fb;
-    const snap = await getDoc(doc(db, "posts", id));
-    if (snap.exists()) {
-      const p = snap.data();
-      document.getElementById("post-id").value = id;
-      document.getElementById("post-id").disabled = true;
-      document.getElementById("post-date").value = p.date || "";
-      document.getElementById("post-title-tr").value = p.title?.tr || "";
-      document.getElementById("post-title-en").value = p.title?.en || "";
-      document.getElementById("post-summary-tr").value = p.summary?.tr || "";
-      document.getElementById("post-summary-en").value = p.summary?.en || "";
-      document.getElementById("post-reading-tr").value = p.readingTime?.tr || "";
-      document.getElementById("post-tags").value = (p.tags||[]).join(", ");
-      document.getElementById("post-path").value = p.path || "";
-      document.getElementById("post-draft").checked = !!p.draft;
-    }
-  } else {
-    document.getElementById("post-id").disabled = false;
-    ["post-id","post-date","post-title-tr","post-title-en","post-summary-tr","post-summary-en","post-reading-tr","post-tags","post-path"].forEach(id => {
-      document.getElementById(id).value = "";
+    wrap.innerHTML = "";
+    items.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `
+        <div>
+          <strong>${p.title || "Başlık yok"}</strong>
+          <small>ID: ${p._id} • ${p.date || ""}</small>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-ghost btn-sm" onclick="editPost('${p._id}')">Düzenle</button>
+          <button class="btn btn-danger btn-sm" onclick="deletePost('${p._id}')">Sil</button>
+        </div>`;
+      wrap.appendChild(div);
     });
-    document.getElementById("post-draft").checked = true;
+  } catch (e) {
+    console.error(e);
+    wrap.innerHTML = "<small style='color:var(--red)'>Hata: " + e.message + "</small>";
   }
-  document.getElementById("post-modal").classList.add("open");
 }
-window.openPostModal = openPostModal;
-
-async function editPost(id) { openPostModal(id); }
-window.editPost = editPost;
 
 async function savePost() {
-  const { db, doc, setDoc } = window._fb;
-  const id = _editingPostId || document.getElementById("post-id").value.trim();
-  if (!id) { toast("ID boş olamaz", "var(--red)"); return; }
-  const tags = document.getElementById("post-tags").value.split(",").map(t=>t.trim()).filter(Boolean);
-  const rt = document.getElementById("post-reading-tr").value;
+  const id = document.getElementById("post-id").value.trim();
   const data = {
-    title: { tr: document.getElementById("post-title-tr").value, en: document.getElementById("post-title-en").value },
-    summary: { tr: document.getElementById("post-summary-tr").value, en: document.getElementById("post-summary-en").value },
-    date: document.getElementById("post-date").value,
-    readingTime: { tr: rt, en: rt.replace("dk","min") },
-    tags, path: document.getElementById("post-path").value,
-    draft: document.getElementById("post-draft").checked,
+    id: id || undefined,
+    title: document.getElementById("post-title").value.trim(),
+    date: document.getElementById("post-date").value.trim(),
+    tags: splitTags(document.getElementById("post-tags").value),
+    excerpt: document.getElementById("post-excerpt").value.trim(),
+    content: document.getElementById("post-content").value.trim(),
   };
+
   try {
-    await setDoc(doc(db, "posts", id), data);
-    toast("✅ Yazı kaydedildi!");
-    closeModal("post-modal");
-    loadPostsList();
-  } catch(e) { toast("❌ " + e.message, "var(--red)"); }
+    if (id) {
+      await window._fb.setDoc(window._fb.doc(window._fb.db, "posts", id), data);
+      toast("Yazı güncellendi!");
+    } else {
+      const ref = await window._fb.addDoc(window._fb.collection(window._fb.db, "posts"), data);
+      toast("Yazı eklendi! ID: " + ref.id);
+    }
+    clearPostForm();
+    await loadPosts();
+  } catch (e) {
+    console.error(e);
+    toast("Hata: " + e.message, "var(--red)");
+  }
 }
+
+function clearPostForm() {
+  ["post-id","post-title","post-date","post-tags","post-excerpt","post-content"]
+    .forEach(id => document.getElementById(id).value = "");
+}
+
+async function editPost(docId) {
+  try {
+    const snap = await window._fb.getDoc(window._fb.doc(window._fb.db, "posts", docId));
+    if (!snap.exists()) return;
+    const p = snap.data();
+    document.getElementById("post-id").value = docId;
+    document.getElementById("post-title").value = p.title || "";
+    document.getElementById("post-date").value = p.date || "";
+    document.getElementById("post-tags").value = (p.tags || []).join(", ");
+    document.getElementById("post-excerpt").value = p.excerpt || "";
+    document.getElementById("post-content").value = p.content || "";
+    toast("Form dolduruldu, düzenleyebilirsin.");
+  } catch(e) {
+    console.error(e);
+    toast("Hata: " + e.message, "var(--red)");
+  }
+}
+
+async function deletePost(docId) {
+  if (!confirm("Silinsin mi?")) return;
+  try {
+    await window._fb.deleteDoc(window._fb.doc(window._fb.db, "posts", docId));
+    toast("Silindi!");
+    await loadPosts();
+  } catch(e) {
+    console.error(e);
+    toast("Hata: " + e.message, "var(--red)");
+  }
+}
+
+window.loadPosts = loadPosts;
 window.savePost = savePost;
-
-async function deletePost(id) {
-  if (!confirm(`"${id}" yazısını silmek istediğine emin misin?`)) return;
-  const { db, doc, deleteDoc } = window._fb;
-  
-  try {
-    await deleteDoc(doc(db, "posts", id));
-    
-    // Temizlik Rehberi
-    const msg = `
-✅ "${id}" yazısı Firestore'dan silindi.
-
-⚠️ YEREL DOSYA TEMİZLİĞİ İÇİN:
-1. SİL: blog/${id}.html
-2. GÜNCELLE: assets/data/posts.json (bu ID'ye sahip objeyi kaldır)
-
-Not: Statik sayfalarındaki (index.html vb.) linkleri manuel kontrol etmeyi unutma.`;
-    
-    alert(msg);
-    loadPostsList();
-  } catch(e) { toast("Hata: " + e.message, "var(--red)"); }
-}
+window.clearPostForm = clearPostForm;
+window.editPost = editPost;
 window.deletePost = deletePost;
 
-function closeModal(id) {
-  document.getElementById(id).classList.remove("open");
+// ---- CONTENT (Hero/About/Now) ----
+async function reloadHero() {
+  try {
+    const snap = await window._fb.getDoc(window._fb.doc(window._fb.db, "content", "hero"));
+    if (!snap.exists()) return;
+    const d = snap.data();
+    document.getElementById("hero-title-tr").value = d["title-tr"] || "";
+    document.getElementById("hero-title-en").value = d["title-en"] || "";
+    document.getElementById("hero-sub-tr").value = d["sub-tr"] || "";
+    document.getElementById("hero-sub-en").value = d["sub-en"] || "";
+  } catch(e) { console.error(e); }
 }
-window.closeModal = closeModal;
 
-// Close modal on backdrop click
-document.querySelectorAll(".modal-backdrop").forEach(el => {
-  el.addEventListener("click", e => {
-    if (e.target === el) el.classList.remove("open");
-  });
-});
+async function saveHero() {
+  const data = {
+    "title-tr": document.getElementById("hero-title-tr").value.trim(),
+    "title-en": document.getElementById("hero-title-en").value.trim(),
+    "sub-tr": document.getElementById("hero-sub-tr").value.trim(),
+    "sub-en": document.getElementById("hero-sub-en").value.trim(),
+  };
+  try {
+    await window._fb.setDoc(window._fb.doc(window._fb.db, "content", "hero"), data);
+    toast("Hero kaydedildi!");
+  } catch(e) {
+    console.error(e);
+    toast("Hata: " + e.message, "var(--red)");
+  }
+}
 
-window.showSection = showSection;
-window.loadSection = loadSection;
-window.saveSection = saveSection;
+async function reloadAbout() {
+  try {
+    const snap = await window._fb.getDoc(window._fb.doc(window._fb.db, "pages", "about"));
+    if (!snap.exists()) return;
+    const d = snap.data();
+    document.getElementById("about-title-tr").value = d["title-tr"] || "";
+    document.getElementById("about-title-en").value = d["title-en"] || "";
+    document.getElementById("about-body-tr").value = d["body-tr"] || "";
+    document.getElementById("about-body-en").value = d["body-en"] || "";
+  } catch(e) { console.error(e); }
+}
+
+async function saveAbout() {
+  const data = {
+    "title-tr": document.getElementById("about-title-tr").value.trim(),
+    "title-en": document.getElementById("about-title-en").value.trim(),
+    "body-tr": document.getElementById("about-body-tr").value.trim(),
+    "body-en": document.getElementById("about-body-en").value.trim(),
+  };
+  try {
+    await window._fb.setDoc(window._fb.doc(window._fb.db, "pages", "about"), data);
+    toast("About kaydedildi!");
+  } catch(e) {
+    console.error(e);
+    toast("Hata: " + e.message, "var(--red)");
+  }
+}
+
+async function reloadNow() {
+  try {
+    const snap = await window._fb.getDoc(window._fb.doc(window._fb.db, "pages", "now"));
+    if (!snap.exists()) return;
+    const d = snap.data();
+    document.getElementById("now-title-tr").value = d["title-tr"] || "";
+    document.getElementById("now-title-en").value = d["title-en"] || "";
+    document.getElementById("now-body-tr").value = d["body-tr"] || "";
+    document.getElementById("now-body-en").value = d["body-en"] || "";
+  } catch(e) { console.error(e); }
+}
+
+async function saveNow() {
+  const data = {
+    "title-tr": document.getElementById("now-title-tr").value.trim(),
+    "title-en": document.getElementById("now-title-en").value.trim(),
+    "body-tr": document.getElementById("now-body-tr").value.trim(),
+    "body-en": document.getElementById("now-body-en").value.trim(),
+  };
+  try {
+    await window._fb.setDoc(window._fb.doc(window._fb.db, "pages", "now"), data);
+    toast("Now kaydedildi!");
+  } catch(e) {
+    console.error(e);
+    toast("Hata: " + e.message, "var(--red)");
+  }
+}
+
+window.reloadHero = reloadHero;
+window.saveHero = saveHero;
+window.reloadAbout = reloadAbout;
+window.saveAbout = saveAbout;
+window.reloadNow = reloadNow;
+window.saveNow = saveNow;
 window.doLogin = doLogin;
 window.doLogout = doLogout;
 </script>
+
 </body>
 </html>

@@ -1815,3 +1815,14 @@ body.is-scrolling .panel {
   pointer-events: none;
   will-change: auto;
 }
+
+/* CLS FIX: Nav/Footer JS ile gelene kadar yer ayır */
+#site-nav-placeholder { height: var(--nav-h); }
+#site-footer-placeholder { min-height: 220px; } /* footer yaklaşık yükseklik */
+
+/* Iconlar yüklenince buton/metin oynamasın */
+i.fa-solid, i.fa-brands, i.fa-regular {
+  width: 1.25em;
+  display: inline-block;
+  text-align: center;
+}
