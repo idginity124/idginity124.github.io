@@ -1,4 +1,12 @@
-const BASE_URL=(()=>{let a=(location.pathname||"/").split("?")[0],t=a.split("/").filter(Boolean),e=t[t.length-1]||"",i=e.includes("."),l=i?Math.max(0,t.length-1):t.length;return l<=0?"":"../".repeat(l)})(),siteNav=`
+const BASE_URL = (() => {
+		let a = (location.pathname || "/").split("?")[0],
+			t = a.split("/").filter(Boolean),
+			e = t[t.length - 1] || "",
+			i = e.includes("."),
+			l = i ? Math.max(0, t.length - 1) : t.length;
+		return l <= 0 ? "" : "../".repeat(l)
+	})(),
+	siteNav = `
   <nav class="nav">
     <div class="container nav-inner">
       <div style="display:flex; align-items:center; gap:14px;">
@@ -20,7 +28,8 @@ const BASE_URL=(()=>{let a=(location.pathname||"/").split("?")[0],t=a.split("/")
       </div>
     </div>
   </nav>
-`,siteFooter=`
+`,
+	siteFooter = `
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -55,4 +64,12 @@ const BASE_URL=(()=>{let a=(location.pathname||"/").split("?")[0],t=a.split("/")
       </div>
     </div>
   </footer>
-`,navContainer=document.getElementById("site-nav-placeholder");navContainer&&(navContainer.outerHTML=siteNav);const footerContainer=document.getElementById("site-footer-placeholder");footerContainer&&(footerContainer.outerHTML=siteFooter),function(){let a=document.createElement("script");a.async=!0,a.defer=!0,a.src="https://cloud.umami.is/script.js",a.setAttribute("data-website-id","33115090-6911-46fb-9f25-9f7c41ecee41"),a.setAttribute("data-domains","idginity124.github.io"),document.head.appendChild(a)}();
+`,
+	navContainer = document.getElementById("site-nav-placeholder");
+navContainer && (navContainer.outerHTML = siteNav);
+const footerContainer = document.getElementById("site-footer-placeholder");
+footerContainer && (footerContainer.outerHTML = siteFooter),
+	function() {
+		let a = document.createElement("script");
+		a.async = !0, a.defer = !0, a.src = "https://cloud.umami.is/script.js", a.setAttribute("data-website-id", "33115090-6911-46fb-9f25-9f7c41ecee41"), a.setAttribute("data-domains", "idginity124.github.io"), document.head.appendChild(a)
+	}();

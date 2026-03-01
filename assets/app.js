@@ -1,1 +1,660 @@
-"use strict";const CONTACT_EMAIL="ekrembulgan2@gmail.com",STORAGE={lang:"eb_lang",theme:"eb_theme"},$=(t,e=document)=>e.querySelector(t),$$=(t,e=document)=>Array.from(e.querySelectorAll(t));let currentLang="tr";function rafThrottle(t){let e=!1;return(...n)=>{e||(e=!0,requestAnimationFrame(()=>{e=!1;try{t(...n)}catch{}}))}}function showToast(t){let e=$("#toast");e||(e=document.createElement("div"),e.id="toast",e.className="toast",document.body.appendChild(e)),e.textContent=t,e.classList.add("is-visible"),showToast._t&&window.clearTimeout(showToast._t),showToast._t=window.setTimeout(()=>e.classList.remove("is-visible"),2400)}function runtimeSeoFixes(){try{const t=location.href.split("#")[0];let e=document.querySelector('link[rel="canonical"]');e||(e=document.createElement("link"),e.rel="canonical",document.head.appendChild(e)),e.href=t;let n=document.querySelector('meta[property="og:url"]');n||(n=document.createElement("meta"),n.setAttribute("property","og:url"),document.head.appendChild(n)),n.setAttribute("content",t);const a=e=>e?/^https?:\/\//i.test(e)||e.startsWith("data:")?e:new URL(e,t).href:e,r=document.querySelector('meta[property="og:image"]');r&&r.setAttribute("content",a(r.getAttribute("content")));const o=document.querySelector('meta[name="twitter:image"]');o&&o.setAttribute("content",a(o.getAttribute("content")));let s=document.querySelector('meta[name="twitter:card"]');s||(s=document.createElement("meta"),s.setAttribute("name","twitter:card"),s.setAttribute("content","summary_large_image"),document.head.appendChild(s))}catch{}}function runtimeImagePerfFixes(){try{document.querySelectorAll("img").forEach(t=>{t.hasAttribute("loading")||t.setAttribute("loading","lazy"),t.hasAttribute("decoding")||t.setAttribute("decoding","async")})}catch{}}async function copyToClipboard(t){try{return await navigator.clipboard.writeText(t),!0}catch{try{const e=document.createElement("textarea");e.value=t,e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select();const n=document.execCommand("copy");return document.body.removeChild(e),n}catch{return!1}}}function langValue(t,e=""){return null==t?e:"string"==typeof t?t:"object"==typeof t&&(t[currentLang]||t.tr||t.en)||e}function makeSlug(t){return String(t||"").toLowerCase().trim().replace(/[^a-z0-9\s-_]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").slice(0,60)}const BASE=(()=>{const t=(location.pathname||"/").split("?")[0].split("/").filter(Boolean),e=(t[t.length-1]||"").includes(".")?Math.max(0,t.length-1):t.length;return e<=0?"":"../".repeat(e)})(),__jsonCache=new Map;async function fetchJSON(t){if(t.includes("projects.json")&&window.__fbProjects)return{projects:window.__fbProjects};if(t.includes("posts.json")&&window.__fbPosts)return{posts:window.__fbPosts};const e=BASE+t;if(__jsonCache.has(e))return __jsonCache.get(e);const n=fetch(e,{cache:"force-cache"}).then(t=>{if(!t.ok)throw new Error(`Failed to fetch ${e} (${t.status})`);return t.json()}).catch(t=>(console.warn("fetchJSON error:",t),null));return __jsonCache.set(e,n),n}function formatDate(t){if(!t)return"";const e=new Date(t);return Number.isNaN(e.getTime())?t:e.toLocaleDateString("tr"===currentLang?"tr-TR":"en-US",{year:"numeric",month:"short",day:"2-digit"})}function initServiceWorker(){if(!("serviceWorker"in navigator))return;const t="localhost"===location.hostname||"127.0.0.1"===location.hostname,e="https:"===location.protocol;(t||e)&&navigator.serviceWorker.register(BASE+"sw.js").then(t=>{const e=()=>{if(t&&t.waiting){try{t.waiting.postMessage({type:"SKIP_WAITING"})}catch{}showToast("tr"===currentLang?"Yeni sürüm hazır — yenileniyor…":"Update ready — reloading…")}};t.addEventListener("updatefound",()=>{const n=t.installing;n&&n.addEventListener("statechange",()=>{"installed"===n.state&&navigator.serviceWorker.controller&&e()})}),e(),navigator.serviceWorker.addEventListener("controllerchange",()=>{initServiceWorker._reloaded||(initServiceWorker._reloaded=!0,location.reload())})}).catch(t=>{console.warn("SW registration failed:",t)})}function setLanguage(t){currentLang="en"===t?"en":"tr",document.documentElement.lang=currentLang,localStorage.setItem(STORAGE.lang,currentLang);const e=$("#lang-btn");e&&(e.textContent="tr"===currentLang?"EN":"TR"),$$("[data-tr][data-en]").forEach(t=>{const e="tr"===currentLang?t.getAttribute("data-tr"):t.getAttribute("data-en");null!=e&&(t.textContent=e)}),$$("[data-tr-placeholder][data-en-placeholder]").forEach(t=>{const e="tr"===currentLang?t.getAttribute("data-tr-placeholder"):t.getAttribute("data-en-placeholder");null!=e&&t.setAttribute("placeholder",e)}),$$("[data-tr-aria][data-en-aria]").forEach(t=>{const e="tr"===currentLang?t.getAttribute("data-tr-aria"):t.getAttribute("data-en-aria");null!=e&&t.setAttribute("aria-label",e)}),rerenderDynamic()}function toggleLanguage(){setLanguage("tr"===currentLang?"en":"tr")}function initLanguage(){const t=$("#lang-btn");t&&t.addEventListener("click",toggleLanguage)}function setTheme(t){const e="light"===t?"light":"dark";document.documentElement.dataset.theme=e,localStorage.setItem(STORAGE.theme,e);const n=$("#theme-btn i");n&&(n.className="dark"===e?"fa-solid fa-moon":"fa-solid fa-sun")}function toggleTheme(){setTheme("dark"===(document.documentElement.dataset.theme||"dark")?"light":"dark")}function initTheme(){const t=$("#theme-btn");t&&t.addEventListener("click",toggleTheme)}function setActiveNav(){const t=(location.pathname||"").toLowerCase(),e=(t.split("/").pop()||"index.html").toLowerCase()||"index.html",n=t.includes("/projects/"),a=t.includes("/blog/");$$(".nav-links a").forEach(t=>{const r=((t.getAttribute("href")||"").toLowerCase().split("/").pop()||"").toLowerCase();let o=r===e||"index.html"===e&&(""===r||"/"===r);!o&&n&&"projects.html"===r&&(o=!0),!o&&a&&"blog.html"===r&&(o=!0),t.classList.toggle("active",o)})}function initNav(){const t=$("#menu-btn");if(!t)return;const e=()=>{document.body.classList.remove("nav-open"),t.setAttribute("aria-expanded","false")};t.addEventListener("click",e=>{e.stopPropagation(),(()=>{const e=document.body.classList.toggle("nav-open");t.setAttribute("aria-expanded",e?"true":"false")})()}),$$(".nav-links a").forEach(t=>t.addEventListener("click",e)),document.addEventListener("click",t=>{if(!document.body.classList.contains("nav-open"))return;const n=$(".nav");n&&!n.contains(t.target)&&e()}),document.addEventListener("keydown",t=>{"Escape"===t.key&&e()})}function initScrollProgress(){const t=$("#progress-bar");if(!t)return;const e=()=>{const e=document.documentElement,n=e.scrollTop||document.body.scrollTop,a=e.scrollHeight-e.clientHeight,r=a>0?n/a*100:0;t.style.width=`${r}%`},n=rafThrottle(e);e(),window.addEventListener("scroll",n,{passive:!0}),window.addEventListener("resize",n,{passive:!0})}function initReveal(){const t=$$(".reveal");if(!t.length)return;const e=new IntersectionObserver(t=>{for(const n of t)n.isIntersecting&&(n.target.classList.add("is-visible"),e.unobserve(n.target))},{threshold:.14});t.forEach(t=>e.observe(t))}function initBackToTop(){const t=$("#to-top");if(!t)return;const e=()=>{const e=(window.scrollY||document.documentElement.scrollTop||0)>520;t.classList.toggle("is-visible",e)};t.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})});const n=rafThrottle(e);e(),window.addEventListener("scroll",n,{passive:!0}),window.addEventListener("resize",n,{passive:!0})}function initScrollPerfGuard(){let t=0,e=!1;window.addEventListener("scroll",()=>{e||(e=!0,document.body.classList.add("is-scrolling")),t&&window.clearTimeout(t),t=window.setTimeout(()=>{e=!1,document.body.classList.remove("is-scrolling")},140)},{passive:!0})}function initFooterYear(){const t=$("#current-year");t&&(t.textContent=String((new Date).getFullYear()))}function initLightbox(){const t=Array.from(document.querySelectorAll("main img, .prose img, .screens img, .gallery img")).filter(t=>{const e=(t.getAttribute("src")||"").toLowerCase(),n=parseInt(t.getAttribute("width")||"0",10),a=parseInt(t.getAttribute("height")||"0",10);return!(n&&a&&(n<=140||a<=140))&&(e.endsWith(".png")||e.endsWith(".jpg")||e.endsWith(".jpeg")||e.endsWith(".webp")||e.endsWith(".gif")||e.endsWith(".svg"))});if(!t.length)return;let e=document.querySelector(".lightbox-backdrop");e||(e=document.createElement("div"),e.className="lightbox-backdrop",e.innerHTML='\n      <button class="lightbox-close" type="button" aria-label="Close">\n        <i class="fa-solid fa-xmark"></i>\n      </button>\n      <img class="lightbox-img" alt="">\n      <div class="lightbox-hint" data-tr="Kapatmak için Esc" data-en="Press Esc to close">Kapatmak için Esc</div>\n    ',document.body.appendChild(e));const n=e.querySelector(".lightbox-img"),a=e.querySelector(".lightbox-close"),r=()=>{e.classList.remove("is-open"),document.body.classList.remove("no-scroll"),n.removeAttribute("src"),n.setAttribute("alt","")};e.addEventListener("click",t=>{t.target===e&&r()}),a.addEventListener("click",r),window.addEventListener("keydown",t=>{"Escape"===t.key&&e.classList.contains("is-open")&&r()}),t.forEach(t=>{t.classList.add("zoomable"),t.setAttribute("tabindex","0"),t.setAttribute("role","button"),t.setAttribute("aria-label",t.getAttribute("alt")||"Preview image");const a=()=>{const a=t.getAttribute("src");a&&(n.setAttribute("src",a),n.setAttribute("alt",t.getAttribute("alt")||""),e.classList.add("is-open"),document.body.classList.add("no-scroll"))};t.addEventListener("click",a),t.addEventListener("keydown",t=>{"Enter"!==t.key&&" "!==t.key||(t.preventDefault(),a())})})}function initContact(){$$("a[data-email]").forEach(t=>{t.setAttribute("href",`mailto:${CONTACT_EMAIL}`),t.textContent=CONTACT_EMAIL});const t=$("#copy-email");t&&t.addEventListener("click",async()=>{showToast(await copyToClipboard(CONTACT_EMAIL)?"tr"===currentLang?"E-posta kopyalandı.":"Email copied.":"tr"===currentLang?"Kopyalama başarısız.":"Copy failed.")});const e=$("#contact-form"),n=$("#contact-note");e&&e.addEventListener("submit",t=>{t.preventDefault();const a=new FormData(e),r=(a.get("name")||"").toString().trim(),o=(a.get("subject")||"").toString().trim(),s=(a.get("message")||"").toString().trim(),i=o?`Contact: ${o}`:"tr"===currentLang?`Portföy İletişim: ${r}`:`Portfolio Contact: ${r}`,c=[r?`Name: ${r}`:"",`Message:\n${s}`,"\n---","Sent from portfolio site."].filter(Boolean),l=`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(i)}&body=${encodeURIComponent(c.join("\n"))}`;n&&(n.textContent="tr"===currentLang?"E-posta uygulaması açılıyor...":"Opening email client..."),window.location.href=l,showToast("tr"===currentLang?"Taslak oluşturuldu.":"Draft created.")})}function initCVDownload(){const t=$("#download-cv");t&&t.addEventListener("click",()=>{const t=BASE+"assets/cv/Ekrem_Bulgan_CV.pdf";window.open(t,"_blank"),showToast("tr"===currentLang?"CV açılıyor...":"Opening resume...")})}let __dynamicRerenders=[];function rerenderDynamic(){for(const t of __dynamicRerenders)try{t()}catch(t){}}function pillButton(t,e,n=!1){const a=document.createElement("button");return a.type="button",a.className="chip"+(n?" active":""),a.textContent="tr"===currentLang?t:e,a.dataset.tr=t,a.dataset.en=e,a}function renderTags(t=[]){const e=document.createElement("div");e.className="tags";for(const n of t){const t=document.createElement("span");t.className="tag",t.textContent=n,e.appendChild(t)}return e}let __projectsState={data:null,search:"",status:"all",category:"all",tag:null,sort:"featured"};function applyProjectFilters(t){const e=(__projectsState.search||"").toLowerCase().trim();let n=t.slice();return"all"!==__projectsState.status&&(n=n.filter(t=>(t.status&&t.status.code)===__projectsState.status)),"all"!==__projectsState.category&&(n=n.filter(t=>Array.isArray(t.category)&&t.category.map(String).includes(__projectsState.category))),__projectsState.tag&&(n=n.filter(t=>Array.isArray(t.tags)&&t.tags.map(String).includes(__projectsState.tag))),e&&(n=n.filter(t=>[t.name,langValue(t.summary),...t.tags||[],...t.category||[]].join(" ").toLowerCase().includes(e))),"az"===__projectsState.sort?n.sort((t,e)=>String(t.name).localeCompare(String(e.name))):"za"===__projectsState.sort?n.sort((t,e)=>String(e.name).localeCompare(String(t.name))):"featured"===__projectsState.sort&&n.sort((t,e)=>Number(Boolean(e.featured))-Number(Boolean(t.featured))),n}function projectCard(t){const e=document.createElement("article");e.className="card project-card reveal";const n=document.createElement("div");n.className="card-icon",n.innerHTML=`<i class="${t.icon||"fa-solid fa-layer-group"}"></i>`;const a=document.createElement("div");a.className="project-card__top";const r=document.createElement("h3");r.textContent=t.name||"Project";const o=document.createElement("span");o.className="status-pill "+(t.status&&t.status.code||""),o.textContent=langValue(t.status,""),a.appendChild(r),a.appendChild(o);const s=document.createElement("p");s.className="muted",s.textContent=langValue(t.summary,"");const i=document.createElement("div");i.className="meta-line",i.textContent=[langValue(t.type),langValue(t.platform)].filter(Boolean).join(" • ");const c=renderTags((t.tags||[]).slice(0,4)),l=document.createElement("div");l.className="card-actions";const d=document.createElement("a");if(d.className="btn btn-small btn-ghost",d.href=BASE+(t.detail||"#"),d.innerHTML=`<i class="fa-solid fa-file-lines"></i><span>${"tr"===currentLang?"Detaylar":"Details"}</span>`,l.appendChild(d),t.links&&t.links.releases){const e=document.createElement("a");e.className="btn btn-small btn-ghost",e.href=t.links.releases,e.target="_blank",e.rel="noopener",e.innerHTML='<i class="fa-solid fa-box"></i><span>Releases</span>',l.appendChild(e)}if(t.links&&t.links.github){const e=document.createElement("a");e.className="btn btn-small btn-primary",e.href=t.links.github,e.target="_blank",e.rel="noopener",e.innerHTML='<i class="fab fa-github"></i><span>GitHub</span>',l.appendChild(e)}if(t.cover){const a=document.createElement("div");a.className="project-cover";const r=document.createElement("img");r.loading="lazy",r.decoding="async",r.alt=`${t.name||"Project"} cover`,r.src=BASE+t.cover,a.appendChild(r),a.appendChild(n),e.appendChild(a)}else e.appendChild(n);return e.appendChild(a),e.appendChild(i),e.appendChild(s),e.appendChild(c),e.appendChild(l),e}function renderProjects(){const t=$("#projects-grid"),e=$("#projects-empty"),n=$("#projects-count");if(!t||!__projectsState.data)return;const a=applyProjectFilters(__projectsState.data.projects||[]);t.innerHTML="",a.forEach(e=>t.appendChild(projectCard(e))),n&&(n.textContent=String(a.length)),e&&e.classList.toggle("is-visible",0===a.length),initReveal()}function syncProjectsUI(){const t=$("#project-search");t&&t.value!==__projectsState.search&&(t.value=__projectsState.search),$$(".chip[data-filter]").forEach(t=>{const e=t.dataset.filter,n=t.dataset.value,a="status"===e&&n===__projectsState.status||"category"===e&&n===__projectsState.category;t.classList.toggle("active",a)});const e=$("#active-tag");e&&(__projectsState.tag?(e.textContent=__projectsState.tag,e.classList.add("is-visible")):e.classList.remove("is-visible"));const n=$("#project-sort");n&&(n.value=__projectsState.sort)}async function initProjectsPage(){if(!$("#projects-app"))return;const t=await fetchJSON("assets/data/projects.json");if(!t||!t.projects)return;__projectsState.data=t;const e=new URLSearchParams(location.search||""),n=e.get("status"),a=e.get("category"),r=e.get("tag"),o=e.get("q");n&&(__projectsState.status=n),a&&(__projectsState.category=a),r&&(__projectsState.tag=r),o&&(__projectsState.search=o);const s=$("#project-search");s&&s.addEventListener("input",t=>{__projectsState.search=t.target.value||"",renderProjects()}),$$(".chip[data-filter]").forEach(t=>{t.addEventListener("click",()=>{const e=t.dataset.filter,n=t.dataset.value;"status"===e&&(__projectsState.status=n),"category"===e&&(__projectsState.category=n),renderProjects(),syncProjectsUI()})});const i=$("#clear-tag");i&&i.addEventListener("click",()=>{__projectsState.tag=null,renderProjects(),syncProjectsUI()});const c=$("#project-sort");c&&c.addEventListener("change",t=>{__projectsState.sort=t.target.value||"featured",renderProjects()});const l=$("#projects-grid");l&&l.addEventListener("click",t=>{const e=t.target&&t.target.classList&&t.target.classList.contains("tag")?t.target.textContent:null;e&&(__projectsState.tag=e,renderProjects(),syncProjectsUI(),showToast("tr"===currentLang?`Filtre: ${e}`:`Filter: ${e}`))}),__dynamicRerenders.push(()=>{syncProjectsUI(),renderProjects()}),syncProjectsUI(),renderProjects()}let __postsData=null;function postCard(t){const e=document.createElement("article");e.className="card post-card reveal";const n=document.createElement("div");n.className="post-card__top";const a=document.createElement("h3");a.textContent=langValue(t.title,"Post");const r=document.createElement("span");r.className="status-pill draft",r.textContent=t.draft?"tr"===currentLang?"Taslak":"Draft":"tr"===currentLang?"Yayın":"Published",n.appendChild(a),t.draft&&n.appendChild(r);const o=document.createElement("div");o.className="meta-line",o.textContent=[formatDate(t.date),langValue(t.readingTime)].filter(Boolean).join(" • ");const s=document.createElement("p");s.className="muted",s.textContent=langValue(t.summary,"");const i=renderTags((t.tags||[]).slice(0,4)),c=document.createElement("div");c.className="card-actions";const l=document.createElement("a");return l.className="btn btn-small btn-primary",l.href=BASE+(t.path||"#"),l.innerHTML=`<i class="fa-solid fa-book-open"></i><span>${"tr"===currentLang?"Oku":"Read"}</span>`,c.appendChild(l),e.appendChild(n),e.appendChild(o),e.appendChild(s),e.appendChild(i),e.appendChild(c),e}function renderPostsInto(t,e=null){const n=$(t);if(!n||!__postsData)return;const a=(__postsData.posts||[]).filter(t=>!t.draft).slice();a.sort((t,e)=>String(e.date||"").localeCompare(String(t.date||"")));const r=e?a.slice(0,e):a;if(n.innerHTML="",r.forEach(t=>n.appendChild(postCard(t))),"#posts-grid"===t){const t=$("#posts-count");t&&(t.textContent=String(a.length));const e=$("#posts-empty");e&&e.classList.toggle("is-visible",0===r.length)}initReveal()}async function initBlogPages(){const t=$("#blog-app"),e=$("#latest-writing");if(!t&&!e)return;const n=await fetchJSON("assets/data/posts.json");n&&n.posts&&(__postsData=n,t&&(__dynamicRerenders.push(()=>renderPostsInto("#posts-grid")),renderPostsInto("#posts-grid")),e&&(__dynamicRerenders.push(()=>renderPostsInto("#latest-writing",3)),renderPostsInto("#latest-writing",3)))}async function initSkillsWidget(){const t=$("#skills-app");if(!t)return;const e=await fetchJSON("assets/data/projects.json");if(!e||!e.projects)return;const n=e.projects,a=[{key:"Python",icon:"fab fa-python",tags:["Python"]},{key:"Computer Vision",icon:"fa-solid fa-eye",tags:["Computer Vision","AI"]},{key:"Desktop Apps",icon:"fa-solid fa-desktop",tags:["Desktop"]},{key:"Automation",icon:"fa-solid fa-gears",tags:["Automation","Workflow"]},{key:"Security",icon:"fa-solid fa-shield-halved",tags:["Security"]},{key:"Web",icon:"fa-solid fa-globe",tags:["Web"]}],r=$("#skills-grid",t),o=$("#skills-result",t);function s(t,e=!0){const a=n.filter(e=>function(t,e){const n=(t.tags||[]).map(String);return e.tags.some(t=>n.includes(t))}(e,t));o.innerHTML="";const r=document.createElement("div");r.className="skills-result__head";const s=document.createElement("div");s.className="skills-result__title",s.textContent="tr"===currentLang?`İlgili projeler: ${t.key}`:`Related projects: ${t.key}`;const i=document.createElement("div");i.className="muted",i.textContent="tr"===currentLang?"Projeye gitmek için isimlere tıkla. (Projeler sayfasına filtreli geçiş yapar)":"Click a project to open it. (Also available as a filtered Projects view)",r.appendChild(s),r.appendChild(i);const c=document.createElement("div");c.className="skills-result__list",a.forEach(t=>{const e=document.createElement("a");e.className="mini-link",e.href=BASE+(t.detail||"#"),e.textContent=t.name,c.appendChild(e)});const l=document.createElement("div");l.className="card-actions";const d=document.createElement("a");d.className="btn btn-small btn-ghost",d.href=BASE+`projects.html?tag=${encodeURIComponent(t.tags[0]||t.key)}`,d.innerHTML=`<i class="fa-solid fa-filter"></i><span>${"tr"===currentLang?"Projeler sayfasında filtrele":"Open filtered Projects"}</span>`,l.appendChild(d),o.appendChild(r),o.appendChild(c),o.appendChild(l),e&&o.scrollIntoView({behavior:"smooth",block:"nearest"})}r&&o&&(r.innerHTML="",a.forEach((t,e)=>{const n=document.createElement("button");n.type="button",n.className="skill-card",n.innerHTML=`<div class="skill-ic"><i class="${t.icon}"></i></div><div class="skill-t">${t.key}</div><div class="skill-d muted">${"tr"===currentLang?"Projelerle eşleştir":"Map to projects"}</div>`,n.addEventListener("click",()=>{$$(".skill-card",r).forEach(t=>t.classList.remove("active")),n.classList.add("active"),s(t,!0)}),r.appendChild(n),0===e&&requestAnimationFrame(()=>{n.classList.add("active"),s(t,!1)})}),__dynamicRerenders.push(()=>{const t=$(".skill-card.active",r),e=t?$$(".skill-card",r).indexOf(t):0;r.innerHTML="",a.forEach((t,n)=>{const a=document.createElement("button");a.type="button",a.className="skill-card"+(n==e?" active":""),a.innerHTML=`<div class="skill-ic"><i class="${t.icon}"></i></div><div class="skill-t">${t.key}</div><div class="skill-d muted">${"tr"===currentLang?"Projelerle eşleştir":"Map to projects"}</div>`,a.addEventListener("click",()=>{$$(".skill-card",r).forEach(t=>t.classList.remove("active")),a.classList.add("active"),s(t,!0)}),r.appendChild(a)}),s(a[Math.max(0,e)],!1)}))}function initTOC(){const t=$("#toc");if(!t)return;const e=$$(".panel[id]");if(!e.length)return;const n=document.createElement("div");n.className="toc-list";const a=[];e.forEach(t=>{const e=$(".panel-title",t)||$("h2",t)||$("h3",t);if(!e)return;const r=t.id,o=document.createElement("a");o.href=`#${r}`,o.textContent=e.textContent.trim(),o.className="toc-link",n.appendChild(o),a.push({id:r,el:t,link:o})}),t.innerHTML="";const r=document.createElement("div");r.className="toc-head",r.textContent="tr"===currentLang?"Bu sayfada":"On this page",t.appendChild(r),t.appendChild(n);const o=new IntersectionObserver(t=>{const e=t.filter(t=>t.isIntersecting).sort((t,e)=>e.intersectionRatio-t.intersectionRatio);if(!e.length)return;const n=e[0].target.id;a.forEach(t=>t.link.classList.toggle("active",t.id===n))},{rootMargin:"-20% 0px -72% 0px",threshold:[.1,.2,.3,.4,.5]});a.forEach(t=>o.observe(t.el)),__dynamicRerenders.push(()=>initTOC())}function initCopyLink(){const t=$("#copy-link");t&&t.addEventListener("click",async()=>{showToast(await copyToClipboard(location.href)?"tr"===currentLang?"Link kopyalandı.":"Link copied.":"tr"===currentLang?"Kopyalama başarısız.":"Copy failed.")})}let __typeTimer=null;function stopTypewriter(){__typeTimer&&(window.clearTimeout(__typeTimer),__typeTimer=null)}function initTypewriter(){const t=$("#typewriter");if(!t)return;t.dataset.twBound||(t.dataset.twBound="1",__dynamicRerenders.push(()=>initTypewriter()));const e=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches,n=(t.getAttribute("data-lines-tr")||"").split("|").map(t=>t.trim()).filter(Boolean),a=(t.getAttribute("data-lines-en")||"").split("|").map(t=>t.trim()).filter(Boolean),r="tr"===currentLang?n.length?n:a:a.length?a:n;if(stopTypewriter(),e)return void(t.textContent=r[0]||"");if(!r.length)return;let o=0,s=0,i=!1;!function e(){const n=r[o]||"";return i?(s--,t.textContent=n.slice(0,Math.max(0,s)),s<=0?(i=!1,o=(o+1)%r.length,void(__typeTimer=window.setTimeout(e,260))):void(__typeTimer=window.setTimeout(e,22))):(s++,t.textContent=n.slice(0,s),s>=n.length?(i=!0,void(__typeTimer=window.setTimeout(e,900))):void(__typeTimer=window.setTimeout(e,34)))}()}async function init(){const t=localStorage.getItem(STORAGE.lang),e=(navigator.language||"").toLowerCase().startsWith("tr")?"tr":"en";setLanguage(t||document.documentElement.lang||e),initLanguage();const n=localStorage.getItem(STORAGE.theme),a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches;setTheme(n||(a?"light":"dark")),initTheme(),initTypewriter(),runtimeSeoFixes(),runtimeImagePerfFixes(),initNav(),setActiveNav(),initScrollProgress(),initScrollPerfGuard(),initReveal(),initBackToTop(),initFooterYear(),initLightbox(),initServiceWorker(),initContact(),initCVDownload(),initCopyLink(),initTOC(),await Promise.all([initProjectsPage(),initBlogPages(),initSkillsWidget()]),console.log("Portfolio initialized.")}document.addEventListener("DOMContentLoaded",init);
+"use strict";
+const CONTACT_EMAIL = "ekrembulgan2@gmail.com",
+	STORAGE = {
+		lang: "eb_lang",
+		theme: "eb_theme"
+	},
+	$ = (t, e = document) => e.querySelector(t),
+	$$ = (t, e = document) => Array.from(e.querySelectorAll(t));
+let currentLang = "tr";
+
+function rafThrottle(t) {
+	let e = !1;
+	return (...n) => {
+		e || (e = !0, requestAnimationFrame(() => {
+			e = !1;
+			try {
+				t(...n)
+			} catch {}
+		}))
+	}
+}
+
+function showToast(t) {
+	let e = $("#toast");
+	e || (e = document.createElement("div"), e.id = "toast", e.className = "toast", document.body.appendChild(e)), e.textContent = t, e.classList.add("is-visible"), showToast._t && window.clearTimeout(showToast._t), showToast._t = window.setTimeout(() => e.classList.remove("is-visible"), 2400)
+}
+
+function runtimeSeoFixes() {
+	try {
+		const t = location.href.split("#")[0];
+		let e = document.querySelector('link[rel="canonical"]');
+		e || (e = document.createElement("link"), e.rel = "canonical", document.head.appendChild(e)), e.href = t;
+		let n = document.querySelector('meta[property="og:url"]');
+		n || (n = document.createElement("meta"), n.setAttribute("property", "og:url"), document.head.appendChild(n)), n.setAttribute("content", t);
+		const a = e => e ? /^https?:\/\//i.test(e) || e.startsWith("data:") ? e : new URL(e, t).href : e,
+			r = document.querySelector('meta[property="og:image"]');
+		r && r.setAttribute("content", a(r.getAttribute("content")));
+		const o = document.querySelector('meta[name="twitter:image"]');
+		o && o.setAttribute("content", a(o.getAttribute("content")));
+		let s = document.querySelector('meta[name="twitter:card"]');
+		s || (s = document.createElement("meta"), s.setAttribute("name", "twitter:card"), s.setAttribute("content", "summary_large_image"), document.head.appendChild(s))
+	} catch {}
+}
+
+function runtimeImagePerfFixes() {
+	try {
+		document.querySelectorAll("img").forEach(t => {
+			t.hasAttribute("loading") || t.setAttribute("loading", "lazy"), t.hasAttribute("decoding") || t.setAttribute("decoding", "async")
+		})
+	} catch {}
+}
+async function copyToClipboard(t) {
+	try {
+		return await navigator.clipboard.writeText(t), !0
+	} catch {
+		try {
+			const e = document.createElement("textarea");
+			e.value = t, e.style.position = "fixed", e.style.left = "-9999px", document.body.appendChild(e), e.select();
+			const n = document.execCommand("copy");
+			return document.body.removeChild(e), n
+		} catch {
+			return !1
+		}
+	}
+}
+
+function langValue(t, e = "") {
+	return null == t ? e : "string" == typeof t ? t : "object" == typeof t && (t[currentLang] || t.tr || t.en) || e
+}
+
+function makeSlug(t) {
+	return String(t || "").toLowerCase().trim().replace(/[^a-z0-9\s-_]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").slice(0, 60)
+}
+const BASE = (() => {
+		const t = (location.pathname || "/").split("?")[0].split("/").filter(Boolean),
+			e = (t[t.length - 1] || "").includes(".") ? Math.max(0, t.length - 1) : t.length;
+		return e <= 0 ? "" : "../".repeat(e)
+	})(),
+	__jsonCache = new Map;
+async function fetchJSON(t) {
+	if (t.includes("projects.json") && window.__fbProjects) return {
+		projects: window.__fbProjects
+	};
+	if (t.includes("posts.json") && window.__fbPosts) return {
+		posts: window.__fbPosts
+	};
+	const e = BASE + t;
+	if (__jsonCache.has(e)) return __jsonCache.get(e);
+	const n = fetch(e, {
+		cache: "force-cache"
+	}).then(t => {
+		if (!t.ok) throw new Error(`Failed to fetch ${e} (${t.status})`);
+		return t.json()
+	}).catch(t => (console.warn("fetchJSON error:", t), null));
+	return __jsonCache.set(e, n), n
+}
+
+function formatDate(t) {
+	if (!t) return "";
+	const e = new Date(t);
+	return Number.isNaN(e.getTime()) ? t : e.toLocaleDateString("tr" === currentLang ? "tr-TR" : "en-US", {
+		year: "numeric",
+		month: "short",
+		day: "2-digit"
+	})
+}
+
+function initServiceWorker() {
+	if (!("serviceWorker" in navigator)) return;
+	const t = "localhost" === location.hostname || "127.0.0.1" === location.hostname,
+		e = "https:" === location.protocol;
+	(t || e) && navigator.serviceWorker.register(BASE + "sw.js").then(t => {
+		const e = () => {
+			if (t && t.waiting) {
+				try {
+					t.waiting.postMessage({
+						type: "SKIP_WAITING"
+					})
+				} catch {}
+				showToast("tr" === currentLang ? "Yeni sürüm hazır — yenileniyor…" : "Update ready — reloading…")
+			}
+		};
+		t.addEventListener("updatefound", () => {
+			const n = t.installing;
+			n && n.addEventListener("statechange", () => {
+				"installed" === n.state && navigator.serviceWorker.controller && e()
+			})
+		}), e(), navigator.serviceWorker.addEventListener("controllerchange", () => {
+			initServiceWorker._reloaded || (initServiceWorker._reloaded = !0, location.reload())
+		})
+	}).catch(t => {
+		console.warn("SW registration failed:", t)
+	})
+}
+
+function setLanguage(t) {
+	currentLang = "en" === t ? "en" : "tr", document.documentElement.lang = currentLang, localStorage.setItem(STORAGE.lang, currentLang);
+	const e = $("#lang-btn");
+	e && (e.textContent = "tr" === currentLang ? "EN" : "TR"), $$("[data-tr][data-en]").forEach(t => {
+		const e = "tr" === currentLang ? t.getAttribute("data-tr") : t.getAttribute("data-en");
+		null != e && (t.textContent = e)
+	}), $$("[data-tr-placeholder][data-en-placeholder]").forEach(t => {
+		const e = "tr" === currentLang ? t.getAttribute("data-tr-placeholder") : t.getAttribute("data-en-placeholder");
+		null != e && t.setAttribute("placeholder", e)
+	}), $$("[data-tr-aria][data-en-aria]").forEach(t => {
+		const e = "tr" === currentLang ? t.getAttribute("data-tr-aria") : t.getAttribute("data-en-aria");
+		null != e && t.setAttribute("aria-label", e)
+	}), rerenderDynamic()
+}
+
+function toggleLanguage() {
+	setLanguage("tr" === currentLang ? "en" : "tr")
+}
+
+function initLanguage() {
+	const t = $("#lang-btn");
+	t && t.addEventListener("click", toggleLanguage)
+}
+
+function setTheme(t) {
+	const e = "light" === t ? "light" : "dark";
+	document.documentElement.dataset.theme = e, localStorage.setItem(STORAGE.theme, e);
+	const n = $("#theme-btn i");
+	n && (n.className = "dark" === e ? "fa-solid fa-moon" : "fa-solid fa-sun")
+}
+
+function toggleTheme() {
+	setTheme("dark" === (document.documentElement.dataset.theme || "dark") ? "light" : "dark")
+}
+
+function initTheme() {
+	const t = $("#theme-btn");
+	t && t.addEventListener("click", toggleTheme)
+}
+
+function setActiveNav() {
+	const t = (location.pathname || "").toLowerCase(),
+		e = (t.split("/").pop() || "index.html").toLowerCase() || "index.html",
+		n = t.includes("/projects/"),
+		a = t.includes("/blog/");
+	$$(".nav-links a").forEach(t => {
+		const r = ((t.getAttribute("href") || "").toLowerCase().split("/").pop() || "").toLowerCase();
+		let o = r === e || "index.html" === e && ("" === r || "/" === r);
+		!o && n && "projects.html" === r && (o = !0), !o && a && "blog.html" === r && (o = !0), t.classList.toggle("active", o)
+	})
+}
+
+function initNav() {
+	const t = $("#menu-btn");
+	if (!t) return;
+	const e = () => {
+		document.body.classList.remove("nav-open"), t.setAttribute("aria-expanded", "false")
+	};
+	t.addEventListener("click", e => {
+		e.stopPropagation(), (() => {
+			const e = document.body.classList.toggle("nav-open");
+			t.setAttribute("aria-expanded", e ? "true" : "false")
+		})()
+	}), $$(".nav-links a").forEach(t => t.addEventListener("click", e)), document.addEventListener("click", t => {
+		if (!document.body.classList.contains("nav-open")) return;
+		const n = $(".nav");
+		n && !n.contains(t.target) && e()
+	}), document.addEventListener("keydown", t => {
+		"Escape" === t.key && e()
+	})
+}
+
+function initScrollProgress() {
+	const t = $("#progress-bar");
+	if (!t) return;
+	const e = () => {
+			const e = document.documentElement,
+				n = e.scrollTop || document.body.scrollTop,
+				a = e.scrollHeight - e.clientHeight,
+				r = a > 0 ? n / a * 100 : 0;
+			t.style.width = `${r}%`
+		},
+		n = rafThrottle(e);
+	e(), window.addEventListener("scroll", n, {
+		passive: !0
+	}), window.addEventListener("resize", n, {
+		passive: !0
+	})
+}
+
+function initReveal() {
+	const t = $$(".reveal");
+	if (!t.length) return;
+	const e = new IntersectionObserver(t => {
+		for (const n of t) n.isIntersecting && (n.target.classList.add("is-visible"), e.unobserve(n.target))
+	}, {
+		threshold: .14
+	});
+	t.forEach(t => e.observe(t))
+}
+
+function initBackToTop() {
+	const t = $("#to-top");
+	if (!t) return;
+	const e = () => {
+		const e = (window.scrollY || document.documentElement.scrollTop || 0) > 520;
+		t.classList.toggle("is-visible", e)
+	};
+	t.addEventListener("click", () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth"
+		})
+	});
+	const n = rafThrottle(e);
+	e(), window.addEventListener("scroll", n, {
+		passive: !0
+	}), window.addEventListener("resize", n, {
+		passive: !0
+	})
+}
+
+function initScrollPerfGuard() {
+	let t = 0,
+		e = !1;
+	window.addEventListener("scroll", () => {
+		e || (e = !0, document.body.classList.add("is-scrolling")), t && window.clearTimeout(t), t = window.setTimeout(() => {
+			e = !1, document.body.classList.remove("is-scrolling")
+		}, 140)
+	}, {
+		passive: !0
+	})
+}
+
+function initFooterYear() {
+	const t = $("#current-year");
+	t && (t.textContent = String((new Date).getFullYear()))
+}
+
+function initLightbox() {
+	const t = Array.from(document.querySelectorAll("main img, .prose img, .screens img, .gallery img")).filter(t => {
+		const e = (t.getAttribute("src") || "").toLowerCase(),
+			n = parseInt(t.getAttribute("width") || "0", 10),
+			a = parseInt(t.getAttribute("height") || "0", 10);
+		return !(n && a && (n <= 140 || a <= 140)) && (e.endsWith(".png") || e.endsWith(".jpg") || e.endsWith(".jpeg") || e.endsWith(".webp") || e.endsWith(".gif") || e.endsWith(".svg"))
+	});
+	if (!t.length) return;
+	let e = document.querySelector(".lightbox-backdrop");
+	e || (e = document.createElement("div"), e.className = "lightbox-backdrop", e.innerHTML = '\n      <button class="lightbox-close" type="button" aria-label="Close">\n        <i class="fa-solid fa-xmark"></i>\n      </button>\n      <img class="lightbox-img" alt="">\n      <div class="lightbox-hint" data-tr="Kapatmak için Esc" data-en="Press Esc to close">Kapatmak için Esc</div>\n    ', document.body.appendChild(e));
+	const n = e.querySelector(".lightbox-img"),
+		a = e.querySelector(".lightbox-close"),
+		r = () => {
+			e.classList.remove("is-open"), document.body.classList.remove("no-scroll"), n.removeAttribute("src"), n.setAttribute("alt", "")
+		};
+	e.addEventListener("click", t => {
+		t.target === e && r()
+	}), a.addEventListener("click", r), window.addEventListener("keydown", t => {
+		"Escape" === t.key && e.classList.contains("is-open") && r()
+	}), t.forEach(t => {
+		t.classList.add("zoomable"), t.setAttribute("tabindex", "0"), t.setAttribute("role", "button"), t.setAttribute("aria-label", t.getAttribute("alt") || "Preview image");
+		const a = () => {
+			const a = t.getAttribute("src");
+			a && (n.setAttribute("src", a), n.setAttribute("alt", t.getAttribute("alt") || ""), e.classList.add("is-open"), document.body.classList.add("no-scroll"))
+		};
+		t.addEventListener("click", a), t.addEventListener("keydown", t => {
+			"Enter" !== t.key && " " !== t.key || (t.preventDefault(), a())
+		})
+	})
+}
+
+function initContact() {
+	$$("a[data-email]").forEach(t => {
+		t.setAttribute("href", `mailto:${CONTACT_EMAIL}`), t.textContent = CONTACT_EMAIL
+	});
+	const t = $("#copy-email");
+	t && t.addEventListener("click", async () => {
+		showToast(await copyToClipboard(CONTACT_EMAIL) ? "tr" === currentLang ? "E-posta kopyalandı." : "Email copied." : "tr" === currentLang ? "Kopyalama başarısız." : "Copy failed.")
+	});
+	const e = $("#contact-form"),
+		n = $("#contact-note");
+	e && e.addEventListener("submit", t => {
+		t.preventDefault();
+		const a = new FormData(e),
+			r = (a.get("name") || "").toString().trim(),
+			o = (a.get("subject") || "").toString().trim(),
+			s = (a.get("message") || "").toString().trim(),
+			i = o ? `Contact: ${o}` : "tr" === currentLang ? `Portföy İletişim: ${r}` : `Portfolio Contact: ${r}`,
+			c = [r ? `Name: ${r}` : "", `Message:\n${s}`, "\n---", "Sent from portfolio site."].filter(Boolean),
+			l = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(i)}&body=${encodeURIComponent(c.join("\n"))}`;
+		n && (n.textContent = "tr" === currentLang ? "E-posta uygulaması açılıyor..." : "Opening email client..."), window.location.href = l, showToast("tr" === currentLang ? "Taslak oluşturuldu." : "Draft created.")
+	})
+}
+
+function initCVDownload() {
+	const t = $("#download-cv");
+	t && t.addEventListener("click", () => {
+		const t = BASE + "assets/cv/Ekrem_Bulgan_CV.pdf";
+		window.open(t, "_blank"), showToast("tr" === currentLang ? "CV açılıyor..." : "Opening resume...")
+	})
+}
+let __dynamicRerenders = [];
+
+function rerenderDynamic() {
+	for (const t of __dynamicRerenders) try {
+		t()
+	} catch (t) {}
+}
+
+function pillButton(t, e, n = !1) {
+	const a = document.createElement("button");
+	return a.type = "button", a.className = "chip" + (n ? " active" : ""), a.textContent = "tr" === currentLang ? t : e, a.dataset.tr = t, a.dataset.en = e, a
+}
+
+function renderTags(t = []) {
+	const e = document.createElement("div");
+	e.className = "tags";
+	for (const n of t) {
+		const t = document.createElement("span");
+		t.className = "tag", t.textContent = n, e.appendChild(t)
+	}
+	return e
+}
+let __projectsState = {
+	data: null,
+	search: "",
+	status: "all",
+	category: "all",
+	tag: null,
+	sort: "featured"
+};
+
+function applyProjectFilters(t) {
+	const e = (__projectsState.search || "").toLowerCase().trim();
+	let n = t.slice();
+	return "all" !== __projectsState.status && (n = n.filter(t => (t.status && t.status.code) === __projectsState.status)), "all" !== __projectsState.category && (n = n.filter(t => Array.isArray(t.category) && t.category.map(String).includes(__projectsState.category))), __projectsState.tag && (n = n.filter(t => Array.isArray(t.tags) && t.tags.map(String).includes(__projectsState.tag))), e && (n = n.filter(t => [t.name, langValue(t.summary), ...t.tags || [], ...t.category || []].join(" ").toLowerCase().includes(e))), "az" === __projectsState.sort ? n.sort((t, e) => String(t.name).localeCompare(String(e.name))) : "za" === __projectsState.sort ? n.sort((t, e) => String(e.name).localeCompare(String(t.name))) : "featured" === __projectsState.sort && n.sort((t, e) => Number(Boolean(e.featured)) - Number(Boolean(t.featured))), n
+}
+
+function projectCard(t) {
+	const e = document.createElement("article");
+	e.className = "card project-card reveal";
+	const n = document.createElement("div");
+	n.className = "card-icon", n.innerHTML = `<i class="${t.icon||"fa-solid fa-layer-group"}"></i>`;
+	const a = document.createElement("div");
+	a.className = "project-card__top";
+	const r = document.createElement("h3");
+	r.textContent = t.name || "Project";
+	const o = document.createElement("span");
+	o.className = "status-pill " + (t.status && t.status.code || ""), o.textContent = langValue(t.status, ""), a.appendChild(r), a.appendChild(o);
+	const s = document.createElement("p");
+	s.className = "muted", s.textContent = langValue(t.summary, "");
+	const i = document.createElement("div");
+	i.className = "meta-line", i.textContent = [langValue(t.type), langValue(t.platform)].filter(Boolean).join(" • ");
+	const c = renderTags((t.tags || []).slice(0, 4)),
+		l = document.createElement("div");
+	l.className = "card-actions";
+	const d = document.createElement("a");
+	if (d.className = "btn btn-small btn-ghost", d.href = BASE + (t.detail || "#"), d.innerHTML = `<i class="fa-solid fa-file-lines"></i><span>${"tr"===currentLang?"Detaylar":"Details"}</span>`, l.appendChild(d), t.links && t.links.releases) {
+		const e = document.createElement("a");
+		e.className = "btn btn-small btn-ghost", e.href = t.links.releases, e.target = "_blank", e.rel = "noopener", e.innerHTML = '<i class="fa-solid fa-box"></i><span>Releases</span>', l.appendChild(e)
+	}
+	if (t.links && t.links.github) {
+		const e = document.createElement("a");
+		e.className = "btn btn-small btn-primary", e.href = t.links.github, e.target = "_blank", e.rel = "noopener", e.innerHTML = '<i class="fab fa-github"></i><span>GitHub</span>', l.appendChild(e)
+	}
+	if (t.cover) {
+		const a = document.createElement("div");
+		a.className = "project-cover";
+		const r = document.createElement("img");
+		r.loading = "lazy", r.decoding = "async", r.alt = `${t.name||"Project"} cover`, r.src = BASE + t.cover, a.appendChild(r), a.appendChild(n), e.appendChild(a)
+	} else e.appendChild(n);
+	return e.appendChild(a), e.appendChild(i), e.appendChild(s), e.appendChild(c), e.appendChild(l), e
+}
+
+function renderProjects() {
+	const t = $("#projects-grid"),
+		e = $("#projects-empty"),
+		n = $("#projects-count");
+	if (!t || !__projectsState.data) return;
+	const a = applyProjectFilters(__projectsState.data.projects || []);
+	t.innerHTML = "", a.forEach(e => t.appendChild(projectCard(e))), n && (n.textContent = String(a.length)), e && e.classList.toggle("is-visible", 0 === a.length), initReveal()
+}
+
+function syncProjectsUI() {
+	const t = $("#project-search");
+	t && t.value !== __projectsState.search && (t.value = __projectsState.search), $$(".chip[data-filter]").forEach(t => {
+		const e = t.dataset.filter,
+			n = t.dataset.value,
+			a = "status" === e && n === __projectsState.status || "category" === e && n === __projectsState.category;
+		t.classList.toggle("active", a)
+	});
+	const e = $("#active-tag");
+	e && (__projectsState.tag ? (e.textContent = __projectsState.tag, e.classList.add("is-visible")) : e.classList.remove("is-visible"));
+	const n = $("#project-sort");
+	n && (n.value = __projectsState.sort)
+}
+async function initProjectsPage() {
+	if (!$("#projects-app")) return;
+	const t = await fetchJSON("assets/data/projects.json");
+	if (!t || !t.projects) return;
+	__projectsState.data = t;
+	const e = new URLSearchParams(location.search || ""),
+		n = e.get("status"),
+		a = e.get("category"),
+		r = e.get("tag"),
+		o = e.get("q");
+	n && (__projectsState.status = n), a && (__projectsState.category = a), r && (__projectsState.tag = r), o && (__projectsState.search = o);
+	const s = $("#project-search");
+	s && s.addEventListener("input", t => {
+		__projectsState.search = t.target.value || "", renderProjects()
+	}), $$(".chip[data-filter]").forEach(t => {
+		t.addEventListener("click", () => {
+			const e = t.dataset.filter,
+				n = t.dataset.value;
+			"status" === e && (__projectsState.status = n), "category" === e && (__projectsState.category = n), renderProjects(), syncProjectsUI()
+		})
+	});
+	const i = $("#clear-tag");
+	i && i.addEventListener("click", () => {
+		__projectsState.tag = null, renderProjects(), syncProjectsUI()
+	});
+	const c = $("#project-sort");
+	c && c.addEventListener("change", t => {
+		__projectsState.sort = t.target.value || "featured", renderProjects()
+	});
+	const l = $("#projects-grid");
+	l && l.addEventListener("click", t => {
+		const e = t.target && t.target.classList && t.target.classList.contains("tag") ? t.target.textContent : null;
+		e && (__projectsState.tag = e, renderProjects(), syncProjectsUI(), showToast("tr" === currentLang ? `Filtre: ${e}` : `Filter: ${e}`))
+	}), __dynamicRerenders.push(() => {
+		syncProjectsUI(), renderProjects()
+	}), syncProjectsUI(), renderProjects()
+}
+let __postsData = null;
+
+function postCard(t) {
+	const e = document.createElement("article");
+	e.className = "card post-card reveal";
+	const n = document.createElement("div");
+	n.className = "post-card__top";
+	const a = document.createElement("h3");
+	a.textContent = langValue(t.title, "Post");
+	const r = document.createElement("span");
+	r.className = "status-pill draft", r.textContent = t.draft ? "tr" === currentLang ? "Taslak" : "Draft" : "tr" === currentLang ? "Yayın" : "Published", n.appendChild(a), t.draft && n.appendChild(r);
+	const o = document.createElement("div");
+	o.className = "meta-line", o.textContent = [formatDate(t.date), langValue(t.readingTime)].filter(Boolean).join(" • ");
+	const s = document.createElement("p");
+	s.className = "muted", s.textContent = langValue(t.summary, "");
+	const i = renderTags((t.tags || []).slice(0, 4)),
+		c = document.createElement("div");
+	c.className = "card-actions";
+	const l = document.createElement("a");
+	return l.className = "btn btn-small btn-primary", l.href = BASE + (t.path || "#"), l.innerHTML = `<i class="fa-solid fa-book-open"></i><span>${"tr"===currentLang?"Oku":"Read"}</span>`, c.appendChild(l), e.appendChild(n), e.appendChild(o), e.appendChild(s), e.appendChild(i), e.appendChild(c), e
+}
+
+function renderPostsInto(t, e = null) {
+	const n = $(t);
+	if (!n || !__postsData) return;
+	const a = (__postsData.posts || []).filter(t => !t.draft).slice();
+	a.sort((t, e) => String(e.date || "").localeCompare(String(t.date || "")));
+	const r = e ? a.slice(0, e) : a;
+	if (n.innerHTML = "", r.forEach(t => n.appendChild(postCard(t))), "#posts-grid" === t) {
+		const t = $("#posts-count");
+		t && (t.textContent = String(a.length));
+		const e = $("#posts-empty");
+		e && e.classList.toggle("is-visible", 0 === r.length)
+	}
+	initReveal()
+}
+async function initBlogPages() {
+	const t = $("#blog-app"),
+		e = $("#latest-writing");
+	if (!t && !e) return;
+	const n = await fetchJSON("assets/data/posts.json");
+	n && n.posts && (__postsData = n, t && (__dynamicRerenders.push(() => renderPostsInto("#posts-grid")), renderPostsInto("#posts-grid")), e && (__dynamicRerenders.push(() => renderPostsInto("#latest-writing", 3)), renderPostsInto("#latest-writing", 3)))
+}
+async function initSkillsWidget() {
+	const t = $("#skills-app");
+	if (!t) return;
+	const e = await fetchJSON("assets/data/projects.json");
+	if (!e || !e.projects) return;
+	const n = e.projects,
+		a = [{
+			key: "Python",
+			icon: "fab fa-python",
+			tags: ["Python"]
+		}, {
+			key: "Computer Vision",
+			icon: "fa-solid fa-eye",
+			tags: ["Computer Vision", "AI"]
+		}, {
+			key: "Desktop Apps",
+			icon: "fa-solid fa-desktop",
+			tags: ["Desktop"]
+		}, {
+			key: "Automation",
+			icon: "fa-solid fa-gears",
+			tags: ["Automation", "Workflow"]
+		}, {
+			key: "Security",
+			icon: "fa-solid fa-shield-halved",
+			tags: ["Security"]
+		}, {
+			key: "Web",
+			icon: "fa-solid fa-globe",
+			tags: ["Web"]
+		}],
+		r = $("#skills-grid", t),
+		o = $("#skills-result", t);
+
+	function s(t, e = !0) {
+		const a = n.filter(e => function(t, e) {
+			const n = (t.tags || []).map(String);
+			return e.tags.some(t => n.includes(t))
+		}(e, t));
+		o.innerHTML = "";
+		const r = document.createElement("div");
+		r.className = "skills-result__head";
+		const s = document.createElement("div");
+		s.className = "skills-result__title", s.textContent = "tr" === currentLang ? `İlgili projeler: ${t.key}` : `Related projects: ${t.key}`;
+		const i = document.createElement("div");
+		i.className = "muted", i.textContent = "tr" === currentLang ? "Projeye gitmek için isimlere tıkla. (Projeler sayfasına filtreli geçiş yapar)" : "Click a project to open it. (Also available as a filtered Projects view)", r.appendChild(s), r.appendChild(i);
+		const c = document.createElement("div");
+		c.className = "skills-result__list", a.forEach(t => {
+			const e = document.createElement("a");
+			e.className = "mini-link", e.href = BASE + (t.detail || "#"), e.textContent = t.name, c.appendChild(e)
+		});
+		const l = document.createElement("div");
+		l.className = "card-actions";
+		const d = document.createElement("a");
+		d.className = "btn btn-small btn-ghost", d.href = BASE + `projects.html?tag=${encodeURIComponent(t.tags[0]||t.key)}`, d.innerHTML = `<i class="fa-solid fa-filter"></i><span>${"tr"===currentLang?"Projeler sayfasında filtrele":"Open filtered Projects"}</span>`, l.appendChild(d), o.appendChild(r), o.appendChild(c), o.appendChild(l), e && o.scrollIntoView({
+			behavior: "smooth",
+			block: "nearest"
+		})
+	}
+	r && o && (r.innerHTML = "", a.forEach((t, e) => {
+		const n = document.createElement("button");
+		n.type = "button", n.className = "skill-card", n.innerHTML = `<div class="skill-ic"><i class="${t.icon}"></i></div><div class="skill-t">${t.key}</div><div class="skill-d muted">${"tr"===currentLang?"Projelerle eşleştir":"Map to projects"}</div>`, n.addEventListener("click", () => {
+			$$(".skill-card", r).forEach(t => t.classList.remove("active")), n.classList.add("active"), s(t, !0)
+		}), r.appendChild(n), 0 === e && requestAnimationFrame(() => {
+			n.classList.add("active"), s(t, !1)
+		})
+	}), __dynamicRerenders.push(() => {
+		const t = $(".skill-card.active", r),
+			e = t ? $$(".skill-card", r).indexOf(t) : 0;
+		r.innerHTML = "", a.forEach((t, n) => {
+			const a = document.createElement("button");
+			a.type = "button", a.className = "skill-card" + (n == e ? " active" : ""), a.innerHTML = `<div class="skill-ic"><i class="${t.icon}"></i></div><div class="skill-t">${t.key}</div><div class="skill-d muted">${"tr"===currentLang?"Projelerle eşleştir":"Map to projects"}</div>`, a.addEventListener("click", () => {
+				$$(".skill-card", r).forEach(t => t.classList.remove("active")), a.classList.add("active"), s(t, !0)
+			}), r.appendChild(a)
+		}), s(a[Math.max(0, e)], !1)
+	}))
+}
+
+function initTOC() {
+	const t = $("#toc");
+	if (!t) return;
+	const e = $$(".panel[id]");
+	if (!e.length) return;
+	const n = document.createElement("div");
+	n.className = "toc-list";
+	const a = [];
+	e.forEach(t => {
+		const e = $(".panel-title", t) || $("h2", t) || $("h3", t);
+		if (!e) return;
+		const r = t.id,
+			o = document.createElement("a");
+		o.href = `#${r}`, o.textContent = e.textContent.trim(), o.className = "toc-link", n.appendChild(o), a.push({
+			id: r,
+			el: t,
+			link: o
+		})
+	}), t.innerHTML = "";
+	const r = document.createElement("div");
+	r.className = "toc-head", r.textContent = "tr" === currentLang ? "Bu sayfada" : "On this page", t.appendChild(r), t.appendChild(n);
+	const o = new IntersectionObserver(t => {
+		const e = t.filter(t => t.isIntersecting).sort((t, e) => e.intersectionRatio - t.intersectionRatio);
+		if (!e.length) return;
+		const n = e[0].target.id;
+		a.forEach(t => t.link.classList.toggle("active", t.id === n))
+	}, {
+		rootMargin: "-20% 0px -72% 0px",
+		threshold: [.1, .2, .3, .4, .5]
+	});
+	a.forEach(t => o.observe(t.el)), __dynamicRerenders.push(() => initTOC())
+}
+
+function initCopyLink() {
+	const t = $("#copy-link");
+	t && t.addEventListener("click", async () => {
+		showToast(await copyToClipboard(location.href) ? "tr" === currentLang ? "Link kopyalandı." : "Link copied." : "tr" === currentLang ? "Kopyalama başarısız." : "Copy failed.")
+	})
+}
+let __typeTimer = null;
+
+function stopTypewriter() {
+	__typeTimer && (window.clearTimeout(__typeTimer), __typeTimer = null)
+}
+
+function initTypewriter() {
+	const t = $("#typewriter");
+	if (!t) return;
+	t.dataset.twBound || (t.dataset.twBound = "1", __dynamicRerenders.push(() => initTypewriter()));
+	const e = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+		n = (t.getAttribute("data-lines-tr") || "").split("|").map(t => t.trim()).filter(Boolean),
+		a = (t.getAttribute("data-lines-en") || "").split("|").map(t => t.trim()).filter(Boolean),
+		r = "tr" === currentLang ? n.length ? n : a : a.length ? a : n;
+	if (stopTypewriter(), e) return void(t.textContent = r[0] || "");
+	if (!r.length) return;
+	let o = 0,
+		s = 0,
+		i = !1;
+	! function e() {
+		const n = r[o] || "";
+		return i ? (s--, t.textContent = n.slice(0, Math.max(0, s)), s <= 0 ? (i = !1, o = (o + 1) % r.length, void(__typeTimer = window.setTimeout(e, 260))) : void(__typeTimer = window.setTimeout(e, 22))) : (s++, t.textContent = n.slice(0, s), s >= n.length ? (i = !0, void(__typeTimer = window.setTimeout(e, 900))) : void(__typeTimer = window.setTimeout(e, 34)))
+	}()
+}
+async function init() {
+	const t = localStorage.getItem(STORAGE.lang),
+		e = (navigator.language || "").toLowerCase().startsWith("tr") ? "tr" : "en";
+	setLanguage(t || document.documentElement.lang || e), initLanguage();
+	const n = localStorage.getItem(STORAGE.theme),
+		a = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+	setTheme(n || (a ? "light" : "dark")), initTheme(), initTypewriter(), runtimeSeoFixes(), runtimeImagePerfFixes(), initNav(), setActiveNav(), initScrollProgress(), initScrollPerfGuard(), initReveal(), initBackToTop(), initFooterYear(), initLightbox(), initServiceWorker(), initContact(), initCVDownload(), initCopyLink(), initTOC(), await Promise.all([initProjectsPage(), initBlogPages(), initSkillsWidget()]), console.log("Portfolio initialized.")
+}
+document.addEventListener("DOMContentLoaded", init);
