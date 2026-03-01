@@ -1,16 +1,4 @@
-// assets/components.js
-
-const BASE_URL = (() => {
-  const path = (location.pathname || "/").split("?")[0];
-  const parts = path.split("/").filter(Boolean);
-  const last = parts[parts.length - 1] || "";
-  const isFile = last.includes(".");
-  const depth = isFile ? Math.max(0, parts.length - 1) : parts.length;
-  return depth <= 0 ? "" : "../".repeat(depth);
-})();
-
-// ORTAK ÜST MENÜ (FX Butonu Silindi)
-const siteNav = `
+const BASE_URL=(()=>{let a=(location.pathname||"/").split("?")[0],t=a.split("/").filter(Boolean),e=t[t.length-1]||"",i=e.includes("."),l=i?Math.max(0,t.length-1):t.length;return l<=0?"":"../".repeat(l)})(),siteNav=`
   <nav class="nav">
     <div class="container nav-inner">
       <div style="display:flex; align-items:center; gap:14px;">
@@ -32,16 +20,13 @@ const siteNav = `
       </div>
     </div>
   </nav>
-`;
-
-// ORTAK ALT KISIM (FOOTER)
-const siteFooter = `
+`,siteFooter=`
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
           <strong>Ekrem Bulgan</strong>
-          <div class="muted" style="margin-top:6px;" data-tr="AI • Bilgisayarlı Görü • Otomasyon" data-en="AI • Computer Vision • Automation">AI • Bilgisayarlı Görü • Otomasyon</div>
+          <div class="muted" style="margin-top:6px;" data-tr="AI • Bilgisayarlı G\xf6r\xfc • Otomasyon" data-en="AI • Computer Vision • Automation">AI • Bilgisayarlı G\xf6r\xfc • Otomasyon</div>
           <div class="muted" style="margin-top:10px;"><a href="mailto:ekrembulgan2@gmail.com">ekrembulgan2@gmail.com</a></div>
         </div>
         <div>
@@ -66,25 +51,8 @@ const siteFooter = `
       </div>
       <div class="footer-bottom">
         <div>&copy; <span id="current-year">${new Date().getFullYear()}</span> Ekrem Bulgan</div>
-        <div><span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></div>
+        <div><span data-tr="T\xfcm hakları saklıdır." data-en="All rights reserved.">T\xfcm hakları saklıdır.</span></div>
       </div>
     </div>
   </footer>
-`;
-
-const navContainer = document.getElementById('site-nav-placeholder');
-if (navContainer) navContainer.outerHTML = siteNav;
-
-const footerContainer = document.getElementById('site-footer-placeholder');
-if (footerContainer) footerContainer.outerHTML = siteFooter;
-
-(function() {
-  const el = document.createElement('script');
-  el.async = true;
-  el.defer = true;
-  // Siten GitHub Pages'ta olduğu için "data-domains" eklemek verinin daha temiz gelmesini sağlar
-  el.src = "https://cloud.umami.is/script.js";
-  el.setAttribute('data-website-id', '33115090-6911-46fb-9f25-9f7c41ecee41');
-  el.setAttribute('data-domains', 'idginity124.github.io'); 
-  document.head.appendChild(el);
-})();
+`,navContainer=document.getElementById("site-nav-placeholder");navContainer&&(navContainer.outerHTML=siteNav);const footerContainer=document.getElementById("site-footer-placeholder");footerContainer&&(footerContainer.outerHTML=siteFooter),function(){let a=document.createElement("script");a.async=!0,a.defer=!0,a.src="https://cloud.umami.is/script.js",a.setAttribute("data-website-id","33115090-6911-46fb-9f25-9f7c41ecee41"),a.setAttribute("data-domains","idginity124.github.io"),document.head.appendChild(a)}();
