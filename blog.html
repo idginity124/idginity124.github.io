@@ -1,99 +1,70 @@
 <!doctype html>
 <html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#060611" />
-  
-  <title>Yazılar & Teknik Notlar | Ekrem Bulgan</title>
-  <meta name="description" content="Ekrem Bulgan'ın yazılım dünyasından notları. Flutter, Python, AI ve otomasyon projelerinden edinilen teknik tecrübeler, kontrol listeleri ve geliştirme ipuçları." />
-  <meta name="keywords" content="yazılım blogu, teknik notlar, Flutter ipuçları, Python otomasyon rehberi, Ekrem Bulgan yazıları" />
-  <link rel="canonical" href="https://idginity124.github.io/blog.html" />
-
-  <meta property="og:title" content="Teknik Yazılar ve Geliştirici Notları | Ekrem Bulgan" />
-  <meta property="og:description" content="Projelerimden öğrendiklerimi, teknik ipuçlarını ve yazılım dünyasındaki güncel notlarımı paylaşıyorum." />
-  <meta property="og:url" content="https://idginity124.github.io/blog.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://idginity124.github.io/assets/img/vidextract_logo.png" />
-  <meta property="og:locale" content="tr_TR" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Yazılar | Ekrem Bulgan" />
-  <meta name="twitter:description" content="Kısa notlar, teknik rehberler ve yazılım geliştirme tecrübeleri." />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "Ekrem Bulgan Teknik Blog",
-    "description": "Yazılım geliştirme süreci, AI ve otomasyon üzerine teknik içerikler.",
-    "publisher": {
-      "@type": "Person",
-      "name": "Ekrem Bulgan"
-    }
-  }
-  </script>
-
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="feed.xml" />
-  <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-</head>
-<body>
-  <a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
-  <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
-
-  <div id="site-nav-placeholder"></div>
-
-  <noscript>
-    <div class="noscript" data-tr="Bu site bazı özellikler için JavaScript kullanır. Lütfen JavaScript'i etkinleştirin." data-en="This site uses JavaScript for some features. Please enable JavaScript.">
-      Bu site bazı özellikler için JavaScript kullanır. Lütfen JavaScript'i etkinleştirin.
-    </div>
-  </noscript>
-
-  <main id="main">
-    <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
-      <div class="container">
-        <div class="section-head reveal">
-          <h1 class="section-title" style="margin:0" data-tr="Yazılar" data-en="Blog">Yazılar</h1>
-          <p class="section-desc" data-tr="Notlar, kontrol listeleri ve teknik yazılar." data-en="Notes, checklists and technical writing.">
-            Kısa notlar, kontrol listeleri ve projelerden öğrendiklerim.
-          </p>
-        </div>
-
-        <div class="panel reveal" id="blog-app">
-          <div class="card-actions" style="justify-content: space-between; align-items: center; gap: 10px;">
-            <div class="muted">
-              <span data-tr="Toplam:" data-en="Total:">Toplam:</span>
-              <strong id="posts-count">0</strong>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#060611" />
+    <title>Yazılar & Teknik Notlar | Ekrem Bulgan</title>
+    <meta name="description" content="Ekrem Bulgan'ın yazılım dünyasından notları. Flutter, Python, AI ve otomasyon projelerinden edinilen teknik tecrübeler, kontrol listeleri ve geliştirme ipuçları." />
+    <meta name="keywords" content="yazılım blogu, teknik notlar, Flutter ipuçları, Python otomasyon rehberi, Ekrem Bulgan yazıları" />
+    <link rel="canonical" href="https://idginity124.github.io/blog.html" />
+    <meta property="og:title" content="Teknik Yazılar ve Geliştirici Notları | Ekrem Bulgan" />
+    <meta property="og:description" content="Projelerimden öğrendiklerimi, teknik ipuçlarını ve yazılım dünyasındaki güncel notlarımı paylaşıyorum." />
+    <meta property="og:url" content="https://idginity124.github.io/blog.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://idginity124.github.io/assets/img/vidextract_logo.png" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Yazılar | Ekrem Bulgan" />
+    <meta name="twitter:description" content="Kısa notlar, teknik rehberler ve yazılım geliştirme tecrübeleri." />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Ekrem Bulgan Teknik Blog",
+        "description": "Yazılım geliştirme süreci, AI ve otomasyon üzerine teknik içerikler.",
+        "publisher": {
+          "@type": "Person",
+          "name": "Ekrem Bulgan"
+        }
+      }
+    </script>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="feed.xml" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'" />
+  </head>
+  <body><a class="skip-link" href="#main" data-tr="İçeriğe geç" data-en="Skip to content">İçeriğe geç</a>
+    <div class="top-progress" aria-hidden="true"><span class="top-progress__bar" id="progress-bar"></span></div>
+    <div id="site-nav-placeholder"></div><noscript>
+      <div class="noscript" data-tr="Bu site bazı özellikler için JavaScript kullanır. Lütfen JavaScript'i etkinleştirin." data-en="This site uses JavaScript for some features. Please enable JavaScript."> Bu site bazı özellikler için JavaScript kullanır. Lütfen JavaScript'i etkinleştirin. </div>
+    </noscript>
+    <main id="main">
+      <section class="section" style="padding-top: calc(var(--nav-h) + 46px);">
+        <div class="container">
+          <div class="section-head reveal">
+            <h1 class="section-title" style="margin:0" data-tr="Yazılar" data-en="Blog">Yazılar</h1>
+            <p class="section-desc" data-tr="Notlar, kontrol listeleri ve teknik yazılar." data-en="Notes, checklists and technical writing."> Kısa notlar, kontrol listeleri ve projelerden öğrendiklerim. </p>
+          </div>
+          <div class="panel reveal" id="blog-app">
+            <div class="card-actions" style="justify-content: space-between; align-items: center; gap: 10px;">
+              <div class="muted"><span data-tr="Toplam:" data-en="Total:">Toplam:</span><strong id="posts-count">0</strong></div>
+            </div>
+            <div class="grid" id="posts-grid" style="margin-top: 14px;"></div>
+            <div class="empty-state" id="posts-empty"><strong data-tr="Henüz yazı yok" data-en="No posts yet">Henüz yazı yok</strong>
+              <p class="muted" style="margin: 8px 0 0;" data-tr="Yeni yazılar yakında." data-en="More posts soon."> Yeni yazılar yakında. </p>
             </div>
           </div>
-
-          <div class="grid" id="posts-grid" style="margin-top: 14px;"></div>
-
-          <div class="empty-state" id="posts-empty">
-            <strong data-tr="Henüz yazı yok" data-en="No posts yet">Henüz yazı yok</strong>
-            <p class="muted" style="margin: 8px 0 0;" data-tr="Yeni yazılar yakında." data-en="More posts soon.">
-              Yeni yazılar yakında.
-            </p>
-          </div>
         </div>
-      </div>
-    </section>
-  </main>
-
-  <div id="site-footer-placeholder"></div>
-
-  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
-    <i class="fa-solid fa-arrow-up"></i>
-  </button>
-
-  <script src="assets/components.js"></script>
-  <script type="module" src="firebase-content.js"></script>
-  <script src="assets/app.js" defer></script>
-</body>
+      </section>
+    </main>
+    <div id="site-footer-placeholder"></div><button class="to-top" id="to-top" type="button" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+    <script src="assets/components.js"></script>
+    <script type="module" src="firebase-content.js"></script>
+    <script src="assets/app.js" defer></script>
+  </body>
 </html>
