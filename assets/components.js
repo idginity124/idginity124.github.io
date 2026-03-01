@@ -12,8 +12,8 @@ const BASE_URL = (() => {
 		{ rel: 'stylesheet', href: BASE_URL + 'assets/styles.css' },
 		{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
 		{ rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
-		{ rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap', media: 'print', onload: "this.media='all'" },
-		{ rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', media: 'print', onload: "this.media='all'" },
+		{ rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap' },
+    { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' },
 	];
 	links.forEach(({ rel, href, crossorigin }) => {
 		if (document.querySelector(`link[href="${href}"]`)) return;

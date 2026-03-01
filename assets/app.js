@@ -138,7 +138,8 @@ function setLanguage(t) {
 	const e = $("#lang-btn");
 	e && (e.textContent = "tr" === currentLang ? "EN" : "TR"), $$("[data-tr][data-en]").forEach(t => {
 		const e = "tr" === currentLang ? t.getAttribute("data-tr") : t.getAttribute("data-en");
-		null != e && (t.textContent = e)
+		if (null == e || t.children.length > 0) return;
+		t.textContent = e;
 	}), $$("[data-tr-placeholder][data-en-placeholder]").forEach(t => {
 		const e = "tr" === currentLang ? t.getAttribute("data-tr-placeholder") : t.getAttribute("data-en-placeholder");
 		null != e && t.setAttribute("placeholder", e)
